@@ -71,6 +71,11 @@ public class WeightMetric implements SimilarityFunction
 		this.numberOfModels = numberOfModels;
 	}
 
+	/**
+	 * Calculate the quality of a matching
+	 * @param set The set of elements for which the quality is to be calculated
+	 * @return The quality of the overall matching
+	 */
 	public double getQualityOfMatching(Set<RMatch> set) {
 		double weight = 0.0d;
 		for (RMatch tuple : set) {
@@ -78,8 +83,12 @@ public class WeightMetric implements SimilarityFunction
 		}
 		return weight;
 	}
-	// New  implementation
 
+	/**
+	 * Calculate the weight for a match of the given elements
+	 * @param match The elements that are to be matched
+	 * @return The weight of the resulting match
+	 */
 	public double weightForElements(Collection<RElement> match)
 	{
 		HashMap<String, List<Boolean>> allDistinctProperties = new HashMap<>();
