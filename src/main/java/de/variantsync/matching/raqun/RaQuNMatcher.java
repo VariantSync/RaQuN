@@ -50,7 +50,7 @@ public class RaQuNMatcher {
             }
 
             if (similarityFunction.shouldMatch(selectedTuples)) {
-                RMatch mergedTuple = RMatch.getMergedTuple(selectedTuples);
+                RMatch mergedTuple = RMatch.getMergedMatch(selectedTuples);
                 if (mergedTuple != null && validityConstraint.isValid(mergedTuple)) {
                     // Remove all selected tuple and add their merged result instead
                     resultSet.removeAll(selectedTuples);

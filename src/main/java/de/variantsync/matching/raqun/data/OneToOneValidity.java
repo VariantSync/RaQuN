@@ -2,6 +2,10 @@ package de.variantsync.matching.raqun.data;
 
 import java.util.HashSet;
 
+/**
+ * ValidityConstraint for the validity of a match. This constraint expects that a valid match must only contain at most
+ * one element of a specific model.
+ */
 public class OneToOneValidity implements IValidityConstraint {
 
     @Override

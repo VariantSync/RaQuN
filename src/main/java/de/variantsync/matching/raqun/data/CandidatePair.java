@@ -2,34 +2,62 @@ package de.variantsync.matching.raqun.data;
 
 import java.util.Objects;
 
+/**
+ * Pair of elements that are potential match candidates.
+ */
 public class CandidatePair {
     private final RElement first;
     private final RElement second;
     private final double distanceInTree;
     private double matchConfidence;
 
+    /**
+     * Initialize a new CandidatePair
+     * @param first element to be matched
+     * @param second element to be matched
+     * @param distanceInTree of the two elements
+     */
     public CandidatePair(RElement first, RElement second, double distanceInTree) {
         this.first = first;
         this.second = second;
         this.distanceInTree = distanceInTree;
     }
 
+    /**
+     *
+     * @return First element in this pair
+     */
     public RElement getFirst() {
         return first;
     }
 
+    /**
+     *
+     * @return Second element in this pair
+     */
     public RElement getSecond() {
         return second;
     }
 
+    /**
+     *
+     * @return Distance of the two elements in the vector space of the kd-tree
+     */
     public double getDistanceInTree() {
         return distanceInTree;
     }
 
+    /**
+     *
+     * @return Confidence that the two elements should be matched. Greater values mean greater confidence.
+     */
     public double getMatchConfidence() {
         return matchConfidence;
     }
 
+    /**
+     * @param matchConfidence that the two elements should be matched. Greater values mean greater confidence.
+     */
     public void setMatchConfidence(double matchConfidence) {
         this.matchConfidence = matchConfidence;
     }

@@ -1,43 +1,72 @@
 package de.variantsync.matching.raqun.data;
 
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Stream;
 
+/**
+ * Representation of a dataset containing multiple models that should be matched. Provides methods for loading a Dataset
+ * from a csv-file.
+ */
 public class RDataset {
     private final String name;
-    private Map<String, RModel> models;
+    private ArrayList<RModel> models;
 
+    /**
+     * Initialize a new dataset with the given name
+     * @param name of the dataset
+     */
     public RDataset(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return The models of this dataset
+     */
     public ArrayList<RModel> getModels() {
-        return new ArrayList<>(this.models.values());
+        return this.models;
     }
 
+    /**
+     *
+     * @return name of this dataset
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     *
+     * @return number of models in this dataset
+     */
     public int getNumberOfModels() {
         return models.size();
     }
 
-    public void loadFileContent(String pathToFile) {
+    /**
+     * Load and parse the content of the csv file that can be found under the given path
+     * @param pathToFile The path to the file that is to be loaded
+     */
+    public void loadFileContent(Path pathToFile) {
         Set<String> contentLines = new HashSet<>();
 
-        try (Stream<String> lines = Files.lines(Paths.get(pathToFile))) {
+        try (Stream<String> lines = Files.lines(pathToFile)) {
             lines.forEach(contentLines::add);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        this.models = parseFileContentToModels(contentLines);
+        this.models = new ArrayList<>(parseFileContentToModels(contentLines));
     }
 
-    private Map<String, RModel> parseFileContentToModels(Set<String> content) {
+    /**
+     * Parse the content of the csv file
+     * @param content The lines in the file
+     * @return Map of model-ids to models
+     */
+    private Collection<RModel> parseFileContentToModels(Set<String> content) {
         Map<String, RModel> modelsInFile = new HashMap<>();
         for (String modelLine : content) {
             String inputSeparator = ",";
@@ -84,7 +113,7 @@ public class RDataset {
             currentModel.addElement(element);
         }
 
-        return modelsInFile;
+        return modelsInFile.values();
     }
 
 }

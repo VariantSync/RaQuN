@@ -50,7 +50,7 @@ public class RMatchTest {
         tuples.add(firstTuple);
         tuples.add(secondTuple);
 
-        RMatch mergedTuple = RMatch.getMergedTuple(tuples);
+        RMatch mergedTuple = RMatch.getMergedMatch(tuples);
         assert mergedTuple.getElements().size() == 2;
         assert validityConstraint.isValid(mergedTuple);
     }
@@ -94,7 +94,7 @@ public class RMatchTest {
         tuples.add(secondTuple);
         tuples.add(thirdTuple);
 
-        RMatch mergedTuple = RMatch.getMergedTuple(tuples);
+        RMatch mergedTuple = RMatch.getMergedMatch(tuples);
         assert mergedTuple.getElements().size() == 6;
         assert validityConstraint.isValid(mergedTuple);
         assert mergedTuple.contains(secondElement);

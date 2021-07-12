@@ -1,6 +1,8 @@
 package de.variantsync.matching.raqun.data;
 
-
+/**
+ * A ValidityConstraints determines whether a given match of elements is valid.
+ */
 public interface IValidityConstraint {
     /**
      * Determine whether the given match is valid according to the validity constraint defined by this class

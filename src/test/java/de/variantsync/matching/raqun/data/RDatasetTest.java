@@ -2,12 +2,13 @@ package de.variantsync.matching.raqun.data;
 
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 
 public class RDatasetTest {
-    String pathToSimpleDataset = Paths.get("src", "test", "resources", "datasets", "simple_dataset.txt").toString();;
+    Path pathToSimpleDataset = Paths.get("src", "test", "resources", "datasets", "simple_dataset.txt");;
 
     @Test
     void simpleDatasetLoadsCorrectly() {

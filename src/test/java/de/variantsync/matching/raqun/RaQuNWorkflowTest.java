@@ -7,12 +7,13 @@ import de.variantsync.matching.raqun.tree.KDTree;
 import de.variantsync.matching.raqun.tree.PropertyBasedVectorization;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class RaQuNWorkflowTest {
-    String pathToSimpleDataset = Paths.get("src", "test", "resources",
-            "datasets", "workflow_test_models.txt").toString();
+    Path pathToSimpleDataset = Paths.get("src", "test", "resources",
+            "datasets", "workflow_test_models.txt");
     private static final IValidityConstraint validityConstraint = new OneToOneValidity();
 
     @Test

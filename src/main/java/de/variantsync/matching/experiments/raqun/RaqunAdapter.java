@@ -1,5 +1,6 @@
 package de.variantsync.matching.experiments.raqun;
 
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -26,7 +27,7 @@ public class RaqunAdapter implements MethodAdapter {
     public void run() {
         // Load the dataset
         RDataset dataset = new RDataset(setup.datasetName);
-        dataset.loadFileContent(setup.datasetFile);
+        dataset.loadFileContent(Paths.get(setup.datasetFile));
         ArrayList<RModel> models = dataset.getModels();
         for (int i = 0; i < setup.numberOfRepeats; i++) {
             // Get random chunks from the dataset
