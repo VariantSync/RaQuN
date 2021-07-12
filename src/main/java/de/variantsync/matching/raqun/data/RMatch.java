@@ -1,26 +1,23 @@
 package de.variantsync.matching.raqun.data;
 
-import de.variantsync.matching.raqun.similarity.SimilarityFunction;
-
 import java.util.*;
 
+/**
+ * Representation of a match (aka. tuple of matched elements)
+ */
 public class RMatch {
     private final Set<RElement> elements;
-    private final SimilarityFunction similarityFunction;
-    private final MatchValidityConstraint validityConstraint;
 
-    public RMatch(SimilarityFunction similarityFunction, MatchValidityConstraint validityConstraint, RElement... elements) {
-        this(similarityFunction, validityConstraint, Arrays.asList(elements));
+    public RMatch(RElement... elements) {
+        this(Arrays.asList(elements));
     }
 
-    public RMatch(SimilarityFunction similarityFunction, MatchValidityConstraint validityConstraint, Collection<RElement> elements) {
-        this.similarityFunction = similarityFunction;
-        this.validityConstraint = validityConstraint;
+    public RMatch(Collection<RElement> elements) {
         this.elements = new HashSet<>(elements);
     }
 
-    public boolean isValid() {
-        switch (this.validityConstraint) {
+    public boolean isValid(MatchValidityConstraint validityConstraint) {
+        switch (validityConstraint) {
             case ONE_TO_ONE:
                 HashSet<String> modelSet = new HashSet<>();
                 for (RElement element : elements) {
@@ -34,7 +31,7 @@ public class RMatch {
             case N_TO_M:
                 return true;
             default:
-                throw new UnsupportedOperationException("The validity value " + this.validityConstraint + " has not been implemented.");
+                throw new UnsupportedOperationException("The validity value " + validityConstraint + " has not been implemented.");
         }
 
     }
@@ -56,7 +53,7 @@ public class RMatch {
             } else {
                 Set<RElement> elements = new HashSet<>(resultTuple.elements);
                 elements.addAll(tuple.elements);
-                resultTuple = new RMatch(tuple.similarityFunction, tuple.validityConstraint, elements);
+                resultTuple = new RMatch(elements);
             }
         }
 

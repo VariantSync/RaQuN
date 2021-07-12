@@ -26,13 +26,13 @@ public class RaQuNMatcher {
 
         // Initialize the set of tuples
         Set<RMatch> initialTuple = new HashSet<>();
-        allElements.forEach(e -> initialTuple.add(new RMatch(similarityFunction, validityConstraint, e)));
+        allElements.forEach(e -> initialTuple.add(new RMatch(e)));
 
-        return RaQuNMatcher.match(initialTuple, pairSortTree, similarityFunction);
+        return RaQuNMatcher.match(initialTuple, pairSortTree, similarityFunction, validityConstraint);
     }
 
     protected static Set<RMatch> match(Set<RMatch> initialTuple, PairSortTree pairSortTree,
-                                       SimilarityFunction similarityFunction) {
+                                       SimilarityFunction similarityFunction, MatchValidityConstraint validityConstraint) {
         // All elements are added to the result
         Set<RMatch> resultSet = new HashSet<>(initialTuple);
 
@@ -51,7 +51,7 @@ public class RaQuNMatcher {
 
             if (similarityFunction.shouldMatch(selectedTuples)) {
                 RMatch mergedTuple = RMatch.getMergedTuple(selectedTuples);
-                if (mergedTuple != null && mergedTuple.isValid()) {
+                if (mergedTuple != null && mergedTuple.isValid(validityConstraint)) {
                     // Remove all selected tuple and add their merged result instead
                     resultSet.removeAll(selectedTuples);
                     resultSet.add(mergedTuple);

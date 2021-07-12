@@ -3,6 +3,9 @@ package de.variantsync.matching.raqun.data;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Representation of a element-property model
+ */
 public class RModel {
     private final String modelID;
     private final Set<RElement> elements;

@@ -1,7 +1,6 @@
 package de.variantsync.matching.raqun.similarity;
 
 import de.variantsync.matching.nwm.domain.Element;
-import de.variantsync.matching.raqun.data.MatchValidityConstraint;
 import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.raqun.data.RMatch;
 import de.variantsync.matching.testhelper.TestDataFactory;
@@ -13,7 +12,6 @@ import java.util.*;
 
 public class WeightMetricTest {
     WeightMetric weightMetric = new WeightMetric();
-    private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
     @ParameterizedTest
     @ValueSource(ints = {2, 3, 10, 100, 1000})
@@ -74,7 +72,7 @@ public class WeightMetricTest {
                 List<String> properties = getSampleProperties("prop" + i + "_", 3);
                 elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
             }
-            tuples.add(new RMatch(weightMetric, validityConstraint, elements));
+            tuples.add(new RMatch(elements));
         }
         assert !weightMetric.shouldMatch(tuples);
     }
@@ -91,7 +89,7 @@ public class WeightMetricTest {
             properties.add("COMMON");
             elements.add(new RElement(String.valueOf(modelID), "0", String.valueOf(modelID), properties));
 
-            tuples.add(new RMatch(weightMetric, validityConstraint, elements));
+            tuples.add(new RMatch(elements));
         }
         assert weightMetric.shouldMatch(tuples);
     }
@@ -118,7 +116,7 @@ public class WeightMetricTest {
                 properties.addAll(commonIntraProperties);
                 elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
             }
-            tuples.add(new RMatch(weightMetric, validityConstraint, elements));
+            tuples.add(new RMatch(elements));
         }
         double weightSum = 0.0d;
         Set<RElement> allElements = new HashSet<>();
@@ -148,7 +146,7 @@ public class WeightMetricTest {
                 List<String> properties = getSampleProperties("p" + i + "_", 3);
                 elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
             }
-            tuples.add(new RMatch(weightMetric, validityConstraint, elements));
+            tuples.add(new RMatch(elements));
         }
         double qualityOfMatching = weightMetric.getQualityOfMatching(tuples);
         assert doubleEquals(qualityOfMatching, numberOfTuples);
@@ -168,7 +166,7 @@ public class WeightMetricTest {
                 List<String> properties = getSampleProperties("p" + i + j + "_", 3);
                 elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
             }
-            tuples.add(new RMatch(weightMetric, validityConstraint, elements));
+            tuples.add(new RMatch(elements));
         }
         double qualityOfMatching = weightMetric.getQualityOfMatching(tuples);
         assert doubleEquals(qualityOfMatching, 0.0);
@@ -180,13 +178,13 @@ public class WeightMetricTest {
         double expectedMobileTupleWeight = 12.0d / 27.0d;
         double expectedMixedTupleWeight = 4.0d / 45.0d;
 
-        Set<RMatch> tuples = TestDataFactory.getExampleMatching(weightMetric);
+        Set<RMatch> tuples = TestDataFactory.getExampleMatching();
         // Weights were calculated by hand for each of the tuples
         double expectedWeight = expectedDisplayTupleWeight + expectedMobileTupleWeight + expectedMixedTupleWeight;
         weightMetric.setNumberOfModels(3);
-        double weightOfDisplayTuple = weightMetric.weightForElements(TestDataFactory.getDisplayTuple(weightMetric).getElements());
-        double weightOfMobileTuple = weightMetric.weightForElements(TestDataFactory.getMobileTuple(weightMetric).getElements());
-        double weightOfMixedTuple = weightMetric.weightForElements(TestDataFactory.getMixedTuple(weightMetric).getElements());
+        double weightOfDisplayTuple = weightMetric.weightForElements(TestDataFactory.getDisplayTuple().getElements());
+        double weightOfMobileTuple = weightMetric.weightForElements(TestDataFactory.getMobileTuple().getElements());
+        double weightOfMixedTuple = weightMetric.weightForElements(TestDataFactory.getMixedTuple().getElements());
 
         assert doubleEquals(weightOfDisplayTuple, expectedDisplayTupleWeight);
         assert doubleEquals(weightOfMobileTuple, expectedMobileTupleWeight);
@@ -202,9 +200,9 @@ public class WeightMetricTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5})
     public void weightOfElementsIsCorrectWithStaticCalculation(int numberOfModels) {
-        Collection<Element> displayElements = convertElementTuple(TestDataFactory.getDisplayTuple(weightMetric));
-        Collection<Element> mobileElements = convertElementTuple(TestDataFactory.getMobileTuple(weightMetric));
-        Collection<Element> mixedElement = convertElementTuple(TestDataFactory.getMixedTuple(weightMetric));
+        Collection<Element> displayElements = convertElementTuple(TestDataFactory.getDisplayTuple());
+        Collection<Element> mobileElements = convertElementTuple(TestDataFactory.getMobileTuple());
+        Collection<Element> mixedElement = convertElementTuple(TestDataFactory.getMixedTuple());
 
         double weightOfDisplayElements = WeightMetric.weightForElements(displayElements, numberOfModels);
         double weightOfMobileElements = WeightMetric.weightForElements(mobileElements, numberOfModels);

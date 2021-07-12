@@ -1,14 +1,11 @@
 package de.variantsync.matching.raqun.data;
 
-import de.variantsync.matching.raqun.similarity.SimilarityFunction;
-import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.testhelper.TestDataFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
 public class RMatchTest {
-    private SimilarityFunction weightMetric = new WeightMetric();
     private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
     @Test
@@ -21,18 +18,18 @@ public class RMatchTest {
                 "22",
                 firstElement.getProperties());
 
-        RMatch validTuple = new RMatch(weightMetric, validityConstraint, firstElement);
+        RMatch validTuple = new RMatch(firstElement);
         assert validTuple.getElements().size() == 1;
-        assert validTuple.isValid();
+        assert validTuple.isValid(validityConstraint);
 
-        validTuple = new RMatch(weightMetric, validityConstraint, firstElement, secondElement);
+        validTuple = new RMatch(firstElement, secondElement);
         assert validTuple.getElements().size() == 2;
-        assert validTuple.isValid();
+        assert validTuple.isValid(validityConstraint);
 
         // Now check that invalid tuples can be found
-        RMatch invalidTuple = new RMatch(weightMetric, validityConstraint, invalidElement, firstElement, secondElement);
+        RMatch invalidTuple = new RMatch(invalidElement, firstElement, secondElement);
         assert invalidTuple.getElements().size() == 3;
-        assert !invalidTuple.isValid();
+        assert !invalidTuple.isValid(validityConstraint);
     }
 
     @Test
@@ -41,13 +38,13 @@ public class RMatchTest {
         firstElement.getProperties().add("n_ABC");
         firstElement.getProperties().add("property1");
         firstElement.getProperties().add("property2");
-        RMatch firstTuple = new RMatch(weightMetric, validityConstraint, firstElement);
+        RMatch firstTuple = new RMatch(firstElement);
 
         RElement secondElement = new RElement("modelB", "CBE", "0", new ArrayList<>());
         secondElement.getProperties().add("n_CBE");
         secondElement.getProperties().add("property2");
         secondElement.getProperties().add("property3");
-        RMatch secondTuple = new RMatch(weightMetric, validityConstraint, secondElement);
+        RMatch secondTuple = new RMatch(secondElement);
 
         Set<RMatch> tuples = new HashSet<>();
         tuples.add(firstTuple);
@@ -55,7 +52,7 @@ public class RMatchTest {
 
         RMatch mergedTuple = RMatch.getMergedTuple(tuples);
         assert mergedTuple.getElements().size() == 2;
-        assert mergedTuple.isValid();
+        assert mergedTuple.isValid(validityConstraint);
     }
 
     @Test
@@ -68,7 +65,7 @@ public class RMatchTest {
         secondElement.getProperties().add("n_CBE");
         secondElement.getProperties().add("property2");
         secondElement.getProperties().add("property3");
-        RMatch firstTuple = new RMatch(weightMetric, validityConstraint, firstElement, secondElement);
+        RMatch firstTuple = new RMatch(firstElement, secondElement);
 
         RElement thirdElement = new RElement("modelC", "ABC", "0", new ArrayList<>());
         thirdElement.getProperties().add("n_ABC");
@@ -84,13 +81,13 @@ public class RMatchTest {
         fifthElement.getProperties().add("property2");
         fifthElement.getProperties().add("property3");
         fifthElement.getProperties().add("property4");
-        RMatch secondTuple = new RMatch(weightMetric, validityConstraint, thirdElement, fourthElement, fifthElement);
+        RMatch secondTuple = new RMatch(thirdElement, fourthElement, fifthElement);
 
         RElement sixthElement = new RElement("modelF", "DFG", "0", new ArrayList<>());
         sixthElement.getProperties().add("n_DFG");
         sixthElement.getProperties().add("property2");
         sixthElement.getProperties().add("property3");
-        RMatch thirdTuple = new RMatch(weightMetric, validityConstraint, sixthElement);
+        RMatch thirdTuple = new RMatch(sixthElement);
 
         Set<RMatch> tuples = new HashSet<>();
         tuples.add(firstTuple);
@@ -99,7 +96,7 @@ public class RMatchTest {
 
         RMatch mergedTuple = RMatch.getMergedTuple(tuples);
         assert mergedTuple.getElements().size() == 6;
-        assert mergedTuple.isValid();
+        assert mergedTuple.isValid(validityConstraint);
         assert mergedTuple.contains(secondElement);
         assert mergedTuple.contains(sixthElement);
     }

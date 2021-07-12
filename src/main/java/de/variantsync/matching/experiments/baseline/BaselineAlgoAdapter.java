@@ -14,14 +14,12 @@ import de.variantsync.matching.nwm.domain.Tuple;
 import de.variantsync.matching.nwm.execution.RunResult;
 import de.variantsync.matching.pairwise.HungarianPairwiseMatcher;
 import de.variantsync.matching.raqun.data.RElement;
-import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.data.RMatch;
 
 import java.util.*;
 
 public class BaselineAlgoAdapter implements MethodAdapter {
     private final ExperimentSetup setup;
-    private WeightMetric weightCalculator;
     private final EBaselineImplementation algorithmToApply;
 
     public BaselineAlgoAdapter(ExperimentSetup setup, EBaselineImplementation algorithm) {
@@ -40,7 +38,6 @@ public class BaselineAlgoAdapter implements MethodAdapter {
                 int numberOfModels = chunk.size();
                 MatchStatistic matchStatistic = new MatchStatistic(0, setup.datasetName, setup.name,
                         numberOfModels, sizeOfLargestModel);
-                weightCalculator = new WeightMetric(numberOfModels);
 
                 AlgoUtil.COMPUTE_RESULTS_CLASSICALLY = false;
 
@@ -118,12 +115,12 @@ public class BaselineAlgoAdapter implements MethodAdapter {
                 }
                 nodes.add(parseElement(e));
             }
-            parsedSet.add(new RMatch(weightCalculator, setup.validityConstraint, nodes.toArray(new RElement[0])));
+            parsedSet.add(new RMatch(nodes.toArray(new RElement[0])));
         }
 
         // Create RMatch for all elements that were not part of the solution, they have to be counted as FN and FP
         for (Element element : allElements) {
-            parsedSet.add(new RMatch(weightCalculator, setup.validityConstraint, parseElement(element)));
+            parsedSet.add(new RMatch(parseElement(element)));
         }
 
         return parsedSet;

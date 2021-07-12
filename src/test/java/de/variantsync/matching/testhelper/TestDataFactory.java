@@ -1,17 +1,14 @@
 package de.variantsync.matching.testhelper;
 
-import de.variantsync.matching.raqun.data.MatchValidityConstraint;
 import de.variantsync.matching.raqun.data.RMatch;
 import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.raqun.data.RModel;
-import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 
 import java.security.SecureRandom;
 import java.util.*;
 
 public class TestDataFactory {
     private static final RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
-    private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
     public static int getRandomInt(int min, int max) {
         Random random = new SecureRandom();
@@ -144,33 +141,33 @@ public class TestDataFactory {
         ));
     }
 
-    public static RMatch getDisplayTuple(SimilarityFunction similarityFunction) {
+    public static RMatch getDisplayTuple() {
         RElement displayA = getDisplayA();
         RElement displayB = getDisplayB();
         RElement displayC = getDisplayC();
         // Expected Weight: 27/45
-        return new RMatch(similarityFunction, validityConstraint, displayA, displayB, displayC);
+        return new RMatch(displayA, displayB, displayC);
     }
 
-    public static RMatch getMobileTuple(SimilarityFunction similarityFunction) {
+    public static RMatch getMobileTuple() {
         RElement mobileA = getMobileA();
         RElement mobileB = getMobileB();
         // Expected Weight: 12/27
-        return new RMatch(similarityFunction, validityConstraint, mobileA, mobileB);
+        return new RMatch(mobileA, mobileB);
     }
 
-    public static RMatch getMixedTuple(SimilarityFunction similarityFunction) {
+    public static RMatch getMixedTuple() {
         RElement idCardA = getIDCardA();
         RElement calendarB = getCalendarB();
         // Expected Weight: 4/45
-        return new RMatch(similarityFunction, validityConstraint, idCardA, calendarB);
+        return new RMatch(idCardA, calendarB);
     }
 
-    public static Set<RMatch> getExampleMatching(SimilarityFunction similarityFunction) {
+    public static Set<RMatch> getExampleMatching() {
         Set<RMatch> matching = new HashSet<>();
-        matching.add(getDisplayTuple(similarityFunction));
-        matching.add(getMobileTuple(similarityFunction));
-        matching.add(getMixedTuple(similarityFunction));
+        matching.add(getDisplayTuple());
+        matching.add(getMobileTuple());
+        matching.add(getMixedTuple());
         return matching;
     }
 }

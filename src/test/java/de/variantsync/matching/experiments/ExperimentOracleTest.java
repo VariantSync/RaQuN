@@ -59,7 +59,7 @@ public class ExperimentOracleTest {
     }
 
     private RMatch getTuple(RElement... nodes) {
-        return new RMatch(similarityFunction, validityConstraint, nodes);
+        return new RMatch(nodes);
     }
 
     private void check(Set<RMatch> merge, int tp, int fp, int fn, double precision, double recall) {
