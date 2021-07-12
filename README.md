@@ -132,7 +132,7 @@ Open the Package Explorer:
 #### Steps 
 You can follow these steps if you want to execute the experiments in your IDE 
 * Unpack the experimental_subjects archives as described in 'Project Structure' above 
-* Adjust the parameters in `org.raqun.paper.ExperimentRunner` to your liking (see comments in the code).
+* Adjust the parameters in `ExperimentRunner` to your liking (see comments in the code).
 * In your IDE: Right-click on the `ExperiementRunner.java` file > Run 'ExperimentRunner.main()'
 
 ### As JAR 

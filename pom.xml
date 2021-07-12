@@ -4,7 +4,7 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>paper.raqun.matching</groupId>
+    <groupId>de.variantsync.matching</groupId>
     <artifactId>RaQuN</artifactId>
     <version>1.0</version>
 
@@ -41,7 +41,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.raqun.paper.ExperimentRunner</mainClass>
+                            <mainClass>de.variantsync.matching.ExperimentRunner</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -59,7 +59,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.raqun.paper.ExperimentRunner</mainClass>
+                            <mainClass>de.variantsync.matching.ExperimentRunner</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
