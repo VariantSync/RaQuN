@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class CharacterVectorFactoryTest {
+public class CharacterBasedVectorizationTest {
     @Test
     public void initializationWithNullElementsInvalid() {
-        Assertions.assertThrows(NullPointerException.class, () -> new CharacterVectorFactory(null));
+        Assertions.assertThrows(NullPointerException.class, () -> new CharacterBasedVectorization(null));
     }
 
     @Test
     public void initializationWithZeroElementsInvalid() {
         List<RElement> elements = new ArrayList<>();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CharacterVectorFactory(elements));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CharacterBasedVectorization(elements));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class CharacterVectorFactoryTest {
         simpleElement.getProperties().add("Property2");
 
         elements.add(simpleElement);
-        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
+        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
 
         Set<Character> charactersInProperties = getCharactersInProperties(simpleElement);
 
@@ -42,7 +42,7 @@ public class CharacterVectorFactoryTest {
     @Test
     public void initializationWithSeveralElements() {
         List<RElement> elements = TestDataFactory.getElementList();
-        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
+        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
         Map<Character, Integer> characterDimensions = factory.getCharacterDimensions();
 
         Set<Character> charactersInProperties = getCharactersInProperties(elements);
@@ -56,7 +56,7 @@ public class CharacterVectorFactoryTest {
         List<RElement> elements = TestDataFactory.getElementListWithoutNames();
         // Add one element twice to check for this case as well
         elements.add(elements.get(0));
-        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
+        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
         Map<Character, Integer> characterDimensions = factory.getCharacterDimensions();
 
         Set<Character> charactersInProperties = getCharactersInProperties(elements);
@@ -83,7 +83,7 @@ public class CharacterVectorFactoryTest {
         List<RElement> elements = TestDataFactory.getElementList();
         // Remove all properties of one element to check whether this case is recognized as invalid
         elements.get(0).getProperties().clear();
-        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
+        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
         Assertions.assertThrows(IllegalArgumentException.class, () -> factory.vectorFor(elements.get(0)));
     }
 

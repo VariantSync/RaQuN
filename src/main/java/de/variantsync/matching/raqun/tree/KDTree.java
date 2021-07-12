@@ -10,29 +10,20 @@ import de.variantsync.matching.raqun.data.RElement;
 
 public class KDTree {
     private final com.savarese.spatial.KDTree<Double, RVector, List<RElement>> tree = new com.savarese.spatial.KDTree<>();
-    private final PropertyVectorFactory propertyVectorFactory;
+    private final Vectorization vectorization;
     private final List<RElement> elementsInTree;
     private final int numberOfInputModels;
     private final NearestNeighbors<Double, RVector, List<RElement>> nearestNeighbors = new NearestNeighbors<>();
 
-    public KDTree(List<RModel> models, EVectorization vectorization) {
+    public KDTree(List<RModel> models, Vectorization vectorization) {
         numberOfInputModels = models.size();
         List<RElement> elements = new ArrayList<>();
         for (RModel model : models) {
             elements.addAll(model.getElements());
         }
-        if (vectorization == EVectorization.PROPERTY_INDEX) {
-            propertyVectorFactory = new PropertyVectorFactory(elements);
-        } else {
-            throw new IllegalArgumentException("Vectorization type " + vectorization + " not yet implemented.");
-        }
+        this.vectorization = vectorization;
         elements.forEach(this::add);
         this.elementsInTree = elements;
-    }
-
-    // TODO: Refactor so that the vectorization function is provided as argument
-    public enum EVectorization {
-        PROPERTY_INDEX
     }
 
     public List<RElement> getElementsInTree() {
@@ -60,12 +51,12 @@ public class KDTree {
         return tree.values().stream().mapToInt(List::size).sum();
     }
 
-    public PropertyVectorFactory getIndexVectorFactory() {
-        return this.propertyVectorFactory;
+    public Vectorization getIndexVectorFactory() {
+        return this.vectorization;
     }
 
     private void add(RElement element) {
-        RVector RVector = propertyVectorFactory.vectorFor(element);
+        RVector RVector = vectorization.vectorFor(element);
         if (tree.containsKey(RVector)) {
             tree.get(RVector).add(element);
         } else {
@@ -91,7 +82,7 @@ public class KDTree {
     }
 
     public List<TreeNeighbor> queryElementsOfKNearestPoints(RElement element, int k) {
-        RVector queryPoint = propertyVectorFactory.vectorFor(element);
+        RVector queryPoint = vectorization.vectorFor(element);
         Entry<Double, RVector, List<RElement>>[] nearestNeighbors = this.nearestNeighbors.get(tree, queryPoint, k, false);
 
         List<TreeNeighbor> allNeighboringElements = new ArrayList<>();

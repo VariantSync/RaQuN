@@ -10,15 +10,11 @@ import java.util.stream.Collectors;
  * A factory for calculating vectors that represent the absolute frequency of specific characters in an element's
  * properties. This vectorization functions was not presented in our paper, but will be included in a future paper extension.
  */
-public class CharacterVectorFactory extends PropertyVectorFactory {
+public class CharacterBasedVectorization extends PropertyBasedVectorization {
     private Map<Character, Integer> characterDimensions;
 
-    public CharacterVectorFactory(List<RElement> elements) {
-        super(elements);
-    }
-
     @Override
-    protected int fillLexicalIndex(List<RElement> elements) {
+    protected int fillLexicalIndex(Set<RElement> elements) {
         Set<String> propertyNames = elements.stream().flatMap(element -> element.getProperties().stream()).collect(Collectors.toSet());
 
         AtomicInteger i = new AtomicInteger(2);

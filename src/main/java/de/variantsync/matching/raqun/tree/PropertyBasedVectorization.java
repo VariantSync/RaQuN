@@ -1,6 +1,7 @@
 package de.variantsync.matching.raqun.tree;
 
 import de.variantsync.matching.raqun.data.RElement;
+import de.variantsync.matching.raqun.data.RModel;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -11,31 +12,30 @@ import java.util.stream.Collectors;
  * in the tree's vector space. Hereby, each element is represented by a (probably) sparse vector. A specific property's
  * dimension is set to '1' iff the element has that property, otherwise, the dimension is set to '0'.
  *
- * We presented this vectorization function in our paper.
+ * We presented this vectorization in our paper.
  */
-public class PropertyVectorFactory implements IVectorFactory<RVector> {
+public class PropertyBasedVectorization implements Vectorization {
     private Map<String, Integer> childrenNamesDimension;
     protected Map<RElement, RVector> elementToVectorMap;
-    protected final int dimensions;
+    protected int dimensions;
 
-    /**
-     * Initialize the factory by collecting all properties of the given elements and creating one dimension for each unique property.
-     * @param elements The elements for which the factory and therefore the vector space of the tree is to be initialized.
-     */
-    public PropertyVectorFactory(List<RElement> elements) {
-        if (elements.size() == 0) {
-            throw new IllegalArgumentException("There should be at least one element!");
-        }
-        this.dimensions = fillLexicalIndex(elements);
-        this.elementToVectorMap = new HashMap<>();
-    }
-
-    protected int fillLexicalIndex(List<RElement> elements) {
+    protected int fillLexicalIndex(Set<RElement> elements) {
         Set<String> childrenNames = elements.stream().flatMap(element -> element.getProperties().stream()).collect(Collectors.toSet());
         AtomicInteger i = new AtomicInteger(0);
         childrenNamesDimension = childrenNames.stream().collect(Collectors.toMap(s -> s, s -> i.getAndIncrement()));
         return i.get();
 
+    }
+
+    @Override
+    public void initialize(Collection<RModel> inputModels) {
+        Set<RElement> elements = new HashSet<>();
+        inputModels.forEach((m) -> elements.addAll(m.getElements()));
+        if (elements.size() == 0) {
+            throw new IllegalArgumentException("There should be at least one element!");
+        }
+        this.dimensions = fillLexicalIndex(elements);
+        this.elementToVectorMap = new HashMap<>();
     }
 
     @Override

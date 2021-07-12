@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class RVectorFactoryTest {
+public class VectorizationTest {
     @Test
     public void initializationWithNullElementsInvalid() {
-        Assertions.assertThrows(NullPointerException.class, () -> new PropertyVectorFactory(null));
+        Assertions.assertThrows(NullPointerException.class, () -> new PropertyBasedVectorization(null));
     }
 
     @Test
     public void initializationWithZeroElementsInvalid() {
         List<RElement> elements = new ArrayList<>();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new PropertyVectorFactory(elements));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new PropertyBasedVectorization(elements));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class RVectorFactoryTest {
         simpleElement.getProperties().add("property2");
 
         elements.add(simpleElement);
-        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
+        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
         Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
         assert childrenNamesDimension.size() == 3;
         assert childrenNamesDimension.containsKey("n_" + simpleElement.getName());
@@ -38,7 +38,7 @@ public class RVectorFactoryTest {
     @Test
     public void initializationWithSeveralElements() {
         List<RElement> elements = TestDataFactory.getElementList();
-        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
+        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
         Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
         assert childrenNamesDimension.size() == 6;
         assert factory.getNumberOfDimension() == 6;
@@ -49,7 +49,7 @@ public class RVectorFactoryTest {
         List<RElement> elements = TestDataFactory.getElementList();
         // Add one element twice to check for this case as well
         elements.add(elements.get(0));
-        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
+        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
         Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
 
         for (RElement element : elements) {
@@ -78,7 +78,7 @@ public class RVectorFactoryTest {
         List<RElement> elements = TestDataFactory.getElementList();
         // Remove all properties of one element to check whether this case is recognized as invalid
         elements.get(0).getProperties().clear();
-        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
+        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
         Assertions.assertThrows(IllegalArgumentException.class, () -> factory.vectorFor(elements.get(0)));
     }
 }

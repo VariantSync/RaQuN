@@ -27,7 +27,7 @@ public class KDTreeTest {
         assert manager.getNumberOfInputModels() == 2;
         assert manager.getNumberOfElementsInTree() == 2;
         assert manager.getElementsInTree().size() == 2;
-        assert !(manager.getIndexVectorFactory() instanceof CharacterVectorFactory);
+        assert !(manager.getIndexVectorFactory() instanceof CharacterBasedVectorization);
     }
 
     @ParameterizedTest
