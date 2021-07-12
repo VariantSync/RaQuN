@@ -6,17 +6,25 @@ import de.variantsync.matching.nwm.domain.Element;
 
 import java.util.*;
 
+/**
+ * Re-implementation of the weight metric proposed by Rubin and Chechik, ESEC/FSE 2013
+ * https://dl.acm.org/doi/10.1145/2491411.2491446
+ */
 public class WeightMetric implements SimilarityFunction
 {
 	protected int numberOfModels;
 
+	/**
+	 * Initialize the WeightMetric with the number of models which are used for normalization
+	 * @param numberOfModels The number of input models that are considered
+	 */
 	public WeightMetric(int numberOfModels) {
 		this.numberOfModels = numberOfModels;
 	}
 
 	public WeightMetric() {
-		// Set the number of models to -1 for now so that we notice unset numbers by negative weights
-		this.numberOfModels = -1;
+		// Set the number of models to 1, so that no normalization is done, if the number is not given explicitly
+		this.numberOfModels = 1;
 	}
 
 	/**

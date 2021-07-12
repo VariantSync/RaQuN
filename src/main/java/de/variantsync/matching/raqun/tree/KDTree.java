@@ -30,6 +30,7 @@ public class KDTree {
         this.elementsInTree = elements;
     }
 
+    // TODO: Refactor so that the vectorization function is provided as argument
     public enum EVectorization {
         PROPERTY_INDEX
     }

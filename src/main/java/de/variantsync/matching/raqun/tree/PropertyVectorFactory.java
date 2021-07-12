@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
  * A factory for calculating vector representations of elements by mapping each unique property to one specific dimension
  * in the tree's vector space. Hereby, each element is represented by a (probably) sparse vector. A specific property's
  * dimension is set to '1' iff the element has that property, otherwise, the dimension is set to '0'.
+ *
+ * We presented this vectorization function in our paper.
  */
 public class PropertyVectorFactory implements IVectorFactory<RVector> {
     private Map<String, Integer> childrenNamesDimension;
