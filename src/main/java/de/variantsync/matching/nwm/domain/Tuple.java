@@ -298,7 +298,7 @@ public class Tuple {
 		for(String prop:propCount.keySet()){
 			Integer propCnt = propCount.get(prop);
 			Integer cntBin = countersBins.get(propCnt);
-			if(cntBin == null) cntBin = new Integer(0);
+			if(cntBin == null) cntBin = 0;
 			cntBin += 1;
 			countersBins.put(propCnt,cntBin);
 		}
