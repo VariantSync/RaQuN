@@ -40,6 +40,20 @@ public class RaQuN {
         this.nNearestNeighbors = nNearestNeighbors;
     }
 
+    /**
+     * Create a new configuration of RaQuN.
+     *
+     * @param vectorizationFunction used to map elements to point the the kd-trees vector space
+     * @param validityConstraint used to assess whether a match is valid
+     * @param similarityFunction used to determine the similarity of elements and their match confidence
+     */
+    public RaQuN(Class<? extends IVectorization> vectorizationFunction, IValidityConstraint validityConstraint, ISimilarityFunction similarityFunction) {
+        this.vectorizationFunction = vectorizationFunction;
+        this.validityConstraint = validityConstraint;
+        this.similarityFunction = similarityFunction;
+        this.nNearestNeighbors = 0;
+    }
+
     public Set<RMatch> match(Collection<RModel> models) {
         Set<RElement> elements = models.stream().flatMap((m) -> m.getElements().stream()).collect(Collectors.toSet());
         IVectorization vectorization;
@@ -56,7 +70,8 @@ public class RaQuN {
         elements.forEach(kdTree::add);
 
         // Phase 2: Candidate Search (Algorithm 1, lines 8-17)
-        this.candidatePairs = findAllCandidates(kdTree, nNearestNeighbors);
+        int k_prime = nNearestNeighbors == 0 ? models.size() : nNearestNeighbors;
+        this.candidatePairs = findAllCandidates(kdTree, k_prime);
         Set<RElement> allElements = new HashSet<>(kdTree.getElementsInTree());
         this.numProcessedElements = allElements.size();
 
