@@ -1,1 +1,0 @@
-These jars are no longer required. All dependencies have been added with Maven
