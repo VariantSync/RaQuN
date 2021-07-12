@@ -3,7 +3,7 @@ package org.raqun.paper.raqun;
 import org.raqun.paper.raqun.data.*;
 import org.raqun.paper.raqun.similarity.WeightMetric;
 import org.raqun.paper.raqun.similarity.SimilarityFunction;
-import org.raqun.paper.raqun.tree.RKDTree;
+import org.raqun.paper.raqun.tree.KDTree;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
@@ -16,12 +16,12 @@ public class RaQuNWorkflowTest {
     private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
     @ParameterizedTest
-    @EnumSource(RKDTree.EVectorization.class)
-    public void testRaQunWorkflowWithNwMWeight(RKDTree.EVectorization vectorization) {
+    @EnumSource(KDTree.EVectorization.class)
+    public void testRaQunWorkflowWithNwMWeight(KDTree.EVectorization vectorization) {
         testRaQuNWorkflow(vectorization, new WeightMetric());
     }
 
-    private void testRaQuNWorkflow(RKDTree.EVectorization vectorization, SimilarityFunction similarityFunction) {
+    private void testRaQuNWorkflow(KDTree.EVectorization vectorization, SimilarityFunction similarityFunction) {
         // Load a simple test model
         RDataset dataset = new RDataset("SimpleDataset");
         dataset.loadFileContent(pathToSimpleDataset);
@@ -40,13 +40,13 @@ public class RaQuNWorkflowTest {
         Collections.shuffle(models);
 
         // Initialize Tree
-        RKDTree RKDTree = new RKDTree(models, vectorization);
+        KDTree kDTree = new KDTree(models, vectorization);
 
         // Get CandidatePairs from tree
-        Set<CandidatePair> candidatePairs = RKDTree.findKCandidates(-1);
+        Set<CandidatePair> candidatePairs = kDTree.findKCandidates(-1);
 
         // run RaQuN merge algorithm
-        Set<RElement> allElements = new HashSet<>(RKDTree.getElementsInTree());
+        Set<RElement> allElements = new HashSet<>(kDTree.getElementsInTree());
         similarityFunction.setNumberOfModels(3);
         Set<RMatch> matching = RaQuNMatcher.match(candidatePairs, allElements, similarityFunction, validityConstraint);
 

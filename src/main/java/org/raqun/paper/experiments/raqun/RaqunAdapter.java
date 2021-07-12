@@ -11,7 +11,7 @@ import org.raqun.paper.experiments.common.ExperimentHelper;
 import org.raqun.paper.experiments.common.MethodAdapter;
 import org.raqun.paper.raqun.data.*;
 import org.raqun.paper.raqun.RaQuNMatcher;
-import org.raqun.paper.raqun.tree.RKDTree;
+import org.raqun.paper.raqun.tree.KDTree;
 
 public class RaqunAdapter implements MethodAdapter {
     private final RaqunSetup setup;
@@ -43,18 +43,18 @@ public class RaqunAdapter implements MethodAdapter {
 
                 // Build the K-D-Tree
                 Instant startedAt = Instant.now();
-                RKDTree RKDTree = new RKDTree(modelSubset, setup.vectorization);
+                KDTree kDTree = new KDTree(modelSubset, setup.vectorization);
                 Instant indexBuiltAt = Instant.now();
 
                 // Calculate the match candidates in the K-D-Tree, based on radius or nearest neighbor search
-                Set<CandidatePair> allCandidatePairs = RKDTree.findKCandidates(measurement.k);
+                Set<CandidatePair> allCandidatePairs = kDTree.findKCandidates(measurement.k);
                 Instant foundSimilaritiesAt = Instant.now();
 
                 // Get all elements
-                Set<RElement> allElements = new HashSet<>(RKDTree.getElementsInTree());
+                Set<RElement> allElements = new HashSet<>(kDTree.getElementsInTree());
 
                 // Set the number of models in the evaluator
-                setup.similarityFunction.setNumberOfModels(RKDTree.getNumberOfInputModels());
+                setup.similarityFunction.setNumberOfModels(kDTree.getNumberOfInputModels());
 
                 // Merge the models
                 Set<RMatch> mergedModel = RaQuNMatcher.match(allCandidatePairs, allElements, setup.similarityFunction, setup.validityConstraint);
@@ -71,7 +71,7 @@ public class RaqunAdapter implements MethodAdapter {
                 int sizeOfLargestModel = getSizeOfLargestModel(modelSubset);
 
                 MatchStatistic matchStatistic = new MatchStatistic(tempId, measurement.testCase, setup.name,
-                        RKDTree.getNumberOfInputModels(), sizeOfLargestModel, measurement.k);
+                        kDTree.getNumberOfInputModels(), sizeOfLargestModel, measurement.k);
                 matchStatistic.calculateStatistics(mergedModel,
                         measurement.resultIndexTimeElapsedSec
                                 + measurement.resultSearchTimeElapsedSec

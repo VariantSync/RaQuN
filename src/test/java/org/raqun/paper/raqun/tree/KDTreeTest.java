@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class RKDTreeTest {
+public class KDTreeTest {
 
     @Test
     public void initializationWithTwoModelsAndLargeVectorization() {
@@ -23,7 +23,7 @@ public class RKDTreeTest {
         modelList.add(modelA);
         modelList.add(modelB);
 
-        RKDTree manager = new RKDTree(modelList, RKDTree.EVectorization.PROPERTY_INDEX);
+        KDTree manager = new KDTree(modelList, KDTree.EVectorization.PROPERTY_INDEX);
         assert manager.getNumberOfInputModels() == 2;
         assert manager.getNumberOfElementsInTree() == 2;
         assert manager.getElementsInTree().size() == 2;
@@ -31,10 +31,10 @@ public class RKDTreeTest {
     }
 
     @ParameterizedTest
-    @EnumSource(RKDTree.EVectorization.class)
-    public void allElementsAreFoundForQueryWithHighK(RKDTree.EVectorization vectorization) {
+    @EnumSource(KDTree.EVectorization.class)
+    public void allElementsAreFoundForQueryWithHighK(KDTree.EVectorization vectorization) {
         // k >= number of elements
-        RKDTree manager = initializeTreeManager(vectorization);
+        KDTree manager = initializeTreeManager(vectorization);
         assert manager.getNumberOfElementsInTree() == 5;
         List<RElement> elements = manager.getElementsInTree();
 
@@ -51,10 +51,10 @@ public class RKDTreeTest {
     }
 
     @ParameterizedTest
-    @EnumSource(RKDTree.EVectorization.class)
-    public void onlyElementsAtSamePointAreFoundWithKeq1(RKDTree.EVectorization vectorization) {
+    @EnumSource(KDTree.EVectorization.class)
+    public void onlyElementsAtSamePointAreFoundWithKeq1(KDTree.EVectorization vectorization) {
         // k == 1
-        RKDTree manager = initializeTreeManager(vectorization);
+        KDTree manager = initializeTreeManager(vectorization);
         assert manager.getNumberOfElementsInTree() == 5;
         List<RElement> elements = manager.getElementsInTree();
 
@@ -72,9 +72,9 @@ public class RKDTreeTest {
     }
 
     @ParameterizedTest
-    @EnumSource(RKDTree.EVectorization.class)
-    public void candidatesFromSameModelAreFiltered(RKDTree.EVectorization vectorization) {
-        RKDTree manager = initializeTreeManager(vectorization);
+    @EnumSource(KDTree.EVectorization.class)
+    public void candidatesFromSameModelAreFiltered(KDTree.EVectorization vectorization) {
+        KDTree manager = initializeTreeManager(vectorization);
         List<RElement> elements = manager.getElementsInTree();
 
         for (RElement queryElement : elements) {
@@ -87,9 +87,9 @@ public class RKDTreeTest {
     }
 
     @ParameterizedTest
-    @EnumSource(RKDTree.EVectorization.class)
-    public void allExpectedCandidatePairsAreFoundWithDynamicK(RKDTree.EVectorization vectorization) {
-        RKDTree manager = initializeTreeManager(vectorization);
+    @EnumSource(KDTree.EVectorization.class)
+    public void allExpectedCandidatePairsAreFoundWithDynamicK(KDTree.EVectorization vectorization) {
+        KDTree manager = initializeTreeManager(vectorization);
 
         Set<CandidatePair> queryResults = manager.findKCandidates(-1);
         // We expect 4 candidate pairs, because candidates from the same model are filtered and CandidatePairs do not
@@ -177,7 +177,7 @@ public class RKDTreeTest {
         return Arrays.asList(modelA, modelB);
     }
 
-    private RKDTree initializeTreeManager(RKDTree.EVectorization vectorization) {
-        return new RKDTree(generateModels(), vectorization);
+    private KDTree initializeTreeManager(KDTree.EVectorization vectorization) {
+        return new KDTree(generateModels(), vectorization);
     }
 }

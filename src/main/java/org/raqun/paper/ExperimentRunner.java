@@ -9,7 +9,7 @@ import org.raqun.paper.experiments.baseline.BaselineAlgoAdapter;
 import org.raqun.paper.raqun.data.MatchValidityConstraint;
 import org.raqun.paper.raqun.similarity.WeightMetric;
 import org.raqun.paper.raqun.similarity.SimilarityFunction;
-import org.raqun.paper.raqun.tree.RKDTree;
+import org.raqun.paper.raqun.tree.KDTree;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -121,12 +121,12 @@ public class ExperimentRunner {
 
             RaqunSetup raqunSetup = new RaqunSetup("RaQuN", numberOfRepeats,
                     resultsDir, datasetDir, dataset, chunkSize, weightMetric, -1, -1,
-                    RKDTree.EVectorization.PROPERTY_INDEX,
+                    KDTree.EVectorization.PROPERTY_INDEX,
                     MatchValidityConstraint.ONE_TO_ONE);
 
             RaqunSetup raqunKSetup = new RaqunSetup("RaQuN_k", numberOfRepeats,
                     resultsDir, datasetDir, dataset, chunkSize, weightMetric, startK, maxK,
-                    RKDTree.EVectorization.PROPERTY_INDEX,
+                    KDTree.EVectorization.PROPERTY_INDEX,
                     MatchValidityConstraint.ONE_TO_ONE);
 
             ExperimentSetup nwmSetup = new ExperimentSetup("NwM", numberOfRepeats,

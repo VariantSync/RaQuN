@@ -2,21 +2,20 @@ package org.raqun.paper.raqun.tree;
 
 import java.util.*;
 
-import com.savarese.spatial.KDTree;
 import com.savarese.spatial.NearestNeighbors;
 import com.savarese.spatial.NearestNeighbors.Entry;
 import org.raqun.paper.raqun.data.CandidatePair;
 import org.raqun.paper.raqun.data.RElement;
 import org.raqun.paper.raqun.data.RModel;
 
-public class RKDTree {
-    private final KDTree<Double, PropertyVector, List<RElement>> tree = new KDTree<>();
+public class KDTree {
+    private final com.savarese.spatial.KDTree<Double, PropertyVector, List<RElement>> tree = new com.savarese.spatial.KDTree<>();
     private final PropertyVectorFactory propertyVectorFactory;
     private final List<RElement> elementsInTree;
     private final int numberOfInputModels;
     private final NearestNeighbors<Double, PropertyVector, List<RElement>> nearestNeighbors = new NearestNeighbors<>();
 
-    public RKDTree(List<RModel> models, EVectorization vectorization) {
+    public KDTree(List<RModel> models, EVectorization vectorization) {
         numberOfInputModels = models.size();
         List<RElement> elements = new ArrayList<>();
         for (RModel model : models) {
