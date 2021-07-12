@@ -11,6 +11,10 @@ import java.util.*;
 
 import static de.variantsync.matching.nwm.alg.pair.PairWiseMatch.filterTuplesByTreshold;
 
+/**
+ * Wrapper for calling the Hungarian-pairwise implementation considered by Rubin and Chechik, ESEC/FSE 2013
+ * https://dl.acm.org/doi/10.1145/2491411.2491446
+ */
 public class HungarianPairwiseMatcher extends AlgoBase {
     private final ArrayList<Model> models;
     private final EBaselineImplementation sortMode;
