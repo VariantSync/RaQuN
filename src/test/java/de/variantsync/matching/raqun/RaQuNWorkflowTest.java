@@ -1,7 +1,7 @@
 package de.variantsync.matching.raqun;
 
 import de.variantsync.matching.raqun.data.*;
-import de.variantsync.matching.raqun.similarity.SimilarityFunction;
+import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.tree.KDTree;
 import de.variantsync.matching.raqun.tree.PropertyBasedVectorization;
@@ -13,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static de.variantsync.matching.raqun.tree.KDTreeTest.initializeTree;
+
 public class RaQuNWorkflowTest {
     Path pathToSimpleDataset = Paths.get("src", "test", "resources",
             "datasets", "workflow_test_models.txt");
@@ -23,7 +25,7 @@ public class RaQuNWorkflowTest {
         testRaQuNWorkflow(new WeightMetric());
     }
 
-    private void testRaQuNWorkflow(SimilarityFunction similarityFunction) {
+    private void testRaQuNWorkflow(ISimilarityFunction similarityFunction) {
         // Load a simple test model
         RDataset dataset = new RDataset("SimpleDataset");
         dataset.loadFileContent(pathToSimpleDataset);
@@ -41,16 +43,9 @@ public class RaQuNWorkflowTest {
         // Shuffle the models for more randomness
         Collections.shuffle(models);
 
-        // Initialize Tree
-        KDTree kDTree = new KDTree(models, PropertyBasedVectorization.class);
-
-        // Get CandidatePairs from tree
-        Set<CandidatePair> candidatePairs = kDTree.findAllCandidates(-1);
-
-        // run RaQuN merge algorithm
-        Set<RElement> allElements = new HashSet<>(kDTree.getElementsInTree());
         similarityFunction.setNumberOfModels(3);
-        Set<RMatch> matching = RaQuNMatcher.match(candidatePairs, allElements, similarityFunction, validityConstraint);
+        RaQuN raqun = new RaQuN(PropertyBasedVectorization.class, validityConstraint, similarityFunction, 3);
+        Set<RMatch> matching = raqun.match(models);
 
         // Validate result matching
         /*
@@ -87,5 +82,41 @@ public class RaQuNWorkflowTest {
                 }
             }
         }
+    }
+
+    @Test
+    public void allExpectedCandidatePairsAreFound() {
+        RaQuN raqun = new RaQuN(PropertyBasedVectorization.class, new OneToOneValidity(), new WeightMetric(), 1);
+        KDTree tree = initializeTree();
+
+        Set<CandidatePair> queryResults = raqun.findAllCandidates(tree,2);
+        // We expect 4 candidate pairs, because candidates from the same model are filtered and CandidatePairs do not
+        // have a defined order
+        assert queryResults.size() == 4;
+        boolean ele1IsMatched = false;
+        boolean ele1IsMatchedTwice = false;
+        boolean ele2IsMatched = false;
+        boolean ele3IsMatched = false;
+        for (CandidatePair candidatePair : queryResults) {
+            String nameOfFirst = candidatePair.getFirst().getName();
+            String nameOfSecond = candidatePair.getSecond().getName();
+            if (nameOfFirst.equals("ele1") && nameOfSecond.equals("ele1")) {
+                ele1IsMatched = true;
+            }
+            if (nameOfFirst.equals("ele1") && nameOfSecond.equals("ele2")|| nameOfFirst.equals("ele2") && nameOfSecond.equals("ele1")) {
+                ele1IsMatchedTwice = true;
+            }
+            if (nameOfFirst.equals("ele2") && nameOfSecond.equals("ele2")) {
+                ele2IsMatched = true;
+            }
+            if (nameOfFirst.equals("ele3") || nameOfSecond.equals("ele3")) {
+                ele3IsMatched = true;
+            }
+        }
+
+        assert ele1IsMatched;
+        assert ele1IsMatchedTwice;
+        assert ele2IsMatched;
+        assert ele3IsMatched;
     }
 }

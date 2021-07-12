@@ -10,7 +10,7 @@ import java.util.Set;
  * A SimilarityFunction is applied to determine whether elements should be matched, and in order to sort pairs of match
  * candidates.
  */
-public interface SimilarityFunction {
+public interface ISimilarityFunction {
 
     /**
      * Determine whether a set of given tuples should be matched

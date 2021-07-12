@@ -10,7 +10,7 @@ import java.util.*;
  * Re-implementation of the weight metric proposed by Rubin and Chechik, ESEC/FSE 2013
  * https://dl.acm.org/doi/10.1145/2491411.2491446
  */
-public class WeightMetric implements SimilarityFunction
+public class WeightMetric implements ISimilarityFunction
 {
 	protected int numberOfModels;
 

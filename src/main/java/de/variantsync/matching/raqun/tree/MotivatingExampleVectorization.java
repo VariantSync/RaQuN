@@ -9,7 +9,7 @@ import java.util.Collection;
  * A simple vectorization that was used in the motivating example of our paper. This vectorization can be used as a
  * template for creating custom vectorization functions.
  */
-public class MotivatingExampleVectorization implements Vectorization {
+public class MotivatingExampleVectorization implements IVectorization {
     private final int NUMBER_OF_DIMENSIONS = 2;
 
     @Override

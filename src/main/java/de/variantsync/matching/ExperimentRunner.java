@@ -1,11 +1,11 @@
 package de.variantsync.matching;
 
 import de.variantsync.matching.raqun.validity.OneToOneValidity;
-import de.variantsync.matching.raqun.similarity.SimilarityFunction;
+import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.common.MethodAdapter;
-import de.variantsync.matching.experiments.raqun.RaqunAdapter;
+import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
 import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.experiments.baseline.BaselineAlgoAdapter;
@@ -96,7 +96,7 @@ public class ExperimentRunner {
             datasets.add("argouml");
         }
 
-        SimilarityFunction weightMetric = new WeightMetric();
+        ISimilarityFunction weightMetric = new WeightMetric();
         // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
         // If set to true, NwM will no longer be executed on the ArgoUML subsets
         boolean nwmTimeout = false;
@@ -168,13 +168,13 @@ public class ExperimentRunner {
 
             // Raqun with k == number of models
             if (shouldRunRaQuN) {
-                runExperiment(new RaqunAdapter(raqunSetup), raqunSetup.name, dataset);
+                runExperiment(new RaQuNAdapter(raqunSetup), raqunSetup.name, dataset);
             }
 
             // Raqun K step-wise
             if (!dataset.startsWith("argouml_") && !dataset.startsWith("webamp_")) {
                 if (shouldRunImpactOfKInvestigation) {
-                    runExperiment(new RaqunAdapter(raqunKSetup), raqunKSetup.name, dataset);
+                    runExperiment(new RaQuNAdapter(raqunKSetup), raqunKSetup.name, dataset);
                 }
             }
         }

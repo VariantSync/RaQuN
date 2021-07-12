@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *
  * We presented this vectorization in our paper.
  */
-public class PropertyBasedVectorization implements Vectorization {
+public class PropertyBasedVectorization implements IVectorization {
     private Map<String, Integer> childrenNamesDimension;
     protected Map<RElement, RVector> elementToVectorMap;
     protected int dimensions;

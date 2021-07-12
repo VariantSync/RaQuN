@@ -8,18 +8,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import de.variantsync.matching.raqun.data.*;
-import de.variantsync.matching.raqun.tree.KDTree;
 import de.variantsync.matching.experiments.common.MatchStatistic;
 import de.variantsync.matching.experiments.common.ExperimentHelper;
 import de.variantsync.matching.experiments.common.MethodAdapter;
-import de.variantsync.matching.raqun.RaQuNMatcher;
+import de.variantsync.matching.raqun.RaQuN;
 
-public class RaqunAdapter implements MethodAdapter {
+public class RaQuNAdapter implements MethodAdapter {
     private final RaqunSetup setup;
     private final List<Integer> Ks;
     private List<Measurement> experimentSpecifics;
 
-    public RaqunAdapter(RaqunSetup setup) {
+    public RaQuNAdapter(RaqunSetup setup) {
         this.setup = setup;
         Ks = IntStream.rangeClosed(setup.startK, setup.maxK).boxed().collect(Collectors.toList());
     }
@@ -41,30 +40,18 @@ public class RaqunAdapter implements MethodAdapter {
                 Measurement measurement = experimentSpecifics.get(runID);
                 // Get the next subset of models that are to be matched
                 ArrayList<RModel> modelSubset = datasetChunks.get(measurement.chunkNumber - 1);
-
-                // Build the K-D-Tree
-                Instant startedAt = Instant.now();
-                KDTree kDTree = new KDTree(modelSubset, setup.vectorization);
-                Instant indexBuiltAt = Instant.now();
-
-                // Calculate the match candidates in the K-D-Tree, based on radius or nearest neighbor search
-                Set<CandidatePair> allCandidatePairs = kDTree.findAllCandidates(measurement.k);
-                Instant foundSimilaritiesAt = Instant.now();
-
-                // Get all elements
-                Set<RElement> allElements = new HashSet<>(kDTree.getElementsInTree());
-
                 // Set the number of models in the evaluator
-                setup.similarityFunction.setNumberOfModels(kDTree.getNumberOfInputModels());
+                setup.similarityFunction.setNumberOfModels(modelSubset.size());
 
-                // Merge the models
-                Set<RMatch> mergedModel = RaQuNMatcher.match(allCandidatePairs, allElements, setup.similarityFunction, setup.validityConstraint);
+                Instant startedAt = Instant.now();
+                RaQuN raqun = new RaQuN(setup.vectorization, setup.validityConstraint, setup.similarityFunction, measurement.k);
+
+                // Match the models
+                Set<RMatch> matchingResult = raqun.match(modelSubset);
                 Instant finishedAt = Instant.now();
 
                 // Convert the runtime of this run
-                measurement.resultIndexTimeElapsedSec = toSeconds(Duration.between(startedAt, indexBuiltAt));
-                measurement.resultSearchTimeElapsedSec = toSeconds(Duration.between(indexBuiltAt, foundSimilaritiesAt));
-                measurement.resultMatchTimeElapsedSec = toSeconds(Duration.between(foundSimilaritiesAt, finishedAt));
+                measurement.resultMatchTimeElapsedSec = toSeconds(Duration.between(startedAt, finishedAt));
 
                 // Initialize the statistic for saving the results
                 int tempId = (setup.chunkSize == Integer.MAX_VALUE) ? runID : (runID/setup.chunkSize);
@@ -72,14 +59,14 @@ public class RaqunAdapter implements MethodAdapter {
                 int sizeOfLargestModel = getSizeOfLargestModel(modelSubset);
 
                 MatchStatistic matchStatistic = new MatchStatistic(tempId, measurement.testCase, setup.name,
-                        kDTree.getNumberOfInputModels(), sizeOfLargestModel, measurement.k);
-                matchStatistic.calculateStatistics(mergedModel,
+                        modelSubset.size(), sizeOfLargestModel, measurement.k);
+                matchStatistic.calculateStatistics(matchingResult,
                         measurement.resultIndexTimeElapsedSec
                                 + measurement.resultSearchTimeElapsedSec
                                 + measurement.resultMatchTimeElapsedSec);
-                matchStatistic.setNumberOfComparisonsActuallyDone(allCandidatePairs.size());
+                matchStatistic.setNumberOfComparisonsActuallyDone(raqun.getCandidatePairs().size());
                 matchStatistic.calculateNumberOfNWayComparisonsTheoreticallyNeeded(
-                        calculateNumberOfComparisonsTheoreticallyNeeded(modelSubset, allElements)
+                        calculateNumberOfComparisonsTheoreticallyNeeded(modelSubset, raqun.getNumProcessedElements())
                 );
 
                 System.out.println(matchStatistic);
@@ -120,9 +107,9 @@ public class RaqunAdapter implements MethodAdapter {
         return duration.toMillis() / 1000d;
     }
 
-    private int calculateNumberOfComparisonsTheoreticallyNeeded(ArrayList<RModel> models, Set<RElement> allElements) {
+    private int calculateNumberOfComparisonsTheoreticallyNeeded(ArrayList<RModel> models, int numberOfAllElements) {
         // Initialize the number of unique comparisons with the number of elements in total
-        int numberOfUniqueComparisons = allElements.size();
+        int numberOfUniqueComparisons = numberOfAllElements;
         int numberOfComparisonsTheoreticallyNeeded = 0;
         for (RModel model : models) {
             int numberOfElements = model.getElements().size();

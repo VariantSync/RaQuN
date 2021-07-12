@@ -11,7 +11,7 @@ import java.util.Collection;
  * You can use the implementation of the simple vectorization used in our paper's motivating example as a simple template
  * for your own vectorization. MotivatingExampleVectorFactory
  */
-public interface Vectorization {
+public interface IVectorization {
     /**
      * Initialize the vectorization for the given input models.
      */
