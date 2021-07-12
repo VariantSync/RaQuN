@@ -8,16 +8,16 @@ import java.util.*;
 
 import static org.raqun.paper.testhelper.TestDataFactory.*;
 
-public class CharacterIndexVectorFactoryTest {
+public class CharacterVectorFactoryTest {
     @Test
     public void initializationWithNullElementsInvalid() {
-        Assertions.assertThrows(NullPointerException.class, () -> new CharacterIndexVectorFactory(null));
+        Assertions.assertThrows(NullPointerException.class, () -> new CharacterVectorFactory(null));
     }
 
     @Test
     public void initializationWithZeroElementsInvalid() {
         List<RElement> elements = new ArrayList<>();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CharacterIndexVectorFactory(elements));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CharacterVectorFactory(elements));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class CharacterIndexVectorFactoryTest {
         simpleElement.getProperties().add("Property2");
 
         elements.add(simpleElement);
-        CharacterIndexVectorFactory factory = new CharacterIndexVectorFactory(elements);
+        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
 
         Set<Character> charactersInProperties = getCharactersInProperties(simpleElement);
 
@@ -43,7 +43,7 @@ public class CharacterIndexVectorFactoryTest {
     @Test
     public void initializationWithSeveralElements() {
         List<RElement> elements = getElementList();
-        CharacterIndexVectorFactory factory = new CharacterIndexVectorFactory(elements);
+        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
         Map<Character, Integer> characterDimensions = factory.getCharacterDimensions();
 
         Set<Character> charactersInProperties = getCharactersInProperties(elements);
@@ -57,13 +57,13 @@ public class CharacterIndexVectorFactoryTest {
         List<RElement> elements = getElementListWithoutNames();
         // Add one element twice to check for this case as well
         elements.add(elements.get(0));
-        CharacterIndexVectorFactory factory = new CharacterIndexVectorFactory(elements);
+        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
         Map<Character, Integer> characterDimensions = factory.getCharacterDimensions();
 
         Set<Character> charactersInProperties = getCharactersInProperties(elements);
 
         for (RElement element : elements) {
-            IndexVector vector = factory.vectorFor(element);
+            PropertyVector vector = factory.vectorFor(element);
             // Two additional dimensions, one for number of props, one for prop name length
             assert vector.getDimensions() == charactersInProperties.size() + 2;
 
@@ -84,7 +84,7 @@ public class CharacterIndexVectorFactoryTest {
         List<RElement> elements = getElementList();
         // Remove all properties of one element to check whether this case is recognized as invalid
         elements.get(0).getProperties().clear();
-        CharacterIndexVectorFactory factory = new CharacterIndexVectorFactory(elements);
+        CharacterVectorFactory factory = new CharacterVectorFactory(elements);
         Assertions.assertThrows(IllegalArgumentException.class, () -> factory.vectorFor(elements.get(0)));
     }
 

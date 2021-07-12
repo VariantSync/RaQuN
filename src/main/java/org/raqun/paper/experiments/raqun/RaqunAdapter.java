@@ -10,8 +10,8 @@ import org.raqun.paper.experiments.common.MatchStatistic;
 import org.raqun.paper.experiments.common.ExperimentHelper;
 import org.raqun.paper.experiments.common.MethodAdapter;
 import org.raqun.paper.raqun.data.*;
-import org.raqun.paper.raqun.RaqunMerger;
-import org.raqun.paper.raqun.tree.TreeManager;
+import org.raqun.paper.raqun.RaQuNMatcher;
+import org.raqun.paper.raqun.tree.RKDTree;
 
 public class RaqunAdapter implements MethodAdapter {
     private final RaqunSetup setup;
@@ -43,21 +43,21 @@ public class RaqunAdapter implements MethodAdapter {
 
                 // Build the K-D-Tree
                 Instant startedAt = Instant.now();
-                TreeManager treeManager = new TreeManager(modelSubset, setup.vectorization);
+                RKDTree RKDTree = new RKDTree(modelSubset, setup.vectorization);
                 Instant indexBuiltAt = Instant.now();
 
                 // Calculate the match candidates in the K-D-Tree, based on radius or nearest neighbor search
-                Set<CandidatePair> allCandidatePairs = treeManager.findKCandidates(measurement.k);
+                Set<CandidatePair> allCandidatePairs = RKDTree.findKCandidates(measurement.k);
                 Instant foundSimilaritiesAt = Instant.now();
 
                 // Get all elements
-                Set<RElement> allElements = new HashSet<>(treeManager.getElementsInTree());
+                Set<RElement> allElements = new HashSet<>(RKDTree.getElementsInTree());
 
                 // Set the number of models in the evaluator
-                setup.similarityFunction.setNumberOfModels(treeManager.getNumberOfInputModels());
+                setup.similarityFunction.setNumberOfModels(RKDTree.getNumberOfInputModels());
 
                 // Merge the models
-                Set<RMatch> mergedModel = RaqunMerger.startMerge(allCandidatePairs, allElements, setup.similarityFunction, setup.validityConstraint);
+                Set<RMatch> mergedModel = RaQuNMatcher.match(allCandidatePairs, allElements, setup.similarityFunction, setup.validityConstraint);
                 Instant finishedAt = Instant.now();
 
                 // Convert the runtime of this run
@@ -71,7 +71,7 @@ public class RaqunAdapter implements MethodAdapter {
                 int sizeOfLargestModel = getSizeOfLargestModel(modelSubset);
 
                 MatchStatistic matchStatistic = new MatchStatistic(tempId, measurement.testCase, setup.name,
-                        treeManager.getNumberOfInputModels(), sizeOfLargestModel, measurement.k);
+                        RKDTree.getNumberOfInputModels(), sizeOfLargestModel, measurement.k);
                 matchStatistic.calculateStatistics(mergedModel,
                         measurement.resultIndexTimeElapsedSec
                                 + measurement.resultSearchTimeElapsedSec

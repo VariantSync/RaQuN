@@ -9,16 +9,16 @@ import java.util.*;
 import static org.raqun.paper.testhelper.TestDataFactory.getElementList;
 import static org.raqun.paper.testhelper.TestDataFactory.getSimpleRElement;
 
-public class IndexVectorFactoryTest {
+public class PropertyVectorFactoryTest {
     @Test
     public void initializationWithNullElementsInvalid() {
-        Assertions.assertThrows(NullPointerException.class, () -> new IndexVectorFactory(null));
+        Assertions.assertThrows(NullPointerException.class, () -> new PropertyVectorFactory(null));
     }
 
     @Test
     public void initializationWithZeroElementsInvalid() {
         List<RElement> elements = new ArrayList<>();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new IndexVectorFactory(elements));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new PropertyVectorFactory(elements));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class IndexVectorFactoryTest {
         simpleElement.getProperties().add("property2");
 
         elements.add(simpleElement);
-        IndexVectorFactory factory = new IndexVectorFactory(elements);
+        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
         Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
         assert childrenNamesDimension.size() == 3;
         assert childrenNamesDimension.containsKey("n_" + simpleElement.getName());
@@ -40,7 +40,7 @@ public class IndexVectorFactoryTest {
     @Test
     public void initializationWithSeveralElements() {
         List<RElement> elements = getElementList();
-        IndexVectorFactory factory = new IndexVectorFactory(elements);
+        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
         Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
         assert childrenNamesDimension.size() == 6;
         assert factory.getNumberOfDimension() == 6;
@@ -51,11 +51,11 @@ public class IndexVectorFactoryTest {
         List<RElement> elements = getElementList();
         // Add one element twice to check for this case as well
         elements.add(elements.get(0));
-        IndexVectorFactory factory = new IndexVectorFactory(elements);
+        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
         Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
 
         for (RElement element : elements) {
-            IndexVector vector = factory.vectorFor(element);
+            PropertyVector vector = factory.vectorFor(element);
             assert vector.getDimensions() == 6;
 
             Set<String> propertiesNotInElement = new HashSet<>(childrenNamesDimension.keySet());
@@ -80,7 +80,7 @@ public class IndexVectorFactoryTest {
         List<RElement> elements = getElementList();
         // Remove all properties of one element to check whether this case is recognized as invalid
         elements.get(0).getProperties().clear();
-        IndexVectorFactory factory = new IndexVectorFactory(elements);
+        PropertyVectorFactory factory = new PropertyVectorFactory(elements);
         Assertions.assertThrows(IllegalArgumentException.class, () -> factory.vectorFor(elements.get(0)));
     }
 }

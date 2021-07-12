@@ -3,7 +3,7 @@ package org.raqun.paper.raqun;
 import org.raqun.paper.raqun.data.*;
 import org.raqun.paper.raqun.similarity.WeightMetric;
 import org.raqun.paper.raqun.similarity.SimilarityFunction;
-import org.raqun.paper.raqun.tree.TreeManager;
+import org.raqun.paper.raqun.tree.RKDTree;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
@@ -16,12 +16,12 @@ public class RaQuNWorkflowTest {
     private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
     @ParameterizedTest
-    @EnumSource(TreeManager.EVectorization.class)
-    public void testRaQunWorkflowWithNwMWeight(TreeManager.EVectorization vectorization) {
+    @EnumSource(RKDTree.EVectorization.class)
+    public void testRaQunWorkflowWithNwMWeight(RKDTree.EVectorization vectorization) {
         testRaQuNWorkflow(vectorization, new WeightMetric());
     }
 
-    private void testRaQuNWorkflow(TreeManager.EVectorization vectorization, SimilarityFunction similarityFunction) {
+    private void testRaQuNWorkflow(RKDTree.EVectorization vectorization, SimilarityFunction similarityFunction) {
         // Load a simple test model
         RDataset dataset = new RDataset("SimpleDataset");
         dataset.loadFileContent(pathToSimpleDataset);
@@ -40,15 +40,15 @@ public class RaQuNWorkflowTest {
         Collections.shuffle(models);
 
         // Initialize Tree
-        TreeManager treeManager = new TreeManager(models, vectorization);
+        RKDTree RKDTree = new RKDTree(models, vectorization);
 
         // Get CandidatePairs from tree
-        Set<CandidatePair> candidatePairs = treeManager.findKCandidates(-1);
+        Set<CandidatePair> candidatePairs = RKDTree.findKCandidates(-1);
 
         // run RaQuN merge algorithm
-        Set<RElement> allElements = new HashSet<>(treeManager.getElementsInTree());
+        Set<RElement> allElements = new HashSet<>(RKDTree.getElementsInTree());
         similarityFunction.setNumberOfModels(3);
-        Set<RMatch> matching = RaqunMerger.startMerge(candidatePairs, allElements, similarityFunction, validityConstraint);
+        Set<RMatch> matching = RaQuNMatcher.match(candidatePairs, allElements, similarityFunction, validityConstraint);
 
         // Validate result matching
         /*

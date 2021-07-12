@@ -8,12 +8,13 @@ import org.raqun.paper.raqun.similarity.SimilarityFunction;
 
 import java.util.*;
 
-public class RaqunMerger {
+// TODO: Give RaQuN the interface which is presented in the paper.
+public class RaQuNMatcher {
 
-    public static Set<RMatch> startMerge(Set<CandidatePair> candidatePairs,
-                                         Set<RElement> allElements,
-                                         SimilarityFunction similarityFunction,
-                                         MatchValidityConstraint validityConstraint) {
+    public static Set<RMatch> match(Set<CandidatePair> candidatePairs,
+                                    Set<RElement> allElements,
+                                    SimilarityFunction similarityFunction,
+                                    MatchValidityConstraint validityConstraint) {
         // Calculate the match confidence of the pairs and sort them accordingly
         for (CandidatePair candidatePair : candidatePairs) {
             candidatePair.setMatchConfidence(similarityFunction.getMatchConfidence(candidatePair));
@@ -27,10 +28,10 @@ public class RaqunMerger {
         Set<RMatch> initialTuple = new HashSet<>();
         allElements.forEach(e -> initialTuple.add(new RMatch(similarityFunction, validityConstraint, e)));
 
-        return RaqunMerger.merge(initialTuple, pairSortTree, similarityFunction);
+        return RaQuNMatcher.match(initialTuple, pairSortTree, similarityFunction);
     }
 
-    protected static Set<RMatch> merge(Set<RMatch> initialTuple, PairSortTree pairSortTree,
+    protected static Set<RMatch> match(Set<RMatch> initialTuple, PairSortTree pairSortTree,
                                        SimilarityFunction similarityFunction) {
         // All elements are added to the result
         Set<RMatch> resultSet = new HashSet<>(initialTuple);

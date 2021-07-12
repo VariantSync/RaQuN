@@ -9,21 +9,21 @@ import org.raqun.paper.raqun.data.CandidatePair;
 import org.raqun.paper.raqun.data.RElement;
 import org.raqun.paper.raqun.data.RModel;
 
-public class TreeManager {
-    private final KDTree<Double, IndexVector, List<RElement>> tree = new KDTree<>();
-    private final IndexVectorFactory indexVectorFactory;
+public class RKDTree {
+    private final KDTree<Double, PropertyVector, List<RElement>> tree = new KDTree<>();
+    private final PropertyVectorFactory propertyVectorFactory;
     private final List<RElement> elementsInTree;
     private final int numberOfInputModels;
-    private final NearestNeighbors<Double, IndexVector, List<RElement>> nearestNeighbors = new NearestNeighbors<>();
+    private final NearestNeighbors<Double, PropertyVector, List<RElement>> nearestNeighbors = new NearestNeighbors<>();
 
-    public TreeManager(List<RModel> models, EVectorization vectorization) {
+    public RKDTree(List<RModel> models, EVectorization vectorization) {
         numberOfInputModels = models.size();
         List<RElement> elements = new ArrayList<>();
         for (RModel model : models) {
             elements.addAll(model.getElements());
         }
         if (vectorization == EVectorization.PROPERTY_INDEX) {
-            indexVectorFactory = new IndexVectorFactory(elements);
+            propertyVectorFactory = new PropertyVectorFactory(elements);
         } else {
             throw new IllegalArgumentException("Vectorization type " + vectorization + " not yet implemented.");
         }
@@ -60,18 +60,18 @@ public class TreeManager {
         return tree.values().stream().mapToInt(List::size).sum();
     }
 
-    public IndexVectorFactory getIndexVectorFactory() {
-        return this.indexVectorFactory;
+    public PropertyVectorFactory getIndexVectorFactory() {
+        return this.propertyVectorFactory;
     }
 
     private void add(RElement element) {
-        IndexVector indexVector = indexVectorFactory.vectorFor(element);
-        if (tree.containsKey(indexVector)) {
-            tree.get(indexVector).add(element);
+        PropertyVector propertyVector = propertyVectorFactory.vectorFor(element);
+        if (tree.containsKey(propertyVector)) {
+            tree.get(propertyVector).add(element);
         } else {
             List<RElement> elementsAtPoint = new ArrayList<>();
             elementsAtPoint.add(element);
-            tree.put(indexVector, elementsAtPoint);
+            tree.put(propertyVector, elementsAtPoint);
         }
     }
 
@@ -91,11 +91,11 @@ public class TreeManager {
     }
 
     public List<QueryResult> queryElementsOfKNearestPoints(RElement element, int k) {
-        IndexVector queryPoint = indexVectorFactory.vectorFor(element);
-        Entry<Double, IndexVector, List<RElement>>[] nearestNeighbors = this.nearestNeighbors.get(tree, queryPoint, k, false);
+        PropertyVector queryPoint = propertyVectorFactory.vectorFor(element);
+        Entry<Double, PropertyVector, List<RElement>>[] nearestNeighbors = this.nearestNeighbors.get(tree, queryPoint, k, false);
 
         List<QueryResult> allNeighboringElements = new ArrayList<>();
-        for (Entry<Double, IndexVector, List<RElement>> entry : nearestNeighbors) {
+        for (Entry<Double, PropertyVector, List<RElement>> entry : nearestNeighbors) {
             List<RElement> elementsAtNeighboringPoint = entry.getNeighbor().getValue();
             // List of QueryResults, one result for each element at the neighboring point
             for(RElement neighboringElement : elementsAtNeighboringPoint) {

@@ -6,10 +6,10 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-public class CharacterIndexVectorFactory extends IndexVectorFactory {
+public class CharacterVectorFactory extends PropertyVectorFactory {
     private Map<Character, Integer> characterDimensions;
 
-    public CharacterIndexVectorFactory(List<RElement> elements) {
+    public CharacterVectorFactory(List<RElement> elements) {
         super(elements);
     }
 
@@ -32,14 +32,14 @@ public class CharacterIndexVectorFactory extends IndexVectorFactory {
     }
 
     @Override
-    public IndexVector vectorFor(RElement element) {
+    public PropertyVector vectorFor(RElement element) {
         if (element.getProperties().isEmpty()) {
             throw new IllegalArgumentException("Elements must have at least one property!");
         }
         if (elementToVectorMap.containsKey(element)) {
             return elementToVectorMap.get(element);
         } else {
-            IndexVector vector = new IndexVector(dimensions);
+            PropertyVector vector = new PropertyVector(dimensions);
 
             int dim = 0;
 
