@@ -1,6 +1,6 @@
 package de.variantsync.matching.experiments.raqun;
 
-import de.variantsync.matching.raqun.data.IValidityConstraint;
+import de.variantsync.matching.raqun.validity.IValidityConstraint;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.raqun.tree.Vectorization;

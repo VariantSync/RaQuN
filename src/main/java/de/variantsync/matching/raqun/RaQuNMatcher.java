@@ -1,7 +1,7 @@
 package de.variantsync.matching.raqun;
 
 import de.variantsync.matching.raqun.data.CandidatePair;
-import de.variantsync.matching.raqun.data.IValidityConstraint;
+import de.variantsync.matching.raqun.validity.IValidityConstraint;
 import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.raqun.data.RMatch;

@@ -1,5 +1,7 @@
 package de.variantsync.matching.raqun.data;
 
+import de.variantsync.matching.raqun.validity.IValidityConstraint;
+import de.variantsync.matching.raqun.validity.OneToOneValidity;
 import de.variantsync.matching.testhelper.TestDataFactory;
 import org.junit.jupiter.api.Test;
 

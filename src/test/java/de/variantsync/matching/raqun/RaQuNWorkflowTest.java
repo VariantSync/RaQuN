@@ -5,6 +5,8 @@ import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.tree.KDTree;
 import de.variantsync.matching.raqun.tree.PropertyBasedVectorization;
+import de.variantsync.matching.raqun.validity.IValidityConstraint;
+import de.variantsync.matching.raqun.validity.OneToOneValidity;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;

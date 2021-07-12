@@ -1,4 +1,6 @@
-package de.variantsync.matching.raqun.data;
+package de.variantsync.matching.raqun.validity;
+
+import de.variantsync.matching.raqun.data.RMatch;
 
 /**
  * A ValidityConstraints determines whether a given match of elements is valid.

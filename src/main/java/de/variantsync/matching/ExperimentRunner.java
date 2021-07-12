@@ -1,6 +1,6 @@
 package de.variantsync.matching;
 
-import de.variantsync.matching.raqun.data.OneToOneValidity;
+import de.variantsync.matching.raqun.validity.OneToOneValidity;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.experiments.common.ExperimentSetup;

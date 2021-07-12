@@ -1,6 +1,6 @@
 package de.variantsync.matching.experiments.common;
 
-import de.variantsync.matching.raqun.data.IValidityConstraint;
+import de.variantsync.matching.raqun.validity.IValidityConstraint;
 
 import java.nio.file.Paths;
 

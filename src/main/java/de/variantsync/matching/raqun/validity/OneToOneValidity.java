@@ -1,4 +1,7 @@
-package de.variantsync.matching.raqun.data;
+package de.variantsync.matching.raqun.validity;
+
+import de.variantsync.matching.raqun.data.RElement;
+import de.variantsync.matching.raqun.data.RMatch;
 
 import java.util.HashSet;
 
