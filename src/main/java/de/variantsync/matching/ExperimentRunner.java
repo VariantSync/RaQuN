@@ -1,9 +1,8 @@
 package de.variantsync.matching;
 
-import de.variantsync.matching.raqun.data.MatchValidityConstraint;
+import de.variantsync.matching.raqun.data.OneToOneValidity;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
-import de.variantsync.matching.raqun.tree.KDTree;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.common.MethodAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunAdapter;
@@ -123,21 +122,21 @@ public class ExperimentRunner {
             RaqunSetup raqunSetup = new RaqunSetup("RaQuN", numberOfRepeats,
                     resultsDir, datasetDir, dataset, chunkSize, weightMetric, -1, -1,
                     PropertyBasedVectorization.class,
-                    MatchValidityConstraint.ONE_TO_ONE);
+                    new OneToOneValidity());
 
             RaqunSetup raqunKSetup = new RaqunSetup("RaQuN_k", numberOfRepeats,
                     resultsDir, datasetDir, dataset, chunkSize, weightMetric, startK, maxK,
                     PropertyBasedVectorization.class,
-                    MatchValidityConstraint.ONE_TO_ONE);
+                    new OneToOneValidity());
 
             ExperimentSetup nwmSetup = new ExperimentSetup("NwM", numberOfRepeats,
-                    resultsDir, datasetDir, dataset, chunkSize, MatchValidityConstraint.ONE_TO_ONE);
+                    resultsDir, datasetDir, dataset, chunkSize, new OneToOneValidity());
 
             ExperimentSetup pairwiseAscSetup = new ExperimentSetup("PairwiseAsc", numberOfRepeats,
-                    resultsDir, datasetDir, dataset, chunkSize, MatchValidityConstraint.ONE_TO_ONE);
+                    resultsDir, datasetDir, dataset, chunkSize, new OneToOneValidity());
 
             ExperimentSetup pairwiseDescSetup = new ExperimentSetup("PairwiseDesc", numberOfRepeats,
-                    resultsDir, datasetDir, dataset, chunkSize, MatchValidityConstraint.ONE_TO_ONE);
+                    resultsDir, datasetDir, dataset, chunkSize, new OneToOneValidity());
 
             // NwM
             if (!dataset.equals("argouml")) {

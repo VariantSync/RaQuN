@@ -1,7 +1,7 @@
 package de.variantsync.matching.raqun;
 
 import de.variantsync.matching.raqun.data.CandidatePair;
-import de.variantsync.matching.raqun.data.MatchValidityConstraint;
+import de.variantsync.matching.raqun.data.IValidityConstraint;
 import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.raqun.data.RMatch;
@@ -14,7 +14,7 @@ public class RaQuNMatcher {
     public static Set<RMatch> match(Set<CandidatePair> candidatePairs,
                                     Set<RElement> allElements,
                                     SimilarityFunction similarityFunction,
-                                    MatchValidityConstraint validityConstraint) {
+                                    IValidityConstraint validityConstraint) {
         // Calculate the match confidence of the pairs and sort them accordingly
         for (CandidatePair candidatePair : candidatePairs) {
             candidatePair.setMatchConfidence(similarityFunction.getMatchConfidence(candidatePair));
@@ -32,7 +32,7 @@ public class RaQuNMatcher {
     }
 
     protected static Set<RMatch> match(Set<RMatch> initialTuple, PairSortTree pairSortTree,
-                                       SimilarityFunction similarityFunction, MatchValidityConstraint validityConstraint) {
+                                       SimilarityFunction similarityFunction, IValidityConstraint validityConstraint) {
         // All elements are added to the result
         Set<RMatch> resultSet = new HashSet<>(initialTuple);
 
@@ -51,7 +51,7 @@ public class RaQuNMatcher {
 
             if (similarityFunction.shouldMatch(selectedTuples)) {
                 RMatch mergedTuple = RMatch.getMergedTuple(selectedTuples);
-                if (mergedTuple != null && mergedTuple.isValid(validityConstraint)) {
+                if (mergedTuple != null && validityConstraint.isValid(mergedTuple)) {
                     // Remove all selected tuple and add their merged result instead
                     resultSet.removeAll(selectedTuples);
                     resultSet.add(mergedTuple);

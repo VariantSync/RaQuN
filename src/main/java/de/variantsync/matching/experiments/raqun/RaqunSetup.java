@@ -1,6 +1,6 @@
 package de.variantsync.matching.experiments.raqun;
 
-import de.variantsync.matching.raqun.data.MatchValidityConstraint;
+import de.variantsync.matching.raqun.data.IValidityConstraint;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.raqun.tree.Vectorization;
@@ -18,7 +18,7 @@ public class RaqunSetup extends ExperimentSetup {
                       SimilarityFunction similarityFunction,
                       int startK, int maxK,
                       Class<? extends Vectorization> vectorization,
-                      MatchValidityConstraint validityConstraint) {
+                      IValidityConstraint validityConstraint) {
         super(name, numberOfRepeats, resultDir, datasetDir, dataset, chunkSize, validityConstraint);
         this.similarityFunction = similarityFunction;
         this.startK = startK;

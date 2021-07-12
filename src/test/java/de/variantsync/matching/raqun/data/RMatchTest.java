@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 public class RMatchTest {
-    private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
+    private static final IValidityConstraint validityConstraint = new OneToOneValidity();
 
     @Test
     public void isValidFindsDuplicateModelsInTuple() {
@@ -20,16 +20,16 @@ public class RMatchTest {
 
         RMatch validTuple = new RMatch(firstElement);
         assert validTuple.getElements().size() == 1;
-        assert validTuple.isValid(validityConstraint);
+        assert validityConstraint.isValid(validTuple);
 
         validTuple = new RMatch(firstElement, secondElement);
         assert validTuple.getElements().size() == 2;
-        assert validTuple.isValid(validityConstraint);
+        assert validityConstraint.isValid(validTuple);
 
         // Now check that invalid tuples can be found
         RMatch invalidTuple = new RMatch(invalidElement, firstElement, secondElement);
         assert invalidTuple.getElements().size() == 3;
-        assert !invalidTuple.isValid(validityConstraint);
+        assert !validityConstraint.isValid(invalidTuple);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class RMatchTest {
 
         RMatch mergedTuple = RMatch.getMergedTuple(tuples);
         assert mergedTuple.getElements().size() == 2;
-        assert mergedTuple.isValid(validityConstraint);
+        assert validityConstraint.isValid(mergedTuple);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class RMatchTest {
 
         RMatch mergedTuple = RMatch.getMergedTuple(tuples);
         assert mergedTuple.getElements().size() == 6;
-        assert mergedTuple.isValid(validityConstraint);
+        assert validityConstraint.isValid(mergedTuple);
         assert mergedTuple.contains(secondElement);
         assert mergedTuple.contains(sixthElement);
     }

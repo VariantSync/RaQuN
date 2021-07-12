@@ -1,11 +1,8 @@
 package de.variantsync.matching.experiments;
 
-import de.variantsync.matching.raqun.data.MatchValidityConstraint;
 import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.experiments.common.ExperimentOracle;
 import de.variantsync.matching.raqun.data.RMatch;
-import de.variantsync.matching.raqun.similarity.WeightMetric;
-import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -14,9 +11,6 @@ public class ExperimentOracleTest {
     private final String[] propertiesA = {"a1", "a2"};
     private final String[] propertiesB = {"b1", "b2"};
     private final String[] propertiesC = {"c1", "c2"};
-
-    private final SimilarityFunction similarityFunction = new WeightMetric();
-    private final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
     // Model 1
     private final RElement m1A = getNodeA("1");

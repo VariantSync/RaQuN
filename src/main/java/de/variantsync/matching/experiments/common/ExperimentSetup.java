@@ -1,6 +1,6 @@
 package de.variantsync.matching.experiments.common;
 
-import de.variantsync.matching.raqun.data.MatchValidityConstraint;
+import de.variantsync.matching.raqun.data.IValidityConstraint;
 
 import java.nio.file.Paths;
 
@@ -12,12 +12,12 @@ public class ExperimentSetup {
     public final String mergeResultFile;
     public final String datasetFile;
     public final int chunkSize;
-    public final MatchValidityConstraint validityConstraint;
+    public final IValidityConstraint validityConstraint;
 
     public ExperimentSetup(String name, int numberOfRepeats,
                            String resultDir, String datasetDir,
                            String datasetName, int chunkSize,
-                           MatchValidityConstraint validityConstraint) {
+                           IValidityConstraint validityConstraint) {
         this.name = name;
         this.numberOfRepeats = numberOfRepeats;
         this.datasetName = datasetName;

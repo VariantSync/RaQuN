@@ -3,9 +3,10 @@ package de.variantsync.matching.raqun.data;
 import java.util.*;
 
 /**
- * Representation of a match (aka. tuple of matched elements)
+ * Representation of a match (aka. tuple of matched elements).
  */
 public class RMatch {
+    // The elements that have been matched to each other
     private final Set<RElement> elements;
 
     public RMatch(RElement... elements) {
@@ -14,26 +15,6 @@ public class RMatch {
 
     public RMatch(Collection<RElement> elements) {
         this.elements = new HashSet<>(elements);
-    }
-
-    public boolean isValid(MatchValidityConstraint validityConstraint) {
-        switch (validityConstraint) {
-            case ONE_TO_ONE:
-                HashSet<String> modelSet = new HashSet<>();
-                for (RElement element : elements) {
-                    if (modelSet.contains(element.getModelID())) {
-                        return false;
-                    } else {
-                        modelSet.add(element.getModelID());
-                    }
-                }
-                return true;
-            case N_TO_M:
-                return true;
-            default:
-                throw new UnsupportedOperationException("The validity value " + validityConstraint + " has not been implemented.");
-        }
-
     }
 
     public Collection<RElement> getElements() {

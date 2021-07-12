@@ -13,7 +13,7 @@ import java.util.*;
 public class RaQuNWorkflowTest {
     String pathToSimpleDataset = Paths.get("src", "test", "resources",
             "datasets", "workflow_test_models.txt").toString();
-    private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
+    private static final IValidityConstraint validityConstraint = new OneToOneValidity();
 
     @Test
     public void testRaQunWorkflowWithNwMWeight() {
