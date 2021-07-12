@@ -4,7 +4,7 @@ import de.variantsync.matching.raqun.data.*;
 import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.tree.KDTree;
-import de.variantsync.matching.raqun.tree.PropertyBasedVectorization;
+import de.variantsync.matching.raqun.vectorization.PropertyBasedVectorization;
 import de.variantsync.matching.raqun.validity.IValidityConstraint;
 import de.variantsync.matching.raqun.validity.OneToOneValidity;
 import org.junit.jupiter.api.Test;

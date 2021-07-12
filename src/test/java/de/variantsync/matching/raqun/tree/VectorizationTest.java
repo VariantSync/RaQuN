@@ -1,6 +1,6 @@
 package de.variantsync.matching.raqun.tree;
 
-import de.variantsync.matching.raqun.data.RModel;
+import de.variantsync.matching.raqun.vectorization.PropertyBasedVectorization;
 import de.variantsync.matching.testhelper.TestDataFactory;
 import de.variantsync.matching.raqun.data.RElement;
 import org.junit.jupiter.api.Assertions;

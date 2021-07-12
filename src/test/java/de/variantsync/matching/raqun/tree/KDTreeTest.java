@@ -2,6 +2,9 @@ package de.variantsync.matching.raqun.tree;
 
 import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.raqun.data.RElement;
+import de.variantsync.matching.raqun.vectorization.CharacterBasedVectorization;
+import de.variantsync.matching.raqun.vectorization.IVectorization;
+import de.variantsync.matching.raqun.vectorization.PropertyBasedVectorization;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

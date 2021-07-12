@@ -2,7 +2,7 @@ package de.variantsync.matching.raqun;
 
 import de.variantsync.matching.raqun.data.CandidatePair;
 import de.variantsync.matching.raqun.data.RModel;
-import de.variantsync.matching.raqun.tree.IVectorization;
+import de.variantsync.matching.raqun.vectorization.IVectorization;
 import de.variantsync.matching.raqun.tree.KDTree;
 import de.variantsync.matching.raqun.tree.TreeNeighbor;
 import de.variantsync.matching.raqun.validity.IValidityConstraint;

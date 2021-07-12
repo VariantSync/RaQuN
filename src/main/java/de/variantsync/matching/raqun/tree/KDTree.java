@@ -5,6 +5,7 @@ import java.util.*;
 import com.savarese.spatial.NearestNeighbors;
 import com.savarese.spatial.NearestNeighbors.Entry;
 import de.variantsync.matching.raqun.data.RElement;
+import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 /**
  * A k-dimensional tree (kd-tree) in which the elements of a model are matched to points in a vector space

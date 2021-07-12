@@ -3,7 +3,7 @@ package de.variantsync.matching.experiments.raqun;
 import de.variantsync.matching.raqun.validity.IValidityConstraint;
 import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
-import de.variantsync.matching.raqun.tree.IVectorization;
+import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 public class RaqunSetup extends ExperimentSetup {
 

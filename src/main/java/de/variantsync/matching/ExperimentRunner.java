@@ -9,7 +9,7 @@ import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
 import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.experiments.baseline.BaselineAlgoAdapter;
-import de.variantsync.matching.raqun.tree.PropertyBasedVectorization;
+import de.variantsync.matching.raqun.vectorization.PropertyBasedVectorization;
 
 import java.io.File;
 import java.io.FileWriter;

@@ -1,6 +1,7 @@
-package de.variantsync.matching.raqun.tree;
+package de.variantsync.matching.raqun.vectorization;
 
 import de.variantsync.matching.raqun.data.RElement;
+import de.variantsync.matching.raqun.tree.RVector;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
