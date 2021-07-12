@@ -8,7 +8,7 @@ import de.variantsync.matching.raqun.data.RElement;
  * You can use the implementation of the simple vectorization used in our paper's motivating example as a simple template
  * for your own vectorization. MotivatingExampleVectorFactory
  */
-public interface IVectorFactory<T extends PropertyVector> {
+public interface IVectorFactory<T extends RVector> {
     /**
      * Return a vector representation for the given element.
      * @param element The element for which a vector representation is to be calculated

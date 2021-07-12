@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 import java.security.SecureRandom;
 import java.util.Random;
 
-public class PropertyVectorTest {
+public class RVectorTest {
     private Random random = new SecureRandom();
 
     @Test
     public void dimensionsInitializedCorrectly() {
-        PropertyVector simpleVector = new PropertyVector(1);
+        RVector simpleVector = new RVector(1);
         assert simpleVector.getDimensions() == 1;
 
         int numberOfDims = random.nextInt(100_000) + 1;
-        PropertyVector anotherVector = new PropertyVector(numberOfDims);
+        RVector anotherVector = new RVector(numberOfDims);
         assert anotherVector.getDimensions() == numberOfDims;
         for (int i = 0; i < numberOfDims; i++) {
             assert Double.compare(anotherVector.getCoord(i), 0) == 0;
@@ -23,7 +23,7 @@ public class PropertyVectorTest {
 
     @Test
     public void dimensionsAreSetCorrectly() {
-        PropertyVector simpleVector = new PropertyVector(3);
+        RVector simpleVector = new RVector(3);
 
         for (int i = 0; i < simpleVector.getDimensions(); i++) {
             assert Double.compare(simpleVector.getCoord(i), 0) == 0;

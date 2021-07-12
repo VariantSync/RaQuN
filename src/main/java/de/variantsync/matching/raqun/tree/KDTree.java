@@ -9,11 +9,11 @@ import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.raqun.data.RElement;
 
 public class KDTree {
-    private final com.savarese.spatial.KDTree<Double, PropertyVector, List<RElement>> tree = new com.savarese.spatial.KDTree<>();
+    private final com.savarese.spatial.KDTree<Double, RVector, List<RElement>> tree = new com.savarese.spatial.KDTree<>();
     private final PropertyVectorFactory propertyVectorFactory;
     private final List<RElement> elementsInTree;
     private final int numberOfInputModels;
-    private final NearestNeighbors<Double, PropertyVector, List<RElement>> nearestNeighbors = new NearestNeighbors<>();
+    private final NearestNeighbors<Double, RVector, List<RElement>> nearestNeighbors = new NearestNeighbors<>();
 
     public KDTree(List<RModel> models, EVectorization vectorization) {
         numberOfInputModels = models.size();
@@ -64,13 +64,13 @@ public class KDTree {
     }
 
     private void add(RElement element) {
-        PropertyVector propertyVector = propertyVectorFactory.vectorFor(element);
-        if (tree.containsKey(propertyVector)) {
-            tree.get(propertyVector).add(element);
+        RVector RVector = propertyVectorFactory.vectorFor(element);
+        if (tree.containsKey(RVector)) {
+            tree.get(RVector).add(element);
         } else {
             List<RElement> elementsAtPoint = new ArrayList<>();
             elementsAtPoint.add(element);
-            tree.put(propertyVector, elementsAtPoint);
+            tree.put(RVector, elementsAtPoint);
         }
     }
 
@@ -90,11 +90,11 @@ public class KDTree {
     }
 
     public List<TreeNeighbor> queryElementsOfKNearestPoints(RElement element, int k) {
-        PropertyVector queryPoint = propertyVectorFactory.vectorFor(element);
-        Entry<Double, PropertyVector, List<RElement>>[] nearestNeighbors = this.nearestNeighbors.get(tree, queryPoint, k, false);
+        RVector queryPoint = propertyVectorFactory.vectorFor(element);
+        Entry<Double, RVector, List<RElement>>[] nearestNeighbors = this.nearestNeighbors.get(tree, queryPoint, k, false);
 
         List<TreeNeighbor> allNeighboringElements = new ArrayList<>();
-        for (Entry<Double, PropertyVector, List<RElement>> entry : nearestNeighbors) {
+        for (Entry<Double, RVector, List<RElement>> entry : nearestNeighbors) {
             List<RElement> elementsAtNeighboringPoint = entry.getNeighbor().getValue();
             // List of QueryResults, one result for each element at the neighboring point
             for(RElement neighboringElement : elementsAtNeighboringPoint) {

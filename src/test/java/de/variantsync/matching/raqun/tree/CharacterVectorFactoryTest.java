@@ -62,7 +62,7 @@ public class CharacterVectorFactoryTest {
         Set<Character> charactersInProperties = getCharactersInProperties(elements);
 
         for (RElement element : elements) {
-            PropertyVector vector = factory.vectorFor(element);
+            RVector vector = factory.vectorFor(element);
             // Two additional dimensions, one for number of props, one for prop name length
             assert vector.getDimensions() == charactersInProperties.size() + 2;
 

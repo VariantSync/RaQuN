@@ -6,6 +6,10 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+/**
+ * A factory for calculating vectors that represent the absolute frequency of specific characters in an element's
+ * properties. This vectorization functions was not presented in our paper, but will be included in a future paper extension.
+ */
 public class CharacterVectorFactory extends PropertyVectorFactory {
     private Map<Character, Integer> characterDimensions;
 
@@ -32,14 +36,14 @@ public class CharacterVectorFactory extends PropertyVectorFactory {
     }
 
     @Override
-    public PropertyVector vectorFor(RElement element) {
+    public RVector vectorFor(RElement element) {
         if (element.getProperties().isEmpty()) {
             throw new IllegalArgumentException("Elements must have at least one property!");
         }
         if (elementToVectorMap.containsKey(element)) {
             return elementToVectorMap.get(element);
         } else {
-            PropertyVector vector = new PropertyVector(dimensions);
+            RVector vector = new RVector(dimensions);
 
             int dim = 0;
 

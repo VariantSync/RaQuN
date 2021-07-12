@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-public class PropertyVectorFactoryTest {
+public class RVectorFactoryTest {
     @Test
     public void initializationWithNullElementsInvalid() {
         Assertions.assertThrows(NullPointerException.class, () -> new PropertyVectorFactory(null));
@@ -53,7 +53,7 @@ public class PropertyVectorFactoryTest {
         Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
 
         for (RElement element : elements) {
-            PropertyVector vector = factory.vectorFor(element);
+            RVector vector = factory.vectorFor(element);
             assert vector.getDimensions() == 6;
 
             Set<String> propertiesNotInElement = new HashSet<>(childrenNamesDimension.keySet());

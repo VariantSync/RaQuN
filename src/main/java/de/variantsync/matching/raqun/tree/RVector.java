@@ -2,9 +2,12 @@ package de.variantsync.matching.raqun.tree;
 
 import com.savarese.spatial.GenericPoint;
 
-public class PropertyVector extends GenericPoint<Double>
+/**
+ * The vector representation of an element.
+ */
+public class RVector extends GenericPoint<Double>
 {
-	public PropertyVector(int dimensions)
+	public RVector(int dimensions)
 	{
 		super(dimensions);
 		for (int d = 0; d < dimensions; d++)
