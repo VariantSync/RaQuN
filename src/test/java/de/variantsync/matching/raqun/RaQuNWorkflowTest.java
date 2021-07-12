@@ -4,8 +4,8 @@ import de.variantsync.matching.raqun.data.*;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.tree.KDTree;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
+import de.variantsync.matching.raqun.tree.PropertyBasedVectorization;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
 import java.util.*;
@@ -15,13 +15,12 @@ public class RaQuNWorkflowTest {
             "datasets", "workflow_test_models.txt").toString();
     private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
-    @ParameterizedTest
-    @EnumSource(KDTree.EVectorization.class)
-    public void testRaQunWorkflowWithNwMWeight(KDTree.EVectorization vectorization) {
-        testRaQuNWorkflow(vectorization, new WeightMetric());
+    @Test
+    public void testRaQunWorkflowWithNwMWeight() {
+        testRaQuNWorkflow(new WeightMetric());
     }
 
-    private void testRaQuNWorkflow(KDTree.EVectorization vectorization, SimilarityFunction similarityFunction) {
+    private void testRaQuNWorkflow(SimilarityFunction similarityFunction) {
         // Load a simple test model
         RDataset dataset = new RDataset("SimpleDataset");
         dataset.loadFileContent(pathToSimpleDataset);
@@ -40,7 +39,7 @@ public class RaQuNWorkflowTest {
         Collections.shuffle(models);
 
         // Initialize Tree
-        KDTree kDTree = new KDTree(models, vectorization);
+        KDTree kDTree = new KDTree(models, PropertyBasedVectorization.class);
 
         // Get CandidatePairs from tree
         Set<CandidatePair> candidatePairs = kDTree.findKCandidates(-1);

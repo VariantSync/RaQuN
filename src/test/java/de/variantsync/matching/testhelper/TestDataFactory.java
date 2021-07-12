@@ -3,13 +3,14 @@ package de.variantsync.matching.testhelper;
 import de.variantsync.matching.raqun.data.MatchValidityConstraint;
 import de.variantsync.matching.raqun.data.RMatch;
 import de.variantsync.matching.raqun.data.RElement;
+import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.raqun.similarity.SimilarityFunction;
 
 import java.security.SecureRandom;
 import java.util.*;
 
 public class TestDataFactory {
-    private static RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
+    private static final RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
     private static final MatchValidityConstraint validityConstraint = MatchValidityConstraint.ONE_TO_ONE;
 
     public static int getRandomInt(int min, int max) {
@@ -54,6 +55,16 @@ public class TestDataFactory {
         elements.add(thirdElement);
 
         return elements;
+    }
+
+    public static List<RModel> getModels(Collection<RElement> elements) {
+        ArrayList<RModel> models = new ArrayList<>();
+        for (RElement element : elements) {
+            RModel model = new RModel(element.getModelID());
+            model.addElement(element);
+            models.add(model);
+        }
+        return models;
     }
 
     public static List<RElement> getElementListWithoutNames() {

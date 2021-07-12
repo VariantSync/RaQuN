@@ -1,5 +1,6 @@
 package de.variantsync.matching.raqun.tree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import com.savarese.spatial.NearestNeighbors;
@@ -15,13 +16,20 @@ public class KDTree {
     private final int numberOfInputModels;
     private final NearestNeighbors<Double, RVector, List<RElement>> nearestNeighbors = new NearestNeighbors<>();
 
-    public KDTree(List<RModel> models, Vectorization vectorization) {
+    public KDTree(List<RModel> models, Class<? extends Vectorization> vectorization) {
         numberOfInputModels = models.size();
         List<RElement> elements = new ArrayList<>();
         for (RModel model : models) {
             elements.addAll(model.getElements());
         }
-        this.vectorization = vectorization;
+        try {
+            this.vectorization = vectorization.getConstructor().newInstance();
+            this.vectorization.initialize(models);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            System.err.println("Provided invalid implementation for Vectorization. A Vectorization with only a default" +
+                    "constructor is expected.");
+            throw new IllegalArgumentException(e);
+        }
         elements.forEach(this::add);
         this.elementsInTree = elements;
     }

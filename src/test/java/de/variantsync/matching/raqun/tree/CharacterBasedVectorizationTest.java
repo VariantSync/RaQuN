@@ -1,5 +1,6 @@
 package de.variantsync.matching.raqun.tree;
 
+import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.testhelper.TestDataFactory;
 import de.variantsync.matching.raqun.data.RElement;
 import org.junit.jupiter.api.Assertions;
@@ -7,16 +8,18 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static de.variantsync.matching.testhelper.TestDataFactory.getModels;
+
 public class CharacterBasedVectorizationTest {
     @Test
     public void initializationWithNullElementsInvalid() {
-        Assertions.assertThrows(NullPointerException.class, () -> new CharacterBasedVectorization(null));
+        Assertions.assertThrows(NullPointerException.class, () -> new CharacterBasedVectorization().initialize(null));
     }
 
     @Test
     public void initializationWithZeroElementsInvalid() {
-        List<RElement> elements = new ArrayList<>();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new CharacterBasedVectorization(elements));
+        List<RModel> models = new ArrayList<>();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CharacterBasedVectorization().initialize(models));
     }
 
     @Test
@@ -27,11 +30,13 @@ public class CharacterBasedVectorizationTest {
         simpleElement.getProperties().add("Property2");
 
         elements.add(simpleElement);
-        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
+        CharacterBasedVectorization vectorization = new CharacterBasedVectorization();
+
+        vectorization.initialize(getModels(elements));
 
         Set<Character> charactersInProperties = getCharactersInProperties(simpleElement);
 
-        Map<Character, Integer> characterDimensions = factory.getCharacterDimensions();
+        Map<Character, Integer> characterDimensions = vectorization.getCharacterDimensions();
         assert characterDimensions.size() == charactersInProperties.size();
         assert characterDimensions.containsKey('p');
         assert characterDimensions.containsKey('1');
@@ -42,13 +47,14 @@ public class CharacterBasedVectorizationTest {
     @Test
     public void initializationWithSeveralElements() {
         List<RElement> elements = TestDataFactory.getElementList();
-        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
-        Map<Character, Integer> characterDimensions = factory.getCharacterDimensions();
+        CharacterBasedVectorization vectorization = new CharacterBasedVectorization();
+        vectorization.initialize(getModels(elements));
+        Map<Character, Integer> characterDimensions = vectorization.getCharacterDimensions();
 
         Set<Character> charactersInProperties = getCharactersInProperties(elements);
 
         assert characterDimensions.size() == charactersInProperties.size();
-        assert factory.getNumberOfDimension() == charactersInProperties.size() + 2;
+        assert vectorization.getNumberOfDimension() == charactersInProperties.size() + 2;
     }
 
     @Test
@@ -56,13 +62,14 @@ public class CharacterBasedVectorizationTest {
         List<RElement> elements = TestDataFactory.getElementListWithoutNames();
         // Add one element twice to check for this case as well
         elements.add(elements.get(0));
-        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
-        Map<Character, Integer> characterDimensions = factory.getCharacterDimensions();
+        CharacterBasedVectorization vectorization = new CharacterBasedVectorization();
+        vectorization.initialize(getModels(elements));
+        Map<Character, Integer> characterDimensions = vectorization.getCharacterDimensions();
 
         Set<Character> charactersInProperties = getCharactersInProperties(elements);
 
         for (RElement element : elements) {
-            RVector vector = factory.vectorFor(element);
+            RVector vector = vectorization.vectorFor(element);
             // Two additional dimensions, one for number of props, one for prop name length
             assert vector.getDimensions() == charactersInProperties.size() + 2;
 
@@ -83,8 +90,9 @@ public class CharacterBasedVectorizationTest {
         List<RElement> elements = TestDataFactory.getElementList();
         // Remove all properties of one element to check whether this case is recognized as invalid
         elements.get(0).getProperties().clear();
-        CharacterBasedVectorization factory = new CharacterBasedVectorization(elements);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> factory.vectorFor(elements.get(0)));
+        CharacterBasedVectorization vectorization = new CharacterBasedVectorization();
+        vectorization.initialize(getModels(elements));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> vectorization.vectorFor(elements.get(0)));
     }
 
     private Set<Character> getCharactersInProperties(RElement... elements) {

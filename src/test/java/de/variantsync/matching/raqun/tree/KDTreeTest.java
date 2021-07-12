@@ -4,7 +4,7 @@ import de.variantsync.matching.raqun.data.CandidatePair;
 import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.raqun.data.RElement;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.ArrayList;
@@ -23,18 +23,17 @@ public class KDTreeTest {
         modelList.add(modelA);
         modelList.add(modelB);
 
-        KDTree manager = new KDTree(modelList, KDTree.EVectorization.PROPERTY_INDEX);
-        assert manager.getNumberOfInputModels() == 2;
-        assert manager.getNumberOfElementsInTree() == 2;
-        assert manager.getElementsInTree().size() == 2;
-        assert !(manager.getIndexVectorFactory() instanceof CharacterBasedVectorization);
+        KDTree tree = new KDTree(modelList, PropertyBasedVectorization.class);
+        assert tree.getNumberOfInputModels() == 2;
+        assert tree.getNumberOfElementsInTree() == 2;
+        assert tree.getElementsInTree().size() == 2;
+        assert !(tree.getIndexVectorFactory() instanceof CharacterBasedVectorization);
     }
 
-    @ParameterizedTest
-    @EnumSource(KDTree.EVectorization.class)
-    public void allElementsAreFoundForQueryWithHighK(KDTree.EVectorization vectorization) {
+    @Test
+    public void allElementsAreFoundForQueryWithHighK() {
         // k >= number of elements
-        KDTree manager = initializeTreeManager(vectorization);
+        KDTree manager = initializeTreeManager();
         assert manager.getNumberOfElementsInTree() == 5;
         List<RElement> elements = manager.getElementsInTree();
 
@@ -50,11 +49,10 @@ public class KDTreeTest {
         }
     }
 
-    @ParameterizedTest
-    @EnumSource(KDTree.EVectorization.class)
-    public void onlyElementsAtSamePointAreFoundWithKeq1(KDTree.EVectorization vectorization) {
+    @Test
+    public void onlyElementsAtSamePointAreFoundWithKeq1() {
         // k == 1
-        KDTree manager = initializeTreeManager(vectorization);
+        KDTree manager = initializeTreeManager();
         assert manager.getNumberOfElementsInTree() == 5;
         List<RElement> elements = manager.getElementsInTree();
 
@@ -71,10 +69,9 @@ public class KDTreeTest {
         }
     }
 
-    @ParameterizedTest
-    @EnumSource(KDTree.EVectorization.class)
-    public void candidatesFromSameModelAreFiltered(KDTree.EVectorization vectorization) {
-        KDTree manager = initializeTreeManager(vectorization);
+    @Test
+    public void candidatesFromSameModelAreFiltered() {
+        KDTree manager = initializeTreeManager();
         List<RElement> elements = manager.getElementsInTree();
 
         for (RElement queryElement : elements) {
@@ -86,10 +83,9 @@ public class KDTreeTest {
         }
     }
 
-    @ParameterizedTest
-    @EnumSource(KDTree.EVectorization.class)
-    public void allExpectedCandidatePairsAreFoundWithDynamicK(KDTree.EVectorization vectorization) {
-        KDTree manager = initializeTreeManager(vectorization);
+    @Test
+    public void allExpectedCandidatePairsAreFoundWithDynamicK() {
+        KDTree manager = initializeTreeManager();
 
         Set<CandidatePair> queryResults = manager.findKCandidates(-1);
         // We expect 4 candidate pairs, because candidates from the same model are filtered and CandidatePairs do not
@@ -177,7 +173,7 @@ public class KDTreeTest {
         return Arrays.asList(modelA, modelB);
     }
 
-    private KDTree initializeTreeManager(KDTree.EVectorization vectorization) {
-        return new KDTree(generateModels(), vectorization);
+    private KDTree initializeTreeManager() {
+        return new KDTree(generateModels(), PropertyBasedVectorization.class);
     }
 }

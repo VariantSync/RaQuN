@@ -10,6 +10,7 @@ import de.variantsync.matching.experiments.raqun.RaqunAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
 import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.experiments.baseline.BaselineAlgoAdapter;
+import de.variantsync.matching.raqun.tree.PropertyBasedVectorization;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -121,12 +122,12 @@ public class ExperimentRunner {
 
             RaqunSetup raqunSetup = new RaqunSetup("RaQuN", numberOfRepeats,
                     resultsDir, datasetDir, dataset, chunkSize, weightMetric, -1, -1,
-                    KDTree.EVectorization.PROPERTY_INDEX,
+                    PropertyBasedVectorization.class,
                     MatchValidityConstraint.ONE_TO_ONE);
 
             RaqunSetup raqunKSetup = new RaqunSetup("RaQuN_k", numberOfRepeats,
                     resultsDir, datasetDir, dataset, chunkSize, weightMetric, startK, maxK,
-                    KDTree.EVectorization.PROPERTY_INDEX,
+                    PropertyBasedVectorization.class,
                     MatchValidityConstraint.ONE_TO_ONE);
 
             ExperimentSetup nwmSetup = new ExperimentSetup("NwM", numberOfRepeats,

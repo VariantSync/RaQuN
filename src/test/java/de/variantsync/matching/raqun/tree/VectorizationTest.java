@@ -1,5 +1,6 @@
 package de.variantsync.matching.raqun.tree;
 
+import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.testhelper.TestDataFactory;
 import de.variantsync.matching.raqun.data.RElement;
 import org.junit.jupiter.api.Assertions;
@@ -7,16 +8,18 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static de.variantsync.matching.testhelper.TestDataFactory.getModels;
+
 public class VectorizationTest {
     @Test
     public void initializationWithNullElementsInvalid() {
-        Assertions.assertThrows(NullPointerException.class, () -> new PropertyBasedVectorization(null));
+        Assertions.assertThrows(NullPointerException.class, () -> new PropertyBasedVectorization().initialize(null));
     }
 
     @Test
     public void initializationWithZeroElementsInvalid() {
         List<RElement> elements = new ArrayList<>();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new PropertyBasedVectorization(elements));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new PropertyBasedVectorization().initialize(getModels(elements)));
     }
 
     @Test
@@ -27,8 +30,9 @@ public class VectorizationTest {
         simpleElement.getProperties().add("property2");
 
         elements.add(simpleElement);
-        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
-        Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
+        PropertyBasedVectorization vectorization = new PropertyBasedVectorization();
+        vectorization.initialize(getModels(elements));
+        Map<String, Integer> childrenNamesDimension = vectorization.getChildrenNamesDimension();
         assert childrenNamesDimension.size() == 3;
         assert childrenNamesDimension.containsKey("n_" + simpleElement.getName());
         assert childrenNamesDimension.containsKey("property1");
@@ -38,10 +42,11 @@ public class VectorizationTest {
     @Test
     public void initializationWithSeveralElements() {
         List<RElement> elements = TestDataFactory.getElementList();
-        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
-        Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
+        PropertyBasedVectorization vectorization = new PropertyBasedVectorization();
+        vectorization.initialize(getModels(elements));
+        Map<String, Integer> childrenNamesDimension = vectorization.getChildrenNamesDimension();
         assert childrenNamesDimension.size() == 6;
-        assert factory.getNumberOfDimension() == 6;
+        assert vectorization.getNumberOfDimension() == 6;
     }
 
     @Test
@@ -49,11 +54,12 @@ public class VectorizationTest {
         List<RElement> elements = TestDataFactory.getElementList();
         // Add one element twice to check for this case as well
         elements.add(elements.get(0));
-        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
-        Map<String, Integer> childrenNamesDimension = factory.getChildrenNamesDimension();
+        PropertyBasedVectorization vectorization = new PropertyBasedVectorization();
+        vectorization.initialize(getModels(elements));
+        Map<String, Integer> childrenNamesDimension = vectorization.getChildrenNamesDimension();
 
         for (RElement element : elements) {
-            RVector vector = factory.vectorFor(element);
+            RVector vector = vectorization.vectorFor(element);
             assert vector.getDimensions() == 6;
 
             Set<String> propertiesNotInElement = new HashSet<>(childrenNamesDimension.keySet());
@@ -78,7 +84,8 @@ public class VectorizationTest {
         List<RElement> elements = TestDataFactory.getElementList();
         // Remove all properties of one element to check whether this case is recognized as invalid
         elements.get(0).getProperties().clear();
-        PropertyBasedVectorization factory = new PropertyBasedVectorization(elements);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> factory.vectorFor(elements.get(0)));
+        PropertyBasedVectorization vectorization = new PropertyBasedVectorization();
+        vectorization.initialize(getModels(elements));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> vectorization.vectorFor(elements.get(0)));
     }
 }
