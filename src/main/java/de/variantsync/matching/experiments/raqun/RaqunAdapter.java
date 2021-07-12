@@ -47,7 +47,7 @@ public class RaqunAdapter implements MethodAdapter {
                 Instant indexBuiltAt = Instant.now();
 
                 // Calculate the match candidates in the K-D-Tree, based on radius or nearest neighbor search
-                Set<CandidatePair> allCandidatePairs = kDTree.findKCandidates(measurement.k);
+                Set<CandidatePair> allCandidatePairs = kDTree.findAllCandidates(measurement.k);
                 Instant foundSimilaritiesAt = Instant.now();
 
                 // Get all elements

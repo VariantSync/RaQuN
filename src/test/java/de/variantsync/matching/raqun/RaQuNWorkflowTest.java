@@ -42,7 +42,7 @@ public class RaQuNWorkflowTest {
         KDTree kDTree = new KDTree(models, PropertyBasedVectorization.class);
 
         // Get CandidatePairs from tree
-        Set<CandidatePair> candidatePairs = kDTree.findKCandidates(-1);
+        Set<CandidatePair> candidatePairs = kDTree.findAllCandidates(-1);
 
         // run RaQuN merge algorithm
         Set<RElement> allElements = new HashSet<>(kDTree.getElementsInTree());

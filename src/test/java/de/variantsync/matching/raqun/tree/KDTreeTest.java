@@ -4,8 +4,6 @@ import de.variantsync.matching.raqun.data.CandidatePair;
 import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.raqun.data.RElement;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +25,7 @@ public class KDTreeTest {
         assert tree.getNumberOfInputModels() == 2;
         assert tree.getNumberOfElementsInTree() == 2;
         assert tree.getElementsInTree().size() == 2;
-        assert !(tree.getIndexVectorFactory() instanceof CharacterBasedVectorization);
+        assert !(tree.getVectorization() instanceof CharacterBasedVectorization);
     }
 
     @Test
@@ -39,8 +37,8 @@ public class KDTreeTest {
 
         RElement queryElement = findElement(elements, "A", "ele1");
 
-        List<TreeNeighbor> queryResultsKEquals = manager.queryElementsOfKNearestPoints(queryElement, 5);
-        List<TreeNeighbor> queryResultsKGreater = manager.queryElementsOfKNearestPoints(queryElement, 6);
+        List<TreeNeighbor> queryResultsKEquals = manager.collectNearestNeighbors(queryElement, 5);
+        List<TreeNeighbor> queryResultsKGreater = manager.collectNearestNeighbors(queryElement, 6);
         assert queryResultsKEquals.size() == 5;
         assert queryResultsKGreater.size() == 5;
         for (RElement element : elements) {
@@ -58,7 +56,7 @@ public class KDTreeTest {
 
         RElement queryElement = findElement(elements, "A", "ele1");
 
-        List<TreeNeighbor> treeNeighbors = manager.queryElementsOfKNearestPoints(queryElement, 1);
+        List<TreeNeighbor> treeNeighbors = manager.collectNearestNeighbors(queryElement, 1);
         assert treeNeighbors.size() == 2;
         for (TreeNeighbor result : treeNeighbors) {
             assert Double.compare(result.getDistance(), 0.0d) == 0;
@@ -87,7 +85,7 @@ public class KDTreeTest {
     public void allExpectedCandidatePairsAreFoundWithDynamicK() {
         KDTree manager = initializeTreeManager();
 
-        Set<CandidatePair> queryResults = manager.findKCandidates(-1);
+        Set<CandidatePair> queryResults = manager.findAllCandidates(-1);
         // We expect 4 candidate pairs, because candidates from the same model are filtered and CandidatePairs do not
         // have a defined order
         assert queryResults.size() == 4;
