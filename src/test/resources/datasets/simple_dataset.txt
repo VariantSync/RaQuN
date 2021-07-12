@@ -1,0 +1,6 @@
+A,1, elementA, prop1
+A, 2,elementB, prop3;prop4
+B, 1, elementA,prop1,
+B, 3, elementC,  prop4;prop5;prop6
+B, 4, elementD
+C, 1, elementB,

@@ -1,0 +1,129 @@
+Manifest-Version: 1.0
+Main-Class: main.java.org.raqun.paper.experiments.ExperimentRunner
+Class-Path: org.apache.log4j_1.2.15.v201012070815.jar com.google.guava_2
+ 7.1.0.v20190517-1946.jar org.eclipse.osgi_3.15.0.v20190830-1434.jar org
+ .eclipse.swt_3.112.0.v20190904-0609.jar org.eclipse.uml2.uml_5.5.0.v201
+ 81203-1331.jar org.eclipse.emf.compare_3.5.3.201909101346.jar org.eclip
+ se.emf.edit_2.15.0.v20190528-0725.jar org.eclipse.emf.ecore_2.19.0.v201
+ 90822-1451.jar org.eclipse.uml2.types_2.5.0.v20181203-1331.jar org.ecli
+ pse.emf.common_2.16.0.v20190625-1131.jar org.eclipse.osgi.util_3.5.300.
+ v20190708-1141.jar org.eclipse.uml2.common_2.5.0.v20181203-1331.jar org
+ .eclipse.emf.edit.ui_2.16.0.v20181104-0733.jar org.eclipse.core.runtime
+ _3.16.0.v20190823-1314.jar org.eclipse.emf.compare.doc_3.3.0.2019091013
+ 46.jar org.eclipse.emf.compare.ide_3.4.3.201909101346.jar org.eclipse.e
+ mf.compare.rcp_2.5.2.201909101346.jar org.eclipse.equinox.app_1.4.300.v
+ 20190815-1535.jar org.eclipse.osgi.services_3.8.0.v20190206-2147.jar or
+ g.eclipse.emf.compare.edit_4.3.1.201909101346.jar org.eclipse.emf.compa
+ re.egit_1.2.4.201909101346.jar org.eclipse.emf.ecore.xmi_2.16.0.v201905
+ 28-0725.jar org.eclipse.equinox.bidi_1.2.100.v20190815-1535.jar org.ecl
+ ipse.equinox.util_1.1.300.v20190714-1852.jar org.eclipse.equinox.consol
+ e_1.4.0.v20190819-1430.jar org.eclipse.equinox.event_1.5.200.v20190814-
+ 0953.jar org.eclipse.equinox.p2.ui_2.5.600.v20190814-1459.jar org.eclip
+ se.core.variables_3.4.600.v20190614-1239.jar org.eclipse.emf.compare.id
+ e.ui_4.4.3.201909101346.jar org.eclipse.emf.compare.rcp.ui_4.4.2.201909
+ 101346.jar org.eclipse.emf.compare.source_3.5.3.201909101346.jar org.ec
+ lipse.core.resources_3.13.500.v20190819-0800.jar org.eclipse.emf.compar
+ e.diagram_2.5.2.201909101346.jar org.eclipse.emf.compare.egit.ui_1.1.3.
+ 201909101346.jar org.eclipse.equinox.common_3.10.500.v20190815-1535.jar
+  org.eclipse.equinox.p2.core_2.6.100.v20190705-1223.jar org.eclipse.equ
+ inox.launcher_1.5.500.v20190715-1310.jar org.eclipse.equinox.registry_3
+ .8.500.v20190714-1850.jar org.eclipse.equinox.security_1.3.300.v2019071
+ 4-1851.jar org.eclipse.equinox.p2.engine_2.6.400.v20190716-0825.jar org
+ .eclipse.equinox.p2.ui.sdk_1.1.300.v20190701-1309.jar org.eclipse.emf.c
+ ompare.ide.source_3.4.3.201909101346.jar org.eclipse.equinox.app.source
+ _1.4.300.v20190815-1535.jar org.eclipse.equinox.concurrent_1.1.400.v201
+ 90621-0852.jar org.eclipse.equinox.http.jetty_3.7.200.v20190714-1849.ja
+ r org.eclipse.equinox.jsp.jasper_1.1.300.v20190714-1850.jar org.eclipse
+ .equinox.p2.console_1.1.200.v20190701-1309.jar org.eclipse.emf.compare.
+ edit.source_4.3.1.201909101346.jar org.eclipse.equinox.bidi.source_1.2.
+ 100.v20190815-1535.jar org.eclipse.equinox.p2.director_2.4.400.v2019070
+ 1-1309.jar org.eclipse.equinox.p2.metadata_2.4.500.v20190807-0737.jar o
+ rg.eclipse.equinox.preferences_3.7.500.v20190815-1535.jar org.eclipse.e
+ quinox.security.ui_1.2.400.v20190714-1851.jar org.eclipse.equinox.util.
+ source_1.1.300.v20190714-1852.jar org.eclipse.emf.compare.diagram.edit_
+ 2.5.2.201909101346.jar org.eclipse.equinox.console.source_1.4.0.v201908
+ 19-1430.jar org.eclipse.equinox.event.source_1.5.200.v20190814-0953.jar
+  org.eclipse.equinox.http.servlet_1.6.200.v20190823-1423.jar org.eclips
+ e.equinox.p2.discovery_1.1.200.v20190611-1008.jar org.eclipse.equinox.p
+ 2.publisher_1.5.200.v20190611-1040.jar org.eclipse.equinox.p2.ui.source
+ _2.5.600.v20190814-1459.jar org.eclipse.emf.compare.ide.ui.source_4.4.3
+ .201909101346.jar org.eclipse.equinox.http.registry_1.1.700.v20190214-1
+ 948.jar org.eclipse.equinox.p2.operations_2.5.500.v20190701-1826.jar or
+ g.eclipse.equinox.p2.repository_2.4.500.v20190716-0939.jar org.eclipse.
+ equinox.p2.updatesite_1.1.200.v20190716-0825.jar org.eclipse.emf.compar
+ e.diagram.ide.ui_3.4.3.201909101346.jar org.eclipse.emf.compare.diagram
+ .sirius_1.1.0.201909101346.jar org.eclipse.equinox.common.source_3.10.5
+ 00.v20190815-1535.jar org.eclipse.equinox.frameworkadmin_2.1.300.v20190
+ 318-1320.jar org.eclipse.equinox.p2.core.source_2.6.100.v20190705-1223.
+ jar org.eclipse.swt.win32.win32.x86_64_3.112.0.v20190904-0609.jar org.e
+ clipse.equinox.launcher.source_1.5.500.v20190715-1310.jar org.eclipse.e
+ quinox.p2.director.app_1.1.300.v20190716-0825.jar org.eclipse.equinox.p
+ 2.jarprocessor_1.1.300.v20190621-1230.jar org.eclipse.equinox.p2.ui.dis
+ covery_1.1.200.v20190716-0825.jar org.eclipse.equinox.registry.source_3
+ .8.500.v20190714-1850.jar org.eclipse.equinox.security.source_1.3.300.v
+ 20190714-1851.jar org.eclipse.equinox.p2.engine.source_2.6.400.v2019071
+ 6-0825.jar org.eclipse.equinox.p2.transport.ecf_1.2.200.v20190716-0800.
+ jar org.eclipse.equinox.p2.ui.sdk.source_1.1.300.v20190701-1309.jar org
+ .eclipse.equinox.p2.updatechecker_1.2.200.v20190701-1309.jar org.eclips
+ e.equinox.concurrent.source_1.1.400.v20190621-0852.jar org.eclipse.equi
+ nox.http.jetty.source_3.7.200.v20190714-1849.jar org.eclipse.equinox.js
+ p.jasper.source_1.1.300.v20190714-1850.jar org.eclipse.equinox.p2.conso
+ le.source_1.1.200.v20190701-1309.jar org.eclipse.equinox.p2.director.so
+ urce_2.4.400.v20190701-1309.jar org.eclipse.equinox.p2.metadata.source_
+ 2.4.500.v20190807-0737.jar org.eclipse.equinox.p2.ui.importexport_1.2.2
+ 00.v20190716-0825.jar org.eclipse.equinox.preferences.source_3.7.500.v2
+ 0190815-1535.jar org.eclipse.equinox.security.ui.source_1.2.400.v201907
+ 14-1851.jar org.eclipse.equinox.simpleconfigurator_1.3.300.v20190716-08
+ 25.jar org.eclipse.equinox.http.servlet.source_1.6.200.v20190823-1423.j
+ ar org.eclipse.equinox.jsp.jasper.registry_1.1.300.v20190714-1850.jar o
+ rg.eclipse.equinox.p2.directorywatcher_1.2.300.v20190611-1008.jar org.e
+ clipse.equinox.p2.garbagecollector_1.1.200.v20190701-1826.jar org.eclip
+ se.equinox.p2.publisher.source_1.5.200.v20190611-1040.jar org.eclipse.e
+ quinox.p2.repository.tools_2.2.300.v20190621-1230.jar org.eclipse.equin
+ ox.p2.ui.sdk.scheduler_1.4.300.v20190716-0825.jar org.eclipse.equinox.h
+ ttp.registry.source_1.1.700.v20190214-1948.jar org.eclipse.equinox.p2.e
+ xtensionlocation_1.3.200.v20190716-0939.jar org.eclipse.equinox.p2.oper
+ ations.source_2.5.500.v20190701-1826.jar org.eclipse.equinox.p2.publish
+ er.eclipse_1.3.300.v20190716-0939.jar org.eclipse.equinox.p2.repository
+ .source_2.4.500.v20190716-0939.jar org.eclipse.equinox.p2.updatesite.so
+ urce_1.1.200.v20190716-0825.jar org.eclipse.emf.compare.diagram.ide.ui.
+ sirius_1.1.1.201909101346.jar org.eclipse.emf.compare.diagram.sirius.so
+ urce_1.1.0.201909101346.jar org.eclipse.equinox.frameworkadmin.source_2
+ .1.300.v20190318-1320.jar org.eclipse.equinox.p2.reconciler.dropins_1.3
+ .100.v20190701-1826.jar org.eclipse.equinox.p2.touchpoint.eclipse_2.2.4
+ 00.v20190716-0947.jar org.eclipse.equinox.p2.touchpoint.natives_1.3.300
+ .v20190716-0800.jar org.eclipse.equinox.security.win32.x86_64_1.1.200.v
+ 20190812-0919.jar org.eclipse.equinox.frameworkadmin.equinox_1.1.100.v2
+ 0180822-1258.jar org.eclipse.equinox.p2.artifact.repository_1.3.200.v20
+ 190815-1428.jar org.eclipse.equinox.p2.director.app.source_1.1.300.v201
+ 90716-0825.jar org.eclipse.equinox.p2.jarprocessor.source_1.1.300.v2019
+ 0621-1230.jar org.eclipse.equinox.p2.metadata.repository_1.3.200.v20190
+ 808-0702.jar org.eclipse.equinox.p2.transport.ecf.source_1.2.200.v20190
+ 716-0800.jar org.eclipse.equinox.p2.updatechecker.source_1.2.200.v20190
+ 701-1309.jar org.eclipse.equinox.p2.ui.importexport.source_1.2.200.v201
+ 90716-0825.jar org.eclipse.equinox.simpleconfigurator.source_1.3.300.v2
+ 0190716-0825.jar org.eclipse.equinox.jsp.jasper.registry.source_1.1.300
+ .v20190714-1850.jar org.eclipse.equinox.p2.directorywatcher.source_1.2.
+ 300.v20190611-1008.jar org.eclipse.equinox.p2.discovery.compatibility_1
+ .1.200.v20190611-1008.jar org.eclipse.equinox.p2.garbagecollector.sourc
+ e_1.1.200.v20190701-1826.jar org.eclipse.equinox.p2.repository.tools.so
+ urce_2.2.300.v20190621-1230.jar org.eclipse.equinox.p2.ui.sdk.scheduler
+ .source_1.4.300.v20190716-0825.jar org.eclipse.equinox.p2.extensionloca
+ tion.source_1.3.200.v20190716-0939.jar org.eclipse.equinox.p2.publisher
+ .eclipse.source_1.3.300.v20190716-0939.jar org.eclipse.emf.compare.diag
+ ram.ide.ui.sirius.source_1.1.1.201909101346.jar org.eclipse.equinox.p2.
+ reconciler.dropins.source_1.3.100.v20190701-1826.jar org.eclipse.equino
+ x.p2.touchpoint.eclipse.source_2.2.400.v20190716-0947.jar org.eclipse.e
+ quinox.p2.touchpoint.natives.source_1.3.300.v20190716-0800.jar org.ecli
+ pse.equinox.security.win32.x86_64.source_1.1.200.v20190812-0919.jar org
+ .eclipse.equinox.frameworkadmin.equinox.source_1.1.100.v20180822-1258.j
+ ar org.eclipse.equinox.p2.artifact.repository.source_1.3.200.v20190815-
+ 1428.jar org.eclipse.equinox.p2.metadata.repository.source_1.3.200.v201
+ 90808-0702.jar org.eclipse.equinox.simpleconfigurator.manipulator_2.1.3
+ 00.v20190716-0825.jar org.eclipse.equinox.simpleconfigurator.manipulato
+ r.source_2.1.300.v20190716-0825.jar junit-jupiter-5.4.2.jar junit-jupit
+ er-api-5.4.2.jar apiguardian-api-1.0.0.jar opentest4j-1.1.1.jar junit-p
+ latform-commons-1.4.2.jar junit-jupiter-params-5.4.2.jar junit-jupiter-
+ engine-5.4.2.jar junit-platform-engine-1.4.2.jar gson-2.8.6.jar poi-3.9
+ -20121203.jar jgrapht-core-1.3.0.jar libssrckdtree-j-1.0.2.jar
+

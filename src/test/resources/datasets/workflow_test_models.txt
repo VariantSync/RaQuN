@@ -1,0 +1,12 @@
+A,0,Display, n_display;scanner;room;unit
+A,1,Room, n_room;purpose;number;building
+A,2,Building, n_building;faculty;year;staff
+A,3,Staff,n_staff;doctors;nurses
+B,0,Display, n_display;room;unit;patients
+B,1,Room, n_room;number;building;size
+B,3,Staff, n_staff;doctors,nurses
+B,4,Doctor, n_doctor;name;age;station;field
+C,0,Display, n_display;scanner;room;year
+C,1,Room, n_room;number;building
+C,2,Building, n_building;faculty;staff;cost
+C,5,Nurse, n_nurse;name;age;station;experience
