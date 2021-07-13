@@ -1,6 +1,5 @@
 package de.variantsync.matching.experiments;
 
-import de.variantsync.matching.RQRunner;
 import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
-public class RQ2Runner extends RQRunner {
+public class RQ2Runner extends AbstractRQRunner {
 
     public RQ2Runner(String... args) {
         super(args);

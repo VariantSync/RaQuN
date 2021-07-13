@@ -1,6 +1,5 @@
 package de.variantsync.matching.experiments;
 
-import de.variantsync.matching.RQRunner;
 import de.variantsync.matching.experiments.baseline.BaselineAlgoAdapter;
 import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
@@ -12,7 +11,7 @@ import java.util.List;
 
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
-public class RQ1Runner extends RQRunner {
+public class RQ1Runner extends AbstractRQRunner {
 
     public RQ1Runner(String... args) {
         super(args);

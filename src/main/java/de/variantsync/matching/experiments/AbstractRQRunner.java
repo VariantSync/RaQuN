@@ -1,4 +1,4 @@
-package de.variantsync.matching;
+package de.variantsync.matching.experiments;
 
 import de.variantsync.matching.experiments.common.ExperimentConfiguration;
 import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
@@ -7,7 +7,7 @@ import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 import java.io.File;
 
-public abstract class RQRunner {
+public abstract class AbstractRQRunner {
     protected ExperimentConfiguration configuration;
     protected String baseResultsDir;
     protected String baseDatasetDir;
@@ -17,7 +17,7 @@ public abstract class RQRunner {
     protected IValidityConstraint validityConstraint;
     protected IVectorization vectorization;
 
-    protected RQRunner(String... args) {
+    protected AbstractRQRunner(String... args) {
         if (args.length == 0) {
             configuration = new ExperimentConfiguration();
         } else if (args.length == 1) {
