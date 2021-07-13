@@ -4,11 +4,11 @@ import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.raqun.validity.IValidityConstraint;
 import de.variantsync.matching.raqun.vectorization.IVectorization;
 import org.apache.commons.configuration2.Configuration;
-import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
 import java.io.File;
@@ -38,11 +38,12 @@ public class ExperimentConfiguration {
 
     public ExperimentConfiguration() {
         Parameters params = new Parameters();
-        FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
-                new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-                        .configure(params.properties()
-                                .setFile(DEFAULT_PROPERTIES_FILE));
         try {
+            var builder =
+                    new FileBasedConfigurationBuilder<>(PropertiesConfiguration.class)
+                            .configure(params.properties()
+                                    .setFile(DEFAULT_PROPERTIES_FILE)
+                                    .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
             this.config = builder.getConfiguration();
         } catch (ConfigurationException e) {
             System.err.println("Was not able to load properties file " + DEFAULT_PROPERTIES_FILE);
