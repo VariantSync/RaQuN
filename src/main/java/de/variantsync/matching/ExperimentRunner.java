@@ -31,16 +31,16 @@ public class ExperimentRunner {
     // Flags that determine which algorithms should be run
     public static final boolean shouldRunNwM = false;
     public static final boolean shouldRunPairwise_Ascending = false;
-    public static final boolean shouldRunPairwise_Descending = false;
+    public static final boolean shouldRunPairwise_Descending = true;
     public static final boolean shouldRunRaQuN = true;
     // Runs the experiment that studies the impact of an increasing number of neighbors on the performance of RaQuN
-    public static final boolean shouldRunImpactOfKInvestigation = true;
+    public static final boolean shouldRunImpactOfKInvestigation = false;
 
     // Extra-Verbose mode, prints the tuples of each matching
     public static final boolean PRINT_MATCH = false;
     // Number of times each setup is executed, e.g., how often should RaQuN with high dimension vectorization be
     // run on the dataset Hospital?
-    public static final int numberOfRepeats = 1;
+    public static final int numberOfRepeats = 3;
 
     // Range of k for the evaluation of different numbers of neighbors for the candidate search
     public static final int startK = 1;
@@ -52,9 +52,9 @@ public class ExperimentRunner {
     public static List<String> datasets = Arrays.asList(
             "hospitals",
             "warehouses",
-            "random",
-            "randomLoose",
-            "randomTight",
+//            "random",
+//            "randomLoose",
+//            "randomTight",
             "ppu",
             "ppu_statem",
             "bcs",
@@ -62,7 +62,7 @@ public class ExperimentRunner {
             "Apogames"
     );
     // Flags whether the subsets of ArgoUML should be run as well, warning: might take quite long
-    public static boolean runArgoSubsets = true;
+    public static boolean runArgoSubsets = false;
     public static boolean runArgoUMLFull = true;
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
