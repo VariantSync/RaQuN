@@ -3,9 +3,6 @@ package de.variantsync.matching.experiments;
 import de.variantsync.matching.RQRunner;
 import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
-import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
-import de.variantsync.matching.raqun.validity.IValidityConstraint;
-import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -19,20 +16,12 @@ public class RQ2Runner extends RQRunner {
     }
 
     public static void main(String... args) {
-
+        new RQ2Runner(args).run();
     }
 
     @Override
     public void run() {
         List<String> datasets = configuration.datasetsRQ2();
-        String baseResultsDir = configuration.resultsFolder();
-        String baseDatasetDir = configuration.datasetsFolder();
-        int numberOfRepeats = configuration.numberOfRepeats();
-        boolean verbose = configuration.verboseResults();
-
-        ISimilarityFunction similarityFunction = configuration.similarityFunction();
-        IValidityConstraint validityConstraint = configuration.validityConstraint();
-        IVectorization vectorization = configuration.vectorization();
 
         for (String dataset : datasets) {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +

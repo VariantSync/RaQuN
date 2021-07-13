@@ -6,9 +6,6 @@ import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
-import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
-import de.variantsync.matching.raqun.validity.IValidityConstraint;
-import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -19,11 +16,17 @@ import java.util.List;
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
 public class RQ3Runner extends RQRunner {
+
+    public RQ3Runner(String... args) {
+        super(args);
+    }
+
+    public static void main(String... args) {
+        new RQ3Runner(args).run();
+    }
+
     @Override
     public void run() {
-        String baseResultsDir = configuration.resultsFolder();
-        String baseDatasetDir = configuration.datasetsFolder();
-
         // Add all argouml subsets
         File folder = new File(Paths.get(baseDatasetDir).toString(), "argouml");
         File[] listOfFiles = folder.listFiles();
@@ -40,13 +43,6 @@ public class RQ3Runner extends RQRunner {
         if (configuration.runArgoUMLFullRQ3()) {
             datasets.add("argouml");
         }
-
-        int numberOfRepeats = configuration.numberOfRepeats();
-        boolean verbose = configuration.verboseResults();
-
-        ISimilarityFunction similarityFunction = configuration.similarityFunction();
-        IValidityConstraint validityConstraint = configuration.validityConstraint();
-        IVectorization vectorization = configuration.vectorization();
 
         // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
         // If set to true, NwM will no longer be executed on the ArgoUML subsets

@@ -44,7 +44,7 @@ public class RaQuNWorkflowTest {
         Collections.shuffle(models);
 
         similarityFunction.setNumberOfModels(3);
-        RaQuN raqun = new RaQuN(PropertyBasedVectorization.class, validityConstraint, similarityFunction, 3);
+        RaQuN raqun = new RaQuN(new PropertyBasedVectorization(), validityConstraint, similarityFunction, 3);
         Set<RMatch> matching = raqun.match(models);
 
         // Validate result matching
@@ -86,7 +86,7 @@ public class RaQuNWorkflowTest {
 
     @Test
     public void allExpectedCandidatePairsAreFound() {
-        RaQuN raqun = new RaQuN(PropertyBasedVectorization.class, new OneToOneValidity(), new WeightMetric(), 1);
+        RaQuN raqun = new RaQuN(new PropertyBasedVectorization(), new OneToOneValidity(), new WeightMetric(), 1);
         KDTree tree = initializeTree();
 
         Set<CandidatePair> queryResults = raqun.findAllCandidates(tree,2);

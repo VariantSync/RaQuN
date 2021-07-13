@@ -6,9 +6,6 @@ import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
-import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
-import de.variantsync.matching.raqun.validity.IValidityConstraint;
-import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -21,9 +18,6 @@ public class RQ1Runner extends RQRunner {
         super(args);
     }
 
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // No configuration to be done below this line
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public static void main(String... args) {
         new RQ1Runner(args).run();
     }
@@ -31,14 +25,6 @@ public class RQ1Runner extends RQRunner {
     @Override
     public void run() {
         List<String> datasets = configuration.datasetsRQ1();
-        String baseResultsDir = configuration.resultsFolder();
-        String baseDatasetDir = configuration.datasetsFolder();
-        int numberOfRepeats = configuration.numberOfRepeats();
-        boolean verbose = configuration.verboseResults();
-
-        ISimilarityFunction similarityFunction = configuration.similarityFunction();
-        IValidityConstraint validityConstraint = configuration.validityConstraint();
-        IVectorization vectorization = configuration.vectorization();
 
         for (String dataset : datasets) {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +

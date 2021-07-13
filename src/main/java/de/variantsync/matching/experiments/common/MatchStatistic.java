@@ -1,7 +1,6 @@
 package de.variantsync.matching.experiments.common;
 
 import com.google.gson.Gson;
-import de.variantsync.matching.ExperimentRunner;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.data.RMatch;
 import de.variantsync.matching.raqun.data.RElement;
