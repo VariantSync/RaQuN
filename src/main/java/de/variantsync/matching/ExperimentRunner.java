@@ -1,5 +1,6 @@
 package de.variantsync.matching;
 
+import de.variantsync.matching.experiments.common.ExperimentConfiguration;
 import de.variantsync.matching.raqun.validity.OneToOneValidity;
 import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
@@ -19,58 +20,22 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class ExperimentRunner {
-    // Only change this if you want to load models from a different directory
-    public static final String baseDatasetDir = "experimental_subjects";
-    // This directory is created in the working directory in order to store all experimental results there
-    public static final String baseResultsDir = "results";
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // Configuration of experiments starts from here
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // Flags that determine which algorithms should be run
-    public static final boolean shouldRunNwM = false;
-    public static final boolean shouldRunPairwise_Ascending = false;
-    public static final boolean shouldRunPairwise_Descending = true;
-    public static final boolean shouldRunRaQuN = true;
-    // Runs the experiment that studies the impact of an increasing number of neighbors on the performance of RaQuN
-    public static final boolean shouldRunImpactOfKInvestigation = false;
-
-    // Extra-Verbose mode, prints the tuples of each matching
-    public static final boolean PRINT_MATCH = false;
-    // Number of times each setup is executed, e.g., how often should RaQuN with high dimension vectorization be
-    // run on the dataset Hospital?
-    public static final int numberOfRepeats = 3;
-
-    // Range of k for the evaluation of different numbers of neighbors for the candidate search
-    public static final int startK = 1;
-    public static final int normalMaxK = 20;
-    public static final int argoMaxK = 10;
-
-    // List of the "smaller" datasets
-    // You can comment out lines of the datasets which you do not want to run (beware of commas)
-    public static List<String> datasets = Arrays.asList(
-            "hospitals",
-            "warehouses",
-//            "random",
-//            "randomLoose",
-//            "randomTight",
-            "ppu",
-            "ppu_statem",
-            "bcs",
-            "bcms",
-            "Apogames"
-    );
-    // Flags whether the subsets of ArgoUML should be run as well, warning: might take quite long
-    public static boolean runArgoSubsets = false;
-    public static boolean runArgoUMLFull = true;
+    public static final File DEFAULT_PROPERTIES_FILE = new File("src/main/resources/experiment.properties");
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // No configuration to be done below this line
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     public static void main(String... args) {
-        datasets = new ArrayList<>(datasets);
+        ExperimentConfiguration configuration;
+        if (args.length == 0) {
+            configuration = new ExperimentConfiguration(DEFAULT_PROPERTIES_FILE);
+        } else if (args.length == 1) {
+            configuration = new ExperimentConfiguration(new File(args[0]));
+        } else {
+            throw new IllegalArgumentException("Illegal number of arguments: " + args.length);
+        }
+
+        List<String> datasetsRQ1 = new ArrayList<>(datasetsRQ1);
 
         String argoDir = "argouml";
         if (args.length == 1) {
@@ -90,17 +55,17 @@ public class ExperimentRunner {
                 }
             }
             Collections.sort(argoSets);
-            datasets.addAll(argoSets);
+            datasetsRQ1.addAll(argoSets);
         }
         if (runArgoUMLFull) {
-            datasets.add("argouml");
+            datasetsRQ1.add("argouml");
         }
 
         ISimilarityFunction weightMetric = new WeightMetric();
         // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
         // If set to true, NwM will no longer be executed on the ArgoUML subsets
         boolean nwmTimeout = false;
-        for (String dataset : datasets) {
+        for (String dataset : datasetsRQ1) {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +
                     "+++++++++++++++++++++++++++++++++++");
             int maxK = normalMaxK;
@@ -180,31 +145,5 @@ public class ExperimentRunner {
         }
     }
 
-    private static void runExperiment(MethodAdapter adapter, String name, String dataset) {
-        try {
-            System.out.println("Running " + name + " on " + dataset + "...");
-            adapter.run();
-        } catch (Error | Exception error) {
-            LocalDateTime localDateTime = LocalDateTime.now();
-            String errorText = "+++++++++++++++++++++++\n"
-                    + localDateTime
-                    + ": ERROR for " + name + " on " + dataset + "\n"
-                    + error
-                    + "\n+++++++++++++++++++++++\n";
-
-            File errorLogFile = Paths.get(baseResultsDir, "ERRORLOG.txt").toFile();
-            try (FileWriter fw = new FileWriter(errorLogFile, true)) {
-                fw.write(errorText);
-                fw.write("\n");
-            } catch (IOException e) {
-                System.err.println("WARNING: Not possible to write to ERRORLOG!\n" + e);
-            }
-
-            System.err.println("ERROR for " + name + " on " + dataset + "\n" + error);
-            error.printStackTrace();
-        }
-        System.out.println("----------------------------------------------------------------------------------------------------------------");
-        System.out.println("----------------------------------------------------------------------------------------------------------------");
-    }
 
 }

@@ -1,14 +1,19 @@
 package de.variantsync.matching.experiments.common;
 
+import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
+import de.variantsync.matching.raqun.validity.IValidityConstraint;
+import de.variantsync.matching.raqun.vectorization.IVectorization;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class ExperimentConfiguration {
     private final Configuration config;
+    public static final File DEFAULT_PROPERTIES_FILE = new File("src/main/resources/experiment.properties");
     private static final String EXPERIMENTS_DATASETS_FOLDER = "experiments.dir.datasets";
     private static final String EXPERIMENTS_RESULTS_FOLDER = "experiments.dir.results";
     private static final String EXPERIMENTS_MATCHERS_NWM = "experiments.matchers.nwm";
@@ -22,6 +27,18 @@ public class ExperimentConfiguration {
     private static final String EXPERIMENTS_RQ2_MAX_K_ARGOUML = "experiments.rq2.max-k-argouml";
     private static final String EXPERIMENTS_RQ1_DATASETS = "experiments.rq1.datasets";
     private static final String EXPERIMENTS_RQ2_DATASETS = "experiments.rq2.datasets";
+    private static final String RAQUN_VECTORIZATION = "raqun.vectorization";
+    private static final String RAQUN_VALIDITY = "raqun.validity";
+    private static final String RAQUN_SIMILARITY = "raqun.similarity";
+
+    public ExperimentConfiguration() {
+        try {
+            this.config = new Configurations().properties(DEFAULT_PROPERTIES_FILE);
+        } catch (ConfigurationException e) {
+            System.err.println("Was not able to load properties file " + DEFAULT_PROPERTIES_FILE);
+            throw new RuntimeException(e);
+        }
+    }
 
     public ExperimentConfiguration(File propertiesFile) {
         try {
@@ -82,5 +99,32 @@ public class ExperimentConfiguration {
 
     public List<String> datasetsRQ2() {
         return config.getList(String.class, EXPERIMENTS_RQ2_DATASETS);
+    }
+
+    public ISimilarityFunction similarityFunction() {
+        ClassLoader classLoader = ExperimentConfiguration.class.getClassLoader();
+        try {
+            return (ISimilarityFunction) classLoader.loadClass(config.getString(RAQUN_SIMILARITY)).getConstructor().newInstance();
+        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException("Was not able to load similarity function " + config.getString(RAQUN_SIMILARITY));
+        }
+    }
+
+    public IValidityConstraint validityConstraint() {
+        ClassLoader classLoader = ExperimentConfiguration.class.getClassLoader();
+        try {
+            return (IValidityConstraint) classLoader.loadClass(config.getString(RAQUN_VALIDITY)).getConstructor().newInstance();
+        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException("Was not able to load validity constraint " + config.getString(RAQUN_SIMILARITY));
+        }
+    }
+
+    public IVectorization vectorization() {
+        ClassLoader classLoader = ExperimentConfiguration.class.getClassLoader();
+        try {
+            return (IVectorization) classLoader.loadClass(config.getString(RAQUN_VECTORIZATION)).getConstructor().newInstance();
+        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException("Was not able to load vectorization function " + config.getString(RAQUN_SIMILARITY));
+        }
     }
 }

@@ -10,7 +10,6 @@ import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.raqun.data.RMatch;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
  * Our RaQuN matching algorithm as presented in the paper (Algorithm 1)
  */
 public class RaQuN {
-    protected final Class<? extends IVectorization> vectorizationFunction;
+    protected final IVectorization vectorizationFunction;
     protected final IValidityConstraint validityConstraint;
     protected final ISimilarityFunction similarityFunction;
     protected final int nNearestNeighbors;
@@ -33,7 +32,7 @@ public class RaQuN {
      * @param similarityFunction used to determine the similarity of elements and their match confidence
      * @param nNearestNeighbors retrieved during the nearest neighbor search
      */
-    public RaQuN(Class<? extends IVectorization> vectorizationFunction, IValidityConstraint validityConstraint, ISimilarityFunction similarityFunction, int nNearestNeighbors) {
+    public RaQuN(IVectorization vectorizationFunction, IValidityConstraint validityConstraint, ISimilarityFunction similarityFunction, int nNearestNeighbors) {
         this.vectorizationFunction = vectorizationFunction;
         this.validityConstraint = validityConstraint;
         this.similarityFunction = similarityFunction;
@@ -47,7 +46,7 @@ public class RaQuN {
      * @param validityConstraint used to assess whether a match is valid
      * @param similarityFunction used to determine the similarity of elements and their match confidence
      */
-    public RaQuN(Class<? extends IVectorization> vectorizationFunction, IValidityConstraint validityConstraint, ISimilarityFunction similarityFunction) {
+    public RaQuN(IVectorization vectorizationFunction, IValidityConstraint validityConstraint, ISimilarityFunction similarityFunction) {
         this.vectorizationFunction = vectorizationFunction;
         this.validityConstraint = validityConstraint;
         this.similarityFunction = similarityFunction;
@@ -55,18 +54,12 @@ public class RaQuN {
     }
 
     public Set<RMatch> match(Collection<RModel> models) {
+        // Initialize the vectorization function
+        vectorizationFunction.initialize(models);
+
         Set<RElement> elements = models.stream().flatMap((m) -> m.getElements().stream()).collect(Collectors.toSet());
-        IVectorization vectorization;
-        try {
-            vectorization = vectorizationFunction.getConstructor().newInstance();
-            vectorization.initialize(models);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            System.err.println("Provided invalid implementation for Vectorization. A Vectorization with only a default" +
-                    "constructor is expected.");
-            throw new IllegalArgumentException(e);
-        }
         // Phase 1: Candidate Initialization (Algorithm 1, lines 2-7)
-        KDTree kdTree = new KDTree(vectorization);
+        KDTree kdTree = new KDTree(vectorizationFunction);
         elements.forEach(kdTree::add);
 
         // Phase 2: Candidate Search (Algorithm 1, lines 8-17)
