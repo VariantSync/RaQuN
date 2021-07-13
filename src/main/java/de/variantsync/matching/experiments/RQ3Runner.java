@@ -40,10 +40,7 @@ public class RQ3Runner extends AbstractRQRunner {
         }
         Collections.sort(argoSets);
         List<String> datasets = new ArrayList<>(argoSets);
-        // Add the full argouml if desired
-        if (configuration.runArgoUMLFullRQ3()) {
-            datasets.add("argouml");
-        }
+        datasets.add("argouml");
 
         // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
         // If set to true, NwM will no longer be executed on the ArgoUML subsets

@@ -30,7 +30,6 @@ public class ExperimentConfiguration {
     private static final String EXPERIMENTS_RQ2_MAX_K_ARGOUML = "experiments.rq2.max-k-argouml";
     private static final String EXPERIMENTS_RQ1_DATASETS = "experiments.rq1.datasets";
     private static final String EXPERIMENTS_RQ2_DATASETS = "experiments.rq2.datasets";
-    private static final String EXPERIMENTS_RQ3_ARGOUML = "experiments.rq3.argouml-full";
     private static final String RAQUN_VECTORIZATION = "raqun.vectorization";
     private static final String RAQUN_VALIDITY = "raqun.validity";
     private static final String RAQUN_SIMILARITY = "raqun.similarity";
@@ -104,10 +103,6 @@ public class ExperimentConfiguration {
 
     public List<String> datasetsRQ2() {
         return config.getList(String.class, EXPERIMENTS_RQ2_DATASETS);
-    }
-
-    public boolean runArgoUMLFullRQ3() {
-        return config.getBoolean(EXPERIMENTS_RQ3_ARGOUML);
     }
 
     public ISimilarityFunction similarityFunction() {

@@ -21,11 +21,11 @@ else
   cd experimental_subjects || exit
   unzip full_subjects.zip
   cd argouml || exit
-  unzip argoumml_p1-5.zip
-  unzip argoumml_p6.zip
-  unzip argoumml_p7.zip
-  unzip argoumml_p8.zip
-  unzip argoumml_p9.zip
+  unzip argouml_p1-5.zip
+  unzip argouml_p6.zip
+  unzip argouml_p7.zip
+  unzip argouml_p8.zip
+  unzip argouml_p9.zip
   cd ../.. || exit
 
   echo "Files in WORKDIR"
