@@ -10,7 +10,7 @@ RUN adduser --disabled-password  --home /home/user --gecos '' --uid $USER_ID --i
 # Prepare the environment
 RUN apt-get update \
     && apt-get install -y --no-install-recommends tzdata
-RUN apt-get install -y --no-install-recommends build-essential git
+RUN apt-get install -y --no-install-recommends build-essential git maven
 
 WORKDIR /home/user
 RUN mkdir -p ./experimental_subjects/argouml
@@ -20,14 +20,14 @@ COPY experimental_subjects/argouml/*.zip  ./experimental_subjects/argouml
 #COPY experimental_subjects/argouml/argouml_p7.zip  ./experimental_subjects/argouml
 #COPY experimental_subjects/argouml/argouml_p8.zip  ./experimental_subjects/argouml
 #COPY experimental_subjects/argouml/argouml_p9.zip  ./experimental_subjects/argouml
-COPY local-maven-repo .
-COPY src .
+COPY local-maven-repo ./local-maven-repo
+COPY src ./src
 COPY pom.xml .
 COPY docker-resources/* .
 
 RUN mkdir -p /home/user/results
 RUN chown user:user /home/user -R
 WORKDIR /home/user
-RUN chmod +x extract.sh
+RUN chmod +x run-experiments.sh
 
 ENTRYPOINT ["./run-experiments.sh"]
