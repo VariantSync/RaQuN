@@ -72,6 +72,12 @@ public class RaQuNAdapter implements MethodAdapter {
                 System.out.println(matchStatistic);
                 System.out.println();
 
+                if (setup.printVerbose) {
+                    for (RMatch match : matchingResult) {
+                        System.out.println(match.getLongString());
+                    }
+                }
+
                 matchStatistic.writeAsJSON(setup.resultFile, true);
                 //executionStatistic.writeModel(setup.mergeResultFile);
             }

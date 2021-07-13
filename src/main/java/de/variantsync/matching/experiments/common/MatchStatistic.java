@@ -89,12 +89,6 @@ public class MatchStatistic {
             System.err.println("It looks like there are duplicate properties in an element of the dataset!");
         }
 
-        if (ExperimentRunner.PRINT_MATCH) {
-            for (RMatch tuple : tuples) {
-                System.out.println(tuple.getLongString());
-            }
-        }
-
         this.runtime = runtime;
         WeightMetric weightMetric = new WeightMetric(this.numberOfModels);
         this.weight = weightMetric.getQualityOfMatching(tuples);

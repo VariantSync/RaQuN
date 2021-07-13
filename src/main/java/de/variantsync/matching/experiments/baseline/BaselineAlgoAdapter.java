@@ -1,6 +1,5 @@
 package de.variantsync.matching.experiments.baseline;
 
-import de.variantsync.matching.ExperimentRunner;
 import de.variantsync.matching.experiments.common.ExperimentHelper;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.common.MatchStatistic;
@@ -64,7 +63,7 @@ public class BaselineAlgoAdapter implements MethodAdapter {
                 // We parse the matching returned by NwM to our own data format, in order to do the evaluation
                 Set<RMatch> mergedModel = parseSolution(solution, chunk);
 
-                if (ExperimentRunner.PRINT_MATCH) {
+                if (setup.printVerbose) {
                     int numberOfClasses = countClasses(mergedModel);
                     System.out.println("Number of Classes: " + numberOfClasses);
                     for (RMatch tuple : mergedModel) {

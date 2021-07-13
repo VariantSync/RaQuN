@@ -1,86 +1,81 @@
-package de.variantsync.matching;
+package de.variantsync.matching.experiments;
 
+import de.variantsync.matching.RQRunner;
 import de.variantsync.matching.experiments.baseline.BaselineAlgoAdapter;
 import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
-import de.variantsync.matching.experiments.common.ExperimentConfiguration;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
 import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
-import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.validity.IValidityConstraint;
 import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
-public class RQ1Runner {
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // No configuration to be done below this line
-    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    public static void main(String... args) {
-        ExperimentConfiguration configuration;
-        if (args.length == 0) {
-            configuration = new ExperimentConfiguration();
-        } else if (args.length == 1) {
-            configuration = new ExperimentConfiguration(new File(args[0]));
-        } else {
-            throw new IllegalArgumentException("Illegal number of arguments: " + args.length);
-        }
-
-        List<String> datasetsRQ1 = configuration.datasetsRQ1();
-        WeightMetric weightMetric = new WeightMetric();
+public class RQ3Runner extends RQRunner {
+    @Override
+    public void run() {
         String baseResultsDir = configuration.resultsFolder();
         String baseDatasetDir = configuration.datasetsFolder();
+
+        // Add all argouml subsets
+        File folder = new File(Paths.get(baseDatasetDir).toString(), "argouml");
+        File[] listOfFiles = folder.listFiles();
+        List<String> argoSets = new ArrayList<>();
+        if (listOfFiles != null) {
+            for (File argoFile : listOfFiles) {
+                String name = argoFile.getName().replace(".csv", "");
+                argoSets.add(name);
+            }
+        }
+        Collections.sort(argoSets);
+        List<String> datasets = new ArrayList<>(argoSets);
+        // Add the full argouml if desired
+        if (configuration.runArgoUMLFullRQ3()) {
+            datasets.add("argouml");
+        }
+
         int numberOfRepeats = configuration.numberOfRepeats();
+        boolean verbose = configuration.verboseResults();
 
         ISimilarityFunction similarityFunction = configuration.similarityFunction();
         IValidityConstraint validityConstraint = configuration.validityConstraint();
         IVectorization vectorization = configuration.vectorization();
 
-        for (String dataset : datasetsRQ1) {
+        // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
+        // If set to true, NwM will no longer be executed on the ArgoUML subsets
+        boolean nwmTimeout = false;
+        for (String dataset : datasets) {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +
                     "+++++++++++++++++++++++++++++++++++");
-            String resultsDir = baseResultsDir;
+            String resultsDir = Paths.get(baseResultsDir, "argouml").toString();
+            String datasetDir = baseDatasetDir;
 
-            if (dataset.startsWith("argouml")) {
-                resultsDir = Paths.get(baseResultsDir, "argouml").toString();
+            if (dataset.startsWith("argouml_")) {
+                datasetDir = Paths.get(baseDatasetDir, "argouml").toString();
             }
 
             // The random subsets are matched in subsets of size 10 in accordance with Rubin and Chechik, ESEC-FSE13
             int chunkSize = Integer.MAX_VALUE;
-            if (dataset.startsWith("random")) {
-                chunkSize = 10;
-            }
 
             RaqunSetup raqunSetup = new RaqunSetup("RaQuN", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, similarityFunction, 0, 0,
-                    vectorization,
+                    resultsDir, datasetDir, dataset, chunkSize, 0, 0, verbose, vectorization, similarityFunction,
                     validityConstraint);
 
             ExperimentSetup nwmSetup = new ExperimentSetup("NwM", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, validityConstraint);
+                    resultsDir, datasetDir, dataset, chunkSize, verbose);
 
             ExperimentSetup pairwiseAscSetup = new ExperimentSetup("PairwiseAsc", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, validityConstraint);
+                    resultsDir, datasetDir, dataset, chunkSize, verbose);
 
             ExperimentSetup pairwiseDescSetup = new ExperimentSetup("PairwiseDesc", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, validityConstraint);
-
-            // NwM
-            // argouml is too big for NwM, therefore we exclude it
-            if (!dataset.equals("argouml")) {
-                if (configuration.shouldRunNwM()) {
-                    runExperiment(new BaselineAlgoAdapter(nwmSetup, EBaselineImplementation.NwM),
-                            baseResultsDir,
-                            nwmSetup.name,
-                            dataset);
-                }
-            }
+                    resultsDir, datasetDir, dataset, chunkSize, verbose);
 
             // Run Pairwise
             if (configuration.shouldRunPairwiseAsc()) {
@@ -101,7 +96,22 @@ public class RQ1Runner {
                 runExperiment(new RaQuNAdapter(raqunSetup), baseResultsDir, raqunSetup.name, dataset);
             }
 
+            // NwM
+            if (!dataset.equals("argouml")) {
+                // argouml is too big for NwM, therefore we stop after the calculation of the 40% subset
+                // We determined through experiments that NwM exceeds the timeout of 12 hours here on all subsets
+                if (dataset.startsWith("argouml_p045")) {
+                    nwmTimeout = true;
+                }
+                if (!dataset.startsWith("argouml_") || !nwmTimeout) {
+                    if (configuration.shouldRunNwM()) {
+                        runExperiment(new BaselineAlgoAdapter(nwmSetup, EBaselineImplementation.NwM),
+                                baseResultsDir,
+                                nwmSetup.name,
+                                dataset);
+                    }
+                }
+            }
         }
     }
-
 }

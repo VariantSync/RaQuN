@@ -12,12 +12,12 @@ public class ExperimentSetup {
     public final String mergeResultFile;
     public final String datasetFile;
     public final int chunkSize;
-    public final IValidityConstraint validityConstraint;
+    public final boolean printVerbose;
 
     public ExperimentSetup(String name, int numberOfRepeats,
                            String resultDir, String datasetDir,
                            String datasetName, int chunkSize,
-                           IValidityConstraint validityConstraint) {
+                           boolean printVerbose) {
         this.name = name;
         this.numberOfRepeats = numberOfRepeats;
         this.datasetName = datasetName;
@@ -32,7 +32,7 @@ public class ExperimentSetup {
         this.mergeResultFile = Paths.get(resultDir, name, name + "_" + datasetName + "_model.csv").toString();
         this.datasetFile = Paths.get(datasetDir, datasetName + ".csv").toString();
         this.chunkSize = chunkSize;
-        this.validityConstraint = validityConstraint;
+        this.printVerbose = printVerbose;
     }
 
 }

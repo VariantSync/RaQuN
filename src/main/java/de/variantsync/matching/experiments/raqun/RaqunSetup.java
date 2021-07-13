@@ -11,18 +11,18 @@ public class RaqunSetup extends ExperimentSetup {
     public final int startK;
     public final int maxK;
     public final IVectorization vectorization;
+    public final IValidityConstraint validityConstraint;
 
     public RaqunSetup(String name, int numberOfRepeats,
                       String resultDir, String datasetDir,
                       String dataset, int chunkSize,
-                      ISimilarityFunction similarityFunction,
-                      int startK, int maxK,
-                      IVectorization vectorization,
+                      int startK, int maxK, boolean printVerbose, IVectorization vectorization, ISimilarityFunction similarityFunction,
                       IValidityConstraint validityConstraint) {
-        super(name, numberOfRepeats, resultDir, datasetDir, dataset, chunkSize, validityConstraint);
+        super(name, numberOfRepeats, resultDir, datasetDir, dataset, chunkSize, printVerbose);
         this.similarityFunction = similarityFunction;
         this.startK = startK;
         this.maxK = maxK;
         this.vectorization = vectorization;
+        this.validityConstraint = validityConstraint;
     }
 }
