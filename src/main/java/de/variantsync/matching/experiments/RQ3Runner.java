@@ -32,8 +32,10 @@ public class RQ3Runner extends AbstractRQRunner {
         List<String> argoSets = new ArrayList<>();
         if (listOfFiles != null) {
             for (File argoFile : listOfFiles) {
-                String name = argoFile.getName().replace(".csv", "");
-                argoSets.add(name);
+                if (argoFile.toString().endsWith(".csv")) {
+                    String name = argoFile.getName().replace(".csv", "");
+                    argoSets.add(name);
+                }
             }
         }
         Collections.sort(argoSets);

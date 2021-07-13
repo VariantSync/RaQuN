@@ -13,6 +13,17 @@ echo "Copying jars"
 cp target/*Runner*-jar-with* .
 echo ""
 
+echo "Unpacking experimental subjects"
+cd experimental_subjects || exit
+unzip full_subjects.zip
+cd argouml || exit
+unzip argoumml_p1-5.zip
+unzip argoumml_p6.zip
+unzip argoumml_p7.zip
+unzip argoumml_p8.zip
+unzip argoumml_p9.zip
+cd ../.. || exit
+
 echo "Files in WORKDIR"
 ls -l
 echo ""
