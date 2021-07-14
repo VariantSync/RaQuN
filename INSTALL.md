@@ -37,12 +37,7 @@ Linux:
 
 ### Validation of Correct Installation
 We prepared an entry point for the Docker image through which you can validate that the image is working. This validation 
-comprises a subset of the experiments which we present in our paper. To be more precise, we configured the validation to
-execute 
-- three runs of the RQ1 experiment with _RaQuN_ and _Pairwise Descending_ on all experimental subject except _ArgoUML_.  
-- three runs of the RQ2 experiment on _PPU Structure_ and _bCMS_.
-- one run of the RQ3 experiment with _RaQuN_ and _Pairwise Descending_ up to a _ArgoUML_ subset size of _10%_.
-- evaluation of all completed runs and generation of plots and tables as seen in the paper
+comprises a small subset of the experiments which we present in our paper. 
 
 Running the full validation should take around 30 minutes (+- 15 minutes depending on your system). You can start it by 
 calling the experiment script:
@@ -158,12 +153,7 @@ mvn package
 
 ### Validation of Correct Installation
 We prepared an entry point for the Docker image through which you can validate that the image is working. This validation
-comprises a subset of the experiments which we present in our paper. To be more precise, we configured the validation to
-execute
-- three runs of the RQ1 experiment with _RaQuN_ and _Pairwise Descending_ on all experimental subject except _ArgoUML_.
-- three runs of the RQ2 experiment on _PPU Structure_ and _bCMS_.
-- one run of the RQ3 experiment with _RaQuN_ and _Pairwise Descending_ up to a _ArgoUML_ subset size of _10%_.
-- evaluation of all completed runs and generation of plots and tables as seen in the paper
+comprises a small subset of the experiments which we present in our paper. 
 
 Running the full validation should take around 30 minutes (+- 15 minutes depending on your system). You run it by
 calling the experiment JAR files with the corresponding properties:
