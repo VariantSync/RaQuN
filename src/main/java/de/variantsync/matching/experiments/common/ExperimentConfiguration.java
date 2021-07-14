@@ -24,7 +24,7 @@ public class ExperimentConfiguration {
     private static final String EXPERIMENTS_MATCHERS_PAIRWISE_DESCENDING = "experiments.matchers.pairwise-descending";
     private static final String EXPERIMENTS_MATCHERS_RAQUN = "experiments.matchers.raqun";
     private static final String EXPERIMENTS_EXECUTION_VERBOSE = "experiments.execution.verbose";
-    private static final String EXPERIMENTS_EXECUTION_REPEATS = "experiments.execution.repeats";
+    private static final String EXPERIMENTS_EXECUTION_REPEATS = "experiments.execution.repetitions";
     private static final String EXPERIMENTS_RQ2_START_k = "experiments.rq2.start-k";
     private static final String EXPERIMENTS_RQ2_MAX_K = "experiments.rq2.max-k";
     private static final String EXPERIMENTS_RQ2_MAX_K_ARGOUML = "experiments.rq2.max-k-argouml";
