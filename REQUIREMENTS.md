@@ -25,8 +25,7 @@ The artifacts, experimental results, and docker objects might require up to __10
 The following software requirements apply, if you plan to run the experiments presented in our paper __with__ Docker.
 
 ### OS
-We provide batch scripts for Windows and bash scripts for Linux. The Linux scripts might work for MacOS as well, but 
-were not tested there. Tested OS:
+We provide batch scripts for Windows and bash scripts for Linux. The Linux scripts might work on MacOS as well. Tested OS:
 - Linux
 - Windows
 
