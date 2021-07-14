@@ -3,6 +3,10 @@
 A scalable n-way model matching algorithm, which uses multi-dimensional search trees for efficiently finding suitable 
 matching candidates through range queries. 
 
+Repeating our experiments with the provided scripts in a Docker container should be easy and has only few requirements.
+You can find instructions on how to build the Docker image in the INSTALL.md file, and instructions on how to run our
+experiments in the README.md file.
+
 ## Project Structure
 
 #### reported-results.zip

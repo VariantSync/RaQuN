@@ -1,6 +1,66 @@
 # Requirements
+This file specifies the hardware and software requirements that apply. Different software requirements apply, depending on 
+whether you only want to repeat our experiments in a Docker container, or whether RaQuN is to be used as a library.
 
-## Hardware
 
-## Software
-- Maven
+
+## Hardware Requirements
+#### CPU
+Any CPU should work. However, your CPU directly influences the time required to run the experiments, how many executions can
+be run in parallel, and the measured runtimes. We ran the experiments on a CPU with __2.90GHz__.
+
+#### Memory (RAM)
+Some experiments (e.g., matching ArgoUML) might require large amounts of working memory. We advise to run the experiments
+on a system with at least __16GB RAM__.
+
+#### Storage
+The artifacts, experimental results, and docker objects might require up to __10GB of storage__.
+
+
+
+## Software Requirements - Running the Experiments with Docker
+The following software requirements apply, if you plan to run the experiments presented in our paper __with__ Docker.
+
+### OS
+We provide batch scripts for Windows and bash scripts for Linux. The Linux scripts might work for MacOS as well, but 
+were not tested there. Tested OS:
+- Linux
+- Windows
+
+### Other Software
+To run our experiments in Docker, you only require [Docker](https://docs.docker.com/get-docker/) to be installed and 
+running on your system.
+Please refer to the official [documentation](https://docs.docker.com/config/daemon/), if you run into any problems with 
+starting the Docker Daemon.
+
+
+
+## Software Requirements - Running the Experiments without Docker
+The following software requirements apply, if you plan to run the experiments presented in our paper __without__ Docker.
+
+### OS
+RaQuN was written in Java and the result evaluation in Python-3. Therefore, you can run it on any OS on which you can 
+install the required software.
+
+### Other Software
+The following requirements apply, if you want to run and evaluate the experiments without Docker:
+- [JDK-11 or newer](https://www.oracle.com/java/technologies/javase-downloads.html)
+- [Maven](https://maven.apache.org/download.cgi), which is also integrated in most Java IDEs
+- [Python-3.8 or newer](https://www.python.org/downloads/)
+- [matplotlib](https://matplotlib.org/stable/users/installing.html)
+
+
+## Software Requirements - RaQuN as a Library
+The following software requirements apply, if you plan to use RaQuN only as a Java library.
+
+### OS
+RaQuN was written in Java. Therefore, you can use it with any OS on which you can install the required software.
+
+### Other Software
+This repository contains RaQuN as a JAR file `RaQuN.jar` which you can add a dependency to your own project. The following
+requirements apply:
+- [JDK-11 or newer](https://www.oracle.com/java/technologies/javase-downloads.html)
+
+If you plan on changing RaQuN's code and building your own JAR file, you also require Maven:
+- [Maven](https://maven.apache.org/download.cgi), which is also integrated in most Java IDEs 
+
