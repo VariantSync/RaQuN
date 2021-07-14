@@ -1,7 +1,7 @@
 # Installation
 Please refer to REQUIREMENTS.md for the requirements of the two different setups.
 
-## Installation- Running the Experiments with Docker
+## Installation - Running the Experiments with Docker
 The following installation instructions apply, if you plan to run the experiments presented in our paper __with__ Docker.
 
 ### Installation Instructions
@@ -35,7 +35,7 @@ Linux:
  ./build-docker-image.sh
 ```
 
-### Validation
+### Validation of Correct Installation
 We prepared an entry point for the Docker image through which you can validate that the image is working. This validation 
 comprises a subset of the experiments which we present in our paper. To be more precise, we configured the validation to
 execute 
@@ -87,10 +87,17 @@ Number of Comparisons Actually Performed by the Algorithm: 245216
 At the same time, each run will save its result in an automatically created folder `./results` in the root directory 
 of the project. Once the validation run finished, you can find the generated plots and latex tables under `./results/eval-results`
 
-You can compare the generated plots and tables with the ones presented in the paper. While they probably do not show 
-exactly the same values, as a large portion of the experimental runs are missing, they should show highly similar properties.
+You can compare the generated plots and tables with the screenshots presented below. Note that they do not show the same
+values as presented in our paper, because a large portion of the experimental runs are missing and a different computer 
+was used.
+#### RQ1 Table
+![RQ1](screenshots/RQ1.png)
+#### RQ2 Plots
+![RQ2](screenshots/RQ2.png)
+#### RQ3 Plots
+![RQ3](screenshots/RQ3.png)
 
-## Installation- Running the Experiments without Docker
+## Installation - Running the Experiments without Docker
 The following installation instructions apply, if you plan to run the experiments presented in our paper __without__ Docker.
 ```
 We encourage you to try out running the experiments using Docker instead. It is easier to run, more robust, and 
@@ -149,7 +156,7 @@ mvn package
         warehouses.csv
 ```
 
-### Basic Usage Example
+### Validation of Correct Installation
 We prepared an entry point for the Docker image through which you can validate that the image is working. This validation
 comprises a subset of the experiments which we present in our paper. To be more precise, we configured the validation to
 execute
