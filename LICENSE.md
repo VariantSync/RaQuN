@@ -1,3 +1,7 @@
+# TODO
+- Describe distribution rights
+- If “available” badge is targeted, the license needs to be some form of open source
+
 # LICENSE
 
 ## libssrckdtree by savarese

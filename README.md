@@ -1,3 +1,14 @@
+# TODO
+- Instruction where and how to obtain artifacts
+- Clear description of how to repeat/replicate/reproduce
+- Artifacts which focus on data should
+    - cover aspects relevant to understand the context
+    - understand data provenance
+    - ethical and legal statements (if relevant)
+    - storage requirements
+- Artifacts which focus on software should
+    - cover aspects relevant to how to install und use it
+
 # RaQuN (Range Queries on N input models)
 
 A scalable n-way model matching algorithm, which uses multi-dimensional search trees for efficiently finding suitable 

@@ -1,11 +1,5 @@
-# TODO
-- Installation instructions
-  - Illustration of a very basic usage example or a method to test the installation
-  - What output to expect that confirms that the code is installed and working
-  - What output to expect that confirms that the code is doing something interesting and useful
-    
 # Installation
-Please refer to REQUIREMENTS.md for the software requirements of different setups.
+Please refer to REQUIREMENTS.md for the requirements of the two different setups.
 
 ## Installation- Running the Experiments with Docker
 The following installation instructions apply, if you plan to run the experiments presented in our paper __with__ Docker.
