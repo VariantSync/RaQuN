@@ -13,6 +13,7 @@ from eval.visualization.tables import create_tabular_overview, create_num_of_com
 data_directory = "./../results"
 experiment_subject_dir = "../experimental_subjects"
 argo_dir = data_directory + "/argouml"
+save_dir = "./../results/eval-results/tables/"
 print(os.listdir("eval"))
 
 
@@ -60,7 +61,6 @@ def main():
                      "argouml_p060", "argouml_p065", "argouml_p070", "argouml_p075", "argouml_p080", "argouml_p085",
                      "argouml_p090", "argouml_p095", "argouml"]
 
-    save_dir = "./../eval_results/tables/"
     from pathlib import Path
     Path(save_dir).mkdir(parents=True, exist_ok=True)
 
@@ -109,6 +109,7 @@ def main():
     print(tabular)
     print()
     print()
+    print("Result evaluation done. Saved all plots and tables under ./results/eval-results")
 
 
 def save_table(path, table):

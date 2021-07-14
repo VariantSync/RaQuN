@@ -7,7 +7,7 @@ from pathlib import Path
 from eval.data.result_data import MethodStatistics
 from eval.visualization.misc import get_convergence_point, get_real_name, get_real_dataset
 
-save_dir = "./../eval_results/fig/"
+save_dir = "./../results/eval-results/fig/"
 Path(save_dir).mkdir(parents=True, exist_ok=True)
 
 legend_size = 13
@@ -87,7 +87,7 @@ def create_runtime_plots(methods: [], datasets: [], results_per_method: {}, para
             ax.tick_params(axis='x', labelsize=tick_size)
             ax.tick_params(axis='y', labelsize=tick_size)
             plt.tight_layout()
-            plt.show()
+            # plt.show()
             fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".pdf")
 
 
@@ -148,7 +148,7 @@ def create_runtime_plot_argouml(methods: [], datasets: [], results_per_method: {
     ax.tick_params(axis='x', labelsize=tick_size)
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
-    plt.show()
+    # plt.show()
     fig.savefig(save_dir + "Runtime" + "_Argouml" + ".pdf")
 
 
@@ -197,5 +197,5 @@ def create_generic_plot_argouml(methods: [], datasets: [], results_per_method: {
     ax.tick_params(axis='x', labelsize=tick_size)
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
-    plt.show()
+    # plt.show()
     fig.savefig(save_dir + "Argouml_" + parameter + ".pdf")
