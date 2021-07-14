@@ -22,7 +22,6 @@ COPY experimental_subjects/argouml/*.zip  ./experimental_subjects/argouml
 COPY local-maven-repo ./local-maven-repo
 COPY src ./src
 COPY pom.xml .
-COPY docker-resources/* .
 COPY result_analysis_python ./result_analysis_python
 
 # Build the jar files
@@ -37,7 +36,10 @@ RUN unzip argouml_p6.zip
 RUN unzip argouml_p7.zip
 RUN unzip argouml_p8.zip
 RUN unzip argouml_p9.zip
+
+# Copy the docker resources
 WORKDIR /home/user
+COPY docker-resources/* .
 
 # Adjust permissions
 RUN mkdir -p /home/user/results
