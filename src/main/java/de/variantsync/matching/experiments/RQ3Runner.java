@@ -64,6 +64,7 @@ public class RQ3Runner extends AbstractRQRunner {
 
             // The random subsets are matched in subsets of size 10 in accordance with Rubin and Chechik, ESEC-FSE13
             int chunkSize = Integer.MAX_VALUE;
+            int numberOfRepeats = configuration.repetitionsRQ3();
 
             RaqunSetup raqunSetup = new RaqunSetup("RaQuN", numberOfRepeats,
                     resultsDir, datasetDir, dataset, chunkSize, 0, 0, verbose, vectorization, similarityFunction,

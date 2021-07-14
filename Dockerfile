@@ -25,6 +25,9 @@ COPY pom.xml .
 COPY docker-resources/* .
 COPY result_analysis_python ./result_analysis_python
 
+# Build the jar files
+RUN mvn package || exit
+
 # Unpack the experimental subjects
 WORKDIR experimental_subjects
 RUN unzip full_subjects.zip

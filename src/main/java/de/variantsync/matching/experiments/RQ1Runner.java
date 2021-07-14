@@ -40,6 +40,8 @@ public class RQ1Runner extends AbstractRQRunner {
                 chunkSize = 10;
             }
 
+            int numberOfRepeats = configuration.repetitionsRQ1();
+
             RaqunSetup raqunSetup = new RaqunSetup("RaQuN", numberOfRepeats,
                     resultsDir, baseDatasetDir, dataset, chunkSize, 0, 0, verbose, vectorization, similarityFunction,
                     validityConstraint);

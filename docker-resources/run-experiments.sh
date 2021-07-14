@@ -1,8 +1,12 @@
 #! /bin/bash
 if [ "$1" == '' ]
 then
-  echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the evaluation (EVAL) or a quick validation (VALIDATE)."
-  echo "Example: './experiments.sh RQ1'"
+  echo "Either fully run a specific experiment one time (run [RQ1|RQ2|RQ3]) or evaluate the results (evaluate) or a do quick setup validation (validate)."
+  echo "-- Bash Examples --"
+  echo "Run RQ1: './experiments.sh run RQ1'"
+  echo "Run RQ2: './experiments.sh run RQ2'"
+  echo "Evaluate all gathered results: './experiments.sh evaluate'"
+  echo "Validate the setup: './experiments.sh validate'"
   exit
 fi
 
@@ -11,17 +15,13 @@ echo "Starting $1"
 cd /home/user || exit
 ls -l
 
-if [ "$1" == 'EVAL' ]
+if [ "$1" == 'evaluate' ]
 then
     echo "Running result evaluation"
     cd result_analysis_python || exit
     python3.8 evaluation.py
     exit
 else
-  echo "Building with Maven"
-  mvn package || exit
-  echo ""
-
   echo "Copying jars"
   cp target/*Runner*-jar-with* .
   echo ""
@@ -30,20 +30,20 @@ else
   ls -l
   echo ""
 
-  if [ "$1" == 'RQ1' ]
+  if [ "$1" == 'run RQ1' ]
   then
       echo "Running experiment for RQ1"
       java -jar RQ1Runner-jar-with-dependencies.jar experiment.properties
-  elif [ "$1" == 'RQ2' ]
+  elif [ "$1" == 'run RQ2' ]
   then
       echo "Running experiment for RQ2"
 
       java -jar RQ2Runner-jar-with-dependencies.jar experiment.properties
-  elif [ "$1" == 'RQ3' ]
+  elif [ "$1" == 'run RQ3' ]
   then
       echo "Running experiment for RQ3"
       java -jar RQ3Runner-jar-with-dependencies.jar experiment.properties
-  elif [ "$1" == 'VALIDATE' ]
+  elif [ "$1" == 'validate' ]
   then
       echo "Running a 10 minute validation."
       java -jar RQ1Runner-jar-with-dependencies.jar quick-validation.properties
@@ -53,7 +53,12 @@ else
       cd result_analysis_python || exit
       python3.8 evaluation.py
   else
-      echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the evaluation (EVAL) or a quick validation (VALIDATE)."
-      echo "Example: './experiments.sh RQ1'"
+      echo "Either fully run a specific experiment one time (run [RQ1|RQ2|RQ3]) or evaluate the results (evaluate) or a do quick setup validation (validate)."
+      echo "-- Bash Examples --"
+      echo "Run RQ1: './experiments.sh run RQ1'"
+      echo "Run RQ2: './experiments.sh run RQ2'"
+      echo "Evaluate all gathered results: './experiments.sh evaluate'"
+      echo "Validate the setup: './experiments.sh validate'"
+  exit
   fi
 fi

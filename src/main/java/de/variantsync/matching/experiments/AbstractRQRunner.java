@@ -11,7 +11,6 @@ public abstract class AbstractRQRunner {
     protected ExperimentConfiguration configuration;
     protected String baseResultsDir;
     protected String baseDatasetDir;
-    protected int numberOfRepeats;
     protected boolean verbose;
     protected ISimilarityFunction similarityFunction;
     protected IValidityConstraint validityConstraint;
@@ -27,7 +26,6 @@ public abstract class AbstractRQRunner {
         }
         baseResultsDir = configuration.resultsFolder();
         baseDatasetDir = configuration.datasetsFolder();
-        numberOfRepeats = configuration.numberOfRepeats();
         verbose = configuration.verboseResults();
 
         similarityFunction = configuration.similarityFunction();
