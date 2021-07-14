@@ -1,7 +1,7 @@
 #! /bin/bash
 if [ "$1" == '' ]
 then
-  echo "Select an experiment to run [RQ1|RQ2|RQ3]"
+  echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the result evaluation with EVAL (e.g. './run-experiments.sh RQ1')"
 else
   echo "Starting extraction"
   java -version
@@ -45,7 +45,12 @@ else
   then
       echo "Running experiment for RQ3"
       java -jar RQ3Runner-jar-with-dependencies.jar experiment.properties
+  elif [ "$1" == 'EVAL' ]
+  then
+      echo "Running result evaluation"
+      cd result-analysis-python || exit
+      python3.8 evaluation.py
   else
-      echo "Select an experiment to run [RQ1|RQ2|RQ3]"
+      echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the result evaluation with EVAL (e.g. './run-experiments.sh RQ1')"
   fi
 fi
