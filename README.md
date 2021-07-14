@@ -38,5 +38,4 @@ Your directory structure should then look as follows:
 This folder contains archives with the csv-files that contain the input models used in our experiments. 
 
 #### result_analysis_python
-This is the python project containing the python scripts that were used to evaluate the experimental results. We recommend
-to use [Pycharm](https://www.jetbrains.com/pycharm/) as IDE. You should open this directory as a project.
+This is the python project containing the python scripts that were used to evaluate the experimental results. 
