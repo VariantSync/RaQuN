@@ -14,7 +14,7 @@ limitations under the License.
 
 ## libssrckdtree by savarese
 This repository contains a Java library for k-d-trees by _savarese software research:_ [libssrckdtree-j-1.0.2](https://www.savarese.com/software/libssrckdtree-j/). 
-The library was also published under an Apache 2.0 license with a NOTICE. Both can be found [here](local-maven-repo/com/savarese/LICENSE).
+The library was also published under an Apache 2.0 license with a NOTICE. Both can be found [here](local-maven-repo/com/savarese/).
 
 ## Apache License, Version 2.0
 
