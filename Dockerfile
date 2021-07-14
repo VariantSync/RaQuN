@@ -10,7 +10,7 @@ RUN adduser --disabled-password  --home /home/user --gecos '' --uid $USER_ID --i
 # Prepare the environment
 RUN apt-get update \
     && apt-get install -y --no-install-recommends tzdata
-RUN apt-get install -y --no-install-recommends build-essential git maven unzip python3.8 python3-pip
+RUN apt-get install -y --no-install-recommends build-essential maven unzip python3.8 python3-pip
 
 RUN python3.8 -m pip install -U matplotlib
 

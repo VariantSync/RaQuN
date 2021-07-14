@@ -48,6 +48,10 @@ else
       echo "Running a 10 minute validation."
       java -jar RQ1Runner-jar-with-dependencies.jar quick-validation.properties
       java -jar RQ2Runner-jar-with-dependencies.jar quick-validation.properties
+      java -jar RQ3Runner-jar-with-dependencies.jar quick-validation.properties
+      echo "Running result evaluation"
+      cd result_analysis_python || exit
+      python3.8 evaluation.py
   else
       echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the evaluation (EVAL) or a quick validation (VALIDATE)."
       echo "Example: './experiments.sh RQ1'"

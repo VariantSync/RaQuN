@@ -88,21 +88,24 @@ def main():
                                    results_per_method, "Weight")
 
     if "argouml" in datasets_part_2:
-        all_methods_argo = os.listdir(argo_dir)
-        results_per_method_argo = load_results(all_methods_argo, argo_dir)
+        try:
+            all_methods_argo = os.listdir(argo_dir)
+            results_per_method_argo = load_results(all_methods_argo, argo_dir)
 
-        bar_plots.create_runtime_plots(incremental_k_methods,
-                                       ["argouml"],
-                                       results_per_method_argo, "Weight")
+            bar_plots.create_runtime_plots(incremental_k_methods,
+                                           ["argouml"],
+                                           results_per_method_argo, "Weight")
 
-        bar_plots.create_runtime_plot_argouml(normal_methods,
-                                              argo_datasets, results_per_method_argo, use_legend=True)
+            bar_plots.create_runtime_plot_argouml(normal_methods,
+                                                  argo_datasets, results_per_method_argo, use_legend=True)
 
-        bar_plots.create_generic_plot_argouml(normal_methods,
-                                              argo_datasets, results_per_method_argo, "Precision", use_legend=True)
+            bar_plots.create_generic_plot_argouml(normal_methods,
+                                                  argo_datasets, results_per_method_argo, "Precision", use_legend=True)
 
-        bar_plots.create_generic_plot_argouml(normal_methods,
-                                              argo_datasets, results_per_method_argo, "Recall", use_legend=True)
+            bar_plots.create_generic_plot_argouml(normal_methods,
+                                                  argo_datasets, results_per_method_argo, "Recall", use_legend=True)
+        except FileNotFoundError:
+            "No ArgoUML results found"
 
     tabular = create_model_stats_overview(experiment_subject_dir, all_datasets)
     save_table(save_dir + "table_datasets.tex", tabular)
