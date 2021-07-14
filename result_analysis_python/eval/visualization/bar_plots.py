@@ -20,6 +20,8 @@ colors = ["blue", "orange", "red", "purple", "green"]
 
 def create_runtime_plots(methods: [], datasets: [], results_per_method: {}, parameter: str = "Weight"):
     for method in methods:
+        if method not in results_per_method:
+            continue
         method_statistics = results_per_method[method]  # type: MethodStatistics
 
         for dataset in datasets:
@@ -111,7 +113,7 @@ def create_runtime_plot_argouml(methods: [], datasets: [], results_per_method: {
         runtime_vector = []
         for dataset in datasets:
             if not method_statistics.has_result(dataset):
-                continue
+                break
             # Get the statistics of the current method on this dataset
             result_stats = method_statistics.get_result(dataset)
 
@@ -174,7 +176,7 @@ def create_generic_plot_argouml(methods: [], datasets: [], results_per_method: {
         value_vector = []
         for dataset_id, dataset in enumerate(datasets):
             if not method_statistics.has_result(dataset):
-                continue
+                break
             # Get the statistics of the current method on this dataset
             result_stats = method_statistics.get_result(dataset)
 

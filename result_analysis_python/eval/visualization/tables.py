@@ -32,6 +32,8 @@ def create_tabular_overview(methods: [], datasets: [], results_per_method: {}):
     runtime_min = {}
     # finally, we add the results of each method for each dataset
     for method in methods:
+        if method not in results_per_method:
+            continue
         method_statistics = results_per_method[method]  # type: MethodStatistics
         name = get_real_name(method)
         result_line = name
@@ -177,7 +179,8 @@ def create_num_of_comp_overview(datasets: [], results_per_method: {}):
         if dataset == "PPU" or dataset == "Apo-Games":
             tabular += "\\hline\n"
         raqun_stats = results_per_method["RaQuN"]  # type: MethodStatistics
-
+        if dataset not in raqun_stats.result_per_dataset:
+            continue
         raqun_result = raqun_stats.get_result(dataset)
 
         number_of_comparisons_total = raqun_result.dataset_number_of_comparisons_needed

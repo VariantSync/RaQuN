@@ -10,10 +10,10 @@ from eval.visualization.tables import create_tabular_overview, create_num_of_com
 # python -m pip install -U matplotlib
 
 # Change the path to evaluate different results
-data_directory = "./../../reported-results"
-experiment_subject_dir = "./../../experimental_subjects"
+data_directory = "./../results"
+experiment_subject_dir = "../experimental_subjects"
 argo_dir = data_directory + "/argouml"
-print(os.listdir("."))
+print(os.listdir("eval"))
 
 
 def main():
@@ -53,11 +53,6 @@ def main():
                       "PairwiseAsc",
                       "PairwiseDesc"
                       ]
-    subset_methods = ["RaQuN",
-                      "NwM",
-                      "PairwiseAsc",
-                      "PairwiseDesc",
-                      ]
     incremental_k_methods = ["RaQuN_k"]
 
     argo_datasets = ["argouml_p001", "argouml_p005", "argouml_p010", "argouml_p015", "argouml_p020", "argouml_p025",
@@ -79,11 +74,14 @@ def main():
     print(tabular)
     print()
     print()
-    tabular = create_num_of_comp_overview(all_datasets, results_per_method)
-    save_table(save_dir + "table_comp.tex", tabular)
-    print(tabular)
-    print()
-    print()
+    if "RaQuN" in results_per_method:
+        tabular = create_num_of_comp_overview(all_datasets, results_per_method)
+        save_table(save_dir + "table_comp.tex", tabular)
+        print(tabular)
+        print()
+        print()
+    else:
+        print("No data for RaQuN, skipping creation of TABLE III")
 
     bar_plots.create_runtime_plots(incremental_k_methods,
                                    list({"ppu", "bcms"} & set(datasets_part_2)),
@@ -97,13 +95,13 @@ def main():
                                        ["argouml"],
                                        results_per_method_argo, "Weight")
 
-        bar_plots.create_runtime_plot_argouml(subset_methods,
+        bar_plots.create_runtime_plot_argouml(normal_methods,
                                               argo_datasets, results_per_method_argo, use_legend=True)
 
-        bar_plots.create_generic_plot_argouml(subset_methods,
+        bar_plots.create_generic_plot_argouml(normal_methods,
                                               argo_datasets, results_per_method_argo, "Precision", use_legend=True)
 
-        bar_plots.create_generic_plot_argouml(subset_methods,
+        bar_plots.create_generic_plot_argouml(normal_methods,
                                               argo_datasets, results_per_method_argo, "Recall", use_legend=True)
 
     tabular = create_model_stats_overview(experiment_subject_dir, all_datasets)
