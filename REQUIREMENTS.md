@@ -5,12 +5,15 @@ whether you only want to repeat our experiments in a Docker container, or whethe
 
 
 ## Hardware Requirements
+The following requirements apply for repeating the experiments presented in our paper. If you want to run the experiments
+on your own datasets, more or less resources might be required.
+
 #### CPU
 Any CPU should work. However, your CPU directly influences the time required to run the experiments, how many executions can
-be run in parallel, and the measured runtimes. We ran the experiments on a CPU with __2.90GHz__.
+be run in parallel, and the measured runtimes. We ran the experiments on a `Intel® Xeon® Processor E7-4880` at __2.90GHz__.
 
 #### Memory (RAM)
-Some experiments (e.g., matching ArgoUML) might require large amounts of working memory. We advise to run the experiments
+Some experiments (e.g., matching ArgoUML) might require large amounts of working memory. __We advise__ to run the experiments
 on a system with at least __16GB RAM__.
 
 #### Storage
