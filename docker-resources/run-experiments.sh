@@ -1,14 +1,23 @@
 #! /bin/bash
 if [ "$1" == '' ]
 then
-  echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the result evaluation with EVAL (e.g. './run-experiments.sh RQ1')"
+  echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the evaluation (EVAL) or a quick validation (VALIDATE)."
+  echo "Example: './experiments.sh RQ1'"
+  exit
+fi
+
+echo "Starting $1"
+
+cd /home/user || exit
+ls -l
+
+if [ "$1" == 'EVAL' ]
+then
+    echo "Running result evaluation"
+    cd result_analysis_python || exit
+    python3.8 evaluation.py
+    exit
 else
-  echo "Starting extraction"
-  java -version
-
-  cd /home/user || exit
-  ls -l
-
   echo "Building with Maven"
   mvn package || exit
   echo ""
@@ -16,17 +25,6 @@ else
   echo "Copying jars"
   cp target/*Runner*-jar-with* .
   echo ""
-
-  echo "Unpacking experimental subjects"
-  cd experimental_subjects || exit
-  unzip full_subjects.zip
-  cd argouml || exit
-  unzip argouml_p1-5.zip
-  unzip argouml_p6.zip
-  unzip argouml_p7.zip
-  unzip argouml_p8.zip
-  unzip argouml_p9.zip
-  cd ../.. || exit
 
   echo "Files in WORKDIR"
   ls -l
@@ -45,12 +43,13 @@ else
   then
       echo "Running experiment for RQ3"
       java -jar RQ3Runner-jar-with-dependencies.jar experiment.properties
-  elif [ "$1" == 'EVAL' ]
+  elif [ "$1" == 'VALIDATE' ]
   then
-      echo "Running result evaluation"
-      cd result-analysis-python || exit
-      python3.8 evaluation.py
+      echo "Running a 10 minute validation."
+      java -jar RQ1Runner-jar-with-dependencies.jar quick-validation.properties
+      java -jar RQ2Runner-jar-with-dependencies.jar quick-validation.properties
   else
-      echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the result evaluation with EVAL (e.g. './run-experiments.sh RQ1')"
+      echo "Select an experiment to run [RQ1|RQ2|RQ3] or run the evaluation (EVAL) or a quick validation (VALIDATE)."
+      echo "Example: './experiments.sh RQ1'"
   fi
 fi

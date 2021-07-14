@@ -45,7 +45,14 @@ public class RQ3Runner extends AbstractRQRunner {
         // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
         // If set to true, NwM will no longer be executed on the ArgoUML subsets
         boolean nwmTimeout = false;
+        boolean reachedLargestSubset = false;
         for (String dataset : datasets) {
+            if (reachedLargestSubset) {
+                break;
+            }
+            if (dataset.contains(configuration.getExperimentsRq3LargestSubset())) {
+                reachedLargestSubset = true;
+            }
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +
                     "+++++++++++++++++++++++++++++++++++");
             String resultsDir = Paths.get(baseResultsDir, "argouml").toString();
