@@ -1,14 +1,3 @@
-# TODO
-- Instruction where and how to obtain artifacts
-- Clear description of how to repeat/replicate/reproduce
-- Artifacts which focus on data should
-    - cover aspects relevant to understand the context
-    - understand data provenance
-    - ethical and legal statements (if relevant)
-    - storage requirements
-- Artifacts which focus on software should
-    - cover aspects relevant to how to install und use it
-
 # RaQuN (Range Queries on N input models)
 
 RaQuN is a scalable n-way model matching algorithm, which uses multi-dimensional search trees for efficiently finding suitable 
@@ -24,6 +13,17 @@ Authors:
 [Timo Kehrer](https://www.informatik.hu-berlin.de/de/forschung/gebiete/mse/mitarb/kehrerti.html).
 
 ## Obtaining the Artifacts
+You can download the project via [Zenodo](TODO) or clone the [git](https://git-scm.com/) repository from [GitHub](https://github.com/AlexanderSchultheiss/RaQuN).
+
+### Zenodo
+* Download the [archive](TODO)
+* Extract the archive to a location of your choice
+
+### GitHub
+* Clone the repository to a location of your choice
+  ```
+  git clone https://github.com/AlexanderSchultheiss/RaQuN.git
+  ```
 
 ## Project Structure
 The project contains a number of files and folders with interesting content.
