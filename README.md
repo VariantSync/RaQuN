@@ -11,31 +11,79 @@
 
 # RaQuN (Range Queries on N input models)
 
-A scalable n-way model matching algorithm, which uses multi-dimensional search trees for efficiently finding suitable 
-matching candidates through range queries. 
+RaQuN is a scalable n-way model matching algorithm, which uses multi-dimensional search trees for efficiently finding suitable 
+matching candidates through range queries. This repository comprises the artifacts for our paper
+_Scalable N-Way Model Matching Using Multi-Dimensional Search Trees_ which we presented at the 
+International Conference on Model Driven Engineering Languages 2021 
+([MODELS 2021](https://conf.researchr.org/home/models-2021)).
+Authors:
+[Alexander Schultheiß](https://www.informatik.hu-berlin.de/de/forschung/gebiete/mse/mitarb/alexander-schultheiss.html),
+[Paul Maximilian Bittner](https://www.uni-ulm.de/in/sp/team/paul-maximilian-bittner/),
+[Lars Grunske](https://www.informatik.hu-berlin.de/de/Members/lars-grunske),
+[Thomas Thüm](https://www.uni-ulm.de/in/sp/team/thuem/),
+[Timo Kehrer](https://www.informatik.hu-berlin.de/de/forschung/gebiete/mse/mitarb/kehrerti.html).
 
+## Obtaining the Artifacts
+
+## Project Structure
+The project contains a number of files and folders with interesting content.
+
+* [`docker-resources`](docker-resources) contains the script and property files used by the Docker containers.
+  * `docker-resources/experiment.properties` configures the experiments as presented in our paper. 
+  * `docker-resources/quick-validation.properties` configures a quick experiment for validating the Docker image's functionality.
+* [`experimental_subjects`](experimental_subjects) contains the archives with the csv-files describing the input models used in our experiments.
+* [`result_analysis_python`](result_analysis_python) contains the Python scripts which we used to evaluate the experiments' results
+and generate the plots and tables for our paper.
+* [`src`](src/main/java/de/variantsync/matching) contains the source files used to run the experiments, and the source files
+of the different matchers that we evaluated.
+  * [`experiments`](src/main/java/de/variantsync/matching/experiments) contains all sources related to running the experiments written by us.
+  * [`nwm`](src/main/java/de/variantsync/matching/nwm) contains the sources of the NwM prototype implementation written by Rubin and Chechik and slightly adjusted by us.
+  * [`pairwise`](src/main/java/de/variantsync/matching/pairwise) contains a wrapper written by us for Rubin and Chechik's implementation of a pairwise matcher. 
+  * [`raqun`](src/main/java/de/variantsync/matching/raqun) contains RaQuN's implementation written by us.
+* [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
+* [`LICENSE.md`](LICENSE.md) contains licensing information.
+* [`REQUIREMENTS.md`](REQUIREMENTS.md) contains the requirements for installing and running the artifacts on your system.
+* [`RaQuN.jar`](RaQuN.jar) A pre-build library of RaQuN which you can add as a dependency to your own projects.
+* [`STATUS.md`](STATUS.md) specifies the [ACM badges](https://www.acm.org/publications/policies/artifact-review-and-badging-current)
+  which we apply for.
+* `build-docker-image.(bat|sh)` is a script that builds the Docker image with which the experiments presented in our paper can be executed.
+* `experiments.(bat|sh)` is a script for running the experiments in a Docker container. See the `Running the Experiments` section below.
+* `reported-results.zip` is an archive with the raw result data reported in our paper.
+* `stop-all-experiments.(bat|sh)` is a script that will stop all Docker containers currently running experiments.
+
+## Requirements and Installation
+If you are familiar with the terminal running on your system and Docker, you can follow the instructions in this sections
+to quickly get the experiments running. If you are unfamiliar with them or have trouble during the execution of the steps
+described here, please refer to the detailed steps described in the [REQUIREMENTS.md](REQUIREMENTS.md) and 
+[INSTALL.md](INSTALL.md) files.
+
+* Install [Docker](https://docs.docker.com/get-docker/) on your system and start the [Docker Daemon](https://docs.docker.com/config/daemon/).
+* Open a terminal and navigate to the project's root directory
+* Build the docker image by calling the build script corresponding to your OS
+  ```
+  Windows:
+    build-docker-image.bat
+  Linux:
+    build-docker-image.sh
+  ```
+* You can validate the installation by calling the validation corresponding to your OS. The validation should take about
+  30 minutes depending on your system.
+  ```
+  Windows:
+    experiment.bat validate
+  Linux:
+    experiment.sh validate
+  ```
+
+## Running the Experiments
+You can either run the experiments in Docker containers (recommended) or without Docker.
+
+### With Docker
 Repeating our experiments with the provided scripts in a Docker container should be easy and has only few requirements.
 You can find instructions on how to build the Docker image in the INSTALL.md file, and instructions on how to run our
 experiments in the README.md file.
 
-## Project Structure
+### Without Docker
 
-#### reported-results.zip
-This archive contains all experimental results that we reported in our submission. Please unpack it into the 
-root directory of the cloned project.
-Your directory structure should then look as follows:
+## Using RaQuN as a Library in Your Own Projects
 
-    ${RaQuN}/
-      reported-results/
-        argouml/
-        NwM/
-        PairwiseAsc/
-        PairwiseDesc/
-        RaQuN/
-        RaQuN_k/
-
-#### experimental_subjects
-This folder contains archives with the csv-files that contain the input models used in our experiments. 
-
-#### result_analysis_python
-This is the python project containing the python scripts that were used to evaluate the experimental results. 
