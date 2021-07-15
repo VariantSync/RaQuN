@@ -60,19 +60,19 @@ described here, or if you plan on running the experiments without Docker, please
 * Install [Docker](https://docs.docker.com/get-docker/) on your system and start the [Docker Daemon](https://docs.docker.com/config/daemon/).
 * Open a terminal and navigate to the project's root directory
 * Build the docker image by calling the build script corresponding to your OS
-  ```
-  Windows:
-    build-docker-image.bat
-  Linux:
-    build-docker-image.sh
+  ```shell
+  # Windows:
+  build-docker-image.bat
+  # Linux:
+  build-docker-image.sh
   ```
 * You can validate the installation by calling the validation corresponding to your OS. The validation should take about
   `30 minutes` depending on your system.
-  ```
-  Windows:
-    experiment.bat validate
-  Linux:
-    experiment.sh validate
+  ```shell
+  # Windows:
+  experiment.bat validate
+  # Linux:
+  experiment.sh validate
   ```
 
 ## Running the Experiments Using Docker
@@ -94,15 +94,15 @@ You can find information on the requirements and how to build the Docker image i
 ### Running all Experiments
 You can repeat the experiments exactly as presented in our paper. The following command will execute 30 runs of the experiments
 for RQ1 and RQ2, and 1 run for the experiment of RQ3. 
-```
-  Windows Command Prompt:
-    experiment.bat run
+```shell
+# Windows Command Prompt:
+experiment.bat run
     
-  Windows PowerShell:
-    .\experiment.bat run
+# Windows PowerShell:
+.\experiment.bat run
     
-  Linux
-    ./experiment.sh run
+# Linux
+./experiment.sh run
 ```
 `Expected Average Runtime for all experiments (@2.90GHz): 2460 hours or 102 days` 
 
@@ -113,15 +113,15 @@ Due to the considerable runtime of running all experiments, we offer possibiliti
 of specific experiments in parallel.
 You can run a single experiment repetition for any of the RQs (e.g., `experiment.bat RQ1` executes RQ1). If you want to 
 run multiple containers in parallel, you simply have to open a new terminal and start the experiment there as well. 
-```
-  Windows Command Prompt:
-    experiment.bat (RQ1|RQ2|RQ3)
+```shell
+# Windows Command Prompt:
+experiment.bat (RQ1|RQ2|RQ3)
     
-  Windows PowerShell:
-    .\experiment.bat (RQ1|RQ2|RQ3)
+# Windows PowerShell:
+.\experiment.bat (RQ1|RQ2|RQ3)
     
-  Linux
-    ./experiment.sh (RQ1|RQ2|RQ3)
+# Linux
+./experiment.sh (RQ1|RQ2|RQ3)
 ```
 #### Runtimes - All Matchers
 `Expected Average Runtime for one Repetition of RQ1 (@2.90GHz): 4 hours` (Repeated 30 times for the paper)
@@ -145,15 +145,15 @@ are 30 subsets for each subset size. You can filter these subsets for the experi
 has to be a natural number in the interval `[1, 30]` (e.g., `experiment.bat RQ3 1` will run RQ for all subsets with ID 1).
 Hereby, you can start multiple Docker containers in 
 parallel.
-```
-  Windows Command Prompt:
-    experiment.bat RQ3 SUBSET_ID
+```shell
+# Windows Command Prompt:
+experiment.bat RQ3 SUBSET_ID
     
-  Windows PowerShell:
-    .\experiment.bat RQ3 SUBSET_ID
+# Windows PowerShell:
+.\experiment.bat RQ3 SUBSET_ID
     
-  Linux
-    ./experiment.sh RQ3 SUBSET_ID
+# Linux
+./experiment.sh RQ3 SUBSET_ID
 ```
 #### Runtimes - All Matchers 
 `Expected Average Runtime for one Repetition of RQ3 With a Specific SUBSET_ID (@2.90GHz): 70 hours` 
@@ -165,15 +165,15 @@ parallel.
 ### Result Evaluation
 You can run the result evaluation as done for our paper by calling the experiment script with `evaluate`. The
 script will consider all data found under `./results`.
-```
-  Windows Command Prompt:
-    experiment.bat evaluate
+```shell
+# Windows Command Prompt:
+experiment.bat evaluate
     
-  Windows PowerShell:
-    .\experiment.bat evaluate
+# Windows PowerShell:
+.\experiment.bat evaluate
     
-  Linux
-    ./experiment.sh evaluate
+# Linux
+./experiment.sh evaluate
 ```
 `Expected Average Runtime for all experiments (@2.90GHz): a few seconds`
 The script will generate figures and tables similar to the ones presented in our paper. They are automatically saved to
@@ -220,7 +220,7 @@ You can find information on the requirements and how to build the required JAR f
 ### Running all Experiments
 You can repeat the experiments exactly as presented in our paper. The following commands will execute 30 runs of the experiments
 for RQ1 and RQ2, and 1 run for the experiment of RQ3.
-```
+```shell
 java -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
 java -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
 java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
@@ -232,13 +232,13 @@ Due to the considerable runtime of running all experiments, we offer possibiliti
 of specific experiments in parallel.
 You can run a single experiment repetition for any of the RQs. If you want to run multiple containers in parallel, 
 you simply have to open a new terminal and start the experiment there as well.
-```
-RQ1:
-  java -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
-RQ2:
-  java -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
-RQ3:
-  java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
+```shell
+# RQ1:
+java -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
+# RQ2:
+java -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
+# RQ3:
+java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
 ```
 `Expected Average Runtime for one Repetition of RQ1 (@2.90GHz): 4 hours` (Repeated 30 times for the paper)
 
@@ -250,7 +250,7 @@ Due to the large runtime of RQ3 we made it possible to run the experiments on in
 are 30 subsets for each subset size. You can filter these subsets for the experiment by providing a `SUBSET_ID`. `SUBSET_ID`
 has to be a natural number in the interval `[1, 30]`.
 Hereby, you can start multiple Docker containers in parallel.
-```
+```shell
 java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties SUBSET_ID
 ```
 `Expected Average Runtime for one Repetition of RQ3 With a Specific SUBSET_ID (@2.90GHz): 70 hours`
@@ -262,15 +262,15 @@ script will consider all data found under `./results`.
 
 * Navigate to the script: `cd result_analysis_python`
 * Start the evaluation:
-  ```
-    Windows Command Prompt:
-      python.exe evaluation.py
+  ```shell
+  # Windows Command Prompt:
+  python.exe evaluation.py
       
-    Windows PowerShell:
-      python.exe evaluation.py
+  # Windows PowerShell:
+  python.exe evaluation.py
       
-    Linux
-      python3.8 evaluation.py
+  # Linux
+  python3.8 evaluation.py
   ```
 `Expected Average Runtime (@2.90GHz): a few seconds`
 
@@ -331,7 +331,7 @@ dependencies.
 
 ### Matching a Dataset Stored in CSV Format
 The following presents a simple example on how to compute a matching for a dataset with RaQuN:
-```
+```java
 import de.variantsync.matching.raqun.RaQuN;
 import de.variantsync.matching.raqun.data.RDataset;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
@@ -354,7 +354,7 @@ public class Main {
 ### Matching a Dataset Created with Raw Data
 The following presents a simple example on how you can initialize the models of a dataset in code, and then match them 
 with RaQuN:
-```
+```java
 import de.variantsync.matching.raqun.RaQuN;
 import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.raqun.data.RMatch;
