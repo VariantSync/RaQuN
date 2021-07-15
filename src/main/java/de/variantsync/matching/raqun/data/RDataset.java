@@ -109,7 +109,7 @@ public class RDataset {
             }
 
             // Create the instance of the element and add it to the current model
-            RElement element = new RElement(currentModel.getModelID(), elementName, elementID, properties);
+            RElement element = new RElement(currentModel.getModelID(), elementID, elementName, properties);
             currentModel.addElement(element);
         }
 

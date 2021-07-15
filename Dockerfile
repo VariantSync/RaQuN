@@ -17,8 +17,8 @@ RUN python3.8 -m pip install -U matplotlib
 # Copy all relevant files
 WORKDIR /home/user
 RUN mkdir -p ./experimental_subjects/argouml
-COPY experimental_subjects/full_subjects.zip  ./experimental_subjects
-COPY experimental_subjects/argouml/*.zip  ./experimental_subjects/argouml
+COPY experimental_subjects/* ./experimental_subjects
+COPY experimental_subjects/argouml/* ./experimental_subjects/argouml
 COPY local-maven-repo ./local-maven-repo
 COPY src ./src
 COPY pom.xml .
@@ -29,13 +29,13 @@ RUN mvn package || exit
 
 # Unpack the experimental subjects
 WORKDIR experimental_subjects
-RUN unzip full_subjects.zip
+RUN unzip -o full_subjects.zip
 WORKDIR argouml
-RUN unzip argouml_p1-5.zip
-RUN unzip argouml_p6.zip
-RUN unzip argouml_p7.zip
-RUN unzip argouml_p8.zip
-RUN unzip argouml_p9.zip
+RUN unzip -o argouml_p1-5.zip
+RUN unzip -o argouml_p6.zip
+RUN unzip -o argouml_p7.zip
+RUN unzip -o argouml_p8.zip
+RUN unzip -o argouml_p9.zip
 
 # Copy the docker resources
 WORKDIR /home/user

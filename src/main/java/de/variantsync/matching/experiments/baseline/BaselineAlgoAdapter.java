@@ -126,7 +126,7 @@ public class BaselineAlgoAdapter implements MethodAdapter {
     }
 
     private RElement parseElement(Element element) {
-        return new RElement(element.getModelId(), element.getLabel(), element.getUUID(), element.sortedProperties());
+        return new RElement(element.getModelId(), element.getUUID(), element.getLabel(), element.sortedProperties());
     }
 
     private int countClasses(Set<RMatch> set) {

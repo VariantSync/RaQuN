@@ -257,7 +257,7 @@ runner expects the `csv` to have to following format:
 be enumerated by appending a number to the property as seen in the examples above.
   
 Do the following to use the dataset in an experiment:
-* Save the dataset's csv file to the `experiment_results` directory, next to the other dataset files
+* Save the dataset's csv file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files
 * Open the experiment properties in a text editor
   * [`full-experiment.properties`](docker-resources/full-experiments.properties) configures the experiment execution
     of `experiment.(bat|sh) run`
@@ -274,4 +274,60 @@ You can also use RaQuN as a Java Library in your own project. Simply add [`RaQuN
 your project. Please refer to the documentation of your IDE or build system for instructions on how to add JARs as 
 dependencies. 
 
+### Matching a Dataset Stored in CSV Format
+The following presents a simple example on how to compute a matching for a dataset with RaQuN:
+```
+import de.variantsync.matching.raqun.RaQuN;
+import de.variantsync.matching.raqun.data.RDataset;
+import de.variantsync.matching.raqun.similarity.WeightMetric;
+import de.variantsync.matching.raqun.validity.OneToOneValidity;
+import de.variantsync.matching.raqun.vectorization.PropertyBasedVectorization;
 
+import java.nio.file.Paths;
+
+public class Main {
+    public static void main(String... args) {
+        var dataset = new RDataset("MyDataset");
+        dataset.loadFileContent(Paths.get("path/to/MyDataset.csv"));
+        
+        RaQuN raQuN = new RaQuN(new PropertyBasedVectorization(), new OneToOneValidity(), new WeightMetric());
+        Set<RMatch> matching = raQuN.match(models);
+    }
+}
+```
+
+### Matching a Dataset Created with Raw Data
+The following presents a simple example on how you can initialize the models of a dataset in code, and then match them 
+with RaQuN:
+```
+import de.variantsync.matching.raqun.RaQuN;
+import de.variantsync.matching.raqun.data.RElement;
+import de.variantsync.matching.raqun.data.RMatch;
+import de.variantsync.matching.raqun.data.RModel;
+import de.variantsync.matching.raqun.similarity.WeightMetric;
+import de.variantsync.matching.raqun.validity.OneToOneValidity;
+import de.variantsync.matching.raqun.vectorization.PropertyBasedVectorization;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+    public static void main(String... args) {
+        Set<RModel> models = new HashSet<>();
+        
+        RModel modelA = new RModel("A");
+        modelA.addElement(new RElement("A", "X0","Element-1", Collections.singletonList("prop1, prop2")));
+        modelA.addElement(new RElement("A", "X1","Element-2", Collections.singletonList("prop3, prop4")));
+        models.add(modelA);
+
+        RModel modelB = new RModel("B");
+        modelB.addElement(new RElement("B", "X0","Element-1", Collections.singletonList("prop1, prop2, prop3")));
+        modelB.addElement(new RElement("B", "X1","Element-2", Collections.singletonList("prop3, prop4")));
+        models.add(modelB);
+        
+        RaQuN raQuN = new RaQuN(new PropertyBasedVectorization(), new OneToOneValidity(), new WeightMetric());
+        Set<RMatch> matching = raQuN.match(models);
+    }
+}
+```

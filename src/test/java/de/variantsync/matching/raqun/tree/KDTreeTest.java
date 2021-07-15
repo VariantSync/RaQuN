@@ -68,26 +68,26 @@ public class KDTreeTest {
         List<String> properties = new ArrayList<>();
         properties.add("n_cat");
         properties.add("property1");
-        RElement element = new RElement(modelID, "Cat", "0", properties);
+        RElement element = new RElement(modelID, "0", "Cat", properties);
         model.addElement(element);
         return model;
     }
 
     private static List<RModel> generateModels() {
         RModel modelA = new RModel("A");
-        RElement element1A = new RElement("A", "ele1", "0",
+        RElement element1A = new RElement("A", "0", "ele1",
                 Arrays.asList("n_ele1", "prop1", "prop2", "zzz"));
-        RElement element2A = new RElement("A", "ele2", "1",
+        RElement element2A = new RElement("A", "1", "ele2",
                 Arrays.asList("n_ele2", "prop3", "prop4", "zzz"));
         modelA.addElement(element1A);
         modelA.addElement(element2A);
 
         RModel modelB = new RModel("B");
-        RElement element1B = new RElement("B", "ele1", "0",
+        RElement element1B = new RElement("B", "0", "ele1",
                 Arrays.asList("n_ele1", "prop1", "prop2", "zzz"));
-        RElement element2B = new RElement("B", "ele2", "1",
+        RElement element2B = new RElement("B", "1", "ele2",
                 Arrays.asList("n_ele2", "prop3", "xyz_abc", "zzz"));
-        RElement element3B = new RElement("B", "ele3", "2",
+        RElement element3B = new RElement("B", "2", "ele3",
                 Arrays.asList("n_ele3", "prop1", "prop5", "prop6"));
         modelB.addElement(element1B);
         modelB.addElement(element2B);

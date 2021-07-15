@@ -13,7 +13,7 @@ public class RElementTest {
     private RElement getSimpleRElement() {
         List<String> properties = new ArrayList<>();
         properties.add("prop1");
-        return new RElement(tModelID, tName, tUUID, properties);
+        return new RElement(tModelID, tUUID, tName, properties);
     }
 
     @Test

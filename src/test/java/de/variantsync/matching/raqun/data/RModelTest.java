@@ -16,7 +16,7 @@ public class RModelTest {
         String tModelID = "modelA";
         String tName = "MyElement";
         String tUUID = "xfc123";
-        return new RElement(tModelID, tName + elementCounter, tUUID + elementCounter, properties);
+        return new RElement(tModelID, tUUID + elementCounter, tName + elementCounter, properties);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class RModelTest {
     @Test
     public void invalidModelIDOfAddedElement() {
         RModel model = new RModel("A");
-        RElement elementOne = new RElement("B", "Cat", "0", new ArrayList<>());
+        RElement elementOne = new RElement("B", "0", "Cat", new ArrayList<>());
         Assertions.assertThrows(IllegalArgumentException.class, () -> model.addElement(elementOne));
     }
 }

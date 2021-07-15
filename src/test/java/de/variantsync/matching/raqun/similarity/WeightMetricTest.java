@@ -17,9 +17,9 @@ public class WeightMetricTest {
     @ValueSource(ints = {2, 3, 10, 100, 1000})
     public void matchConfidenceOfEqualElementsIsTheHighest(int numberOfModels) {
         // elementA == elementB --> 1
-        RElement elementA = new RElement("A", "TestElement", "0",
+        RElement elementA = new RElement("A", "0", "TestElement",
                 getSampleProperties("prop", numberOfModels));
-        RElement elementB = new RElement("B", "TestElement", "0",
+        RElement elementB = new RElement("B", "0", "TestElement",
                 getSampleProperties("prop", numberOfModels));
 
         weightMetric.setNumberOfModels(numberOfModels);
@@ -32,8 +32,8 @@ public class WeightMetricTest {
     @ValueSource(ints = {2, 3, 10, 100, 1000})
     public void matchConfidenceOfCompletelyDifferentElementsIs0(int numberOfModels) {
         // elementA !!!!= elementB --> 0
-        RElement elementA = new RElement("A", "TestElement", "0", getSampleProperties());
-        RElement elementB = new RElement("B", "TestElement", "0",
+        RElement elementA = new RElement("A", "0", "TestElement", getSampleProperties());
+        RElement elementB = new RElement("B", "0", "TestElement",
                 getSampleProperties("abc", numberOfModels));
 
         weightMetric.setNumberOfModels(numberOfModels);
@@ -70,7 +70,7 @@ public class WeightMetricTest {
             Set<RElement> elements = new HashSet<>();
             for (int j = 0; j < tupleSize; j++) {
                 List<String> properties = getSampleProperties("prop" + i + "_", 3);
-                elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
+                elements.add(new RElement(String.valueOf(modelID), String.valueOf(modelID), String.valueOf(j), properties));
             }
             tuples.add(new RMatch(elements));
         }
@@ -87,7 +87,7 @@ public class WeightMetricTest {
 
             List<String> properties = getSampleProperties("prop" + i + "_", 3);
             properties.add("COMMON");
-            elements.add(new RElement(String.valueOf(modelID), "0", String.valueOf(modelID), properties));
+            elements.add(new RElement(String.valueOf(modelID), String.valueOf(modelID), "0", properties));
 
             tuples.add(new RMatch(elements));
         }
@@ -114,7 +114,7 @@ public class WeightMetricTest {
                 List<String> properties = getSampleProperties("prop" + i + j + "_", numberOfDifferentProperties);
                 properties.addAll(commonInterProperties);
                 properties.addAll(commonIntraProperties);
-                elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
+                elements.add(new RElement(String.valueOf(modelID), String.valueOf(modelID), String.valueOf(j), properties));
             }
             tuples.add(new RMatch(elements));
         }
@@ -144,7 +144,7 @@ public class WeightMetricTest {
             // Add one element for each model
             for (int j = 0; j < numberOfModels; j++) {
                 List<String> properties = getSampleProperties("p" + i + "_", 3);
-                elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
+                elements.add(new RElement(String.valueOf(modelID), String.valueOf(modelID), String.valueOf(j), properties));
             }
             tuples.add(new RMatch(elements));
         }
@@ -164,7 +164,7 @@ public class WeightMetricTest {
             // Add one element for each model
             for (int j = 0; j < numberOfModels; j++) {
                 List<String> properties = getSampleProperties("p" + i + j + "_", 3);
-                elements.add(new RElement(String.valueOf(modelID), String.valueOf(j), String.valueOf(modelID), properties));
+                elements.add(new RElement(String.valueOf(modelID), String.valueOf(modelID), String.valueOf(j), properties));
             }
             tuples.add(new RMatch(elements));
         }
@@ -233,8 +233,8 @@ public class WeightMetricTest {
         List<String> propertiesOfB = getSampleProperties("abc", numberOfDifferentProperties);
         propertiesOfB.addAll(commonProperties);
 
-        RElement elementA = new RElement("A", "TestElement", "0", propertiesOfA);
-        RElement elementB = new RElement("B", "TestElement", "0", propertiesOfB);
+        RElement elementA = new RElement("A", "0", "TestElement", propertiesOfA);
+        RElement elementB = new RElement("B", "0", "TestElement", propertiesOfB);
 
         double matchConfidence = weightMetric.getMatchConfidence(elementA, elementB);
         // Expected Confidence is the normalization factor * property similarity ratio

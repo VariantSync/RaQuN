@@ -29,7 +29,7 @@ public class TestDataFactory {
         List<String> properties = new ArrayList<>();
         properties.add("n_" + elementName);
 
-        return new RElement(modelID, elementName, UUID, properties);
+        return new RElement(modelID, UUID, elementName, properties);
     }
 
     public static List<RElement> getElementList() {
@@ -67,18 +67,18 @@ public class TestDataFactory {
     public static List<RElement> getElementListWithoutNames() {
         List<RElement> elements = new ArrayList<>();
 
-        RElement firstElement = new RElement("A", "Simple1", "1", new ArrayList<>());
+        RElement firstElement = new RElement("A", "1", "Simple1", new ArrayList<>());
         firstElement.getProperties().add("property1");
         firstElement.getProperties().add("property2");
         elements.add(firstElement);
 
-        RElement secondElement = new RElement("B", "Simple2", "1", new ArrayList<>());
+        RElement secondElement = new RElement("B", "1", "Simple2", new ArrayList<>());
         secondElement.getProperties().add("property1");
         secondElement.getProperties().add("property2");
         secondElement.getProperties().add("property3");
         elements.add(secondElement);
 
-        RElement thirdElement = new RElement("C", "Simple3", "1", new ArrayList<>());
+        RElement thirdElement = new RElement("C", "1", "Simple3", new ArrayList<>());
         thirdElement.getProperties().add("property2");
         thirdElement.getProperties().add("property3");
         elements.add(thirdElement);
@@ -94,49 +94,49 @@ public class TestDataFactory {
             for (int j = 0; j < numberOfProperties; j++) {
                 properties.add("prop" + j);
             }
-            elements.add(new RElement("model" + i, "i", "0", properties));
+            elements.add(new RElement("model" + i, "0", "i", properties));
         }
         return elements;
     }
 
     public static RElement getDisplayA () {
-        return new RElement("A", "Display", "0", Arrays.asList(
+        return new RElement("A", "0", "Display", Arrays.asList(
                 "n_display", "ex_stationary", "room", "unit"
         ));
     }
 
     public static RElement getDisplayB () {
-        return new RElement("B", "Display", "0", Arrays.asList(
+        return new RElement("B", "0", "Display", Arrays.asList(
                 "n_display", "scanner", "room", "unit"
         ));
     }
 
     public static RElement getDisplayC () {
-        return new RElement("C", "Display", "0", Arrays.asList(
+        return new RElement("C", "0", "Display", Arrays.asList(
                 "n_display", "room", "unit"
         ));
     }
 
     public static RElement getMobileA () {
-        return new RElement("A", "Mobile", "1", Arrays.asList(
+        return new RElement("A", "1", "Mobile", Arrays.asList(
                 "n_mobile", "ex_equipment", "generalStorage"
         ));
     }
 
     public static RElement getMobileB () {
-        return new RElement("B", "Mobile", "1", Arrays.asList(
+        return new RElement("B", "1", "Mobile", Arrays.asList(
                 "n_mobile", "ex_equipment", "generalStorage"
         ));
     }
 
     public static RElement getIDCardA () {
-        return new RElement("A", "IDCard", "2", Arrays.asList(
+        return new RElement("A", "2", "IDCard", Arrays.asList(
                 "n_iDCard", "medicalTeam", "displayScanner"
         ));
     }
 
     public static RElement getCalendarB () {
-        return new RElement("B", "Display", "3", Arrays.asList(
+        return new RElement("B", "3", "Display", Arrays.asList(
                 "n_calendar", "medicalTeam", "database"
         ));
     }

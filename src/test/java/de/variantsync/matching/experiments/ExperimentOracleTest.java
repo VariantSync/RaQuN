@@ -37,19 +37,19 @@ public class ExperimentOracleTest {
         // Class A
         String groundTruthA = "aaa";
         String nameA = "A";
-        return new RElement(modelID, groundTruthA, nameA, Arrays.asList(propertiesA));
+        return new RElement(modelID, nameA, groundTruthA, Arrays.asList(propertiesA));
     }
     private RElement getNodeB(String modelID) {
         // Class B
         String groundTruthB = "bbb";
         String nameB = "B";
-        return new RElement(modelID, groundTruthB, nameB, Arrays.asList(propertiesB));
+        return new RElement(modelID, nameB, groundTruthB, Arrays.asList(propertiesB));
     }
     private RElement getNodeC(String modelID) {
         // Class C
         String groundTruthC = "ccc";
         String nameC = "C";
-        return new RElement(modelID, groundTruthC, nameC, Arrays.asList(propertiesC));
+        return new RElement(modelID, nameC, groundTruthC, Arrays.asList(propertiesC));
     }
 
     private RMatch getTuple(RElement... nodes) {

@@ -15,7 +15,7 @@ public class RElement {
     // The list of properties of this element
     private final List<String> properties;
 
-    public RElement(String modelID, String name, String UUID, List<String> properties) {
+    public RElement(String modelID, String UUID, String name, List<String> properties) {
         this.modelID = modelID;
         this.name = name;
         this.UUID = UUID;

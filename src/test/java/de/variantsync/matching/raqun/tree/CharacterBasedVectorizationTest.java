@@ -26,7 +26,7 @@ public class CharacterBasedVectorizationTest {
     @Test
     public void initializationWithExactlyOneElement() {
         List<RElement> elements = new ArrayList<>();
-        RElement simpleElement = new RElement("A", "Simple", "1", new ArrayList<>());
+        RElement simpleElement = new RElement("A", "1", "Simple", new ArrayList<>());
         simpleElement.getProperties().add("property1");
         simpleElement.getProperties().add("Property2");
 

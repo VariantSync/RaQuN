@@ -15,7 +15,7 @@ public class CandidatePairTest {
         elementCounter++;
         List<String> properties = new ArrayList<>();
         properties.add("prop1" + elementCounter);
-        return new RElement(tModelID + elementCounter, tName + elementCounter, tUUID + elementCounter, properties);
+        return new RElement(tModelID + elementCounter, tUUID + elementCounter, tName + elementCounter, properties);
     }
 
     @Test
