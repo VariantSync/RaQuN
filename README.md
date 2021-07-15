@@ -121,11 +121,22 @@ run multiple containers in parallel, you simply have to open a new terminal and 
   Linux
     ./experiment.sh (RQ1|RQ2|RQ3)
 ```
+#### Runtimes - All Matchers
 `Expected Average Runtime for one Repetition of RQ1 (@2.90GHz): 4 hours` (Repeated 30 times for the paper)
 
 `Expected Average Runtime for one Repetition of RQ2 (@2.90GHz): 8 hours` (Repeated 30 times for the paper)
 
 `Expected Average Runtime for one Repetition of RQ3 (@2.90GHz): 2100 hours or 87 days` (Repeated 1 time for the paper)
+
+You can reduce the required runtime significantly by excluding NwM from the experiments. You can find instructions on how 
+to configure the experiments under `Docker Experiment Configuration` below.
+
+#### Runtimes - Without NwM
+`Expected Average Runtime for one Repetition of RQ1 (@2.90GHz): 1 hour` (Repeated 30 times for the paper)
+
+`Expected Average Runtime for one Repetition of RQ2 (@2.90GHz): 8 hours` (Repeated 30 times for the paper)
+
+`Expected Average Runtime for one Repetition of RQ3 (@2.90GHz): 300 hours or 14 days` (Repeated 1 time for the paper)
 
 Due to the large runtime of RQ3 we made it possible to run the experiments on individual subsets in parallel. There
 are 30 subsets for each subset size. You can filter these subsets for the experiment by providing a `SUBSET_ID`. `SUBSET_ID`
@@ -142,8 +153,12 @@ parallel.
   Linux
     ./experiment.sh RQ3 SUBSET_ID
 ```
+#### Runtimes - All Matchers 
 `Expected Average Runtime for one Repetition of RQ3 With a Specific SUBSET_ID (@2.90GHz): 70 hours` 
 (Repeated 1 time for each of the 30 valid `SUBSET_ID`)
+
+#### Runtimes - Without NwM
+`Expected Average Runtime for one Repetition of RQ3 (@2.90GHz): 10 hours` (Repeated 1 time for each of the 30 valid `SUBSET_ID`)
 
 ### Docker Experiment Configuration
 By default, the properties used by Docker are configured to run the experiments as presented in our paper. We offer the 
