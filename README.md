@@ -76,12 +76,60 @@ described here, please refer to the detailed steps described in the [REQUIREMENT
   ```
 
 ## Running the Experiments
-You can either run the experiments in Docker containers (recommended) or without Docker.
+You can either run the experiments in Docker containers (recommended) or without Docker. 
+Furthermore, it is possible run the experiments for the three research questions (RQs) that we answered in our paper 
+individually.
+Alternatively, you can also run all experiments (including all repetitions).
+
+**ATTENTION**
+```
+Make sure to delete all previously collected results by deleting the `./results` directory, as they will otherwise be 
+counted as results of subsequent experiment executions. We only append results data, not overwrite it, to make it 
+possible to run multiple instances of the same experiment in parallel.
+```
+```
+All of the commands in this section are assumed to be executed in a terminal with working directory at RaQuN's project
+root.
+```
 
 ### With Docker
 Repeating our experiments with the provided scripts in a Docker container should be easy and has only few requirements.
-You can find instructions on how to build the Docker image in the INSTALL.md file, and instructions on how to run our
-experiments in the README.md file.
+You can find information on the requirements and how to build the Docker image in the [REQUIREMENTS.md](REQUIREMENTS.md) and
+[INSTALL.md](INSTALL.md) files.
+
+#### Running all Experiments
+You can repeat the experiments exactly as presented in our paper. The following command will execute 30 runs of the experiments
+for RQ1 and RQ2, and 1 run for the experiment of RQ3. 
+```
+  Windows Command Prompt:
+    experiment.bat run
+    
+  Windows PowerShell:
+    .\experiment.bat run
+    
+  Linux
+    ./experiment.sh run
+```
+
+
+
+#### Running one Repetition of a Specific RQ
+You can run a single experiment repetition for any of the RQs (e.g., `experiment.bat RQ1` executes RQ1).
+```
+  Windows Command Prompt:
+    experiment.bat (RQ1|RQ2|RQ3)
+    
+  Windows PowerShell:
+    .\experiment.bat (RQ1|RQ2|RQ3)
+    
+  Linux
+    ./experiment.sh (RQ1|RQ2|RQ3)
+```
+`Expected Average Runtime for one Repetition of RQ1 (@2.90GHz): 4h` (Repeated 30 times for the paper)
+
+`Expected Average Runtime for one Repetition of RQ2 (@2.90GHz): 7h 30min` (Repeated 30 times for the paper)
+
+`Expected Average Runtime for one Repetition of RQ3 (@2.90GHz): 200810` (Repeated 1 time in the paper)
 
 ### Without Docker
 

@@ -9,15 +9,21 @@ import de.variantsync.matching.experiments.raqun.RaqunSetup;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
 public class RQ3Runner extends AbstractRQRunner {
+    private String subsetID = null;
 
     public RQ3Runner(String... args) {
         super(args);
+        if (args.length > 1) {
+            this.subsetID = args[1].trim();
+        }
     }
 
     public static void main(String... args) {
@@ -38,15 +44,35 @@ public class RQ3Runner extends AbstractRQRunner {
                 }
             }
         }
-        Collections.sort(argoSets);
         List<String> datasets = new ArrayList<>(argoSets);
-        datasets.add("argouml");
+        if (subsetID != null) {
+            // If only specific subsets are to be run
+            if (subsetID.length() == 1) {
+                subsetID = "s00" + subsetID;
+            } else if(subsetID.length() == 2) {
+                subsetID = "s0" + subsetID;
+            } else {
+                throw new IllegalArgumentException("Invalid subset id!");
+            }
+            // Filter the subsets
+            datasets = datasets.stream().filter((d) -> d.contains(subsetID)).collect(Collectors.toList());
+            Collections.sort(datasets);
+        } else {
+            Collections.sort(argoSets);
+            datasets.add("argouml");
+        }
 
         // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
         // If set to true, NwM will no longer be executed on the ArgoUML subsets
         boolean nwmTimeout = false;
         boolean reachedLargestSubset = false;
-        String timeoutSubset = "p" + configuration.getExperimentsRq3LargestSubset() + "_s030";
+        String timeoutSubset;
+        if (subsetID == null) {
+            timeoutSubset = "p" + configuration.getExperimentsRq3LargestSubset() + "_s030";
+        } else {
+            timeoutSubset = "p" + configuration.getExperimentsRq3LargestSubset() + "_" + subsetID;
+        }
+
         for (String dataset : datasets) {
             if (reachedLargestSubset) {
                 break;
