@@ -27,7 +27,7 @@ The following software requirements apply, if you plan to run the experiments pr
 ### OS
 We provide batch scripts for Windows and bash scripts for Linux. The Linux scripts might work on MacOS as well. Tested OS:
 - Linux
-- Windows
+- Windows 10
 
 ### Other Software
 To run our experiments in Docker, you only require [Docker](https://docs.docker.com/get-docker/) to be installed and 
