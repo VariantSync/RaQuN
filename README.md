@@ -346,7 +346,7 @@ public class Main {
         dataset.loadFileContent(Paths.get("path/to/MyDataset.csv"));
         
         RaQuN raQuN = new RaQuN(new PropertyBasedVectorization(), new OneToOneValidity(), new WeightMetric());
-        Set<RMatch> matching = raQuN.match(models);
+        Set<RMatch> matching = raQuN.match(dataset.getModels());
     }
 }
 ```
