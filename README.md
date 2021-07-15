@@ -104,7 +104,9 @@ for RQ1 and RQ2, and 1 run for the experiment of RQ3.
   Linux
     ./experiment.sh run
 ```
-`Expected Average Runtime for all experiments (@2.90GHz): 2460 hours or 102 days`
+`Expected Average Runtime for all experiments (@2.90GHz): 2460 hours or 102 days` 
+
+We provide instructions on how to parallelize the experiments for a shorter total runtime in the next sections.
 
 ### Running Specific Experiments
 Due to the considerable runtime of running all experiments, we offer possibilities to run individual experiments and repetitions
