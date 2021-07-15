@@ -32,40 +32,39 @@ We provide batch scripts for Windows and bash scripts for Linux. The Linux scrip
 ### Other Software
 To run our experiments in Docker, you only require [Docker](https://docs.docker.com/get-docker/) to be installed and 
 running on your system.
-Please refer to the official [documentation](https://docs.docker.com/config/daemon/), if you run into any problems with 
+Please refer to the official [documentation](https://docs.docker.com/config/daemon/) if you run into any problems when 
 starting the Docker Daemon.
 
 
 
 ## Software Requirements - Running the Experiments without Docker
-The following software requirements apply, if you plan to run the experiments presented in our paper __without__ Docker.
+The following software requirements apply if you plan to run the experiments presented in our paper __without__ Docker.
 
 ```
-We encourage you to try out running the experiments using Docker instead. It is easier to run, more robust, and 
+We encourage you to use Docker though. It is easier to run, more robust, and 
 you can also quickly run the experiments with a new setup by rebuilding the Docker image.
 ```
 
 ### OS
-RaQuN was written in Java and the result evaluation in Python-3. Therefore, you can run it on any OS on which you can 
-install the required software.
+RaQuN is written in Java and the result evaluation is written in Python-3. Therefore, you can run the experiments on any OS on which you can 
+install the required software (see below).
 
-### Other Software
+### Required Software
 The following requirements apply, if you want to run and evaluate the experiments without Docker:
 - [JDK-11](https://www.oracle.com/java/technologies/javase-downloads.html)
 - [Maven](https://maven.apache.org/download.cgi), which is also integrated in most Java IDEs
 - [Python-3.8](https://www.python.org/downloads/)
 - [matplotlib](https://matplotlib.org/stable/users/installing.html)
-- A tool for inflating archives (.zip). Examples are [7-ZIP](https://www.7-zip.org/) or [unzip](https://linux.die.net/man/1/unzip).
- Windows 10 and most Linux distribution already have a built-in archival tool.
+- A tool for inflating archives (.zip). Examples are [7-ZIP](https://www.7-zip.org/) or [unzip](https://linux.die.net/man/1/unzip). Windows 10 and most Linux distribution already have a built-in archival tool.
 
 ## Software Requirements - RaQuN as a Library
-The following software requirements apply, if you plan to use RaQuN only as a Java library.
+The following software requirements apply if you plan to use RaQuN only as a Java library.
 
 ### OS
-RaQuN was written in Java. Therefore, you can use it with any OS on which you can install the required software.
+RaQuN is written in Java. Therefore, you can use it on any OS on which you can install the required software (see below).
 
-### Other Software
-This repository contains RaQuN as a JAR file `RaQuN.jar` which you can add a dependency to your own project. The following
+### Required Software
+This repository contains the RaQuN library as a JAR file `RaQuN.jar` which you can add as a dependency to your own project. The following
 requirements apply:
 - [JDK-11](https://www.oracle.com/java/technologies/javase-downloads.html)
 
