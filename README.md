@@ -162,6 +162,23 @@ parallel.
 #### Runtimes - Without NwM
 `Expected Average Runtime for one Repetition of RQ3 (@2.90GHz): 10 hours` (Repeated 1 time for each of the 30 valid `SUBSET_ID`)
 
+### Result Evaluation
+You can run the result evaluation as done for our paper by calling the experiment script with `evaluate`. The
+script will consider all data found under `./results`.
+```
+  Windows Command Prompt:
+    experiment.bat evaluate
+    
+  Windows PowerShell:
+    .\experiment.bat evaluate
+    
+  Linux
+    ./experiment.sh evaluate
+```
+`Expected Average Runtime for all experiments (@2.90GHz): a few seconds`
+The script will generate figures and tables similar to the ones presented in our paper. They are automatically saved to
+`./results/eval-results`.
+
 ### Docker Experiment Configuration
 By default, the properties used by Docker are configured to run the experiments as presented in our paper. We offer the 
 possibility to change the default configuration. 
@@ -238,6 +255,27 @@ java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-exp
 ```
 `Expected Average Runtime for one Repetition of RQ3 With a Specific SUBSET_ID (@2.90GHz): 70 hours`
 (Repeated 1 time for each of the 30 valid `SUBSET_ID`)
+
+### Result Evaluation
+You can run the result evaluation as done for our paper by calling the python script. The
+script will consider all data found under `./results`.
+
+* Navigate to the script: `cd result_analysis_python`
+* Start the evaluation:
+  ```
+    Windows Command Prompt:
+      python.exe evaluation.py
+      
+    Windows PowerShell:
+      python.exe evaluation.py
+      
+    Linux
+      python3.8 evaluation.py
+  ```
+`Expected Average Runtime (@2.90GHz): a few seconds`
+
+The script will generate figures and tables similar to the ones presented in our paper. They are automatically saved to
+`./results/eval-results`.
 
 ### Experiment Configuration
 You can use the properties that are also used by Docker. By default, the properties are configured to run the 
