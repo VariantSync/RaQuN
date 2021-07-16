@@ -225,6 +225,15 @@ possibility to change the default configuration.
 * Delete old results in the `./results` folder
 * Start the experiment as described above.
 
+### Clean-Up
+The more experiments you run, the more space will be required by Docker. The easiest way to clean up all Docker images and
+containers is to run the following command in your terminal. Note that this will remove all other containers and images
+not related to RaQuN as well:
+```
+docker system prune -a
+```
+Please refer to the official documentation on how to remove specific [images](https://docs.docker.com/engine/reference/commandline/image_rm/) and [containers](https://docs.docker.com/engine/reference/commandline/container_rm/) from your system.
+
 ## Running the Experiments on New Datasets
 It is possible to run the experiments on new element-property datasets that are stored in a `csv` file. 
 
