@@ -35,6 +35,8 @@ Linux:
  ./build-docker-image.sh
 ```
 
+The generated Docker image will have the name `match-experiments`.
+
 ### Validation of Correct Installation
 We prepared an entry point for the Docker image through which you can validate that the image is working. This validation 
 comprises a small subset of the experiments which we present in our paper. 
