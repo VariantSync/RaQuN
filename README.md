@@ -31,7 +31,7 @@ Authors:
 ```
 
 ## Obtaining the Artifacts
-You can download the latest release via [Zenodo](TODO) or clone the [git](https://git-scm.com/) repository from [GitHub](https://github.com/AlexanderSchultheiss/RaQuN).
+You can download the latest release via [Zenodo](TODO) or clone the repository from [GitHub](https://github.com/AlexanderSchultheiss/RaQuN).
 
 ### Zenodo
 * Download the [archive](TODO)
