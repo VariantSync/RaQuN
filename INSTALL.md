@@ -174,7 +174,7 @@ Lastly, you can run the experiment evaluation that generates plots and tables si
 cd result_analysis_python
 python.exe .\evaluation.py
 # Linux:
-python3.8 ./result_analysis_python/evaluation.py
+cd result_analysis_python
 python3.8 ./evaluation.py
 ```
 

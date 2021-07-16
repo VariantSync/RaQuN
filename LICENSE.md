@@ -11,9 +11,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## libssrckdtree by savarese
+## _libssrckdtree_ by _savarese software research_
 This repository contains a Java library for k-d-trees by _savarese software research:_ [libssrckdtree-j-1.0.2](https://www.savarese.com/software/libssrckdtree-j/).
-The library was also published under an Apache 2.0 license with a NOTICE. Both can be found [here](local-maven-repo/com/savarese/).
+The library was also published under an Apache 2.0 license with a [NOTICE](local-maven-repo/com/savarese/NOTICE) file.
 
 ## Eclipse Packages
 This repository also contains [eclipse libraries](local-maven-repo/org/eclipse) that are required for converting emf models into csv files. These libraries
