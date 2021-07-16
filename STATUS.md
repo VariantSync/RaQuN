@@ -5,7 +5,7 @@ We apply for the _Artifacts Evaluated - Reusable_ and _Artifacts Available_ badg
 
 ## Artifacts Evaluated - Reusable
 We believe that the artifact deserves this badge because
-* we documented all code artifacts ([`experiments`](src/main/java/de/variantsync/matching/experiments) and 
+* we documented all code artifacts (You can find the index page [here](docs/index.html)) and 
   [`raqun`](src/main/java/de/variantsync/matching/raqun) written by us and provide extensive README files with 
   instructions and examples on how to
   * [prepare the system](REQUIREMENTS.md) 

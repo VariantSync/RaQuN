@@ -32,6 +32,7 @@ The project contains a number of files and folders with interesting content.
 * [`docker-resources`](docker-resources) contains the script and property files used by the Docker containers.
   * `docker-resources/experiment.properties` configures the experiments as presented in our paper. 
   * `docker-resources/quick-validation.properties` configures a quick experiment for validating the Docker image's functionality.
+* [`docs`](docs) contains the Javadocs for the project. You can find the index page [here](docs/index.html). 
 * [`experimental_subjects`](experimental_subjects) contains the archives with the csv-files describing the input models used in our experiments.
 * [`result_analysis_python`](result_analysis_python) contains the Python scripts which we used to evaluate the experiments' results
 and generate the plots and tables for our paper.
