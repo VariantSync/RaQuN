@@ -19,5 +19,5 @@ We believe that the artifact deserves this badge because
 
 ## Artifacts Available
 We believe that the artifact deserve this badge because
-* the artifact is publicly available on [ZENODO](TODO) and associated with a [DOI](TODO)
+* the artifact is publicly available on ZENODO and associated with a DOI
 * the artifact is publicly available on [Github](https://github.com/AlexanderSchultheiss/RaQuN)
