@@ -32,7 +32,7 @@ public class VectorizationTest {
         elements.add(simpleElement);
         PropertyBasedVectorization vectorization = new PropertyBasedVectorization();
         vectorization.initialize(getModels(elements));
-        Map<String, Integer> childrenNamesDimension = vectorization.getChildrenNamesDimension();
+        Map<String, Integer> childrenNamesDimension = vectorization.getPropertyNamesDimension();
         assert childrenNamesDimension.size() == 3;
         assert childrenNamesDimension.containsKey("n_" + simpleElement.getName());
         assert childrenNamesDimension.containsKey("property1");
@@ -44,7 +44,7 @@ public class VectorizationTest {
         List<RElement> elements = TestDataFactory.getElementList();
         PropertyBasedVectorization vectorization = new PropertyBasedVectorization();
         vectorization.initialize(getModels(elements));
-        Map<String, Integer> childrenNamesDimension = vectorization.getChildrenNamesDimension();
+        Map<String, Integer> childrenNamesDimension = vectorization.getPropertyNamesDimension();
         assert childrenNamesDimension.size() == 6;
         assert vectorization.getNumberOfDimension() == 6;
     }
@@ -56,7 +56,7 @@ public class VectorizationTest {
         elements.add(elements.get(0));
         PropertyBasedVectorization vectorization = new PropertyBasedVectorization();
         vectorization.initialize(getModels(elements));
-        Map<String, Integer> childrenNamesDimension = vectorization.getChildrenNamesDimension();
+        Map<String, Integer> childrenNamesDimension = vectorization.getPropertyNamesDimension();
 
         for (RElement element : elements) {
             RVector vector = vectorization.vectorFor(element);

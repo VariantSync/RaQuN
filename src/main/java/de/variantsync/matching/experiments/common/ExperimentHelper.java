@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A utility class that proved methods for setting up and running the experiments.
+ * Utility class that provides methods for setting up and running the experiments.
  */
 public class ExperimentHelper {
 

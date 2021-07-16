@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
  * We presented this vectorization in our paper.
  */
 public class PropertyBasedVectorization implements IVectorization {
-    private Map<String, Integer> childrenNamesDimension;
+    private Map<String, Integer> propertyNamesDimension;
     protected Map<RElement, RVector> elementToVectorMap;
     protected int dimensions;
 
     protected int fillLexicalIndex(Set<RElement> elements) {
         Set<String> childrenNames = elements.stream().flatMap(element -> element.getProperties().stream()).collect(Collectors.toSet());
         AtomicInteger i = new AtomicInteger(0);
-        childrenNamesDimension = childrenNames.stream().collect(Collectors.toMap(s -> s, s -> i.getAndIncrement()));
+        propertyNamesDimension = childrenNames.stream().collect(Collectors.toMap(s -> s, s -> i.getAndIncrement()));
         return i.get();
 
     }
@@ -49,15 +49,18 @@ public class PropertyBasedVectorization implements IVectorization {
         } else {
             RVector vector = new RVector(dimensions);
 
-            element.getProperties().forEach(n -> vector.setCoord(childrenNamesDimension.get(n), 1));
+            element.getProperties().forEach(n -> vector.setCoord(propertyNamesDimension.get(n), 1));
 
             elementToVectorMap.put(element, vector);
             return vector;
         }
     }
 
-    public Map<String, Integer> getChildrenNamesDimension () {
-        return this.childrenNamesDimension;
+    /**
+     * @return A map of property names to dimension indices
+     */
+    public Map<String, Integer> getPropertyNamesDimension() {
+        return this.propertyNamesDimension;
     }
 
     @Override
