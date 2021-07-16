@@ -41,10 +41,10 @@ of the different matchers that we evaluated.
   * [`nwm`](src/main/java/de/variantsync/matching/nwm) contains the sources of the NwM prototype implementation written by Rubin and Chechik and slightly adjusted by us.
   * [`pairwise`](src/main/java/de/variantsync/matching/pairwise) contains a wrapper written by us for Rubin and Chechik's implementation of a pairwise matcher. 
   * [`raqun`](src/main/java/de/variantsync/matching/raqun) contains RaQuN's implementation written by us.
-* [`EXPERIMENTS.md`](EXPERIMENTS.md) contains detailed instructions on how to run and configure experiments with and without Docker. You can find basic instructions in the sections below.
-* [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
-* [`LICENSE.md`](LICENSE.md) contains licensing information.
 * [`REQUIREMENTS.md`](REQUIREMENTS.md) contains the requirements for installing and running the artifacts on your system.
+* [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
+* [`EXPERIMENTS.md`](EXPERIMENTS.md) contains detailed instructions on how to run and configure experiments with and without Docker. You can find basic instructions in the sections below.
+* [`LICENSE.md`](LICENSE.md) contains licensing information.
 * [`RaQuN.jar`](RaQuN.jar) A pre-build library of RaQuN which you can add as a dependency to your own projects.
 * [`STATUS.md`](STATUS.md) specifies the [ACM badges](https://www.acm.org/publications/policies/artifact-review-and-badging-current)
   which we apply for.
