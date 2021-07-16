@@ -226,7 +226,7 @@ runner expects the `csv` to have to following format:
 be enumerated by appending a number following an underscore to the property (e.g., appending `_3`) as seen in the examples above.
   
 ### How to Run the Experiments On Your Dataset
-* Save the dataset's csv file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files
+* Save the dataset's `csv` file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files. (Do not zip your files or locate them in subdirectories. They should be directly at the top-level, e.g., at `experiment_subjects/customdataset.csv`.)
 * Open the experiment properties in a text editor
   * [`full-experiments.properties`](docker-resources/full-experiments.properties) configures the experiment execution
     of `experiment.(bat|sh) run`
