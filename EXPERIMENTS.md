@@ -259,18 +259,20 @@ of models has been converted from EMF. More specifically, we implemented convert
 implementation shipped with the Eclipse Modeling project, and for customly defined meta-model of architectural models 
 following the component-connector principle.
 
-In order to run the converters on the EMF models provided in the directory TODO .... you can ....
+In order to run the converters on the EMF models provided in the directory [emf-models](emf-models) you can ....
 
-TODO anpassen
+```shell
 java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/argouml
 java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/bcms
 java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/ppu
 java -cp ModelExtraction.jar emf2csv.UML2CSV statemachine emf-models/ppu_statem
 java -cp ModelExtraction.jar emf2csv.Architecture2CSV emf-models/bcs
+```
 
-Besides reproducing our experimental results, the converters may serve as an inspiration of how to implement dedicated 
-converters for your own EMF models. In a nutshell, we use the generic EMF model traversal and reflective API to access 
-an element's local properties and referenced elements. We exploit domain knowledge (on meta-models) to filter (and condense) some information considered irrelevant (too verbose) for similarity-based matching.
+The converters may serve as an inspiration of how to implement dedicated converters for your own EMF models. 
+In a nutshell, we use the generic EMF model traversal and reflective API to access an element's local properties 
+and referenced elements. We exploit domain knowledge (on meta-models) to filter (and condense) some information 
+considered irrelevant (too verbose) for similarity-based matching.
 
 ### Running the Experiments On Your Dataset
 * Save the dataset's `csv` file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files. (Do not zip your files or locate them in subdirectories. They should be directly at the top-level, e.g., at `experiment_subjects/customdataset.csv`.)

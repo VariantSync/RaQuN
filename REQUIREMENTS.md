@@ -2,8 +2,6 @@
 This file specifies the hardware and software requirements that apply. Different software requirements apply, depending on 
 whether you only want to repeat our experiments in a Docker container, or whether RaQuN is to be used as a library.
 
-
-
 ## Hardware Requirements
 The following requirements apply for repeating the experiments presented in our paper. If you want to run the experiments
 on your own datasets, more or less resources might be required.
@@ -29,9 +27,9 @@ run in parallel, more resources will be required, depending on the number of run
 The following software requirements apply, if you plan to run the experiments presented in our paper __with__ Docker.
 
 ### OS
-We provide batch scripts for Windows and bash scripts for Linux. The Linux scripts might work on MacOS as well. Tested OS:
-- Linux
-- Windows 10
+We provide batch scripts and bash scripts with parameterized Docker calls. You can use any OS supporting one of the script 
+types. We tested the scripts on Windows 10, WSL2.0 with Ubuntu 20.04 LTS, and Manjaro Linux. If your OS supports
+neither batch nor bash scripts, you can execute the Docker calls in the scripts manually by copying them to your terminal.
 
 ### Other Software
 To run our experiments in Docker, you only require [Docker](https://docs.docker.com/get-docker/) to be installed and 
@@ -42,7 +40,7 @@ starting the Docker Daemon.
 
 
 ## Software Requirements - Running the Experiments without Docker
-The following software requirements apply if you plan to run the experiments presented in our paper __without__ Docker.
+The following software requirements apply **only** if you plan to run the experiments presented in our paper __without__ Docker.
 
 ```
 We encourage you to use Docker though. It is easier to run, more robust, and 
