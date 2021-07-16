@@ -2,6 +2,7 @@ package de.variantsync.matching.emf2csv;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,8 @@ public class UML2CSV {
 			System.exit(0);
 		}
 
-		File outFile = new File(inFolder.getName() + ".csv");
+		File outFile = new File("csv-models/" + inFolder.getName() + ".csv");
+		outFile.getParentFile().mkdirs();
 
 		System.out.println("Model Type: " + args[0]);
 		System.out.println("Model Directory: " + inFolder.getAbsolutePath());

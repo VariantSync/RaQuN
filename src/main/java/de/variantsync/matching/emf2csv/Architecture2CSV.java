@@ -2,6 +2,7 @@ package de.variantsync.matching.emf2csv;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,8 @@ public class Architecture2CSV {
 		}
 		System.out.println("Model Directory: " + inFolder.getAbsolutePath());
 
-		File outFile = new File(inFolder.getName() + ".csv");
+		File outFile = new File("csv-models/" + inFolder.getName() + ".csv");
+		outFile.getParentFile().mkdirs();
 
 		List<EClass> elementTypes = new ArrayList<EClass>();
 		elementTypes.add(ArchitecturePackage.eINSTANCE.getComponent());

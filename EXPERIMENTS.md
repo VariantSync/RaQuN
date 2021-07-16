@@ -259,15 +259,17 @@ of models has been converted from EMF. More specifically, we implemented convert
 implementation shipped with the Eclipse Modeling project, and for customly defined meta-model of architectural models 
 following the component-connector principle.
 
-In order to run the converters on the EMF models provided in the directory [emf-models](emf-models) you can ....
-
+In order to run the converters on the EMF models provided in the directory [emf-models](emf-models) do the following:
+* Build the required jar files with Maven: `mvn package`
+* Execute the converters
 ```shell
-java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/argouml
-java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/bcms
-java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/ppu
-java -cp ModelExtraction.jar emf2csv.UML2CSV statemachine emf-models/ppu_statem
-java -cp ModelExtraction.jar emf2csv.Architecture2CSV emf-models/bcs
+java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram emf-models/argouml
+java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram emf-models/bcms
+java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram emf-models/ppu
+java -jar target/UML2CSV-jar-with-dependencies.jar statemachine emf-models/ppu_statem
+java -jar target/Architecture2CSV-jar-with-dependencies.jar emf-models/bcs
 ```
+* The converted models are saved under [`./csv-models`](csv-models)
 
 The converters may serve as an inspiration of how to implement dedicated converters for your own EMF models. 
 In a nutshell, we use the generic EMF model traversal and reflective API to access an element's local properties 

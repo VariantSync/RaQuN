@@ -103,6 +103,42 @@
                             </descriptorRefs>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>UML2CSV</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>UML2CSV</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>de.variantsync.matching.emf2csv.UML2CSV</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Architecture2CSV</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>Architecture2CSV</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>de.variantsync.matching.emf2csv.Architecture2CSV</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
