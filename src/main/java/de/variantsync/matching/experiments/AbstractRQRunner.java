@@ -17,13 +17,12 @@ public abstract class AbstractRQRunner {
     protected IVectorization vectorization;
 
     protected AbstractRQRunner(String... args) {
-        if (args.length == 0) {
-            configuration = new ExperimentConfiguration();
-        } else if (args.length == 1) {
+        if (args.length == 1) {
             configuration = new ExperimentConfiguration(new File(args[0]));
         } else {
-            throw new IllegalArgumentException("Illegal number of arguments: " + args.length);
+            configuration = new ExperimentConfiguration();
         }
+
         baseResultsDir = configuration.resultsFolder();
         baseDatasetDir = configuration.datasetsFolder();
         verbose = configuration.verboseResults();

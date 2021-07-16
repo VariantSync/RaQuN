@@ -202,7 +202,7 @@ runner expects the `csv` to have to following format:
 * If an element has multiple properties with exactly the same values, the properties of all elements in the dataset should
 be enumerated by appending a number to the property as seen in the examples above.
   
-### How to Run the Matchers Your Dataset
+### How to Run the Experiments On Your Dataset
 * Save the dataset's csv file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files
 * Open the experiment properties in a text editor
   * [`full-experiments.properties`](docker-resources/full-experiments.properties) configures the experiment execution

@@ -38,7 +38,7 @@ else
       echo "Running experiment for RQ2"
       java -jar RQ2Runner-jar-with-dependencies.jar full-experiments.properties
       echo "Running experiment for RQ3"
-      java -jar RQ3Runner-jar-with-dependencies.jar full-experiments.properties
+      java -jar RQ3Runner-jar-with-dependencies.jar full-experiments.properties $2
   elif [ "$1" == 'RQ1' ]
   then
       echo "Running experiment for RQ1"
@@ -50,13 +50,13 @@ else
   elif [ "$1" == 'RQ3' ]
   then
       echo "Running experiment for RQ3"
-      java -jar RQ3Runner-jar-with-dependencies.jar single-experiment.properties
+      java -jar RQ3Runner-jar-with-dependencies.jar single-experiment.properties $2
   elif [ "$1" == 'validate' ]
   then
       echo "Running a 30 minute validation."
       java -jar RQ1Runner-jar-with-dependencies.jar quick-validation.properties
       java -jar RQ2Runner-jar-with-dependencies.jar quick-validation.properties
-      java -jar RQ3Runner-jar-with-dependencies.jar quick-validation.properties
+      java -jar RQ3Runner-jar-with-dependencies.jar quick-validation.properties $2
       echo "Running result evaluation"
       cd result_analysis_python || exit
       python3.8 evaluation.py
