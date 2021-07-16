@@ -125,7 +125,7 @@ public class WeightMetricTest {
             weightSum += weightMetric.weightForElements(tuple.getElements());
         }
         double weightOfCombinedTuples = weightMetric.weightForElements(allElements);
-        if (weightOfCombinedTuples < weightSum) {
+        if (weightOfCombinedTuples <= weightSum) {
             assert !weightMetric.shouldMatch(tuples);
         } else {
             assert weightMetric.shouldMatch(tuples);
