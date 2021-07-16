@@ -35,5 +35,8 @@ public abstract class AbstractRQRunner {
         vectorization = configuration.vectorization();
     }
 
+    /**
+     * Run the experiment related to a research question (RQ)
+     */
     public abstract void run();
 }

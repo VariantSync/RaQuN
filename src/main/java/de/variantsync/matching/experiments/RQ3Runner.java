@@ -20,8 +20,8 @@ import static de.variantsync.matching.experiments.common.ExperimentHelper.runExp
  */
 public class RQ3Runner extends AbstractRQRunner {
     private String subsetID = null;
-    public final int FIRST_SUBSET = 1;
-    public final int LAST_SUBSET = 30;
+    private static final int FIRST_SUBSET = 1;
+    private static final int LAST_SUBSET = 30;
 
     public RQ3Runner(String... args) {
         super(args);

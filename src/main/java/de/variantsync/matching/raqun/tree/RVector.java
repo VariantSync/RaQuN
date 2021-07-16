@@ -7,6 +7,10 @@ import com.savarese.spatial.GenericPoint;
  */
 public class RVector extends GenericPoint<Double>
 {
+	/**
+	 * Initialize a vector with the given number of dimensions.
+	 * @param dimensions number of dimensions
+	 */
 	public RVector(int dimensions)
 	{
 		super(dimensions);
@@ -16,6 +20,11 @@ public class RVector extends GenericPoint<Double>
 		}
 	}
 
+	/**
+	 * Set the value of a dimension
+	 * @param d dimension index
+	 * @param v value
+	 */
 	public void setCoord(int d, double v)
 	{
 		super.setCoord(d, v);

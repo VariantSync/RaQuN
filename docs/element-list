@@ -1,0 +1,11 @@
+de.variantsync.matching.experiments
+de.variantsync.matching.experiments.baseline
+de.variantsync.matching.experiments.common
+de.variantsync.matching.experiments.raqun
+de.variantsync.matching.pairwise
+de.variantsync.matching.raqun
+de.variantsync.matching.raqun.data
+de.variantsync.matching.raqun.similarity
+de.variantsync.matching.raqun.tree
+de.variantsync.matching.raqun.validity
+de.variantsync.matching.raqun.vectorization

@@ -63,6 +63,10 @@ public class HungarianPairwiseMatcher extends AlgoBase {
         return retVal;
     }
 
+    /**
+     *
+     * @return How many comparisons were required to compute the last matching?
+     */
     public int getNumberOfComparisons() {
         return this.numberOfComparisons;
     }

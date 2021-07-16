@@ -70,6 +70,10 @@ public class CharacterBasedVectorization extends PropertyBasedVectorization {
         }
     }
 
+    /**
+     *
+     * @return A map of characters to dimension indices
+     */
     public Map<Character, Integer> getCharacterDimensions() {
         return this.characterDimensions;
     }

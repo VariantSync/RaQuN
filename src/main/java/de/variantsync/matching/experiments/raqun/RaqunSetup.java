@@ -16,6 +16,21 @@ public class RaqunSetup extends ExperimentSetup {
     public final IVectorization vectorization;
     public final IValidityConstraint validityConstraint;
 
+    /**
+     * Initialize a new setup for an experiment with RaQuN
+     * @param name The name of the experiment, usually RaQuN plus a postfix
+     * @param numberOfRepeats how often the experiment is repeated
+     * @param resultDir where to save the results
+     * @param datasetDir where to load the dataset from
+     * @param dataset the dataset that is to be loaded
+     * @param chunkSize The size of chunks in which the dataset is to be split. Set INTEGER.MAX_VALUE for no splitting
+     * @param startK The k' to start with if multiple k' are considered
+     * @param maxK The k' to end wth if multiple k' are considered
+     * @param printVerbose Print the matches after completion
+     * @param vectorization The vectorization function that is applied
+     * @param similarityFunction The similarity function that is applied
+     * @param validityConstraint The validity constraint that is applied
+     */
     public RaqunSetup(String name, int numberOfRepeats,
                       String resultDir, String datasetDir,
                       String dataset, int chunkSize,

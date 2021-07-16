@@ -22,6 +22,9 @@ public class WeightMetric implements ISimilarityFunction
 		this.numberOfModels = numberOfModels;
 	}
 
+	/**
+	 * Initialize the WeightMetric without normalization by number of models.
+	 */
 	public WeightMetric() {
 		// Set the number of models to 1, so that no normalization is done, if the number is not given explicitly
 		this.numberOfModels = 1;
@@ -31,11 +34,14 @@ public class WeightMetric implements ISimilarityFunction
 	 * Weight calculation used by the classes implemented by Rubin et al. We changed the method
 	 * that is called by these classes to this one, because we improved the runtime of the weight calculation
 	 * and did not want to give RaQuN an unfair advantage here.
+	 * @param elements the elements for which the weight is to be calculated
+	 * @param numberOfModels the number of models which is used for normalization (set to 1 for no normalization)
+	 * @return the weight between 0 and 1
 	 */
-	public static double weightForElements(Collection<Element> tuple, int numberOfModels) {
+	public static double weightForElements(Collection<Element> elements, int numberOfModels) {
 		HashMap<String, List<Boolean>> allDistinctProperties = new HashMap<>();
 		long numerator = 0;
-		for (Element element : tuple) {
+		for (Element element : elements) {
 			for (String name : element.getProperties()) {
 				numerator += addProperty(allDistinctProperties, name);
 			}

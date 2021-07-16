@@ -15,6 +15,7 @@ import java.util.Collection;
 public interface IVectorization {
     /**
      * Initialize the vectorization for the given input models.
+     * @param inputModels the input models with which the vectorization is initialized
      */
     void initialize(Collection<RModel> inputModels);
 
