@@ -17,8 +17,8 @@ RUN python3.8 -m pip install -U matplotlib
 # Copy all relevant files
 WORKDIR /home/user
 RUN mkdir -p ./experimental_subjects/argouml
-COPY experimental_subjects/* ./experimental_subjects
-COPY experimental_subjects/argouml/* ./experimental_subjects/argouml
+COPY experimental_subjects/* ./experimental_subjects/
+COPY experimental_subjects/argouml/* ./experimental_subjects/argouml/
 COPY local-maven-repo ./local-maven-repo
 COPY src ./src
 COPY pom.xml .
@@ -39,10 +39,9 @@ RUN unzip -o argouml_p9.zip
 
 # Copy the docker resources
 WORKDIR /home/user
-COPY docker-resources/* .
+COPY docker-resources/* ./
 
 # Adjust permissions
-RUN mkdir -p /home/user/results
 RUN chown user:user /home/user -R
 RUN chmod +x run-experiments.sh
 
