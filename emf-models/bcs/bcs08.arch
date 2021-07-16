@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ASCII"?>
+<architecture:Architecture xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:architecture="http://www.sidiff.org/architecture/model/1.0" xmi:id="_bfRJ0N-9Eem20eoEvevN_A" name="bcs">
+  <signals xmi:id="_bfRJ0d-9Eem20eoEvevN_A" name="pw_but_mv_dn" ports="_bfRKsd-9Eem20eoEvevN_A _bfRJ7d-9Eem20eoEvevN_A"/>
+  <signals xmi:id="_bfRJ0t-9Eem20eoEvevN_A" name="pw_but_mv_up" ports="_bfRKst-9Eem20eoEvevN_A _bfRJ7t-9Eem20eoEvevN_A"/>
+  <signals xmi:id="_bfRJ09-9Eem20eoEvevN_A" name="em_but_mv_left" ports="_bfRKs9-9Eem20eoEvevN_A _bfRJ79-9Eem20eoEvevN_A"/>
+  <signals xmi:id="_bfRJ1N-9Eem20eoEvevN_A" name="em_but_mv_right" ports="_bfRKtN-9Eem20eoEvevN_A _bfRJ8N-9Eem20eoEvevN_A"/>
+  <signals xmi:id="_bfRJ1d-9Eem20eoEvevN_A" name="em_but_mv_up" ports="_bfRKtd-9Eem20eoEvevN_A _bfRJ8d-9Eem20eoEvevN_A"/>
+  <signals xmi:id="_bfRJ1t-9Eem20eoEvevN_A" name="em_but_mv_dn" ports="_bfRKtt-9Eem20eoEvevN_A _bfRJ8t-9Eem20eoEvevN_A"/>
+  <signals xmi:id="_bfRJ19-9Eem20eoEvevN_A" name="pw_but_up" ports="_bfRJ89-9Eem20eoEvevN_A _CSi8hnoCEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ2N-9Eem20eoEvevN_A" name="pw_but_dn" ports="_bfRJ9N-9Eem20eoEvevN_A _bfRKMd-9Eem20eoEvevN_A _CSi8jXoCEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ2d-9Eem20eoEvevN_A" name="em_but_right" ports="_bfRJ9d-9Eem20eoEvevN_A _WX6n-noFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ2t-9Eem20eoEvevN_A" name="em_but_down" ports="_bfRJ9t-9Eem20eoEvevN_A _WX6n9HoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ29-9Eem20eoEvevN_A" name="em_but_up" ports="_bfRJ99-9Eem20eoEvevN_A _WX6n8noFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ3N-9Eem20eoEvevN_A" name="em_but_left" ports="_bfRJ-N-9Eem20eoEvevN_A _WX6A4HoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ3d-9Eem20eoEvevN_A" name="pw_pos_up" ports="_bfRKt9-9Eem20eoEvevN_A _CSi8kXoCEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ3t-9Eem20eoEvevN_A" name="pw_pos_dn" ports="_bfRKuN-9Eem20eoEvevN_A _CSi8inoCEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ39-9Eem20eoEvevN_A" name="finger_detected" ports="_bfRKud-9Eem20eoEvevN_A _bfRKMt-9Eem20eoEvevN_A"/>
+  <signals xmi:id="_bfRJ4N-9Eem20eoEvevN_A" name="fp_on" ports="_bfRKM9-9Eem20eoEvevN_A _CSi8knoCEeu7Ebu8n-A-zg _3o6GQcYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_bfRJ4d-9Eem20eoEvevN_A" name="fp_off" ports="_bfRKNN-9Eem20eoEvevN_A _CSi8kHoCEeu7Ebu8n-A-zg _3o6GQsYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_bfRJ4t-9Eem20eoEvevN_A" name="em_pos_left" ports="_bfRKut-9Eem20eoEvevN_A _WX6n_3oFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ49-9Eem20eoEvevN_A" name="em_pos_right" ports="_bfRKu9-9Eem20eoEvevN_A _WX6n-HoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ5N-9Eem20eoEvevN_A" name="em_pos_top" ports="_bfRKvN-9Eem20eoEvevN_A _WX6n9XoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ5d-9Eem20eoEvevN_A" name="em_pos_bottom" ports="_bfRKvd-9Eem20eoEvevN_A _WX6oA3oFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ6N-9Eem20eoEvevN_A" name="em_mv_left" ports="_bfRKwN-9Eem20eoEvevN_A _WX6oBnoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ6d-9Eem20eoEvevN_A" name="em_mv_right" ports="_bfRKwd-9Eem20eoEvevN_A _WX6n8HoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ6t-9Eem20eoEvevN_A" name="em_mv_up" ports="_bfRKwt-9Eem20eoEvevN_A _WX6oAHoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_bfRJ69-9Eem20eoEvevN_A" name="em_mv_down" ports="_bfRKw9-9Eem20eoEvevN_A _WX6n_HoFEeu7Ebu8n-A-zg"/>
+  <signals xmi:id="_3ptXgsYFEeqdHOHRm9-7DA" name="pw_auto_mv_stop" ports="_3pt-kcYFEeqdHOHRm9-7DA _3ptXg8YFEeqdHOHRm9-7DA _3ng_I8YFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3ptXgcYFEeqdHOHRm9-7DA" name="pw_auto_mv_dn" ports="_CSi8h3oCEeu7Ebu8n-A-zg _CSi8hHoCEeu7Ebu8n-A-zg _3ng_IcYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3ptXgMYFEeqdHOHRm9-7DA" name="pw_auto_mv_up" ports="_CSi8iXoCEeu7Ebu8n-A-zg _CSi8gXoCEeu7Ebu8n-A-zg _3ng_IsYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPddcYFEeqdHOHRm9-7DA" name="em_pos_hor_left" ports="_3pQrpsYFEeqdHOHRm9-7DA _CM0Q9bHGEeuNzZO06FUL7A"/>
+  <signals xmi:id="_3pPdc8YFEeqdHOHRm9-7DA" name="em_pos_hor_right" ports="_3pQrocYFEeqdHOHRm9-7DA _CM0Q8rHGEeuNzZO06FUL7A"/>
+  <signals xmi:id="_3pPdccYFEeqdHOHRm9-7DA" name="em_pos_vert_pend" ports="_3pQrnMYFEeqdHOHRm9-7DA _3pQrmMYFEeqdHOHRm9-7DA _CM0Q8bHGEeuNzZO06FUL7A"/>
+  <signals xmi:id="_3pPdfcYFEeqdHOHRm9-7DA" name="led_em_left_off" ports="_3pTH08YFEeqdHOHRm9-7DA _3pQrqcYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPdesYFEeqdHOHRm9-7DA" name="led_em_right_on" ports="_3pQro8YFEeqdHOHRm9-7DA _3pTH0MYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPdcMYFEeqdHOHRm9-7DA" name="em_pos_vert_bottom" ports="_3pQrl8YFEeqdHOHRm9-7DA _CM0Q9rHGEeuNzZO06FUL7A"/>
+  <signals xmi:id="_3pPdfMYFEeqdHOHRm9-7DA" name="led_em_left_on" ports="_3pQrqMYFEeqdHOHRm9-7DA _3pTH0sYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPdecYFEeqdHOHRm9-7DA" name="led_em_top_off" ports="_3pQrn8YFEeqdHOHRm9-7DA _3pSgw8YFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPdd8YFEeqdHOHRm9-7DA" name="led_em_bottom_off" ports="_3pSgwcYFEeqdHOHRm9-7DA _3pQrmsYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPddsYFEeqdHOHRm9-7DA" name="led_em_bottom_on" ports="_3pQrmcYFEeqdHOHRm9-7DA _3pSgwMYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPddMYFEeqdHOHRm9-7DA" name="em_pos_hor_pend" ports="_3pQrosYFEeqdHOHRm9-7DA _3pQrp8YFEeqdHOHRm9-7DA _CM0Q_bHGEeuNzZO06FUL7A"/>
+  <signals xmi:id="_3pPdcsYFEeqdHOHRm9-7DA" name="em_pos_vert_top" ports="_3pQrncYFEeqdHOHRm9-7DA _CM0Q_LHGEeuNzZO06FUL7A"/>
+  <signals xmi:id="_3pPde8YFEeqdHOHRm9-7DA" name="led_em_right_off" ports="_3pQrpMYFEeqdHOHRm9-7DA _3pTH0cYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3pPdeMYFEeqdHOHRm9-7DA" name="led_em_top_on" ports="_3pQrnsYFEeqdHOHRm9-7DA _3pSgwsYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3o5fMcYFEeqdHOHRm9-7DA" name="led_fp_off" ports="_3o6GRMYFEeqdHOHRm9-7DA _3o6tUcYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3o5fMMYFEeqdHOHRm9-7DA" name="led_fp_on" ports="_3o6GQ8YFEeqdHOHRm9-7DA _3o6tUMYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3p0FM8YFEeqdHOHRm9-7DA" name="em_too_cold" ports="_3p1TUsYFEeqdHOHRm9-7DA _3p0sQsYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3p0FMcYFEeqdHOHRm9-7DA" name="heating_off" ports="_3p0sQcYFEeqdHOHRm9-7DA _3p1TUcYFEeqdHOHRm9-7DA _3pmCxsYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3p0FMsYFEeqdHOHRm9-7DA" name="time_heating_elapsed" ports="_3p1TU8YFEeqdHOHRm9-7DA _3p0sQ8YFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3p0FMMYFEeqdHOHRm9-7DA" name="heating_on" ports="_3p0sQMYFEeqdHOHRm9-7DA _3p1TUMYFEeqdHOHRm9-7DA _3pmCxcYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3plbtMYFEeqdHOHRm9-7DA" name="led_em_heating_on" ports="_3pmCx8YFEeqdHOHRm9-7DA _3pmp2cYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3plbtcYFEeqdHOHRm9-7DA" name="led_em_heating_off" ports="_3pmCyMYFEeqdHOHRm9-7DA _3pmp2sYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3ngYFMYFEeqdHOHRm9-7DA" name="led_pw_up_off" ports="_3ng_JcYFEeqdHOHRm9-7DA _3ng_MMYFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3ngYE8YFEeqdHOHRm9-7DA" name="led_pw_up_on" ports="_3ng_JMYFEeqdHOHRm9-7DA _3ng_L8YFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3ngYFsYFEeqdHOHRm9-7DA" name="led_pw_dn_off" ports="_3ng_MsYFEeqdHOHRm9-7DA _3ng_J8YFEeqdHOHRm9-7DA"/>
+  <signals xmi:id="_3ngYFcYFEeqdHOHRm9-7DA" name="led_pw_dn_on" ports="_3ng_McYFEeqdHOHRm9-7DA _3ng_JsYFEeqdHOHRm9-7DA"/>
+  <components xmi:id="_bfRJ7N-9Eem20eoEvevN_A" name="HMI">
+    <ports xmi:id="_bfRJ7d-9Eem20eoEvevN_A" name="p:pw_but_mv_dn" signal="_bfRJ0d-9Eem20eoEvevN_A" incomings="_bfRKld-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRJ7t-9Eem20eoEvevN_A" name="p:pw_but_mv_up" signal="_bfRJ0t-9Eem20eoEvevN_A" incomings="_bfRKlt-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRJ79-9Eem20eoEvevN_A" name="p:em_but_mv_left" signal="_bfRJ09-9Eem20eoEvevN_A" incomings="_bfRKl9-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRJ8N-9Eem20eoEvevN_A" name="p:em_but_mv_right" signal="_bfRJ1N-9Eem20eoEvevN_A" incomings="_bfRKmN-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRJ8d-9Eem20eoEvevN_A" name="p:em_but_mv_up" signal="_bfRJ1d-9Eem20eoEvevN_A" incomings="_bfRKmd-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRJ8t-9Eem20eoEvevN_A" name="p:em_but_mv_dn" signal="_bfRJ1t-9Eem20eoEvevN_A" incomings="_bfRKmt-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRJ89-9Eem20eoEvevN_A" name="p:pw_but_up" signal="_bfRJ19-9Eem20eoEvevN_A" outgoings="_CSi8i3oCEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_bfRJ9N-9Eem20eoEvevN_A" name="p:pw_but_dn" signal="_bfRJ2N-9Eem20eoEvevN_A" outgoings="_bfRKnd-9Eem20eoEvevN_A _CSi8iHoCEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_bfRJ9d-9Eem20eoEvevN_A" name="p:em_but_right" signal="_bfRJ2d-9Eem20eoEvevN_A" outgoings="_WX6oBHoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_bfRJ9t-9Eem20eoEvevN_A" name="p:em_but_down" signal="_bfRJ2t-9Eem20eoEvevN_A" outgoings="_WX6n8XoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_bfRJ99-9Eem20eoEvevN_A" name="p:em_but_up" signal="_bfRJ29-9Eem20eoEvevN_A" outgoings="_WX6n-XoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_bfRJ-N-9Eem20eoEvevN_A" name="p:em_but_left" signal="_bfRJ3N-9Eem20eoEvevN_A" outgoings="_WX6n-3oFEeu7Ebu8n-A-zg"/>
+  </components>
+  <components xmi:id="_bfRKMN-9Eem20eoEvevN_A" name="FP">
+    <ports xmi:id="_bfRKMd-9Eem20eoEvevN_A" name="p:pw_but_dn" signal="_bfRJ2N-9Eem20eoEvevN_A" incomings="_bfRKnd-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRKMt-9Eem20eoEvevN_A" name="p:finger_detected" signal="_bfRJ39-9Eem20eoEvevN_A" incomings="_bfRKpN-9Eem20eoEvevN_A"/>
+    <ports xmi:id="_bfRKM9-9Eem20eoEvevN_A" name="p:fp_on" signal="_bfRJ4N-9Eem20eoEvevN_A" outgoings="_CSi8g3oCEeu7Ebu8n-A-zg _3o6GRcYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_bfRKNN-9Eem20eoEvevN_A" name="p:fp_off" signal="_bfRJ4d-9Eem20eoEvevN_A" outgoings="_CSi8hXoCEeu7Ebu8n-A-zg _3o6GRsYFEeqdHOHRm9-7DA"/>
+  </components>
+  <components xmi:id="_CSi8gnoCEeu7Ebu8n-A-zg" name="AutoPW">
+    <ports xmi:id="_CSi8knoCEeu7Ebu8n-A-zg" name="p:fp_on" signal="_bfRJ4N-9Eem20eoEvevN_A" incomings="_CSi8g3oCEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_CSi8h3oCEeu7Ebu8n-A-zg" name="p:pw_auto_mv_dn" signal="_3ptXgcYFEeqdHOHRm9-7DA" outgoings="_CSi8jnoCEeu7Ebu8n-A-zg _3ng_KMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_CSi8iXoCEeu7Ebu8n-A-zg" name="p:pw_auto_mv_up" signal="_3ptXgMYFEeqdHOHRm9-7DA" outgoings="_CSi8jHoCEeu7Ebu8n-A-zg _3ng_KcYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_CSi8inoCEeu7Ebu8n-A-zg" name="p:pw_pos_dn" signal="_bfRJ3t-9Eem20eoEvevN_A" incomings="_CSi8j3oCEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_3ptXg8YFEeqdHOHRm9-7DA" name="p:pw_auto_mv_stop" signal="_3ptXgsYFEeqdHOHRm9-7DA" outgoings="_3pt-kMYFEeqdHOHRm9-7DA _3ng_KsYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_CSi8jXoCEeu7Ebu8n-A-zg" name="p:pw_but_dn" signal="_bfRJ2N-9Eem20eoEvevN_A" incomings="_CSi8iHoCEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_CSi8kHoCEeu7Ebu8n-A-zg" name="p:fp_off" signal="_bfRJ4d-9Eem20eoEvevN_A" incomings="_CSi8hXoCEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_CSi8hnoCEeu7Ebu8n-A-zg" name="p:pw_but_up" signal="_bfRJ19-9Eem20eoEvevN_A" incomings="_CSi8i3oCEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_CSi8kXoCEeu7Ebu8n-A-zg" name="p:pw_pos_up" signal="_bfRJ3d-9Eem20eoEvevN_A" incomings="_CSi8gHoCEeu7Ebu8n-A-zg"/>
+  </components>
+  <components xmi:id="_3pQrpcYFEeqdHOHRm9-7DA" name="LED_EML">
+    <ports xmi:id="_3pQrpsYFEeqdHOHRm9-7DA" name="p:em_pos_hor_left" signal="_3pPddcYFEeqdHOHRm9-7DA" incomings="_CM0Q-7HGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_3pQrqMYFEeqdHOHRm9-7DA" name="p:led_em_left_on" signal="_3pPdfMYFEeqdHOHRm9-7DA" outgoings="_3pRSo8YFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pQrqcYFEeqdHOHRm9-7DA" name="p:led_em_left_off" signal="_3pPdfcYFEeqdHOHRm9-7DA" outgoings="_3pRSpMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pQrp8YFEeqdHOHRm9-7DA" name="p:em_pos_hor_pend" signal="_3pPddMYFEeqdHOHRm9-7DA" incomings="_CM0Q-LHGEeuNzZO06FUL7A"/>
+  </components>
+  <components xmi:id="_3pQroMYFEeqdHOHRm9-7DA" name="LED_EMR">
+    <ports xmi:id="_3pQrocYFEeqdHOHRm9-7DA" name="p:em_pos_hor_right" signal="_3pPdc8YFEeqdHOHRm9-7DA" incomings="_CM0Q87HGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_3pQro8YFEeqdHOHRm9-7DA" name="p:led_em_right_on" signal="_3pPdesYFEeqdHOHRm9-7DA" outgoings="_3pRSoMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pQrosYFEeqdHOHRm9-7DA" name="p:em_pos_hor_pend" signal="_3pPddMYFEeqdHOHRm9-7DA" incomings="_CM0Q8LHGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_3pQrpMYFEeqdHOHRm9-7DA" name="p:led_em_right_off" signal="_3pPde8YFEeqdHOHRm9-7DA" outgoings="_3pRSocYFEeqdHOHRm9-7DA"/>
+  </components>
+  <components xmi:id="_3pQrm8YFEeqdHOHRm9-7DA" name="LED_EMT">
+    <ports xmi:id="_3pQrnMYFEeqdHOHRm9-7DA" name="p:em_pos_vert_pend" signal="_3pPdccYFEeqdHOHRm9-7DA" incomings="_CM0Q9LHGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_3pQrn8YFEeqdHOHRm9-7DA" name="p:led_em_top_off" signal="_3pPdecYFEeqdHOHRm9-7DA" outgoings="_3pQrsMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pQrncYFEeqdHOHRm9-7DA" name="p:em_pos_vert_top" signal="_3pPdcsYFEeqdHOHRm9-7DA" incomings="_CM0Q97HGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_3pQrnsYFEeqdHOHRm9-7DA" name="p:led_em_top_on" signal="_3pPdeMYFEeqdHOHRm9-7DA" outgoings="_3pQrr8YFEeqdHOHRm9-7DA"/>
+  </components>
+  <components xmi:id="_3pQrlsYFEeqdHOHRm9-7DA" name="LED_EMB">
+    <ports xmi:id="_3pQrmMYFEeqdHOHRm9-7DA" name="p:em_pos_vert_pend" signal="_3pPdccYFEeqdHOHRm9-7DA" incomings="_CM0Q-bHGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_3pQrl8YFEeqdHOHRm9-7DA" name="p:em_pos_vert_bottom" signal="_3pPdcMYFEeqdHOHRm9-7DA" incomings="_CM0Q-rHGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_3pQrmcYFEeqdHOHRm9-7DA" name="p:led_em_bottom_on" signal="_3pPddsYFEeqdHOHRm9-7DA" outgoings="_3pQrrMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pQrmsYFEeqdHOHRm9-7DA" name="p:led_em_bottom_off" signal="_3pPdd8YFEeqdHOHRm9-7DA" outgoings="_3pQrrcYFEeqdHOHRm9-7DA"/>
+  </components>
+  <components xmi:id="_3o6GQMYFEeqdHOHRm9-7DA" name="LED_FP">
+    <ports xmi:id="_3o6GRMYFEeqdHOHRm9-7DA" name="p:led_fp_off" signal="_3o5fMcYFEeqdHOHRm9-7DA" outgoings="_3o6GSMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3o6GQ8YFEeqdHOHRm9-7DA" name="p:led_fp_on" signal="_3o5fMMYFEeqdHOHRm9-7DA" outgoings="_3o6GR8YFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3o6GQsYFEeqdHOHRm9-7DA" name="p:fp_off" signal="_bfRJ4d-9Eem20eoEvevN_A" incomings="_3o6GRsYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3o6GQcYFEeqdHOHRm9-7DA" name="p:fp_on" signal="_bfRJ4N-9Eem20eoEvevN_A" incomings="_3o6GRcYFEeqdHOHRm9-7DA"/>
+  </components>
+  <components xmi:id="_WX6n93oFEeu7Ebu8n-A-zg" name="EMH">
+    <ports xmi:id="_WX6oAHoFEeu7Ebu8n-A-zg" name="p:em_mv_up" signal="_bfRJ6t-9Eem20eoEvevN_A" outgoings="_WX6oB3oFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_WX6n_3oFEeu7Ebu8n-A-zg" name="p:em_pos_left" signal="_bfRJ4t-9Eem20eoEvevN_A" incomings="_WX6n_XoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_WX6A4HoFEeu7Ebu8n-A-zg" name="p:em_but_left" signal="_bfRJ3N-9Eem20eoEvevN_A" incomings="_WX6n-3oFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_3p0sQcYFEeqdHOHRm9-7DA" name="p:heating_off" signal="_3p0FMcYFEeqdHOHRm9-7DA" outgoings="_3p0sRcYFEeqdHOHRm9-7DA _3pmp08YFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_WX6n-HoFEeu7Ebu8n-A-zg" name="p:em_pos_right" signal="_bfRJ49-9Eem20eoEvevN_A" incomings="_WX6oAXoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_3p0sQsYFEeqdHOHRm9-7DA" name="p:em_too_cold" signal="_3p0FM8YFEeqdHOHRm9-7DA" incomings="_3p0sRsYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_WX6n8noFEeu7Ebu8n-A-zg" name="p:em_but_up" signal="_bfRJ29-9Eem20eoEvevN_A" incomings="_WX6n-XoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_WX6n-noFEeu7Ebu8n-A-zg" name="p:em_but_right" signal="_bfRJ2d-9Eem20eoEvevN_A" incomings="_WX6oBHoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_3p0sQMYFEeqdHOHRm9-7DA" name="p:heating_on" signal="_3p0FMMYFEeqdHOHRm9-7DA" outgoings="_3p0sRMYFEeqdHOHRm9-7DA _3pmp0sYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_WX6n8HoFEeu7Ebu8n-A-zg" name="p:em_mv_right" signal="_bfRJ6d-9Eem20eoEvevN_A" outgoings="_WX6n_noFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_WX6oBnoFEeu7Ebu8n-A-zg" name="p:em_mv_left" signal="_bfRJ6N-9Eem20eoEvevN_A" outgoings="_WX6n9noFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_WX6n9XoFEeu7Ebu8n-A-zg" name="p:em_pos_top" signal="_bfRJ5N-9Eem20eoEvevN_A" incomings="_WX6n83oFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_WX6n_HoFEeu7Ebu8n-A-zg" name="p:em_mv_down" signal="_bfRJ69-9Eem20eoEvevN_A" outgoings="_WX6oBXoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_WX6n9HoFEeu7Ebu8n-A-zg" name="p:em_but_down" signal="_bfRJ2t-9Eem20eoEvevN_A" incomings="_WX6n8XoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_3p0sQ8YFEeqdHOHRm9-7DA" name="p:time_heating_elapsed" signal="_3p0FMsYFEeqdHOHRm9-7DA" incomings="_3p0sR8YFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_WX6oA3oFEeu7Ebu8n-A-zg" name="p:em_pos_bottom" signal="_bfRJ5d-9Eem20eoEvevN_A" incomings="_WX6oAnoFEeu7Ebu8n-A-zg"/>
+    <ports xmi:id="_CM0Q8rHGEeuNzZO06FUL7A" name="p:em_pos_hor_right" signal="_3pPdc8YFEeqdHOHRm9-7DA" outgoings="_CM0Q87HGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_CM0Q8bHGEeuNzZO06FUL7A" name="p:em_pos_vert_pend" signal="_3pPdccYFEeqdHOHRm9-7DA" outgoings="_CM0Q-bHGEeuNzZO06FUL7A _CM0Q9LHGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_CM0Q9bHGEeuNzZO06FUL7A" name="p:em_pos_hor_left" signal="_3pPddcYFEeqdHOHRm9-7DA" outgoings="_CM0Q-7HGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_CM0Q_LHGEeuNzZO06FUL7A" name="p:em_pos_vert_top" signal="_3pPdcsYFEeqdHOHRm9-7DA" outgoings="_CM0Q97HGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_CM0Q9rHGEeuNzZO06FUL7A" name="p:em_pos_vert_bottom" signal="_3pPdcMYFEeqdHOHRm9-7DA" outgoings="_CM0Q-rHGEeuNzZO06FUL7A"/>
+    <ports xmi:id="_CM0Q_bHGEeuNzZO06FUL7A" name="p:em_pos_hor_pend" signal="_3pPddMYFEeqdHOHRm9-7DA" outgoings="_CM0Q-LHGEeuNzZO06FUL7A _CM0Q8LHGEeuNzZO06FUL7A"/>
+  </components>
+  <components xmi:id="_3pmCxMYFEeqdHOHRm9-7DA" name="LED_EMH">
+    <ports xmi:id="_3pmCx8YFEeqdHOHRm9-7DA" name="p:led_em_heating_on" signal="_3plbtMYFEeqdHOHRm9-7DA" outgoings="_3pmp1MYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pmCxsYFEeqdHOHRm9-7DA" name="p:heating_off" signal="_3p0FMcYFEeqdHOHRm9-7DA" incomings="_3pmp08YFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pmCyMYFEeqdHOHRm9-7DA" name="p:led_em_heating_off" signal="_3plbtcYFEeqdHOHRm9-7DA" outgoings="_3pmp1cYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3pmCxcYFEeqdHOHRm9-7DA" name="p:heating_on" signal="_3p0FMMYFEeqdHOHRm9-7DA" incomings="_3pmp0sYFEeqdHOHRm9-7DA"/>
+  </components>
+  <components xmi:id="_3ng_IMYFEeqdHOHRm9-7DA" name="LED_AutoPW">
+    <ports xmi:id="_3ng_IsYFEeqdHOHRm9-7DA" name="p:pw_auto_mv_up" signal="_3ptXgMYFEeqdHOHRm9-7DA" incomings="_3ng_KcYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3ng_JcYFEeqdHOHRm9-7DA" name="p:led_pw_up_off" signal="_3ngYFMYFEeqdHOHRm9-7DA" outgoings="_3ng_LMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3ng_JMYFEeqdHOHRm9-7DA" name="p:led_pw_up_on" signal="_3ngYE8YFEeqdHOHRm9-7DA" outgoings="_3ng_K8YFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3ng_IcYFEeqdHOHRm9-7DA" name="p:pw_auto_mv_dn" signal="_3ptXgcYFEeqdHOHRm9-7DA" incomings="_3ng_KMYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3ng_J8YFEeqdHOHRm9-7DA" name="p:led_pw_dn_off" signal="_3ngYFsYFEeqdHOHRm9-7DA" outgoings="_3ng_LsYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3ng_I8YFEeqdHOHRm9-7DA" name="p:pw_auto_mv_stop" signal="_3ptXgsYFEeqdHOHRm9-7DA" incomings="_3ng_KsYFEeqdHOHRm9-7DA"/>
+    <ports xmi:id="_3ng_JsYFEeqdHOHRm9-7DA" name="p:led_pw_dn_on" signal="_3ngYFcYFEeqdHOHRm9-7DA" outgoings="_3ng_LcYFEeqdHOHRm9-7DA"/>
+  </components>
+  <connectors xmi:id="_bfRKld-9Eem20eoEvevN_A" name="c:bcs --pw_but_mv_dn--|> HMI" source="_bfRKsd-9Eem20eoEvevN_A" target="_bfRJ7d-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_bfRKlt-9Eem20eoEvevN_A" name="c:bcs --pw_but_mv_up--|> HMI" source="_bfRKst-9Eem20eoEvevN_A" target="_bfRJ7t-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_bfRKl9-9Eem20eoEvevN_A" name="c:bcs --em_but_mv_left--|> HMI" source="_bfRKs9-9Eem20eoEvevN_A" target="_bfRJ79-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_bfRKmN-9Eem20eoEvevN_A" name="c:bcs --em_but_mv_right--|> HMI" source="_bfRKtN-9Eem20eoEvevN_A" target="_bfRJ8N-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_bfRKmd-9Eem20eoEvevN_A" name="c:bcs --em_but_mv_up--|> HMI" source="_bfRKtd-9Eem20eoEvevN_A" target="_bfRJ8d-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_bfRKmt-9Eem20eoEvevN_A" name="c:bcs --em_but_mv_dn--|> HMI" source="_bfRKtt-9Eem20eoEvevN_A" target="_bfRJ8t-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_bfRKnd-9Eem20eoEvevN_A" comments="__Gk2AMbnEeq-1N7BhEBF4Q" name="c:HMI --pw_but_dn--|> FP" source="_bfRJ9N-9Eem20eoEvevN_A" target="_bfRKMd-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_bfRKpN-9Eem20eoEvevN_A" name="c:bcs --finger_detected--|> FP" source="_bfRKud-9Eem20eoEvevN_A" target="_bfRKMt-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_CSi8jnoCEeu7Ebu8n-A-zg" name="c:AutoPW --pw_auto_mv_dn--|> bcs" source="_CSi8h3oCEeu7Ebu8n-A-zg" target="_CSi8hHoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_3pt-kMYFEeqdHOHRm9-7DA" name="c:AutoPW --pw_auto_mv_stop--|> bcs" source="_3ptXg8YFEeqdHOHRm9-7DA" target="_3pt-kcYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CSi8iHoCEeu7Ebu8n-A-zg" name="c:HMI --pw_but_dn--|> AutoPW" source="_bfRJ9N-9Eem20eoEvevN_A" target="_CSi8jXoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_CSi8j3oCEeu7Ebu8n-A-zg" name="c:bcs --pw_pos_dn--|> AutoPW" source="_bfRKuN-9Eem20eoEvevN_A" target="_CSi8inoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_CSi8jHoCEeu7Ebu8n-A-zg" name="c:AutoPW --pw_auto_mv_up--|> bcs" source="_CSi8iXoCEeu7Ebu8n-A-zg" target="_CSi8gXoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_CSi8hXoCEeu7Ebu8n-A-zg" name="c:FP --fp_off--|> AutoPW" source="_bfRKNN-9Eem20eoEvevN_A" target="_CSi8kHoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_CSi8i3oCEeu7Ebu8n-A-zg" name="c:HMI --pw_but_up--|> AutoPW" source="_bfRJ89-9Eem20eoEvevN_A" target="_CSi8hnoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_CSi8g3oCEeu7Ebu8n-A-zg" name="c:FP --fp_on--|> AutoPW" source="_bfRKM9-9Eem20eoEvevN_A" target="_CSi8knoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_CSi8gHoCEeu7Ebu8n-A-zg" name="c:bcs --pw_pos_up--|> AutoPW" source="_bfRKt9-9Eem20eoEvevN_A" target="_CSi8kXoCEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_3pRSo8YFEeqdHOHRm9-7DA" name="c:LED_EML --led_em_left_on--|> bcs" source="_3pQrqMYFEeqdHOHRm9-7DA" target="_3pTH0sYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pRSpMYFEeqdHOHRm9-7DA" name="c:LED_EML --led_em_left_off--|> bcs" source="_3pQrqcYFEeqdHOHRm9-7DA" target="_3pTH08YFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pQrrcYFEeqdHOHRm9-7DA" name="c:LED_EMB --led_em_bottom_off--|> bcs" source="_3pQrmsYFEeqdHOHRm9-7DA" target="_3pSgwcYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pRSoMYFEeqdHOHRm9-7DA" name="c:LED_EMR --led_em_right_on--|> bcs" source="_3pQro8YFEeqdHOHRm9-7DA" target="_3pTH0MYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pQrrMYFEeqdHOHRm9-7DA" name="c:LED_EMB --led_em_bottom_on--|> bcs" source="_3pQrmcYFEeqdHOHRm9-7DA" target="_3pSgwMYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pQrsMYFEeqdHOHRm9-7DA" name="c:LED_EMT --led_em_top_off--|> bcs" source="_3pQrn8YFEeqdHOHRm9-7DA" target="_3pSgw8YFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pRSocYFEeqdHOHRm9-7DA" name="c:LED_EMR --led_em_right_off--|> bcs" source="_3pQrpMYFEeqdHOHRm9-7DA" target="_3pTH0cYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pQrr8YFEeqdHOHRm9-7DA" name="c:LED_EMT --led_em_top_on--|> bcs" source="_3pQrnsYFEeqdHOHRm9-7DA" target="_3pSgwsYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3o6GSMYFEeqdHOHRm9-7DA" name="c:LED_FP --led_fp_off--|> bcs" source="_3o6GRMYFEeqdHOHRm9-7DA" target="_3o6tUcYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3o6GR8YFEeqdHOHRm9-7DA" name="c:LED_FP --led_fp_on--|> bcs" source="_3o6GQ8YFEeqdHOHRm9-7DA" target="_3o6tUMYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3o6GRsYFEeqdHOHRm9-7DA" name="c:FP --fp_off--|> LED_FP" source="_bfRKNN-9Eem20eoEvevN_A" target="_3o6GQsYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3o6GRcYFEeqdHOHRm9-7DA" name="c:FP --fp_on--|> LED_FP" source="_bfRKM9-9Eem20eoEvevN_A" target="_3o6GQcYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_WX6oB3oFEeu7Ebu8n-A-zg" name="c:EMH --em_mv_up--|> bcs" source="_WX6oAHoFEeu7Ebu8n-A-zg" target="_bfRKwt-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_WX6n-3oFEeu7Ebu8n-A-zg" name="c:HMI --em_but_left--|> EMH" source="_bfRJ-N-9Eem20eoEvevN_A" target="_WX6A4HoFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_3p0sRcYFEeqdHOHRm9-7DA" name="c:EMH --heating_off--|> bcs" source="_3p0sQcYFEeqdHOHRm9-7DA" target="_3p1TUcYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_WX6oAXoFEeu7Ebu8n-A-zg" name="c:bcs --em_pos_right--|> EMH" source="_bfRKu9-9Eem20eoEvevN_A" target="_WX6n-HoFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_3p0sRsYFEeqdHOHRm9-7DA" name="c:bcs --em_too_cold--|> EMH" source="_3p1TUsYFEeqdHOHRm9-7DA" target="_3p0sQsYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_WX6n_XoFEeu7Ebu8n-A-zg" name="c:bcs --em_pos_left--|> EMH" source="_bfRKut-9Eem20eoEvevN_A" target="_WX6n_3oFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_WX6oBHoFEeu7Ebu8n-A-zg" name="c:HMI --em_but_right--|> EMH" source="_bfRJ9d-9Eem20eoEvevN_A" target="_WX6n-noFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_WX6n_noFEeu7Ebu8n-A-zg" name="c:EMH --em_mv_right--|> bcs" source="_WX6n8HoFEeu7Ebu8n-A-zg" target="_bfRKwd-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_WX6n83oFEeu7Ebu8n-A-zg" name="c:bcs --em_pos_top--|> EMH" source="_bfRKvN-9Eem20eoEvevN_A" target="_WX6n9XoFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_WX6oBXoFEeu7Ebu8n-A-zg" name="c:EMH --em_mv_down--|> bcs" source="_WX6n_HoFEeu7Ebu8n-A-zg" target="_bfRKw9-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_3p0sRMYFEeqdHOHRm9-7DA" name="c:EMH --heating_on--|> bcs" source="_3p0sQMYFEeqdHOHRm9-7DA" target="_3p1TUMYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3p0sR8YFEeqdHOHRm9-7DA" name="c:bcs --time_heating_elapsed--|> EMH" source="_3p1TU8YFEeqdHOHRm9-7DA" target="_3p0sQ8YFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_WX6oAnoFEeu7Ebu8n-A-zg" name="c:bcs --em_pos_bottom--|> EMH" source="_bfRKvd-9Eem20eoEvevN_A" target="_WX6oA3oFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_WX6n9noFEeu7Ebu8n-A-zg" name="c:EMH --em_mv_left--|> bcs" source="_WX6oBnoFEeu7Ebu8n-A-zg" target="_bfRKwN-9Eem20eoEvevN_A"/>
+  <connectors xmi:id="_WX6n-XoFEeu7Ebu8n-A-zg" name="c:HMI --em_but_up--|> EMH" source="_bfRJ99-9Eem20eoEvevN_A" target="_WX6n8noFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_WX6n8XoFEeu7Ebu8n-A-zg" name="c:HMI --em_but_down--|> EMH" source="_bfRJ9t-9Eem20eoEvevN_A" target="_WX6n9HoFEeu7Ebu8n-A-zg"/>
+  <connectors xmi:id="_3pmp1MYFEeqdHOHRm9-7DA" name="c:LED_EMH --led_em_heating_on--|> bcs" source="_3pmCx8YFEeqdHOHRm9-7DA" target="_3pmp2cYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pmp1cYFEeqdHOHRm9-7DA" name="c:LED_EMH --led_em_heating_off--|> bcs" source="_3pmCyMYFEeqdHOHRm9-7DA" target="_3pmp2sYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pmp08YFEeqdHOHRm9-7DA" name="c:EMH --heating_off--|> LED_EMH" source="_3p0sQcYFEeqdHOHRm9-7DA" target="_3pmCxsYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3pmp0sYFEeqdHOHRm9-7DA" name="c:EMH --heating_on--|> LED_EMH" source="_3p0sQMYFEeqdHOHRm9-7DA" target="_3pmCxcYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q87HGEeuNzZO06FUL7A" name="c:EMH --em_pos_hor_right--|> LED_EMR" source="_CM0Q8rHGEeuNzZO06FUL7A" target="_3pQrocYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q-bHGEeuNzZO06FUL7A" name="c:EMH --em_pos_vert_pend--|> LED_EMB" source="_CM0Q8bHGEeuNzZO06FUL7A" target="_3pQrmMYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q97HGEeuNzZO06FUL7A" name="c:EMH --em_pos_vert_top--|> LED_EMT" source="_CM0Q_LHGEeuNzZO06FUL7A" target="_3pQrncYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q-7HGEeuNzZO06FUL7A" name="c:EMH --em_pos_hor_left--|> LED_EML" source="_CM0Q9bHGEeuNzZO06FUL7A" target="_3pQrpsYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q9LHGEeuNzZO06FUL7A" name="c:EMH --em_pos_vert_pend--|> LED_EMT" source="_CM0Q8bHGEeuNzZO06FUL7A" target="_3pQrnMYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q-rHGEeuNzZO06FUL7A" name="c:EMH --em_pos_vert_bottom--|> LED_EMB" source="_CM0Q9rHGEeuNzZO06FUL7A" target="_3pQrl8YFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q-LHGEeuNzZO06FUL7A" name="c:EMH --em_pos_hor_pend--|> LED_EML" source="_CM0Q_bHGEeuNzZO06FUL7A" target="_3pQrp8YFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_CM0Q8LHGEeuNzZO06FUL7A" name="c:EMH --em_pos_hor_pend--|> LED_EMR" source="_CM0Q_bHGEeuNzZO06FUL7A" target="_3pQrosYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3ng_KcYFEeqdHOHRm9-7DA" name="c:AutoPW --pw_auto_mv_up--|> LED_AutoPW" source="_CSi8iXoCEeu7Ebu8n-A-zg" target="_3ng_IsYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3ng_K8YFEeqdHOHRm9-7DA" name="c:LED_AutoPW --led_pw_up_on--|> bcs" source="_3ng_JMYFEeqdHOHRm9-7DA" target="_3ng_L8YFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3ng_KMYFEeqdHOHRm9-7DA" name="c:AutoPW --pw_auto_mv_dn--|> LED_AutoPW" source="_CSi8h3oCEeu7Ebu8n-A-zg" target="_3ng_IcYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3ng_LMYFEeqdHOHRm9-7DA" name="c:LED_AutoPW --led_pw_up_off--|> bcs" source="_3ng_JcYFEeqdHOHRm9-7DA" target="_3ng_MMYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3ng_LsYFEeqdHOHRm9-7DA" name="c:LED_AutoPW --led_pw_dn_off--|> bcs" source="_3ng_J8YFEeqdHOHRm9-7DA" target="_3ng_MsYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3ng_LcYFEeqdHOHRm9-7DA" name="c:LED_AutoPW --led_pw_dn_on--|> bcs" source="_3ng_JsYFEeqdHOHRm9-7DA" target="_3ng_McYFEeqdHOHRm9-7DA"/>
+  <connectors xmi:id="_3ng_KsYFEeqdHOHRm9-7DA" name="c:AutoPW --pw_auto_mv_stop--|> LED_AutoPW" source="_3ptXg8YFEeqdHOHRm9-7DA" target="_3ng_I8YFEeqdHOHRm9-7DA"/>
+  <ownedComments xmi:id="__Gk2AMbnEeq-1N7BhEBF4Q" elements="_bfRKnd-9Eem20eoEvevN_A" body="existing"/>
+  <ports xmi:id="_bfRKsd-9Eem20eoEvevN_A" name="p:pw_but_mv_dn" signal="_bfRJ0d-9Eem20eoEvevN_A" outgoings="_bfRKld-9Eem20eoEvevN_A"/>
+  <ports xmi:id="_bfRKst-9Eem20eoEvevN_A" name="p:pw_but_mv_up" signal="_bfRJ0t-9Eem20eoEvevN_A" outgoings="_bfRKlt-9Eem20eoEvevN_A"/>
+  <ports xmi:id="_bfRKs9-9Eem20eoEvevN_A" name="p:em_but_mv_left" signal="_bfRJ09-9Eem20eoEvevN_A" outgoings="_bfRKl9-9Eem20eoEvevN_A"/>
+  <ports xmi:id="_bfRKtN-9Eem20eoEvevN_A" name="p:em_but_mv_right" signal="_bfRJ1N-9Eem20eoEvevN_A" outgoings="_bfRKmN-9Eem20eoEvevN_A"/>
+  <ports xmi:id="_bfRKtd-9Eem20eoEvevN_A" name="p:em_but_mv_up" signal="_bfRJ1d-9Eem20eoEvevN_A" outgoings="_bfRKmd-9Eem20eoEvevN_A"/>
+  <ports xmi:id="_bfRKtt-9Eem20eoEvevN_A" name="p:em_but_mv_dn" signal="_bfRJ1t-9Eem20eoEvevN_A" outgoings="_bfRKmt-9Eem20eoEvevN_A"/>
+  <ports xmi:id="_bfRKt9-9Eem20eoEvevN_A" name="p:pw_pos_up" signal="_bfRJ3d-9Eem20eoEvevN_A" outgoings="_CSi8gHoCEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKuN-9Eem20eoEvevN_A" name="p:pw_pos_dn" signal="_bfRJ3t-9Eem20eoEvevN_A" outgoings="_CSi8j3oCEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKud-9Eem20eoEvevN_A" name="p:finger_detected" signal="_bfRJ39-9Eem20eoEvevN_A" outgoings="_bfRKpN-9Eem20eoEvevN_A"/>
+  <ports xmi:id="_bfRKut-9Eem20eoEvevN_A" name="p:em_pos_left" signal="_bfRJ4t-9Eem20eoEvevN_A" outgoings="_WX6n_XoFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKu9-9Eem20eoEvevN_A" name="p:em_pos_right" signal="_bfRJ49-9Eem20eoEvevN_A" outgoings="_WX6oAXoFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKvN-9Eem20eoEvevN_A" name="p:em_pos_top" signal="_bfRJ5N-9Eem20eoEvevN_A" outgoings="_WX6n83oFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKvd-9Eem20eoEvevN_A" name="p:em_pos_bottom" signal="_bfRJ5d-9Eem20eoEvevN_A" outgoings="_WX6oAnoFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKwN-9Eem20eoEvevN_A" name="p:em_mv_left" signal="_bfRJ6N-9Eem20eoEvevN_A" incomings="_WX6n9noFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKwd-9Eem20eoEvevN_A" name="p:em_mv_right" signal="_bfRJ6d-9Eem20eoEvevN_A" incomings="_WX6n_noFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKwt-9Eem20eoEvevN_A" name="p:em_mv_up" signal="_bfRJ6t-9Eem20eoEvevN_A" incomings="_WX6oB3oFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_bfRKw9-9Eem20eoEvevN_A" name="p:em_mv_down" signal="_bfRJ69-9Eem20eoEvevN_A" incomings="_WX6oBXoFEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_3pt-kcYFEeqdHOHRm9-7DA" name="p:pw_auto_mv_stop" signal="_3ptXgsYFEeqdHOHRm9-7DA" incomings="_3pt-kMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_CSi8hHoCEeu7Ebu8n-A-zg" name="p:pw_auto_mv_dn" signal="_3ptXgcYFEeqdHOHRm9-7DA" incomings="_CSi8jnoCEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_CSi8gXoCEeu7Ebu8n-A-zg" name="p:pw_auto_mv_up" signal="_3ptXgMYFEeqdHOHRm9-7DA" incomings="_CSi8jHoCEeu7Ebu8n-A-zg"/>
+  <ports xmi:id="_3pTH0sYFEeqdHOHRm9-7DA" name="p:led_em_left_on" signal="_3pPdfMYFEeqdHOHRm9-7DA" incomings="_3pRSo8YFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pTH08YFEeqdHOHRm9-7DA" name="p:led_em_left_off" signal="_3pPdfcYFEeqdHOHRm9-7DA" incomings="_3pRSpMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pSgwcYFEeqdHOHRm9-7DA" name="p:led_em_bottom_off" signal="_3pPdd8YFEeqdHOHRm9-7DA" incomings="_3pQrrcYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pTH0MYFEeqdHOHRm9-7DA" name="p:led_em_right_on" signal="_3pPdesYFEeqdHOHRm9-7DA" incomings="_3pRSoMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pSgwMYFEeqdHOHRm9-7DA" name="p:led_em_bottom_on" signal="_3pPddsYFEeqdHOHRm9-7DA" incomings="_3pQrrMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pSgw8YFEeqdHOHRm9-7DA" name="p:led_em_top_off" signal="_3pPdecYFEeqdHOHRm9-7DA" incomings="_3pQrsMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pTH0cYFEeqdHOHRm9-7DA" name="p:led_em_right_off" signal="_3pPde8YFEeqdHOHRm9-7DA" incomings="_3pRSocYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pSgwsYFEeqdHOHRm9-7DA" name="p:led_em_top_on" signal="_3pPdeMYFEeqdHOHRm9-7DA" incomings="_3pQrr8YFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3o6tUcYFEeqdHOHRm9-7DA" name="p:led_fp_off" signal="_3o5fMcYFEeqdHOHRm9-7DA" incomings="_3o6GSMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3o6tUMYFEeqdHOHRm9-7DA" name="p:led_fp_on" signal="_3o5fMMYFEeqdHOHRm9-7DA" incomings="_3o6GR8YFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3p1TU8YFEeqdHOHRm9-7DA" name="p:time_heating_elapsed" signal="_3p0FMsYFEeqdHOHRm9-7DA" outgoings="_3p0sR8YFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3p1TUcYFEeqdHOHRm9-7DA" name="p:heating_off" signal="_3p0FMcYFEeqdHOHRm9-7DA" incomings="_3p0sRcYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3p1TUsYFEeqdHOHRm9-7DA" name="p:em_too_cold" signal="_3p0FM8YFEeqdHOHRm9-7DA" outgoings="_3p0sRsYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3p1TUMYFEeqdHOHRm9-7DA" name="p:heating_on" signal="_3p0FMMYFEeqdHOHRm9-7DA" incomings="_3p0sRMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pmp2cYFEeqdHOHRm9-7DA" name="p:led_em_heating_on" signal="_3plbtMYFEeqdHOHRm9-7DA" incomings="_3pmp1MYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3pmp2sYFEeqdHOHRm9-7DA" name="p:led_em_heating_off" signal="_3plbtcYFEeqdHOHRm9-7DA" incomings="_3pmp1cYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3ng_L8YFEeqdHOHRm9-7DA" name="p:led_pw_up_on" signal="_3ngYE8YFEeqdHOHRm9-7DA" incomings="_3ng_K8YFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3ng_MsYFEeqdHOHRm9-7DA" name="p:led_pw_dn_off" signal="_3ngYFsYFEeqdHOHRm9-7DA" incomings="_3ng_LsYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3ng_MMYFEeqdHOHRm9-7DA" name="p:led_pw_up_off" signal="_3ngYFMYFEeqdHOHRm9-7DA" incomings="_3ng_LMYFEeqdHOHRm9-7DA"/>
+  <ports xmi:id="_3ng_McYFEeqdHOHRm9-7DA" name="p:led_pw_dn_on" signal="_3ngYFcYFEeqdHOHRm9-7DA" incomings="_3ng_LcYFEeqdHOHRm9-7DA"/>
+</architecture:Architecture>

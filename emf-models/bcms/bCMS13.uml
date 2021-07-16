@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_1MmhamndEeWZOoTCcU_ksg" name="BCMS" URI="" viewpoint="">
+  <packagedElement xmi:type="uml:Model" xmi:id="_uxR7QKI7EeW4HYbLqBRXrg" name="Domain Model">
+    <packagedElement xmi:type="uml:Association" xmi:id="_1MnGGWndEeWZOoTCcU_ksg" name="routePoliceCars_route_routePlan" memberEnd="_1MnF12ndEeWZOoTCcU_ksg _1MnGGmndEeWZOoTCcU_ksg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1MnH6mndEeWZOoTCcU_ksg" name="communicationInfrastructure_access_communicationCompromisers" memberEnd="_1MnsjWndEeWZOoTCcU_ksg _1MnHXGndEeWZOoTCcU_ksg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1MnH6WndEeWZOoTCcU_ksg" name="crisis_allocate_fireTrucks" memberEnd="_1MnGE2ndEeWZOoTCcU_ksg _1MnGZ2ndEeWZOoTCcU_ksg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnuumndEeWZOoTCcU_ksg" name="BCMSSystem" isLeaf="true">
+      <generalization xmi:id="_QNPzwef7Eei7C7rH9cQO6Q" general="_QNPzwOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNQa0Of7Eei7C7rH9cQO6Q" general="_QNPzw-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNS3FOf7Eei7C7rH9cQO6Q" general="_QNS3E-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QQ_rUef7Eei7C7rH9cQO6Q" general="_QQ_rUOf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1Mnuu2ndEeWZOoTCcU_ksg" name="govermentAgency" visibility="private" type="_1MnIzWndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnuvGndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnuvWndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_l-Cj0K5LEeWkva5Et8vDWQ" name="dispatchService" visibility="private" type="_6unsQK5KEeWkva5Et8vDWQ" aggregation="composite" association="_l-DK4K5LEeWkva5Et8vDWQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_l-Cj0a5LEeWkva5Et8vDWQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_l-Cj0q5LEeWkva5Et8vDWQ" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnsjGndEeWZOoTCcU_ksg" name="CommunicationCompromiser">
+      <generalization xmi:id="_QNS3Fef7Eei7C7rH9cQO6Q" general="_QNS3E-f7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnHW2ndEeWZOoTCcU_ksg" name="CommunicationInfrastructure">
+      <generalization xmi:id="_QL36wef7Eei7C7rH9cQO6Q" general="_QL36wOf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnHXGndEeWZOoTCcU_ksg" name="communicationCompromisers" visibility="private" type="_1MnsjGndEeWZOoTCcU_ksg" association="_1MnH6mndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnHXWndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnHXmndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_nakFgJc8EeWvcez0hKdksQ" name="Credential">
+      <ownedAttribute xmi:id="_pCmaUJc8EeWvcez0hKdksQ" name="format" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_zK6HEJc8EeWvcez0hKdksQ" name="user" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_QUTfIJc9EeWvcez0hKdksQ" name="password" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnGWmndEeWZOoTCcU_ksg" name="Crisis">
+      <generalization xmi:id="_QL4h0ef7Eei7C7rH9cQO6Q" general="_QL4h0Of7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnGW2ndEeWZOoTCcU_ksg" name="id" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnGXGndEeWZOoTCcU_ksg" name="location" visibility="private" type="_1MnsiWndEeWZOoTCcU_ksg"/>
+      <ownedAttribute xmi:id="_1MnGXWndEeWZOoTCcU_ksg" name="startTime" visibility="private">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TimeExpression"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnGXmndEeWZOoTCcU_ksg" name="endTime" visibility="private">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TimeExpression"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnGX2ndEeWZOoTCcU_ksg" name="status" visibility="private" type="_1MnuymndEeWZOoTCcU_ksg"/>
+      <ownedAttribute xmi:id="_1MnGYGndEeWZOoTCcU_ksg" name="description" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnGZGndEeWZOoTCcU_ksg" name="policeCars" visibility="private" type="_1MnGR2ndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGZWndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGZmndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnGZ2ndEeWZOoTCcU_ksg" name="fireTrucks" visibility="private" type="_1MnGDmndEeWZOoTCcU_ksg" association="_1MnH6WndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGaGndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGaWndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnGUmndEeWZOoTCcU_ksg" name="Fireman">
+      <generalization xmi:id="_QL5v9ef7Eei7C7rH9cQO6Q" general="_QL5v8-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL6XAef7Eei7C7rH9cQO6Q" general="_QL6XAOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QPCjgef7Eei7C7rH9cQO6Q" general="_QPCjgOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnGDmndEeWZOoTCcU_ksg" name="FireTruck">
+      <generalization xmi:id="_KrGHcddgEeiUU6avvuXywg" general="_KrGHcNdgEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QL2spef7Eei7C7rH9cQO6Q" general="_QL2so-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL6-Euf7Eei7C7rH9cQO6Q" general="_QL6-EOf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnGEGndEeWZOoTCcU_ksg" name="routeFireTruck" visibility="private" type="_1MnFh2ndEeWZOoTCcU_ksg" association="_1MnGHWndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGEWndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGEmndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_5KUjwK5REeWhFrmNJtnmSw" name="forwardDispatchFireTruckOrder"/>
+      <ownedOperation xmi:id="_7AiegK5REeWhFrmNJtnmSw" name="receiveFSCRequest"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1MnGHWndEeWZOoTCcU_ksg" name="fireTruck_follow_routeFireTruck" memberEnd="_1MnFiWndEeWZOoTCcU_ksg _1MnGEGndEeWZOoTCcU_ksg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1MntcmndEeWZOoTCcU_ksg" name="routePoliceCar_follow_policeCar" memberEnd="_1MnGSWndEeWZOoTCcU_ksg _1MnFy2ndEeWZOoTCcU_ksg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MntwGndEeWZOoTCcU_ksg" name="FScoordinator">
+      <generalization xmi:id="_KrFgYddgEeiUU6avvuXywg" general="_KrFgYNdgEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QL5I4-f7Eei7C7rH9cQO6Q" general="_QL5I4uf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL5v8ef7Eei7C7rH9cQO6Q" general="_QL5v8Of7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNS3Eef7Eei7C7rH9cQO6Q" general="_QNS3EOf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_HV8PAPl_EeW5GetHlVMYxA" name="fireTruck" visibility="private" type="_1MnGDmndEeWZOoTCcU_ksg" association="_HV9dIPl_EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HV8PAfl_EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HV8PAvl_EeW5GetHlVMYxA" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MntjWndEeWZOoTCcU_ksg" name="FSCSystem">
+      <generalization xmi:id="_QL2Fkuf7Eei7C7rH9cQO6Q" general="_QL2FkOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL7lIef7Eei7C7rH9cQO6Q" general="_QL7lIOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNRo8-f7Eei7C7rH9cQO6Q" general="_QNRo8uf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNSQAOf7Eei7C7rH9cQO6Q" general="_QNRo9ef7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNS3Euf7Eei7C7rH9cQO6Q" general="_QNS3EOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnIzWndEeWZOoTCcU_ksg" name="GovermentAgency">
+      <generalization xmi:id="_QL4h0uf7Eei7C7rH9cQO6Q" general="_QL4h0Of7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnsiWndEeWZOoTCcU_ksg" name="GPS">
+      <ownedAttribute xmi:id="_1MnsimndEeWZOoTCcU_ksg" name="x" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1Mnsi2ndEeWZOoTCcU_ksg" name="y" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1Mnu7GndEeWZOoTCcU_ksg" name="witnesses_interact_policeOfficers" memberEnd="_1MnFw2ndEeWZOoTCcU_ksg _1Mnu7mndEeWZOoTCcU_ksg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1Mnu9WndEeWZOoTCcU_ksg" name="victims_interact_firemen" memberEnd="_1Mnu9mndEeWZOoTCcU_ksg _1MnGImndEeWZOoTCcU_ksg"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnGR2ndEeWZOoTCcU_ksg" name="PoliceCar">
+      <generalization xmi:id="_YJjtIddfEeiUU6avvuXywg" general="_YJjtINdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_KrGHctdgEeiUU6avvuXywg" general="_KrGHcNdgEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QL3Tsuf7Eei7C7rH9cQO6Q" general="_QL3TsOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL6-Eef7Eei7C7rH9cQO6Q" general="_QL6-EOf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnGSWndEeWZOoTCcU_ksg" name="routePoliceCar" visibility="private" type="_1MnFyWndEeWZOoTCcU_ksg" association="_1MntcmndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGSmndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGS2ndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_Alq7AK5SEeWhFrmNJtnmSw" name="forwardDispatchPoliceCarOrder"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnFv2ndEeWZOoTCcU_ksg" name="PoliceOfficer">
+      <generalization xmi:id="_QL5v9Of7Eei7C7rH9cQO6Q" general="_QL5v8-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL6XAuf7Eei7C7rH9cQO6Q" general="_QL6XAOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QOS8pOf7Eei7C7rH9cQO6Q" general="_QOS8o-f7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_1MntdGndEeWZOoTCcU_ksg" name="Position">
+      <ownedLiteral xmi:id="_1MntdWndEeWZOoTCcU_ksg" name="station"/>
+      <ownedLiteral xmi:id="_1MntdmndEeWZOoTCcU_ksg" name="inRouteToLocation"/>
+      <ownedLiteral xmi:id="_1Mntd2ndEeWZOoTCcU_ksg" name="atLocation"/>
+      <ownedLiteral xmi:id="_1MnteGndEeWZOoTCcU_ksg" name="inRouteFromLocation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnGbmndEeWZOoTCcU_ksg" name="PScoordinator">
+      <generalization xmi:id="_QL5I4Of7Eei7C7rH9cQO6Q" general="_QL4h0-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNSQBOf7Eei7C7rH9cQO6Q" general="_QNSQAuf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_5V9GEPl-EeW5GetHlVMYxA" name="policeCars" visibility="private" type="_1MnGR2ndEeWZOoTCcU_ksg" association="_5V9tIPl-EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5V9GEfl-EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5V9GEvl-EeW5GetHlVMYxA" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnFjGndEeWZOoTCcU_ksg" name="PSCSystem">
+      <generalization xmi:id="_g6cT8tdfEeiUU6avvuXywg" general="_g6cT8NdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hKW_QNdfEeiUU6avvuXywg" general="_hKWYMNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hTBMAtdfEeiUU6avvuXywg" general="_hTBMANdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QL3TtOf7Eei7C7rH9cQO6Q" general="_QL3Ts-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL7lIuf7Eei7C7rH9cQO6Q" general="_QL7lIOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnvrGndEeWZOoTCcU_ksg" name="Route">
+      <ownedAttribute xmi:id="_1MnvrWndEeWZOoTCcU_ksg" name="ETA" visibility="private">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TimeExpression"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnvrmndEeWZOoTCcU_ksg" name="path" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnFh2ndEeWZOoTCcU_ksg" name="RouteFireTruck">
+      <generalization xmi:id="_1MnFiGndEeWZOoTCcU_ksg" general="_1MnvrGndEeWZOoTCcU_ksg"/>
+      <generalization xmi:id="_QL6-FOf7Eei7C7rH9cQO6Q" general="_QL6-E-f7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnFiWndEeWZOoTCcU_ksg" name="fireTruck" visibility="private" type="_1MnGDmndEeWZOoTCcU_ksg" association="_1MnGHWndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnFimndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnFi2ndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnFzmndEeWZOoTCcU_ksg" name="RoutePlan">
+      <generalization xmi:id="_hTQcktdfEeiUU6avvuXywg" general="_hTQckNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QL5I5Of7Eei7C7rH9cQO6Q" general="_QL5I4uf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QP-Xoef7Eei7C7rH9cQO6Q" general="_QP-XoOf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnF1mndEeWZOoTCcU_ksg" name="information" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnF12ndEeWZOoTCcU_ksg" name="routePoliceCars" visibility="private" type="_1MnFyWndEeWZOoTCcU_ksg" aggregation="composite" association="_1MnGGWndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnF2GndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnF2WndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1MnF2mndEeWZOoTCcU_ksg" name="routeFireTrucks" visibility="private" type="_1MnFh2ndEeWZOoTCcU_ksg" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnF22ndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnF3GndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnFyWndEeWZOoTCcU_ksg" name="RoutePoliceCar">
+      <generalization xmi:id="_1MnFymndEeWZOoTCcU_ksg" general="_1MnvrGndEeWZOoTCcU_ksg"/>
+      <generalization xmi:id="_QL6-Fef7Eei7C7rH9cQO6Q" general="_QL6-E-f7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnFy2ndEeWZOoTCcU_ksg" name="policeCar" visibility="private" type="_1MnGR2ndEeWZOoTCcU_ksg" association="_1MntcmndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnFzGndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnFzWndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_1MnuymndEeWZOoTCcU_ksg" name="Status">
+      <ownedLiteral xmi:id="_1Mnuy2ndEeWZOoTCcU_ksg" name="active"/>
+      <ownedLiteral xmi:id="_1MnuzGndEeWZOoTCcU_ksg" name="closed"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1Mnu12ndEeWZOoTCcU_ksg" name="TimeoutLog">
+      <generalization xmi:id="_hTQckddfEeiUU6avvuXywg" general="_hTQckNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QL2soef7Eei7C7rH9cQO6Q" general="_QL2soOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL2spOf7Eei7C7rH9cQO6Q" general="_QL2so-f7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL3Tsef7Eei7C7rH9cQO6Q" general="_QL3TsOf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QL5I4ef7Eei7C7rH9cQO6Q" general="_QL4h0-f7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1Mnu2WndEeWZOoTCcU_ksg" name="submissionTime" visibility="private">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TimeExpression"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1Mnu2mndEeWZOoTCcU_ksg" name="ocurrenceTime" visibility="private">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TimeExpression"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1Mnu52ndEeWZOoTCcU_ksg" name="reason" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1MnGHmndEeWZOoTCcU_ksg" name="Victim">
+      <generalization xmi:id="_g6qWYtdfEeiUU6avvuXywg" general="_g6qWYNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hJQzEddfEeiUU6avvuXywg" general="_hJQMANdfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1Mnu7WndEeWZOoTCcU_ksg" name="Witness">
+      <ownedAttribute xmi:id="_1Mnu7mndEeWZOoTCcU_ksg" name="policeOfficers" visibility="private" type="_1MnFv2ndEeWZOoTCcU_ksg" association="_1Mnu7GndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1Mnu72ndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1Mnu8GndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1Mnu8WndEeWZOoTCcU_ksg" name="firemen" visibility="private" type="_1MnGUmndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1Mnu8mndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1Mnu82ndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6unsQK5KEeWkva5Et8vDWQ" name="DispatchService">
+      <generalization xmi:id="_YJjGEtdfEeiUU6avvuXywg" general="_YJjGEddfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_dlo7VNdfEeiUU6avvuXywg" general="_dlo7U9dfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hI6NwtdfEeiUU6avvuXywg" general="_hI6NwNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hK2HctdfEeiUU6avvuXywg" general="_hK2HcNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QNQa0-f7Eei7C7rH9cQO6Q" general="_QNQa0uf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_WYKJMK5NEeWkva5Et8vDWQ" name="citizenVehicle" visibility="private" type="_avLpQK5MEeWkva5Et8vDWQ" association="_WYKwQK5NEeWkva5Et8vDWQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WYKJMa5NEeWkva5Et8vDWQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WYKJMq5NEeWkva5Et8vDWQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_l-DK4K5LEeWkva5Et8vDWQ" name="bCMSSystem_contain_dispatchService" memberEnd="_l-DK4a5LEeWkva5Et8vDWQ _l-Cj0K5LEeWkva5Et8vDWQ"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_avLpQK5MEeWkva5Et8vDWQ" name="CitizenVehicle">
+      <generalization xmi:id="_YJjtItdfEeiUU6avvuXywg" general="_YJjtINdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hJutItdfEeiUU6avvuXywg" general="_hJutINdfEeiUU6avvuXywg"/>
+      <ownedOperation xmi:id="_dTjDcK5MEeWkva5Et8vDWQ" name="reportData"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_WYKwQK5NEeWkva5Et8vDWQ" name="dispatchService_communicate_citizenVehicle" memberEnd="_WYKwQa5NEeWkva5Et8vDWQ _WYKJMK5NEeWkva5Et8vDWQ"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_576FEPl5EeW5GetHlVMYxA" name="DispatchServiceNoEncryption">
+      <generalization xmi:id="_L7yyEPl6EeW5GetHlVMYxA" general="_6unsQK5KEeWkva5Et8vDWQ"/>
+      <generalization xmi:id="_YJjGE9dfEeiUU6avvuXywg" general="_YJjGEddfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ciiP8Pl8EeW5GetHlVMYxA" name="PSCSystemNoEncryption">
+      <generalization xmi:id="_jEjygPl8EeW5GetHlVMYxA" general="_1MnFjGndEeWZOoTCcU_ksg"/>
+      <generalization xmi:id="_hJutIddfEeiUU6avvuXywg" general="_hJutINdfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YRgDIPl9EeW5GetHlVMYxA" name="PScoordinatorNoEncryption">
+      <generalization xmi:id="_lc2qIPl9EeW5GetHlVMYxA" general="_1MnGbmndEeWZOoTCcU_ksg"/>
+      <generalization xmi:id="_hI6NwddfEeiUU6avvuXywg" general="_hI6NwNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hJQzENdfEeiUU6avvuXywg" general="_hJQMANdfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tq63wPl9EeW5GetHlVMYxA" name="FSCSystemNoEncryption">
+      <generalization xmi:id="_0WOSIPl9EeW5GetHlVMYxA" general="_1MntjWndEeWZOoTCcU_ksg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="__iwcAPl9EeW5GetHlVMYxA" name="FScoordinatorNoEncryption">
+      <generalization xmi:id="_JuNjYPl-EeW5GetHlVMYxA" general="_1MntwGndEeWZOoTCcU_ksg"/>
+      <generalization xmi:id="_g6cT8ddfEeiUU6avvuXywg" general="_g6cT8NdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_g6qWYddfEeiUU6avvuXywg" general="_g6qWYNdfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_5V9tIPl-EeW5GetHlVMYxA" name="policeCars_manage_pScoordinator" memberEnd="_5V9tIfl-EeW5GetHlVMYxA _5V9GEPl-EeW5GetHlVMYxA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_HV9dIPl_EeW5GetHlVMYxA" name="fireTrucks_manage_fScoordinator" memberEnd="_HV9dIfl_EeW5GetHlVMYxA _HV8PAPl_EeW5GetHlVMYxA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YJDW0NdfEeiUU6avvuXywg" name="FScoordinatorNoEncryption_FScoordinator">
+      <ownedOperation xmi:id="__iwcGvl9EeW5GetHlVMYxA" name="receiveNewETApoliceCar" visibility="public"/>
+      <ownedOperation xmi:id="__iwcGfl9EeW5GetHlVMYxA" name="receiveReplacedPoliceCar" visibility="public"/>
+      <ownedOperation xmi:id="__iwcGPl9EeW5GetHlVMYxA" name="receiveRecallPoliceCars" visibility="public"/>
+      <ownedOperation xmi:id="__iwcFfl9EeW5GetHlVMYxA" name="receivePScoordinatorUncoordinatedRoute" visibility="public"/>
+      <ownedOperation xmi:id="__iwcFPl9EeW5GetHlVMYxA" name="receiveDeployPoliceCars" visibility="public"/>
+      <ownedOperation xmi:id="__iwcE_l9EeW5GetHlVMYxA" name="receiveCloseCrisisPS" visibility="public"/>
+      <ownedOperation xmi:id="__iwcEvl9EeW5GetHlVMYxA" name="receivePoliceCarBack" visibility="public"/>
+      <ownedOperation xmi:id="__iwcEfl9EeW5GetHlVMYxA" name="receivePoliceCarObjectiveCompleted" visibility="public"/>
+      <ownedOperation xmi:id="__iwcEPl9EeW5GetHlVMYxA" name="receivePoliceCarArrived" visibility="public"/>
+      <ownedOperation xmi:id="__iwcD_l9EeW5GetHlVMYxA" name="receivePoliceCarDispatched" visibility="public"/>
+      <ownedOperation xmi:id="__iwcDvl9EeW5GetHlVMYxA" name="receiveFireTrucksRouteProposal" visibility="public"/>
+      <ownedOperation xmi:id="__iwcDfl9EeW5GetHlVMYxA" name="receivePScrisisDetails" visibility="public"/>
+      <ownedOperation xmi:id="__iwcDPl9EeW5GetHlVMYxA" name="receivePScoordinatorCredentials" visibility="public"/>
+      <ownedOperation xmi:id="__iwcC_l9EeW5GetHlVMYxA" name="receivePScoordinatorCall" visibility="public"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YJSnYddfEeiUU6avvuXywg" name="PScoordinatorNoEncryption_PScoordinator">
+      <ownedOperation xmi:id="_YRgDPvl9EeW5GetHlVMYxA" name="receiveReportAccident"/>
+      <ownedOperation xmi:id="_YRgDO_l9EeW5GetHlVMYxA" name="receiveRecallFireTrucks" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDOfl9EeW5GetHlVMYxA" name="receiveReplacedFireTruck" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDOPl9EeW5GetHlVMYxA" name="receiveNewETAfireTruck" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDNvl9EeW5GetHlVMYxA" name="receiveCloseCrisisFS" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDNfl9EeW5GetHlVMYxA" name="receiveFireTruckBack" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDNPl9EeW5GetHlVMYxA" name="receiveFireTruckObjectiveCompleted" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDM_l9EeW5GetHlVMYxA" name="receiveFireTruckArrived" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDMvl9EeW5GetHlVMYxA" name="receiveFireTruckDispatched" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDMfl9EeW5GetHlVMYxA" name="receiveTruckDeliveredToCrisis" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDMPl9EeW5GetHlVMYxA" name="receiveFScoordinatorRouteDisagreement" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDL_l9EeW5GetHlVMYxA" name="receiveFScoordinatorRouteAgreement" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDLvl9EeW5GetHlVMYxA" name="receiveDeployFireTrucks" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDLfl9EeW5GetHlVMYxA" name="receiveFScrisisDetails" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDLPl9EeW5GetHlVMYxA" name="receiveFScoordinatorCredentials" visibility="public"/>
+      <ownedOperation xmi:id="_YRgDK_l9EeW5GetHlVMYxA" name="receiveFScoordinatorCall" visibility="public"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YJYuANdfEeiUU6avvuXywg" name="PSCSystemNoEncryption_PSCSystem">
+      <generalization xmi:id="_hKWYMddfEeiUU6avvuXywg" general="_hKWYMNdfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YJjGEddfEeiUU6avvuXywg" name="DispatchServiceNoEncryption_DispatchService">
+      <generalization xmi:id="_dlo7VddfEeiUU6avvuXywg" general="_dlo7U9dfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YJjtINdfEeiUU6avvuXywg" name="CitizenVehicle_PoliceCar">
+      <ownedOperation xmi:id="_fPtOIK5MEeWkva5Et8vDWQ" name="receivePSCRequest"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dlnGINdfEeiUU6avvuXywg" name="PScoordinator_FScoordinator_FScoordinatorNoEncryption_PScoordinatorNoEncryption">
+      <ownedOperation xmi:id="_1MnGh2ndEeWZOoTCcU_ksg" name="routeNegotiationTimeout" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_1MnGimndEeWZOoTCcU_ksg" name="receiveRescheduleRoutePlan" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_1MnGjGndEeWZOoTCcU_ksg" name="standAloneResolution" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_1MnGjWndEeWZOoTCcU_ksg" name="online" visibility="public" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dlo7U9dfEeiUU6avvuXywg" name="DispatchServiceNoEncryption_DispatchService_DispatchService">
+      <ownedOperation xmi:id="_-Gmj4Pl5EeW5GetHlVMYxA" name="reportAccident"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dlo7VtdfEeiUU6avvuXywg" name="PSCSystemNoEncryption_PSCSystem_PSCSystem">
+      <ownedOperation xmi:id="_ciiQA_l8EeW5GetHlVMYxA" name="fireTrucks" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQBPl8EeW5GetHlVMYxA" name="fireTruckDispatched" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQBfl8EeW5GetHlVMYxA" name="fireTruckArrived" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQBvl8EeW5GetHlVMYxA" name="policeCarObjectiveCompletedPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQB_l8EeW5GetHlVMYxA" name="crisisCompleteFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQCPl8EeW5GetHlVMYxA" name="reqComFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQCfl8EeW5GetHlVMYxA" name="callFScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQCvl8EeW5GetHlVMYxA" name="authFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQC_l8EeW5GetHlVMYxA" name="sendPScoordinatorCredentials" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQDPl8EeW5GetHlVMYxA" name="sendPSCrisisDetails" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQDfl8EeW5GetHlVMYxA" name="crisisDetailsFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQDvl8EeW5GetHlVMYxA" name="proposeFireTrucksRoute" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQD_l8EeW5GetHlVMYxA" name="disagreementFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQEPl8EeW5GetHlVMYxA" name="policeCarDispatchedPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQEfl8EeW5GetHlVMYxA" name="policeCarArrivedPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQEvl8EeW5GetHlVMYxA" name="fireTruckObjectiveCompleted" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQE_l8EeW5GetHlVMYxA" name="policeCarBackPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQFPl8EeW5GetHlVMYxA" name="fireTruckBack" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQFfl8EeW5GetHlVMYxA" name="closeCrisisPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQFvl8EeW5GetHlVMYxA" name="closeCrisisFS" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQF_l8EeW5GetHlVMYxA" name="agreementFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQGPl8EeW5GetHlVMYxA" name="deployPoliceCars" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQG_l8EeW5GetHlVMYxA" name="newETAfireTruck" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQHPl8EeW5GetHlVMYxA" name="replacedFireTruck" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQHfl8EeW5GetHlVMYxA" name="rescheduleRoutePlanPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQHvl8EeW5GetHlVMYxA" name="rescheduleRoutePlanFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQIfl8EeW5GetHlVMYxA" name="replacedPoliceCarPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQIvl8EeW5GetHlVMYxA" name="newETApoliceCarPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQJfl8EeW5GetHlVMYxA" name="synchFSC" visibility="public"/>
+      <ownedOperation xmi:id="_ciiQJvl8EeW5GetHlVMYxA" name="forwardReportAccident"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dltMxtdfEeiUU6avvuXywg" name="FSCSystemNoEncryption_FSCSystem_FSCSystem">
+      <ownedOperation xmi:id="_tq63z_l9EeW5GetHlVMYxA" name="fireTrucksRoute" visibility="public"/>
+      <ownedOperation xmi:id="_tq630Pl9EeW5GetHlVMYxA" name="policeCarDispatched" visibility="public"/>
+      <ownedOperation xmi:id="_tq630fl9EeW5GetHlVMYxA" name="policeCarArrived" visibility="public"/>
+      <ownedOperation xmi:id="_tq630vl9EeW5GetHlVMYxA" name="fireTruckObjectiveCompletedFScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq630_l9EeW5GetHlVMYxA" name="crisisCompletePSC" visibility="public"/>
+      <ownedOperation xmi:id="_tq631Pl9EeW5GetHlVMYxA" name="reqComPSC" visibility="public"/>
+      <ownedOperation xmi:id="_tq631fl9EeW5GetHlVMYxA" name="authPSC" visibility="public"/>
+      <ownedOperation xmi:id="_tq631vl9EeW5GetHlVMYxA" name="callPScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq631_l9EeW5GetHlVMYxA" name="sendFScoordinatorCredentials" visibility="public"/>
+      <ownedOperation xmi:id="_tq632Pl9EeW5GetHlVMYxA" name="sendFSCrisisDetails" visibility="public"/>
+      <ownedOperation xmi:id="_tq632fl9EeW5GetHlVMYxA" name="crisisDetailsPSC" visibility="public"/>
+      <ownedOperation xmi:id="_tq632vl9EeW5GetHlVMYxA" name="deployFireTrucks" visibility="public"/>
+      <ownedOperation xmi:id="_tq632_l9EeW5GetHlVMYxA" name="agreeFireTrucksRoute" visibility="public"/>
+      <ownedOperation xmi:id="_tq633Pl9EeW5GetHlVMYxA" name="disagreeFireTrucksRoute" visibility="public"/>
+      <ownedOperation xmi:id="_tq633fl9EeW5GetHlVMYxA" name="fireTruckDispatchedFScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq633vl9EeW5GetHlVMYxA" name="fireTruckArrivedFScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq633_l9EeW5GetHlVMYxA" name="policeCarObjectiveCompleted" visibility="public"/>
+      <ownedOperation xmi:id="_tq634Pl9EeW5GetHlVMYxA" name="fireTruckBackFScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq634fl9EeW5GetHlVMYxA" name="policeCarBack" visibility="public"/>
+      <ownedOperation xmi:id="_tq634vl9EeW5GetHlVMYxA" name="closeCrisisFScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq634_l9EeW5GetHlVMYxA" name="closeCrisisPS" visibility="public"/>
+      <ownedOperation xmi:id="_tq635Pl9EeW5GetHlVMYxA" name="policeCars" visibility="public"/>
+      <ownedOperation xmi:id="_tq635_l9EeW5GetHlVMYxA" name="newETAfireTruckFSCoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq636Pl9EeW5GetHlVMYxA" name="replacedFireTruckFSCoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq636fl9EeW5GetHlVMYxA" name="rescheduleRoutePlanPSC" visibility="public"/>
+      <ownedOperation xmi:id="_tq636vl9EeW5GetHlVMYxA" name="rescheduleRoutePlanFScoordinator" visibility="public"/>
+      <ownedOperation xmi:id="_tq637fl9EeW5GetHlVMYxA" name="replacedPoliceCar" visibility="public"/>
+      <ownedOperation xmi:id="_tq637vl9EeW5GetHlVMYxA" name="newETApoliceCar" visibility="public"/>
+      <ownedOperation xmi:id="_tq638fl9EeW5GetHlVMYxA" name="synchPSC" visibility="public"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_gmy_MNdfEeiUU6avvuXywg" name="PSCSystem_FSCSystem_FSCSystemNoEncryption_PSCSystemNoEncryption_PSCSystem_FSCSystem">
+      <ownedOperation xmi:id="_tCVQ4aI8EeW4HYbLqBRXrg" name="comRestored" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_tCVQ4KI8EeW4HYbLqBRXrg" name="comTimeout" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_tCVQ3aI8EeW4HYbLqBRXrg" name="recallFireTrucks" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_tCVQ3KI8EeW4HYbLqBRXrg" name="recallPoliceCars" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_tCVQ16I8EeW4HYbLqBRXrg" name="reportReasonsTimeout" visibility="public" isAbstract="true"/>
+      <ownedOperation xmi:id="_tCVQ1qI8EeW4HYbLqBRXrg" name="uncoordinatedRoute" visibility="public" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_g6cT8NdfEeiUU6avvuXywg" name="PSCSystem_FScoordinatorNoEncryption">
+      <generalization xmi:id="_QL2souf7Eei7C7rH9cQO6Q" general="_QL2soOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_g6qWYNdfEeiUU6avvuXywg" name="Victim_FScoordinatorNoEncryption">
+      <generalization xmi:id="_QL5v8uf7Eei7C7rH9cQO6Q" general="_QL5v8Of7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_g63KsNdfEeiUU6avvuXywg" name="PSCSystemNoEncryption_FSCSystemNoEncryption">
+      <generalization xmi:id="_hK2HcddfEeiUU6avvuXywg" general="_hK2HcNdfEeiUU6avvuXywg"/>
+      <generalization xmi:id="_hTBMAddfEeiUU6avvuXywg" general="_hTBMANdfEeiUU6avvuXywg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_g9-JENdfEeiUU6avvuXywg" name="FSCSystem_FSCSystemNoEncryption">
+      <generalization xmi:id="_QNRB4-f7Eei7C7rH9cQO6Q" general="_QNRB4uf7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MntlmndEeWZOoTCcU_ksg" name="routePlan" visibility="private" type="_1MnFzmndEeWZOoTCcU_ksg" aggregation="shared">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1Mntl2ndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MntmGndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hE4pYNdfEeiUU6avvuXywg" name="PScoordinator_PScoordinatorNoEncryption_FScoordinatorNoEncryption">
+      <generalization xmi:id="_KrFgYtdgEeiUU6avvuXywg" general="_KrFgYNdgEeiUU6avvuXywg"/>
+      <generalization xmi:id="_QNRo8Of7Eei7C7rH9cQO6Q" general="_QNRB5ef7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hI6NwNdfEeiUU6avvuXywg" name="DispatchService_PScoordinatorNoEncryption">
+      <generalization xmi:id="_QL2Fkef7Eei7C7rH9cQO6Q" general="_QL2FkOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hJQMANdfEeiUU6avvuXywg" name="Victim_PScoordinatorNoEncryption">
+      <generalization xmi:id="_QNSQA-f7Eei7C7rH9cQO6Q" general="_QNSQAuf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hJutINdfEeiUU6avvuXywg" name="CitizenVehicle_PSCSystemNoEncryption">
+      <generalization xmi:id="_QL3Ttef7Eei7C7rH9cQO6Q" general="_QL3Ts-f7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hKWYMNdfEeiUU6avvuXywg" name="PSCSystem_PSCSystemNoEncryption_PSCSystem">
+      <ownedAttribute xmi:id="_1MnFm2ndEeWZOoTCcU_ksg" name="noMoreRoutesLeftToBeProposed" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hK2HcNdfEeiUU6avvuXywg" name="DispatchService_PSCSystemNoEncryption_FSCSystemNoEncryption">
+      <generalization xmi:id="_QL36wuf7Eei7C7rH9cQO6Q" general="_QL36wOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hLMswNdfEeiUU6avvuXywg" name="PSCSystem_PSCSystemNoEncryption">
+      <generalization xmi:id="_QNRB4Of7Eei7C7rH9cQO6Q" general="_QNQa1ef7Eei7C7rH9cQO6Q"/>
+      <ownedAttribute xmi:id="_1MnFlWndEeWZOoTCcU_ksg" name="routePlans" visibility="private" type="_1MnFzmndEeWZOoTCcU_ksg" aggregation="shared">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnFlmndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnFl2ndEeWZOoTCcU_ksg" name="" value="2"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hPUXwNdfEeiUU6avvuXywg" name="PSCSystem_PSCSystemNoEncryption_PSCSystem_FSCSystemNoEncryption_FSCSystem">
+      <generalization xmi:id="_QNRo9Of7Eei7C7rH9cQO6Q" general="_QNRo8uf7Eei7C7rH9cQO6Q"/>
+      <generalization xmi:id="_QNSQAef7Eei7C7rH9cQO6Q" general="_QNRo9ef7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hTBMANdfEeiUU6avvuXywg" name="PSCSystem_PSCSystemNoEncryption_FSCSystemNoEncryption">
+      <generalization xmi:id="_QNRo8ef7Eei7C7rH9cQO6Q" general="_QNRB5ef7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hTQckNdfEeiUU6avvuXywg" name="RoutePlan_TimeoutLog">
+      <ownedAttribute xmi:id="_1MnFz2ndEeWZOoTCcU_ksg" name="crisisID" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KrFgYNdgEeiUU6avvuXywg" name="PScoordinator_PScoordinatorNoEncryption_FScoordinatorNoEncryption_FScoordinator">
+      <ownedAttribute xmi:id="_T77GEJc9EeWvcez0hKdksQ" name="credential" visibility="private" type="_nakFgJc8EeWvcez0hKdksQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KrGHcNdgEeiUU6avvuXywg" name="PoliceCar_FireTruck">
+      <ownedAttribute xmi:id="_1MnGSGndEeWZOoTCcU_ksg" name="position" visibility="private" type="_1MntdGndEeWZOoTCcU_ksg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL2FkOf7Eei7C7rH9cQO6Q" name="FSCSystem_DispatchService_PScoordinatorNoEncryption">
+      <generalization xmi:id="_QOSVkuf7Eei7C7rH9cQO6Q" general="_QOSVkOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL2soOf7Eei7C7rH9cQO6Q" name="PSCSystem_FScoordinatorNoEncryption_TimeoutLog">
+      <generalization xmi:id="_QOS8ouf7Eei7C7rH9cQO6Q" general="_QOS8oOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL2so-f7Eei7C7rH9cQO6Q" name="FireTruck_TimeoutLog">
+      <generalization xmi:id="_QNRB5Of7Eei7C7rH9cQO6Q" general="_QNRB4uf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL3TsOf7Eei7C7rH9cQO6Q" name="PoliceCar_TimeoutLog">
+      <generalization xmi:id="_QNRB4ef7Eei7C7rH9cQO6Q" general="_QNQa1ef7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL3Ts-f7Eei7C7rH9cQO6Q" name="CitizenVehicle_PSCSystemNoEncryption_PSCSystem">
+      <ownedAttribute xmi:id="_WYKwQa5NEeWkva5Et8vDWQ" name="dispatchService" visibility="private" type="_6unsQK5KEeWkva5Et8vDWQ" association="_WYKwQK5NEeWkva5Et8vDWQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WYKwQq5NEeWkva5Et8vDWQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WYKwQ65NEeWkva5Et8vDWQ" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL36wOf7Eei7C7rH9cQO6Q" name="DispatchService_PSCSystemNoEncryption_FSCSystemNoEncryption_CommunicationInfrastructure">
+      <generalization xmi:id="_QOTjsuf7Eei7C7rH9cQO6Q" general="_QOTjsOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL4h0Of7Eei7C7rH9cQO6Q" name="GovermentAgency_Crisis">
+      <generalization xmi:id="_QOTjsef7Eei7C7rH9cQO6Q" general="_QOTjsOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL4h0-f7Eei7C7rH9cQO6Q" name="TimeoutLog_PScoordinator">
+      <generalization xmi:id="_QNQa1Of7Eei7C7rH9cQO6Q" general="_QNQa0uf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL5I4uf7Eei7C7rH9cQO6Q" name="RoutePlan_FScoordinator">
+      <generalization xmi:id="_QNQa0ef7Eei7C7rH9cQO6Q" general="_QNPzw-f7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL5v8Of7Eei7C7rH9cQO6Q" name="Victim_FScoordinatorNoEncryption_FScoordinator">
+      <ownedAttribute xmi:id="_1MnGImndEeWZOoTCcU_ksg" name="firemen" visibility="private" type="_1MnGUmndEeWZOoTCcU_ksg" association="_1Mnu9WndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGI2ndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGJGndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL5v8-f7Eei7C7rH9cQO6Q" name="Fireman_PoliceOfficer">
+      <ownedAttribute xmi:id="_1Mnu9mndEeWZOoTCcU_ksg" name="victims" visibility="private" type="_1MnGHmndEeWZOoTCcU_ksg" association="_1Mnu9WndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1Mnu92ndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1Mnu-GndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL6XAOf7Eei7C7rH9cQO6Q" name="PoliceOfficer_Fireman">
+      <ownedAttribute xmi:id="_1MnFw2ndEeWZOoTCcU_ksg" name="witnesses" visibility="private" type="_1Mnu7WndEeWZOoTCcU_ksg" association="_1Mnu7GndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnFxGndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnFxWndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL6-EOf7Eei7C7rH9cQO6Q" name="FireTruck_PoliceCar">
+      <generalization xmi:id="_QNPzwuf7Eei7C7rH9cQO6Q" general="_QNPzwOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL6-E-f7Eei7C7rH9cQO6Q" name="RoutePoliceCar_RouteFireTruck">
+      <ownedAttribute xmi:id="_1MnGGmndEeWZOoTCcU_ksg" name="routePlan" visibility="private" type="_1MnFzmndEeWZOoTCcU_ksg" association="_1MnGGWndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGG2ndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGHGndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QL7lIOf7Eei7C7rH9cQO6Q" name="PSCSystem_FSCSystem">
+      <generalization xmi:id="_QP--sef7Eei7C7rH9cQO6Q" general="_QP--sOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNPzwOf7Eei7C7rH9cQO6Q" name="FireTruck_PoliceCar_BCMSSystem">
+      <ownedAttribute xmi:id="_1MnGE2ndEeWZOoTCcU_ksg" name="crisis" visibility="private" type="_1MnGWmndEeWZOoTCcU_ksg" association="_1MnH6WndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGFGndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGFWndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNPzw-f7Eei7C7rH9cQO6Q" name="RoutePlan_FScoordinator_BCMSSystem">
+      <generalization xmi:id="_QOS8oef7Eei7C7rH9cQO6Q" general="_QOS8oOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNQa0uf7Eei7C7rH9cQO6Q" name="TimeoutLog_PScoordinator_DispatchService">
+      <generalization xmi:id="_QOSVkef7Eei7C7rH9cQO6Q" general="_QOSVkOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNQa1ef7Eei7C7rH9cQO6Q" name="PoliceCar_TimeoutLog_PSCSystem_PSCSystemNoEncryption">
+      <generalization xmi:id="_QOS8pef7Eei7C7rH9cQO6Q" general="_QOS8o-f7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNRB4uf7Eei7C7rH9cQO6Q" name="FireTruck_TimeoutLog_FSCSystem_FSCSystemNoEncryption">
+      <generalization xmi:id="_QPCjguf7Eei7C7rH9cQO6Q" general="_QPCjgOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNRB5ef7Eei7C7rH9cQO6Q" name="PSCSystem_PSCSystemNoEncryption_FSCSystemNoEncryption_PScoordinator_PScoordinatorNoEncryption_FScoordinatorNoEncryption">
+      <generalization xmi:id="_QPB8cuf7Eei7C7rH9cQO6Q" general="_QPB8cOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNRo8uf7Eei7C7rH9cQO6Q" name="PSCSystem_PSCSystemNoEncryption_PSCSystem_FSCSystemNoEncryption_FSCSystem_FSCSystem">
+      <ownedAttribute xmi:id="_1MnFlGndEeWZOoTCcU_ksg" name="closeAgreement" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNRo9ef7Eei7C7rH9cQO6Q" name="PSCSystem_PSCSystemNoEncryption_PSCSystem_FSCSystemNoEncryption_FSCSystem_FSCSystem">
+      <ownedAttribute xmi:id="_1MnFk2ndEeWZOoTCcU_ksg" name="routeAgreement" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNSQAuf7Eei7C7rH9cQO6Q" name="PScoordinator_Victim_PScoordinatorNoEncryption">
+      <ownedAttribute xmi:id="_1MnGcmndEeWZOoTCcU_ksg" name="policeOfficers" visibility="private" type="_1MnFv2ndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnGc2ndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnGdGndEeWZOoTCcU_ksg" name="" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNS3EOf7Eei7C7rH9cQO6Q" name="FSCSystem_FScoordinator">
+      <generalization xmi:id="_QPB8cef7Eei7C7rH9cQO6Q" general="_QPB8cOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QNS3E-f7Eei7C7rH9cQO6Q" name="CommunicationCompromiser_BCMSSystem">
+      <ownedAttribute xmi:id="_1MnsjWndEeWZOoTCcU_ksg" name="communicationInfrastructure" visibility="private" type="_1MnHW2ndEeWZOoTCcU_ksg" association="_1MnH6mndEeWZOoTCcU_ksg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnsjmndEeWZOoTCcU_ksg" name="" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1Mnsj2ndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QOSVkOf7Eei7C7rH9cQO6Q" name="FSCSystem_DispatchService_PScoordinatorNoEncryption_TimeoutLog_PScoordinator_DispatchService">
+      <generalization xmi:id="_QP-Xouf7Eei7C7rH9cQO6Q" general="_QP-XoOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QOS8oOf7Eei7C7rH9cQO6Q" name="PSCSystem_FScoordinatorNoEncryption_TimeoutLog_RoutePlan_FScoordinator_BCMSSystem">
+      <ownedAttribute xmi:id="_7KYN4Pl6EeW5GetHlVMYxA" name="fSCSystem" visibility="private" type="_1MntjWndEeWZOoTCcU_ksg" association="_7KZcAPl6EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7KYN4fl6EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7KYN4vl6EeW5GetHlVMYxA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QOS8o-f7Eei7C7rH9cQO6Q" name="PoliceCar_TimeoutLog_PSCSystem_PSCSystemNoEncryption_PoliceOfficer">
+      <ownedAttribute xmi:id="_5V9tIfl-EeW5GetHlVMYxA" name="pScoordinator" visibility="private" type="_1MnGbmndEeWZOoTCcU_ksg" association="_5V9tIPl-EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5V9tIvl-EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5V9tI_l-EeW5GetHlVMYxA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QOTjsOf7Eei7C7rH9cQO6Q" name="DispatchService_PSCSystemNoEncryption_FSCSystemNoEncryption_CommunicationInfrastructure_GovermentAgency_Crisis">
+      <generalization xmi:id="_QP--suf7Eei7C7rH9cQO6Q" general="_QP--sOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QPB8cOf7Eei7C7rH9cQO6Q" name="PSCSystem_PSCSystemNoEncryption_FSCSystemNoEncryption_PScoordinator_PScoordinatorNoEncryption_FScoordinatorNoEncryption_FSCSystem_FScoordinator">
+      <ownedAttribute xmi:id="_1MnFjWndEeWZOoTCcU_ksg" name="timeoutLog" visibility="private" type="_1Mnu12ndEeWZOoTCcU_ksg" aggregation="shared">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1MnFjmndEeWZOoTCcU_ksg" name=""/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1MnFj2ndEeWZOoTCcU_ksg" name="" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QPCjgOf7Eei7C7rH9cQO6Q" name="FireTruck_TimeoutLog_FSCSystem_FSCSystemNoEncryption_Fireman">
+      <ownedAttribute xmi:id="_HV9dIfl_EeW5GetHlVMYxA" name="fScoordinator" visibility="private" type="_1MntwGndEeWZOoTCcU_ksg" association="_HV9dIPl_EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HV9dIvl_EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HV9dI_l_EeW5GetHlVMYxA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QP-XoOf7Eei7C7rH9cQO6Q" name="FSCSystem_DispatchService_PScoordinatorNoEncryption_TimeoutLog_PScoordinator_DispatchService_RoutePlan">
+      <generalization xmi:id="_QQ_rUuf7Eei7C7rH9cQO6Q" general="_QQ_rUOf7Eei7C7rH9cQO6Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QP--sOf7Eei7C7rH9cQO6Q" name="DispatchService_PSCSystemNoEncryption_FSCSystemNoEncryption_CommunicationInfrastructure_GovermentAgency_Crisis_PSCSystem_FSCSystem">
+      <ownedAttribute xmi:id="_l-DK4a5LEeWkva5Et8vDWQ" name="bCMSSystem" visibility="private" type="_1MnuumndEeWZOoTCcU_ksg" association="_l-DK4K5LEeWkva5Et8vDWQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_l-DK4q5LEeWkva5Et8vDWQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_l-DK465LEeWkva5Et8vDWQ" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QQ_rUOf7Eei7C7rH9cQO6Q" name="FSCSystem_DispatchService_PScoordinatorNoEncryption_TimeoutLog_PScoordinator_DispatchService_RoutePlan_BCMSSystem">
+      <ownedAttribute xmi:id="_HZRMoPl7EeW5GetHlVMYxA" name="pSCSystem" visibility="private" type="_1MnFjGndEeWZOoTCcU_ksg" association="_HZSawPl7EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HZRMofl7EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HZRMovl7EeW5GetHlVMYxA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_0USQ0KI7EeW4HYbLqBRXrg" name="Architecture Model">
+    <packagedElement xmi:type="uml:Association" xmi:id="_7KZcAPl6EeW5GetHlVMYxA" name="pSCSystem_call_fSCSystem" memberEnd="_7KZcAfl6EeW5GetHlVMYxA _7KYN4Pl6EeW5GetHlVMYxA">
+      <ownedEnd xmi:id="_7KZcAfl6EeW5GetHlVMYxA" name="pSCSystem" visibility="private" type="_1MnFjGndEeWZOoTCcU_ksg" association="_7KZcAPl6EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7KZcAvl6EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7KZcA_l6EeW5GetHlVMYxA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_HZSawPl7EeW5GetHlVMYxA" name="fSCSystem_call_pSCSystem" memberEnd="_HZSawfl7EeW5GetHlVMYxA _HZRMoPl7EeW5GetHlVMYxA">
+      <ownedEnd xmi:id="_HZSawfl7EeW5GetHlVMYxA" name="fSCSystem" visibility="private" type="_1MntjWndEeWZOoTCcU_ksg" association="_HZSawPl7EeW5GetHlVMYxA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HZSawvl7EeW5GetHlVMYxA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HZSaw_l7EeW5GetHlVMYxA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

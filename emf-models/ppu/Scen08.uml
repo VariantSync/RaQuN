@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_gZ2b0HtWEeKpeZ-e8atWJw" name="SysMLmodel">
+  <packagedElement xmi:type="uml:Class" xmi:id="_9MhOkHtZEeKpeZ-e8atWJw" name="0-10V" isActive="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2t1HUHtuEeKCCdjWtXQmoQ" name="1xCylinder">
+    <ownedAttribute xmi:id="_WrwwI4GcEeK-PrTTZpW3tw" name="SensBack" type="_rLGuMHtyEeKCCdjWtXQmoQ" aggregation="composite" association="_WrwwIIGcEeK-PrTTZpW3tw"/>
+    <ownedAttribute xmi:id="_crhTIIGcEeK-PrTTZpW3tw" name="SensFront" type="_rLGuMHtyEeKCCdjWtXQmoQ" aggregation="composite" association="_crbMgIGcEeK-PrTTZpW3tw"/>
+    <ownedAttribute xmi:id="__KIwgoGpEeK-PrTTZpW3tw" name="Valveback" type="_XRmj8IGjEeK-PrTTZpW3tw" aggregation="composite" association="__KCp4IGpEeK-PrTTZpW3tw"/>
+    <ownedOperation xmi:id="_4lF5AHtwEeKCCdjWtXQmoQ" name="Retract">
+      <ownedParameter xmi:id="_8svv8IHIEeK-PrTTZpW3tw" name="return" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_B0mYIITKEeKnctnnQ3q7Iw" name="Extend">
+      <ownedParameter xmi:id="_FSmJAITKEeKnctnnQ3q7Iw" name="return" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <nestedClassifier xmi:type="uml:Class" xmi:id="_HoiT8Ht6EeKCCdjWtXQmoQ" name="2xCylinder">
+      <generalization xmi:id="_Hm_l4IGbEeK-PrTTZpW3tw" general="_2t1HUHtuEeKCCdjWtXQmoQ"/>
+      <ownedAttribute xmi:id="_RhNCM3t6EeKCCdjWtXQmoQ" name="2xcylinder" type="_HoiT8Ht6EeKCCdjWtXQmoQ" aggregation="shared" association="_RhNCMHt6EeKCCdjWtXQmoQ"/>
+      <ownedAttribute xmi:id="_GdO4w4GsEeK-PrTTZpW3tw" name="valve" type="_XRmj8IGjEeK-PrTTZpW3tw" aggregation="composite" association="_GdO4wIGsEeK-PrTTZpW3tw"/>
+      <ownedAttribute xmi:id="_glg9EITJEeKnctnnQ3q7Iw" name="Valvefront" type="_XRmj8IGjEeK-PrTTZpW3tw" aggregation="composite" association="_iQTq8ITJEeKnctnnQ3q7Iw"/>
+      <ownedOperation xmi:id="_NBAJsITLEeKnctnnQ3q7Iw" name="Retract">
+        <ownedParameter xmi:id="_NBAJsYTLEeKnctnnQ3q7Iw" name="return" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_RHYJMITLEeKnctnnQ3q7Iw" name="Extend">
+        <ownedParameter xmi:id="_RHYJMYTLEeKnctnnQ3q7Iw" name="return" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </nestedClassifier>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_FQexEHtyEeKCCdjWtXQmoQ" name="24V"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_eBqLsHtyEeKCCdjWtXQmoQ" name="BinarySensor">
+    <ownedAttribute xmi:id="_Q7vhg3t2EeKCCdjWtXQmoQ" name="microswitch" type="_LFWV4Ht2EeKCCdjWtXQmoQ" aggregation="composite" association="_Q7vhgHt2EeKCCdjWtXQmoQ"/>
+    <nestedClassifier xmi:type="uml:Class" xmi:id="_rLGuMHtyEeKCCdjWtXQmoQ" name="InductiveSensor">
+      <generalization xmi:id="_bEm58KD8EeKdxuZrX-0Irw" general="_eBqLsHtyEeKCCdjWtXQmoQ"/>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_v20kgHt0EeKCCdjWtXQmoQ" name="SensValue" aggregation="composite">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_LQENkHt1EeKCCdjWtXQmoQ" name="HwInput" type="_FQexEHtyEeKCCdjWtXQmoQ" aggregation="composite"/>
+    </nestedClassifier>
+    <nestedClassifier xmi:type="uml:Class" xmi:id="_mo21kHtzEeKCCdjWtXQmoQ" name="OpticalSensor">
+      <generalization xmi:id="_gwb0UKD8EeKdxuZrX-0Irw" general="_eBqLsHtyEeKCCdjWtXQmoQ"/>
+    </nestedClassifier>
+    <nestedClassifier xmi:type="uml:Class" xmi:id="_4HuOQHt1EeKCCdjWtXQmoQ" name="CapacitiveSensor">
+      <generalization xmi:id="_aZdEIKD8EeKdxuZrX-0Irw" general="_eBqLsHtyEeKCCdjWtXQmoQ"/>
+    </nestedClassifier>
+    <nestedClassifier xmi:type="uml:Class" xmi:id="_LFWV4Ht2EeKCCdjWtXQmoQ" name="MicroSwitch">
+      <generalization xmi:id="_hNoGoKD8EeKdxuZrX-0Irw" general="_eBqLsHtyEeKCCdjWtXQmoQ"/>
+      <ownedAttribute xmi:id="_Q7vhhHt2EeKCCdjWtXQmoQ" name="binarysensor" type="_eBqLsHtyEeKCCdjWtXQmoQ" association="_Q7vhgHt2EeKCCdjWtXQmoQ"/>
+    </nestedClassifier>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Q7vhgHt2EeKCCdjWtXQmoQ" memberEnd="_Q7vhg3t2EeKCCdjWtXQmoQ _Q7vhhHt2EeKCCdjWtXQmoQ"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_RhNCMHt6EeKCCdjWtXQmoQ" memberEnd="_RhNCM3t6EeKCCdjWtXQmoQ _RhNCNHt6EeKCCdjWtXQmoQ">
+    <ownedEnd xmi:id="_RhNCNHt6EeKCCdjWtXQmoQ" name="2xcylinder" type="_HoiT8Ht6EeKCCdjWtXQmoQ" association="_RhNCMHt6EeKCCdjWtXQmoQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_WrwwIIGcEeK-PrTTZpW3tw" memberEnd="_WrwwI4GcEeK-PrTTZpW3tw _WrwwJIGcEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_WrwwJIGcEeK-PrTTZpW3tw" name="1xcylinder" type="_2t1HUHtuEeKCCdjWtXQmoQ" association="_WrwwIIGcEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_crbMgIGcEeK-PrTTZpW3tw" memberEnd="_crhTIIGcEeK-PrTTZpW3tw _crhTIYGcEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_crhTIYGcEeK-PrTTZpW3tw" name="1xcylinder" type="_2t1HUHtuEeKCCdjWtXQmoQ" association="_crbMgIGcEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_XRmj8IGjEeK-PrTTZpW3tw" name="Valve">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_mK890IGjEeK-PrTTZpW3tw" name="ActuatorSignal" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_fEEzAIGpEeK-PrTTZpW3tw" name="HwOutput" type="_FQexEHtyEeKCCdjWtXQmoQ" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="__KCp4IGpEeK-PrTTZpW3tw" memberEnd="__KIwgoGpEeK-PrTTZpW3tw __KIwg4GpEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="__KIwg4GpEeK-PrTTZpW3tw" name="1xcylinder" type="_2t1HUHtuEeKCCdjWtXQmoQ" association="__KCp4IGpEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GdO4wIGsEeK-PrTTZpW3tw" memberEnd="_GdO4w4GsEeK-PrTTZpW3tw _GdO4xIGsEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_GdO4xIGsEeK-PrTTZpW3tw" name="2xcylinder" type="_HoiT8Ht6EeKCCdjWtXQmoQ" association="_GdO4wIGsEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iOdHgIGtEeK-PrTTZpW3tw" name="ProportionalCylinder">
+    <generalization xmi:id="_uXTvsIGtEeK-PrTTZpW3tw" general="_2t1HUHtuEeKCCdjWtXQmoQ"/>
+    <ownedAttribute xmi:id="_hYRcs4HJEeK-PrTTZpW3tw" name="ValveBack" type="_ZODZ0IG0EeK-PrTTZpW3tw" aggregation="composite" association="_hYRcsIHJEeK-PrTTZpW3tw"/>
+    <ownedAttribute xmi:id="_rqWwg4HJEeK-PrTTZpW3tw" name="PressureSensor" type="_IhIP4IG8EeK-PrTTZpW3tw" aggregation="composite" association="_rqWwgIHJEeK-PrTTZpW3tw"/>
+    <ownedOperation xmi:id="_Ii-yYIGuEeK-PrTTZpW3tw" name="extend">
+      <ownedParameter xmi:id="_M5Hk0IGxEeK-PrTTZpW3tw" name="SettingValue">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_covfYIGxEeK-PrTTZpW3tw" name="return" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZODZ0IG0EeK-PrTTZpW3tw" name="ProportionalValve">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_kVS-kIG1EeK-PrTTZpW3tw" name="SettingValue" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IVBN4IG5EeK-PrTTZpW3tw" name="AnalogueSensorVoltage">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_Ym8kQIG5EeK-PrTTZpW3tw" name="SensValue" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_gf6roIG5EeK-PrTTZpW3tw" name="HwInput" type="_9MhOkHtZEeKpeZ-e8atWJw" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gTrJ8IG6EeK-PrTTZpW3tw" name="Motor">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_rcvwIIG6EeK-PrTTZpW3tw" name="ActuatorSignalForward" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_4nKjAIG6EeK-PrTTZpW3tw" name="SettingValue" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_AqqfYIG7EeK-PrTTZpW3tw" name="HwActuatorSignalForward" type="_FQexEHtyEeKCCdjWtXQmoQ" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_YaTkgIG7EeK-PrTTZpW3tw" name="HwSettingValue" type="_9MhOkHtZEeKpeZ-e8atWJw" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_xnygoIG7EeK-PrTTZpW3tw" name="ActuatorSignalRewind" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_4Yaf4IG7EeK-PrTTZpW3tw" name="HwActuatorSignalRewind" type="_FQexEHtyEeKCCdjWtXQmoQ" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-ViloIG7EeK-PrTTZpW3tw" name="Potentiometer">
+    <generalization xmi:id="_EmrzkIG8EeK-PrTTZpW3tw" general="_IVBN4IG5EeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IhIP4IG8EeK-PrTTZpW3tw" name="PressureSensor">
+    <generalization xmi:id="_RwwoMIG8EeK-PrTTZpW3tw" general="_IVBN4IG5EeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-TBAoIG8EeK-PrTTZpW3tw" name="PulseTachometer">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_CMLDgIG9EeK-PrTTZpW3tw" name="SensValue" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_KiP9oIG9EeK-PrTTZpW3tw" name="HwInput" type="_FQexEHtyEeKCCdjWtXQmoQ" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_HB80wIG_EeK-PrTTZpW3tw" name="Workpiece">
+    <nestedClassifier xmi:type="uml:Class" xmi:id="_QHjuYIG_EeK-PrTTZpW3tw" name="Workpiece(A)">
+      <generalization xmi:id="_PXss0IHBEeK-PrTTZpW3tw" general="_HB80wIG_EeK-PrTTZpW3tw"/>
+      <ownedAttribute xmi:id="_zqPuUIHAEeK-PrTTZpW3tw" name="WSType" type="_TjJPAIHAEeK-PrTTZpW3tw"/>
+    </nestedClassifier>
+    <nestedClassifier xmi:type="uml:Class" xmi:id="_n7PJgIHAEeK-PrTTZpW3tw" name="Workpiece(F)">
+      <generalization xmi:id="_PADB0IHBEeK-PrTTZpW3tw" general="_HB80wIG_EeK-PrTTZpW3tw"/>
+      <ownedAttribute xmi:id="_8gq8cIHAEeK-PrTTZpW3tw" name="WSType" type="_bj4yUIHAEeK-PrTTZpW3tw"/>
+    </nestedClassifier>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_TjJPAIHAEeK-PrTTZpW3tw" name="EWorkpiece(A)">
+    <ownedLiteral xmi:id="_XLf1wIHAEeK-PrTTZpW3tw" name="Aluminium"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_bj4yUIHAEeK-PrTTZpW3tw" name="EWorkpiece(F)">
+    <ownedLiteral xmi:id="_hUL9AIHAEeK-PrTTZpW3tw" name="Aluminium"/>
+    <ownedLiteral xmi:id="_kenRoIHAEeK-PrTTZpW3tw" name="BlackPlastic"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Edc64IHDEeK-PrTTZpW3tw" name="Slide">
+    <generalization xmi:id="_3Y99MddkEeiByd7s2sP2rw" general="_3Y99MNdkEeiByd7s2sP2rw"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_R-8xAIHDEeK-PrTTZpW3tw" name="output" type="_HB80wIG_EeK-PrTTZpW3tw" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_mTgPUIHDEeK-PrTTZpW3tw" name="Turntable">
+    <ownedAttribute xmi:id="__rcnY4TWEeKnctnnQ3q7Iw" name="Motor" type="_gTrJ8IG6EeK-PrTTZpW3tw" aggregation="composite" association="__rcnYITWEeKnctnnQ3q7Iw"/>
+    <ownedAttribute xmi:id="_OBWT4bGjEeKdgqVyRY_NCg" name="pos180" type="_rLGuMHtyEeKCCdjWtXQmoQ" aggregation="composite" association="_OBUesLGjEeKdgqVyRY_NCg"/>
+    <ownedAttribute xmi:id="_CLcrorGdEeKdgqVyRY_NCg" name="pos90" type="_rLGuMHtyEeKCCdjWtXQmoQ" aggregation="composite" association="_CLbdgLGdEeKdgqVyRY_NCg"/>
+    <ownedAttribute xmi:id="_-wxUgLGcEeKdgqVyRY_NCg" name="pos0" type="_rLGuMHtyEeKCCdjWtXQmoQ" aggregation="composite" association="_-wvfULGcEeKdgqVyRY_NCg"/>
+    <ownedOperation xmi:id="_4nPP8IHEEeK-PrTTZpW3tw" name="TurnTo">
+      <ownedParameter xmi:id="_5DB-oIHFEeK-PrTTZpW3tw" name="return" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_-OVl4IHFEeK-PrTTZpW3tw" name="destination">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="__Q_gQIHGEeK-PrTTZpW3tw" name="Y-Slide">
+    <generalization xmi:id="_3Y-kQNdkEeiByd7s2sP2rw" general="_3Y99MNdkEeiByd7s2sP2rw"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_Lk6I8IHHEeK-PrTTZpW3tw" name="output1" type="_HB80wIG_EeK-PrTTZpW3tw" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_SMwmsIHHEeK-PrTTZpW3tw" name="output2" type="_HB80wIG_EeK-PrTTZpW3tw" aggregation="composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Xzha4IHHEeK-PrTTZpW3tw" name="VacuGripper">
+    <ownedAttribute xmi:id="_rs280IHHEeK-PrTTZpW3tw" name="VTakeIn" type="_XRmj8IGjEeK-PrTTZpW3tw" aggregation="composite" association="_t2TVkIHHEeK-PrTTZpW3tw"/>
+    <ownedAttribute xmi:id="_1qEM0IHHEeK-PrTTZpW3tw" name="VRelease" type="_XRmj8IGjEeK-PrTTZpW3tw" aggregation="composite" association="_4N5bgIHHEeK-PrTTZpW3tw"/>
+    <ownedAttribute xmi:id="_-Dk1cIHHEeK-PrTTZpW3tw" name="WPTaken" type="_LFWV4Ht2EeKCCdjWtXQmoQ" aggregation="composite" association="_BGi3MIHIEeK-PrTTZpW3tw"/>
+    <ownedOperation xmi:id="_KfCQkIHIEeK-PrTTZpW3tw" name="TakeIn">
+      <ownedParameter xmi:id="_NhptAIHIEeK-PrTTZpW3tw" name="return" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_P_uR8IHIEeK-PrTTZpW3tw" name="Release">
+      <ownedParameter xmi:id="_Th8bgIHIEeK-PrTTZpW3tw" name="return" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_t2TVkIHHEeK-PrTTZpW3tw" memberEnd="_rs280IHHEeK-PrTTZpW3tw _t2TVk4HHEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_t2TVk4HHEeK-PrTTZpW3tw" name="" type="_Xzha4IHHEeK-PrTTZpW3tw" association="_t2TVkIHHEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_4N5bgIHHEeK-PrTTZpW3tw" memberEnd="_1qEM0IHHEeK-PrTTZpW3tw _4N5bg4HHEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_4N5bg4HHEeK-PrTTZpW3tw" name="" type="_Xzha4IHHEeK-PrTTZpW3tw" association="_4N5bgIHHEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_BGi3MIHIEeK-PrTTZpW3tw" memberEnd="_-Dk1cIHHEeK-PrTTZpW3tw _BGi3M4HIEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_BGi3M4HIEeK-PrTTZpW3tw" name="" type="_Xzha4IHHEeK-PrTTZpW3tw" association="_BGi3MIHIEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_hYRcsIHJEeK-PrTTZpW3tw" memberEnd="_hYRcs4HJEeK-PrTTZpW3tw _hYRctIHJEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_hYRctIHJEeK-PrTTZpW3tw" name="proportionalcylinder" type="_iOdHgIGtEeK-PrTTZpW3tw" association="_hYRcsIHJEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rqWwgIHJEeK-PrTTZpW3tw" memberEnd="_rqWwg4HJEeK-PrTTZpW3tw _rqWwhIHJEeK-PrTTZpW3tw">
+    <ownedEnd xmi:id="_rqWwhIHJEeK-PrTTZpW3tw" name="proportionalcylinder" type="_iOdHgIGtEeK-PrTTZpW3tw" association="_rqWwgIHJEeK-PrTTZpW3tw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Ne63MIHKEeK-PrTTZpW3tw" name="StampingPlant">
+    <packagedElement xmi:type="uml:Class" xmi:id="_iMWIgIHKEeK-PrTTZpW3tw" name="Crane">
+      <generalization xmi:id="_3ZBnkddkEeiByd7s2sP2rw" general="_3ZBnkNdkEeiByd7s2sP2rw"/>
+      <ownedAttribute xmi:id="_CL1ks4TQEeKnctnnQ3q7Iw" name="MaxTransDuration" type="_IJh08IHMEeK-PrTTZpW3tw" aggregation="composite" association="_CL1ksITQEeKnctnnQ3q7Iw"/>
+      <ownedAttribute xmi:id="_bqsV8ITWEeKnctnnQ3q7Iw" name="VacuGripper" type="_Xzha4IHHEeK-PrTTZpW3tw" aggregation="composite" association="_bqmPUITWEeKnctnnQ3q7Iw"/>
+      <ownedAttribute xmi:id="_1p6RA4TWEeKnctnnQ3q7Iw" name="Turntable" type="_mTgPUIHDEeK-PrTTZpW3tw" aggregation="composite" association="_1p6RAITWEeKnctnnQ3q7Iw"/>
+      <ownedAttribute xmi:id="_R1DRE4TXEeKnctnnQ3q7Iw" name="Lifter" type="_2t1HUHtuEeKCCdjWtXQmoQ" aggregation="composite" association="_R1DREITXEeKnctnnQ3q7Iw"/>
+      <ownedOperation xmi:id="_eFbrkIHMEeK-PrTTZpW3tw" name="Transport">
+        <ownedParameter xmi:id="_hQD0gIHMEeK-PrTTZpW3tw" name="return" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBoolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_lxcVAIHMEeK-PrTTZpW3tw" name="source">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_sc2dEIHMEeK-PrTTZpW3tw" name="destination">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_RfkMsK29EeKj-OhQIBjalA" name="ACT_PickUpWP"/>
+      <ownedOperation xmi:id="_H5QeIK3bEeKj-OhQIBjalA" name="ACT_PutDownWP"/>
+      <ownedOperation xmi:id="_arpwsK3cEeKj-OhQIBjalA" name="ACT_ToSlidePosition"/>
+      <ownedOperation xmi:id="_bJMPAK3hEeKj-OhQIBjalA" name="ACT_ToStackPosition"/>
+      <ownedOperation xmi:id="_Ryq-ULGAEeKSnZtVF4VVOg" name="ACT_ToStampPosition"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_IJh08IHMEeK-PrTTZpW3tw" name="SpeedCrane"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CL1ksITQEeKnctnnQ3q7Iw" memberEnd="_CL1ks4TQEeKnctnnQ3q7Iw _CL1ktITQEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_CL1ktITQEeKnctnnQ3q7Iw" name="crane" type="_iMWIgIHKEeK-PrTTZpW3tw" association="_CL1ksITQEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_bqmPUITWEeKnctnnQ3q7Iw" memberEnd="_bqsV8ITWEeKnctnnQ3q7Iw _bqsV8YTWEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_bqsV8YTWEeKnctnnQ3q7Iw" name="crane" type="_iMWIgIHKEeK-PrTTZpW3tw" association="_bqmPUITWEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1p6RAITWEeKnctnnQ3q7Iw" memberEnd="_1p6RA4TWEeKnctnnQ3q7Iw _1p6RBITWEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_1p6RBITWEeKnctnnQ3q7Iw" name="crane" type="_iMWIgIHKEeK-PrTTZpW3tw" association="_1p6RAITWEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="__rcnYITWEeKnctnnQ3q7Iw" memberEnd="__rcnY4TWEeKnctnnQ3q7Iw __rcnZITWEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="__rcnZITWEeKnctnnQ3q7Iw" name="turntable" type="_mTgPUIHDEeK-PrTTZpW3tw" association="__rcnYITWEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_R1DREITXEeKnctnnQ3q7Iw" memberEnd="_R1DRE4TXEeKnctnnQ3q7Iw _R1DRFITXEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_R1DRFITXEeKnctnnQ3q7Iw" name="crane" type="_iMWIgIHKEeK-PrTTZpW3tw" association="_R1DREITXEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Y_Gc8ITXEeKnctnnQ3q7Iw" name="StampingPlant">
+      <ownedAttribute xmi:id="_hceVEoTbEeKnctnnQ3q7Iw" name="Crane" type="_iMWIgIHKEeK-PrTTZpW3tw" aggregation="composite" association="_hcYOcITbEeKnctnnQ3q7Iw"/>
+      <ownedAttribute xmi:id="_oM4R44TbEeKnctnnQ3q7Iw" name="Stack" type="_tR_ccITZEeKnctnnQ3q7Iw" aggregation="composite" association="_oM4R4ITbEeKnctnnQ3q7Iw"/>
+      <ownedAttribute xmi:id="_LJFqMa5qEeKj-OhQIBjalA" name="y-slide" type="__Q_gQIHGEeK-PrTTZpW3tw" aggregation="composite" association="_LJEcEK5qEeKj-OhQIBjalA"/>
+      <ownedAttribute xmi:id="_rv7LgLF1EeKSnZtVF4VVOg" name="stamp" type="__IXHMLFyEeKSnZtVF4VVOg" aggregation="composite" association="_rv2TALF1EeKSnZtVF4VVOg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tR_ccITZEeKnctnnQ3q7Iw" name="Stack">
+      <generalization xmi:id="_3WUR0NdkEeiByd7s2sP2rw" general="_3WTqwNdkEeiByd7s2sP2rw"/>
+      <ownedAttribute xmi:id="_vTGjIYTaEeKnctnnQ3q7Iw" name="Separator" type="_2t1HUHtuEeKCCdjWtXQmoQ" aggregation="composite" association="_vTAcgITaEeKnctnnQ3q7Iw"/>
+      <ownedAttribute xmi:id="_5pOpc4TaEeKnctnnQ3q7Iw" name="WPSeparated" type="_LFWV4Ht2EeKCCdjWtXQmoQ" aggregation="composite" association="_5pOpcITaEeKnctnnQ3q7Iw"/>
+      <ownedAttribute xmi:id="_kW7oELGeEeKdgqVyRY_NCg" name="DetectWPType" type="_rLGuMHtyEeKCCdjWtXQmoQ" aggregation="composite" association="_kW5y4LGeEeKdgqVyRY_NCg"/>
+      <ownedAttribute xmi:id="_uDZF8LPFEeK6YJFhmRn47w" name="DetectWPColour" type="_mo21kHtzEeKCCdjWtXQmoQ" aggregation="composite" association="_uDRKILPFEeK6YJFhmRn47w"/>
+      <ownedOperation xmi:id="_a5FWAITaEeKnctnnQ3q7Iw" name="Separate">
+        <ownedParameter xmi:id="_eIkw0ITaEeKnctnnQ3q7Iw" name="return" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_HMW6QK47EeKj-OhQIBjalA" name="ACT_ProvideWP"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_vTAcgITaEeKnctnnQ3q7Iw" memberEnd="_vTGjIYTaEeKnctnnQ3q7Iw _vTGjIoTaEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_vTGjIoTaEeKnctnnQ3q7Iw" name="stack" type="_tR_ccITZEeKnctnnQ3q7Iw" association="_vTAcgITaEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_5pOpcITaEeKnctnnQ3q7Iw" memberEnd="_5pOpc4TaEeKnctnnQ3q7Iw _5pOpdITaEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_5pOpdITaEeKnctnnQ3q7Iw" name="stack" type="_tR_ccITZEeKnctnnQ3q7Iw" association="_5pOpcITaEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_hcYOcITbEeKnctnnQ3q7Iw" memberEnd="_hceVEoTbEeKnctnnQ3q7Iw _hceVE4TbEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_hceVE4TbEeKnctnnQ3q7Iw" name="stampingplant" type="_Y_Gc8ITXEeKnctnnQ3q7Iw" association="_hcYOcITbEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_oM4R4ITbEeKnctnnQ3q7Iw" memberEnd="_oM4R44TbEeKnctnnQ3q7Iw _oM4R5ITbEeKnctnnQ3q7Iw">
+      <ownedEnd xmi:id="_oM4R5ITbEeKnctnnQ3q7Iw" name="stampingplant" type="_Y_Gc8ITXEeKnctnnQ3q7Iw" association="_oM4R4ITbEeKnctnnQ3q7Iw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_LJEcEK5qEeKj-OhQIBjalA" memberEnd="_LJFqMa5qEeKj-OhQIBjalA _LJGRQK5qEeKj-OhQIBjalA">
+      <ownedEnd xmi:id="_LJGRQK5qEeKj-OhQIBjalA" name="stampingplant" type="_Y_Gc8ITXEeKnctnnQ3q7Iw" association="_LJEcEK5qEeKj-OhQIBjalA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="__IXHMLFyEeKSnZtVF4VVOg" name="Stamp">
+      <generalization xmi:id="_3WUR0ddkEeiByd7s2sP2rw" general="_3WTqwNdkEeiByd7s2sP2rw"/>
+      <ownedAttribute xmi:id="_yb0bwLF1EeKSnZtVF4VVOg" name="StampCylinder" type="_2t1HUHtuEeKCCdjWtXQmoQ" aggregation="composite" association="_ybx_gLF1EeKSnZtVF4VVOg"/>
+      <ownedAttribute xmi:id="_qtyHILF3EeKSnZtVF4VVOg" name="MagazineCylinder" type="_2t1HUHtuEeKCCdjWtXQmoQ" aggregation="composite" association="_qttOoLF3EeKSnZtVF4VVOg"/>
+      <ownedAttribute xmi:id="_K_NAELF4EeKSnZtVF4VVOg" name="WPDetection" type="_LFWV4Ht2EeKCCdjWtXQmoQ" aggregation="composite" association="_K_Kj0LF4EeKSnZtVF4VVOg"/>
+      <ownedAttribute xmi:id="_wb_UAbPQEeK6YJFhmRn47w" name="proportionalvalve" type="_ZODZ0IG0EeK-PrTTZpW3tw" aggregation="composite" association="_wb9e0LPQEeK6YJFhmRn47w"/>
+      <ownedAttribute xmi:id="_8YzEQbPQEeK6YJFhmRn47w" name="pressuresensor" type="_IhIP4IG8EeK-PrTTZpW3tw" aggregation="composite" association="_8Yx2ILPQEeK6YJFhmRn47w"/>
+      <ownedOperation xmi:id="_frFWELF0EeKSnZtVF4VVOg" name="Stamp">
+        <ownedParameter xmi:id="_nbpIULF0EeKSnZtVF4VVOg" name="return" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_rv2TALF1EeKSnZtVF4VVOg" memberEnd="_rv7LgLF1EeKSnZtVF4VVOg _rv7LgbF1EeKSnZtVF4VVOg">
+      <ownedEnd xmi:id="_rv7LgbF1EeKSnZtVF4VVOg" name="stampingplant" type="_Y_Gc8ITXEeKnctnnQ3q7Iw" association="_rv2TALF1EeKSnZtVF4VVOg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ybx_gLF1EeKSnZtVF4VVOg" memberEnd="_yb0bwLF1EeKSnZtVF4VVOg _yb0bwbF1EeKSnZtVF4VVOg">
+      <ownedEnd xmi:id="_yb0bwbF1EeKSnZtVF4VVOg" name="stamp" type="__IXHMLFyEeKSnZtVF4VVOg" association="_ybx_gLF1EeKSnZtVF4VVOg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_qttOoLF3EeKSnZtVF4VVOg" memberEnd="_qtyHILF3EeKSnZtVF4VVOg _qtyHIbF3EeKSnZtVF4VVOg">
+      <ownedEnd xmi:id="_qtyHIbF3EeKSnZtVF4VVOg" name="stamp" type="__IXHMLFyEeKSnZtVF4VVOg" association="_qttOoLF3EeKSnZtVF4VVOg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_K_Kj0LF4EeKSnZtVF4VVOg" memberEnd="_K_NAELF4EeKSnZtVF4VVOg _K_NAEbF4EeKSnZtVF4VVOg">
+      <ownedEnd xmi:id="_K_NAEbF4EeKSnZtVF4VVOg" name="stamp" type="__IXHMLFyEeKSnZtVF4VVOg" association="_K_Kj0LF4EeKSnZtVF4VVOg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kW5y4LGeEeKdgqVyRY_NCg" memberEnd="_kW7oELGeEeKdgqVyRY_NCg _kW7oEbGeEeKdgqVyRY_NCg">
+      <ownedEnd xmi:id="_kW7oEbGeEeKdgqVyRY_NCg" name="stack" type="_tR_ccITZEeKnctnnQ3q7Iw" association="_kW5y4LGeEeKdgqVyRY_NCg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_OBUesLGjEeKdgqVyRY_NCg" memberEnd="_OBWT4bGjEeKdgqVyRY_NCg _OBWT4rGjEeKdgqVyRY_NCg">
+      <ownedEnd xmi:id="_OBWT4rGjEeKdgqVyRY_NCg" name="turntable" type="_mTgPUIHDEeK-PrTTZpW3tw" association="_OBUesLGjEeKdgqVyRY_NCg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CLbdgLGdEeKdgqVyRY_NCg" memberEnd="_CLcrorGdEeKdgqVyRY_NCg _CLdSsLGdEeKdgqVyRY_NCg">
+      <ownedEnd xmi:id="_CLdSsLGdEeKdgqVyRY_NCg" name="turntable" type="_mTgPUIHDEeK-PrTTZpW3tw" association="_CLbdgLGdEeKdgqVyRY_NCg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_-wvfULGcEeKdgqVyRY_NCg" memberEnd="_-wxUgLGcEeKdgqVyRY_NCg _-wxUgbGcEeKdgqVyRY_NCg">
+      <ownedEnd xmi:id="_-wxUgbGcEeKdgqVyRY_NCg" name="turntable" type="_mTgPUIHDEeK-PrTTZpW3tw" association="_-wvfULGcEeKdgqVyRY_NCg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_uDRKILPFEeK6YJFhmRn47w" memberEnd="_uDZF8LPFEeK6YJFhmRn47w _uDZtALPFEeK6YJFhmRn47w">
+      <ownedEnd xmi:id="_uDZtALPFEeK6YJFhmRn47w" name="stack" type="_tR_ccITZEeKnctnnQ3q7Iw" association="_uDRKILPFEeK6YJFhmRn47w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wb9e0LPQEeK6YJFhmRn47w" memberEnd="_wb_UAbPQEeK6YJFhmRn47w _wb_UArPQEeK6YJFhmRn47w">
+      <ownedEnd xmi:id="_wb_UArPQEeK6YJFhmRn47w" name="stamp" type="__IXHMLFyEeKSnZtVF4VVOg" association="_wb9e0LPQEeK6YJFhmRn47w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_8Yx2ILPQEeK6YJFhmRn47w" memberEnd="_8YzEQbPQEeK6YJFhmRn47w _8YzEQrPQEeK6YJFhmRn47w">
+      <ownedEnd xmi:id="_8YzEQrPQEeK6YJFhmRn47w" name="stamp" type="__IXHMLFyEeKSnZtVF4VVOg" association="_8Yx2ILPQEeK6YJFhmRn47w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3WTqwNdkEeiByd7s2sP2rw" name="Stamp_Stack">
+      <generalization xmi:id="_3ZBnktdkEeiByd7s2sP2rw" general="_3ZBnkNdkEeiByd7s2sP2rw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3ZBnkNdkEeiByd7s2sP2rw" name="Stamp_Stack_Crane">
+      <ownedOperation xmi:id="_r5g5cLGCEeKSnZtVF4VVOg" name="ACT_Init"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_iQTq8ITJEeKnctnnQ3q7Iw" memberEnd="_glg9EITJEeKnctnnQ3q7Iw _iQTq84TJEeKnctnnQ3q7Iw">
+    <ownedEnd xmi:id="_iQTq84TJEeKnctnnQ3q7Iw" name="" type="_HoiT8Ht6EeKCCdjWtXQmoQ" association="_iQTq8ITJEeKnctnnQ3q7Iw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_3Y99MNdkEeiByd7s2sP2rw" name="Y-Slide_Slide">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_Fj2lcIHHEeK-PrTTZpW3tw" name="input" type="_HB80wIG_EeK-PrTTZpW3tw" aggregation="composite"/>
+  </packagedElement>
+</uml:Model>
