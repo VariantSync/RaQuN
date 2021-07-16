@@ -232,16 +232,3 @@ dependencies.
 
 The [README](README.md) contains basic usage examples of how to use RaQuN in your project. In this section, we will 
 provide pointers to the most important classes.
-
-### RaQuN.java
-[RaQuN.java](src/main/java/de/variantsync/matching/RaQuN.java) contains the implementation of RaQuN's algorithm as 
-presented in the paper (Algorithm I). You can construct an instance of RaQuN by providing concrete instances for 
-RaQuN`s configuration points:
-```java
-public RaQuN(IVectorization vectorizationFunction, IValidityConstraint validityConstraint, ISimilarityFunction similarityFunction, int nNearestNeighbors) {}
-```
-You can either implement the interfaces yourself, or you can use the implementations presented in our paper:
-```
-RaQuN raQuN = new RaQuN(new PropertyBasedVectorization(), new OneToOneValidity(), new WeightMetric());
-```
-
