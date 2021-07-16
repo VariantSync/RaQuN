@@ -48,10 +48,10 @@ of the different matchers that we evaluated.
 * [`RaQuN.jar`](RaQuN.jar) A pre-build library of RaQuN which you can add as a dependency to your own projects.
 * [`STATUS.md`](STATUS.md) specifies the [ACM badges](https://www.acm.org/publications/policies/artifact-review-and-badging-current)
   which we apply for.
-* `build-docker-image.(bat|sh)` is a script that builds the Docker image with which the experiments presented in our paper can be executed.
-* `experiments.(bat|sh)` is a script for running the experiments in a Docker container. See the `Running the Experiments` section below.
+* [`build-docker-image.bat`](build-docker-image.bat)|[`build-docker-image.sh`](build-docker-image.sh) is a script that builds the Docker image with which the experiments presented in our paper can be executed.
+* [`experiment.bat`](experiment.bat)|[`experiment.sh`](experiment.sh)is a script for running the experiments in a Docker container. See the `Running the Experiments` section below.
 * `reported-results.zip` is an archive with the raw result data reported in our paper.
-* `stop-all-experiments.(bat|sh)` is a script that will stop all Docker containers currently running experiments.
+* [`stop-all-experiments.bat`](stop-all-experiments.bat)|[`stop-all-experiments.sh`](stop-all-experiments.sh) is a script that will stop all Docker containers currently running experiments.
 
 ## Requirements and Installation
 If you are familiar with the terminal running on your system and Docker, you can follow the instructions in this sections
