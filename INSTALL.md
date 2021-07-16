@@ -24,15 +24,15 @@ Linux:
 
 * Navigate to RaQuN's root directory using the `cd PATH` command
 * Build the Docker image with the provided script
-```
-Windows Command Prompt: 
-  build-docker-image.bat
+```shell
+# Windows Command Prompt: 
+build-docker-image.bat
  
-Windows PowerShell:
- .\build-docker-image.bat
+# Windows PowerShell:
+.\build-docker-image.bat
  
-Linux:
- ./build-docker-image.sh
+# Linux:
+./build-docker-image.sh
 ```
 
 The generated Docker image will have the name `match-experiments`.
@@ -43,29 +43,29 @@ comprises a small subset of the experiments which we present in our paper.
 
 Running the full validation should take around 30 minutes (+- 15 minutes depending on your system). You can start it by 
 calling the experiment script:
-```
-Windows Command Prompt: 
-  experiment.bat validate
+```shell
+# Windows Command Prompt: 
+experiment.bat validate
  
-Windows PowerShell:
- .\experiment.bat validate
+# Windows PowerShell:
+.\experiment.bat validate
  
-Linux:
- ./experiment.sh validate
+# Linux:
+./experiment.sh validate
 ```
 
 You can cancel the process at any time by opening the RaQuN's root directory in a new terminal window and calling:
-```
+```shell
 ATTENTION: This will stop the execution of ALL RaQuN docker containers currently running on your system.
 
-Windows Command Prompt: 
-  stop-all-experiments.bat
+# Windows Command Prompt: 
+stop-all-experiments.bat
  
-Windows PowerShell:
- .\stop-all-experiments.bat
+# Windows PowerShell:
+.\stop-all-experiments.bat
  
-Linux:
- ./stop-all-experiments.sh
+# Linux:
+./stop-all-experiments.sh
 ```
 Stopping the execution may take a short while.
 
@@ -122,11 +122,11 @@ Linux:
 ```
 * Navigate to RaQuN's root directory using the `cd PATH` command 
 * Make sure that your system is running JDK-11
-```
+```shell
 java -version
 ```
 * Build RaQuN with Maven
-```
+```shell
 mvn package
 ```
 * Unpack all zip-files inside the `experimental_subjects` and `experimental_subjects/argouml` directory to
@@ -157,25 +157,25 @@ mvn package
 ### Validation of Correct Installation
 Running the full validation should take around 30 minutes (+- 15 minutes depending on your system). You run it by
 calling the experiment JAR files with the corresponding properties:
-```
-Windows:
-    java -jar target\RQ1Runner-jar-with-dependencies.jar docker-resources\quick-validation.properties
-    java -jar target\RQ2Runner-jar-with-dependencies.jar docker-resources\quick-validation.properties
-    java -jar target\RQ3Runner-jar-with-dependencies.jar docker-resources\quick-validation.properties
-Linux:
-    java -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/quick-validation.properties
-    java -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/quick-validation.properties
-    java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/quick-validation.properties
+```shell
+# Windows:
+java -jar target\RQ1Runner-jar-with-dependencies.jar docker-resources\quick-validation.properties
+java -jar target\RQ2Runner-jar-with-dependencies.jar docker-resources\quick-validation.properties
+java -jar target\RQ3Runner-jar-with-dependencies.jar docker-resources\quick-validation.properties
+# Linux:
+java -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/quick-validation.properties
+java -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/quick-validation.properties
+java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/quick-validation.properties
 ```
 
 Lastly, you can run the experiment evaluation that generates plots and tables similar to the ones presented in our paper:
-```
-Windows:
-    cd result_analysis_python
-    python.exe .\evaluation.py
-Linux:
-    python3.8 ./result_analysis_python/evaluation.py
-    python3.8 ./evaluation.py
+```shell
+# Windows:
+cd result_analysis_python
+python.exe .\evaluation.py
+# Linux:
+python3.8 ./result_analysis_python/evaluation.py
+python3.8 ./evaluation.py
 ```
 
 ### Expected Output
