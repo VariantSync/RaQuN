@@ -48,7 +48,7 @@ of the different matchers that we evaluated.
 * [`REQUIREMENTS.md`](REQUIREMENTS.md) contains the requirements for installing and running the artifacts on your system.
 * [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
 * [`EXPERIMENTS.md`](EXPERIMENTS.md) contains detailed instructions on how to run and configure experiments with and without Docker. You can find basic instructions in the sections below.
-* [`NOTICE.md`](NOTICE.md) contains additional licensing information.
+* [`LICENSE.md`](LICENSE.md) contains licensing information.
 * [`RaQuN.jar`](RaQuN.jar) A pre-build library of RaQuN which you can add as a dependency to your own projects.
 * [`STATUS.md`](STATUS.md) specifies the [ACM badges](https://www.acm.org/publications/policies/artifact-review-and-badging-current)
   which we apply for.
