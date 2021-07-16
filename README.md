@@ -223,7 +223,7 @@ runner expects the `csv` to have to following format:
     * `2,46,Room,n_room_1;displayScanner_1;bed_1;stationary_1;bed_2`
 * `,` and `;` are delimeters and must not be used in the values
 * If an element has multiple properties with exactly the same values, the properties of all elements in the dataset should
-be enumerated by appending a number to the property as seen in the examples above.
+be enumerated by appending a number following an underscore to the property (e.g., appending `_3`) as seen in the examples above.
   
 ### How to Run the Experiments On Your Dataset
 * Save the dataset's csv file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files
