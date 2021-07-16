@@ -4,6 +4,7 @@
 ## Running the Experiments Using Docker
 **ATTENTION**
 ```
+Before running or re-running any experiments:
 Make sure to delete all previously collected results by deleting the `./results` directory, as they will otherwise be 
 counted as results of subsequent experiment executions. We only append results data, not overwrite it, to make it 
 possible to run multiple instances of the same experiment in parallel.
@@ -66,6 +67,7 @@ to configure the experiments under `Docker Experiment Configuration` below.
 
 `Expected Average Runtime for one Repetition of RQ3 (@2.90GHz): 300 hours or 14 days` (Repeated 1 time for the paper)
 
+#### Reduce Runtime by Reducing Sample Size
 Due to the large runtime of RQ3 we made it possible to run the experiments on individual subsets in parallel. There
 are 30 subsets for each subset size. You can filter these subsets for the experiment by providing a `SUBSET_ID`. `SUBSET_ID`
 has to be a natural number in the interval `[1, 30]` (e.g., `experiment.bat RQ3 1` will run RQ for all subsets with ID 1).
@@ -131,6 +133,7 @@ The total runtime was about 3-4 days.
 ## Running the Experiments Without Docker
 **ATTENTION**
 ```
+Before running or re-running any experiments:
 Make sure to delete all previously collected results by deleting the `./results` directory, as they will otherwise be 
 counted as results of subsequent experiment executions. We only append results data, not overwrite it, to make it 
 possible to run multiple instances of the same experiment in parallel.

@@ -1,5 +1,5 @@
 # Installation
-Please refer to REQUIREMENTS.md for the requirements of the two different setups.
+Please refer to [REQUIREMENTS.md](REQUIREMENTS.md) for the requirements of the two different setups.
 
 ## Installation - Running the Experiments with Docker
 The following installation instructions apply, if you plan to run the experiments presented in our paper __with__ Docker.
@@ -67,6 +67,7 @@ Windows PowerShell:
 Linux:
  ./stop-all-experiments.sh
 ```
+Stopping the execution may take a short while.
 
 ### Expected Output
 During the execution, the container will print information about each completed experimental run. This output should look 
@@ -82,7 +83,7 @@ Number of Comparisons Theoretically Needed for a Complete N-Way Comparison: 3814
 Number of Comparisons Actually Performed by the Algorithm: 245216
 ```
 At the same time, each run will save its result in an automatically created folder `./results` in the root directory 
-of the project. Once the validation run finished, you can find the generated plots and latex tables under `./results/eval-results`
+of the project. Once the validation run finished, you can find the generated plots and latex tables under `./results/eval-results`.
 
 You can compare the generated plots and tables with the screenshots presented below. Note that they do not show the same
 values as presented in our paper, because a large portion of the experimental runs are missing and a different computer 
@@ -97,14 +98,14 @@ was used.
 ## Installation - Running the Experiments without Docker
 The following installation instructions apply, if you plan to run the experiments presented in our paper __without__ Docker.
 ```
-We encourage you to try out running the experiments using Docker instead. It is easier to run, more robust, and 
+We encourage you to use Docker though. It is easier to run, more robust, and 
 you can also quickly run the experiments with a new setup by rebuilding the Docker image.
 ```
 
 ### Installation Instructions
 In the following, we describe how to build the required JAR files and how to prepare the experimental subjects.
 
-* First, make sure that all requirements listed in REQUIREMENTS.md are installed
+* First, make sure that all requirements listed in [REQUIREMENTS.md](REQUIREMENTS.md) are installed
 * Open a suitable terminal.
 ```
 Windows Command Prompt: 
