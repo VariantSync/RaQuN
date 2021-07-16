@@ -1,4 +1,5 @@
 ![Maven](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven.yml/badge.svg)
+![Maven-Publish](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven-publish.yml/badge.svg)
 [![Javadoc](https://img.shields.io/badge/Javadocs-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/docs/)
 [![GitHubPages](https://img.shields.io/badge/GitHub%20Pages-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/)
 
