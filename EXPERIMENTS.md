@@ -225,10 +225,62 @@ For RQ1 and RQ2, we set the number of repetitions to 2, for RQ3 to 1. Then, we e
 The total runtime was about 3-4 days.
 ```
 
-## Using RaQuN as a Library in Your Own Projects
-You can also use RaQuN as a Java Library in your own project. Simply add [`RaQuN.jar`](RaQuN.jar) as a dependency to
-your project. Please refer to the documentation of your IDE or build system for instructions on how to add JARs as
-dependencies. 
+## Running the Experiments on New Datasets
+RaQuN uses the element-property-approach as conceptual model representation, assuming that models are persistently stored 
+as CSV files.
 
-The [README](README.md) contains basic usage examples of how to use RaQuN in your project. In this section, we will 
-provide pointers to the most important classes.
+Note that the element-property-approach does not neglect type and structural information per se. Properties can represent 
+types and references to other elements, e.g., by concatenating the name of a reference type (defined by the metamodel) 
+with the name of the referenced element.
+
+It is possible to run the experiments on new element-property datasets that are stored in a `csv` file.
+
+### Dataset Format
+The experiment
+runner expects the `csv` to have to following format:
+* The file contains all models of the dataset
+* Each line in the file corresponds to exactly one model element
+* Each line adheres to the following format
+    * `MODEL_ID` `,` `ELEMENT_UUID` `,` `ELEMENT_NAME` `,` `PROPERTY_1` `;` `PROPERTY_2` `;` `...` `;` `PROPERTY_M`
+    * Examples
+        * `1,2,BookingCalendar,n_bookingCalendar_1;equipment_1;adminAssistant_1;procedure_1`
+        * `2,27,Bed,n_bed_1`
+        * `2,46,Room,n_room_1;displayScanner_1;bed_1;stationary_1;bed_2`
+* `,` and `;` are delimeters and must not be used in the values
+* If an element has multiple properties with exactly the same values, the properties of all elements in the dataset should
+  be enumerated by appending a number following an underscore to the property (e.g., appending `_3`) as seen in the examples above.
+  
+Examples of how type and structure information can be transferred to an element-property representation can be found below.
+
+### Model Conversion
+Turning a model into an element-property representation requires a pre-processing step which is domain and technology-specific. 
+While some of the models used in our experiments were already provided in an element-property representation, the majority 
+of models has been converted from EMF. More specifically, we implemented converters for parts of the UML meta-model 
+implementation shipped with the Eclipse Modeling project, and for customly defined meta-model of architectural models 
+following the component-connector principle.
+
+In order to run the converters on the EMF models provided in the directory TODO .... you can ....
+
+TODO anpassen
+java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/argouml
+java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/bcms
+java -cp ModelExtraction.jar emf2csv.UML2CSV classdiagram emf-models/ppu
+java -cp ModelExtraction.jar emf2csv.UML2CSV statemachine emf-models/ppu_statem
+java -cp ModelExtraction.jar emf2csv.Architecture2CSV emf-models/bcs
+
+Besides reproducing our experimental results, the converters may serve as an inspiration of how to implement dedicated 
+converters for your own EMF models. In a nutshell, we use the generic EMF model traversal and reflective API to access 
+an element's local properties and referenced elements. We exploit domain knowledge (on meta-models) to filter (and condense) some information considered irrelevant (too verbose) for similarity-based matching.
+
+### Running the Experiments On Your Dataset
+* Save the dataset's `csv` file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files. (Do not zip your files or locate them in subdirectories. They should be directly at the top-level, e.g., at `experiment_subjects/customdataset.csv`.)
+* Open the experiment properties in a text editor
+    * [`full-experiments.properties`](docker-resources/full-experiments.properties) configures the experiment execution
+      of `experiment.(bat|sh) run`
+    * [`single-experiment.properties`](docker-resources/single-experiment.properties) configures specific experiment runs
+      with `experiment.(bat|sh) (RQ1|RQ2|RQ3)`
+* Add the dataset's filename without the `.csv` extension to the list of datasets for RQ1 OR RQ2
+    * `experiments.rq1.datasets = YOUR_DATASET,hospitals, ...`
+    * `experiments.rq2.datasets = YOUR_DATASET,ppu,bcms`
+* Rebuild the docker image as described in [INSTALL.md](INSTALL.md)
+* Run the experiments as described above

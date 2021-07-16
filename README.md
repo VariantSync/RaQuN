@@ -230,37 +230,6 @@ docker system prune -a
 ```
 Please refer to the official documentation on how to remove specific [images](https://docs.docker.com/engine/reference/commandline/image_rm/) and [containers](https://docs.docker.com/engine/reference/commandline/container_rm/) from your system.
 
-## Running the Experiments on New Datasets
-It is possible to run the experiments on new element-property datasets that are stored in a `csv` file. 
-
-### Dataset Format
-The experiment
-runner expects the `csv` to have to following format:
-* The file contains all models of the dataset
-* Each line in the file corresponds to exactly one model element
-* Each line adheres to the following format
-  * `MODEL_ID` `,` `ELEMENT_UUID` `,` `ELEMENT_NAME` `,` `PROPERTY_1` `;` `PROPERTY_2` `;` `...` `;` `PROPERTY_M`
-  * Examples 
-    * `1,2,BookingCalendar,n_bookingCalendar_1;equipment_1;adminAssistant_1;procedure_1`
-    * `2,27,Bed,n_bed_1`
-    * `2,46,Room,n_room_1;displayScanner_1;bed_1;stationary_1;bed_2`
-* `,` and `;` are delimeters and must not be used in the values
-* If an element has multiple properties with exactly the same values, the properties of all elements in the dataset should
-be enumerated by appending a number following an underscore to the property (e.g., appending `_3`) as seen in the examples above.
-  
-### How to Run the Experiments On Your Dataset
-* Save the dataset's `csv` file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files. (Do not zip your files or locate them in subdirectories. They should be directly at the top-level, e.g., at `experiment_subjects/customdataset.csv`.)
-* Open the experiment properties in a text editor
-  * [`full-experiments.properties`](docker-resources/full-experiments.properties) configures the experiment execution
-    of `experiment.(bat|sh) run`
-  * [`single-experiment.properties`](docker-resources/single-experiment.properties) configures specific experiment runs
-    with `experiment.(bat|sh) (RQ1|RQ2|RQ3)`
-* Add the dataset's filename without the `.csv` extension to the list of datasets for RQ1 OR RQ2 
-  * `experiments.rq1.datasets = YOUR_DATASET,hospitals, ...`
-  * `experiments.rq2.datasets = YOUR_DATASET,ppu,bcms`
-* Rebuild the docker image as described in [INSTALL.md](INSTALL.md)
-* Run the experiments as described above
-
 ## Using RaQuN as a Library in Your Own Projects
 You can also use RaQuN as a Java Library in your own project. Simply add [`RaQuN.jar`](RaQuN.jar) as a dependency to 
 your project. Please refer to the documentation of your IDE or build system for instructions on how to add JARs as 
