@@ -53,6 +53,11 @@ public class RaQuN {
         this.nNearestNeighbors = 0;
     }
 
+    /**
+     * This is algorithm 1 in the paper.
+     * @param models The models that should be matched.
+     * @return A matching of the given models.
+     */
     public Set<RMatch> match(Collection<RModel> models) {
         // Initialize the vectorization function
         vectorizationFunction.initialize(models);
