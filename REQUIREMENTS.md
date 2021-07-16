@@ -11,13 +11,17 @@ on your own datasets, more or less resources might be required.
 #### CPU
 Any CPU should work. However, your CPU directly influences the time required to run the experiments, how many executions can
 be run in parallel, and the measured runtimes. We ran the experiments on a `Intel® Xeon® Processor E7-4880` at __2.90GHz__.
+Be aware that running the experiments in parallel will negatively affect the validity of the runtime evaluation, if your 
+processor does not have the necessary capabilities (number of (virtual) cores).
 
 #### Memory (RAM)
 Some experiments (e.g., matching ArgoUML) might require large amounts of working memory. __We advise__ to run the experiments
-on a system with at least __16GB RAM__.
+on a system with at least __16GB RAM__. If the experiments are to be
+run in parallel, more resources will be required, depending on the number of runs.
 
 #### Storage
-The artifacts, experimental results, and docker objects might require up to __10GB of storage__.
+The artifacts, experimental results, and docker objects might require up to __10GB of storage__. If the experiments are to be
+run in parallel, more resources will be required, depending on the number of runs.
 
 
 
