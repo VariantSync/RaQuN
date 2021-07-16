@@ -17,7 +17,7 @@ Authors:
 [Timo Kehrer](https://www.informatik.hu-berlin.de/de/forschung/gebiete/mse/mitarb/kehrerti.html).
 
 ### Cite As
-```
+```bibtex
 @inproceedings{SBG+:MODELS21,
 	author = {Alexander Schulthei\ss{} and Paul Maximilian Bittner and Lars Grunske and Thomas Th{\"{u}}m and Timo Kehrer},
 	title = {{Scalable N-Way Model Matching Using Multi-Dimensional Search Trees}},
