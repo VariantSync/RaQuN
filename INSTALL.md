@@ -155,9 +155,6 @@ mvn package
 ```
 
 ### Validation of Correct Installation
-We prepared an entry point for the Docker image through which you can validate that the image is working. This validation
-comprises a small subset of the experiments which we present in our paper. 
-
 Running the full validation should take around 30 minutes (+- 15 minutes depending on your system). You run it by
 calling the experiment JAR files with the corresponding properties:
 ```
@@ -174,9 +171,11 @@ Linux:
 Lastly, you can run the experiment evaluation that generates plots and tables similar to the ones presented in our paper:
 ```
 Windows:
-    python.exe .\result_analysis_python\evaluation.py
+    cd result_analysis_python
+    python.exe .\evaluation.py
 Linux:
     python3.8 ./result_analysis_python/evaluation.py
+    python3.8 ./evaluation.py
 ```
 
 ### Expected Output
