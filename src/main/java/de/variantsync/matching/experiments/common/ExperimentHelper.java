@@ -44,7 +44,7 @@ public class ExperimentHelper {
      * @param name the name of the matcher
      * @param dataset the name of the dataset
      */
-    public static void runExperiment(MethodAdapter adapter, String baseResultsDir, String name, String dataset) {
+    public static void runExperiment(MatcherAdapter adapter, String baseResultsDir, String name, String dataset) {
         try {
             System.out.println("Running " + name + " on " + dataset + "...");
             adapter.run();

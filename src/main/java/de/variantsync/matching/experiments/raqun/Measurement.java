@@ -1,5 +1,8 @@
 package de.variantsync.matching.experiments.raqun;
 
+/**
+ * A Measurement holds metadata about an experiment run with RaQuN
+ */
 public class Measurement {
     int runId;
     String testCase;

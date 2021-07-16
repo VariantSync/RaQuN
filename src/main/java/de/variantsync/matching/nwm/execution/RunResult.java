@@ -7,6 +7,9 @@ import de.variantsync.matching.nwm.common.N_WAY;
 import de.variantsync.matching.nwm.domain.Tuple;
 import org.apache.poi.ss.usermodel.Row;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class RunResult {
 
 

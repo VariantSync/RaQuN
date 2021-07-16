@@ -13,6 +13,9 @@ import de.variantsync.matching.nwm.domain.Model;
 import de.variantsync.matching.nwm.domain.Tuple;
 import de.variantsync.matching.nwm.execution.RunResult;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class LocalSearchMerger extends Merger{
 
 	private N_WAY.ALG_POLICY policy;

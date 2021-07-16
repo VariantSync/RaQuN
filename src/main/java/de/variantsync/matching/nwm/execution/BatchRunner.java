@@ -14,6 +14,9 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class BatchRunner extends ResultsWriter {
 
 	private BatchRunDescriptor desc;

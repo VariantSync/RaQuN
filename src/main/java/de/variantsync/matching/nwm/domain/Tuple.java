@@ -14,6 +14,9 @@ import de.variantsync.matching.nwm.common.N_WAY;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class Tuple {
 	private ArrayList<Element> elements;
 	private ArrayList<Element> realElements = null;

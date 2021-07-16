@@ -20,6 +20,9 @@ import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.common.N_WAY;
 import de.variantsync.matching.nwm.domain.Model;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class TupleReader {
 
 	private ArrayList<Tuple> result = new ArrayList<Tuple>();

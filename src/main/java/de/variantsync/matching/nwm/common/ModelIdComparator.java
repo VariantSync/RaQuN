@@ -5,6 +5,9 @@ import java.util.Comparator;
 import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
 import de.variantsync.matching.nwm.domain.Model;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class ModelIdComparator implements Comparator<HungarianMerger> {
 	
 	private  boolean largerFirst;

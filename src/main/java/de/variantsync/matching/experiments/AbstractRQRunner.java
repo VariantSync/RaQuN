@@ -7,6 +7,9 @@ import de.variantsync.matching.raqun.vectorization.IVectorization;
 
 import java.io.File;
 
+/**
+ * Abstract base class for RQRunners
+ */
 public abstract class AbstractRQRunner {
     protected ExperimentConfiguration configuration;
     protected String baseResultsDir;

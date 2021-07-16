@@ -3,6 +3,9 @@ package de.variantsync.matching.nwm.alg.merge;
 import de.variantsync.matching.nwm.common.N_WAY;
 import de.variantsync.matching.nwm.common.N_WAY.ALG_POLICY;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class MergeDescriptor {
 
 	public ALG_POLICY algPolicy;

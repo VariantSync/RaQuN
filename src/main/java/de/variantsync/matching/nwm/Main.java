@@ -7,7 +7,9 @@ import de.variantsync.matching.nwm.execution.BatchRunner;
 import de.variantsync.matching.nwm.execution.Runner;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 
-
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class Main {
 	
 

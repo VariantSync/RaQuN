@@ -15,6 +15,9 @@ import de.variantsync.matching.nwm.domain.Model;
 import de.variantsync.matching.nwm.domain.Tuple;
 import de.variantsync.matching.nwm.execution.RunResult;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class PairWiseMerger extends Merger{
 
 	private ArrayList<Model> models;

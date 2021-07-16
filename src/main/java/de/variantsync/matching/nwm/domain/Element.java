@@ -10,6 +10,9 @@ import java.util.Set;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import org.apache.poi.ss.usermodel.Row;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class Element {
 	private Set<String> properties;
 	private String label;

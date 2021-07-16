@@ -14,6 +14,9 @@ import de.variantsync.matching.nwm.domain.Model;
 import de.variantsync.matching.nwm.domain.Tuple;
 import de.variantsync.matching.nwm.execution.RunResult;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public abstract class MultiModelMerger extends Merger implements Matchable{
 	
 	protected ArrayList<Tuple> solution;

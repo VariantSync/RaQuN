@@ -15,6 +15,9 @@ import de.variantsync.matching.nwm.common.NeighborhoodGraph;
 import de.variantsync.matching.nwm.domain.Model;
 import de.variantsync.matching.nwm.domain.Tuple;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public abstract class LocalSearch extends AlgoBase implements Matchable {
 	
 	protected int maxSubgroupSize;

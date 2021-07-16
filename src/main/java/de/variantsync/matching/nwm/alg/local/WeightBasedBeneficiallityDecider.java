@@ -7,6 +7,9 @@ import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.common.N_WAY;
 import de.variantsync.matching.nwm.domain.Tuple;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class WeightBasedBeneficiallityDecider implements SwapBeneficiallityDecider{
 
 	private boolean doSquaring;

@@ -2,6 +2,9 @@ package de.variantsync.matching.nwm.alg;
 
 import de.variantsync.matching.nwm.domain.Tuple;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public interface TupleExaminer {
 	// accepts a tuple, handles it, returns true if it should be added to the list of tuples
 	boolean examine(Tuple t);

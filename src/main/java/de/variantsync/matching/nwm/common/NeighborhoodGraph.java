@@ -1,5 +1,8 @@
 package de.variantsync.matching.nwm.common;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class NeighborhoodGraph {
 	
 	private byte[] connectionBitMap;

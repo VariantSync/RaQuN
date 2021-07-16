@@ -8,6 +8,9 @@ import de.variantsync.matching.nwm.domain.Element;
 import de.variantsync.matching.nwm.domain.Model;
 import de.variantsync.matching.nwm.domain.Tuple;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class MultiModelHungarianOptimizingMerger extends MultiModelMerger {
 
 	public MultiModelHungarianOptimizingMerger(ArrayList<Model> models) {

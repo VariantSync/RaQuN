@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import de.variantsync.matching.nwm.domain.Model;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class ExecutionMixer {
 
 	//private int m;

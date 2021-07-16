@@ -99,6 +99,12 @@ public class RaQuN {
         return candidatePairs;
     }
 
+    /**
+     * Start the matching phase with the given match candidates.
+     * @param candidatePairs comprise pairs of elements that might be matched
+     * @param allElements should comprise all elements to determine which elements are missing ich the candidatePairs
+     * @return The matching for the dataset
+     */
     protected Set<RMatch> computeMatching(Set<CandidatePair> candidatePairs, Set<RElement> allElements) {
         // Calculate the match confidence of the pairs, filter and sort (Algorithm 1, line 18
         PairSortTree sortedPairs = filterAndSort(candidatePairs);
@@ -135,6 +141,11 @@ public class RaQuN {
         return resultSet;
     }
 
+    /**
+     * Filter candidate pairs with a match confidence of 0 and sort them descending by confidence
+     * @param candidatePairs that are to be filtered and sorted
+     * @return A tree that contains the sorted pairs
+     */
     protected PairSortTree filterAndSort(Set<CandidatePair> candidatePairs) {
         // The pairs are sorted descending by match confidence
         PairSortTree pairSortTree = new PairSortTree();
@@ -164,6 +175,9 @@ public class RaQuN {
         return numProcessedElements;
     }
 
+    /**
+     * A TreeSet that can be used to sort CandidatePairs by match confidence.
+     */
     protected static class PairSortTree extends TreeSet<CandidatePair> {
         private PairSortTree() {
             super((pairA, pairB) -> {

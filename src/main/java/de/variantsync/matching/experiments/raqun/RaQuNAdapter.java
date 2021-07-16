@@ -10,19 +10,27 @@ import java.util.stream.IntStream;
 import de.variantsync.matching.raqun.data.*;
 import de.variantsync.matching.experiments.common.MatchStatistic;
 import de.variantsync.matching.experiments.common.ExperimentHelper;
-import de.variantsync.matching.experiments.common.MethodAdapter;
+import de.variantsync.matching.experiments.common.MatcherAdapter;
 import de.variantsync.matching.raqun.RaQuN;
 
-public class RaQuNAdapter implements MethodAdapter {
+/**
+ * Experiment Adapter that calls RaQuN during an experiment.
+ */
+public class RaQuNAdapter implements MatcherAdapter {
     private final RaqunSetup setup;
     private final List<Integer> Ks;
     private List<Measurement> experimentSpecifics;
 
+    /**
+     * Initialize a new Adapter with the given setup
+     * @param setup that specifies the experimental setup for RaQuN
+     */
     public RaQuNAdapter(RaqunSetup setup) {
         this.setup = setup;
         Ks = IntStream.rangeClosed(setup.startK, setup.maxK).boxed().collect(Collectors.toList());
     }
 
+    @Override
     public void run() {
         // Load the dataset
         RDataset dataset = new RDataset(setup.datasetName);

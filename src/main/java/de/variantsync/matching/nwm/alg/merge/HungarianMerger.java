@@ -17,6 +17,9 @@ import de.variantsync.matching.nwm.domain.Tuple;
 import de.variantsync.matching.nwm.execution.RunResult;
 
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class HungarianMerger extends Merger implements Matchable {
 
     private Model model1;

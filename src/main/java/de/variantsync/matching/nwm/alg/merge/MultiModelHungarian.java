@@ -9,6 +9,9 @@ import de.variantsync.matching.nwm.domain.Element;
 import de.variantsync.matching.nwm.domain.Model;
 import de.variantsync.matching.nwm.domain.Tuple;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class MultiModelHungarian extends HungarianMerger {
 	ArrayList<Model> oneModel = new ArrayList<Model>();
 	

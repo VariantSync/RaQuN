@@ -7,6 +7,9 @@ import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
 import de.variantsync.matching.nwm.common.ModelIdComparator;
 import de.variantsync.matching.nwm.domain.Model;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class ModelIdbasedPairWiseMatcher extends PairWiseMatch {
 
 	private boolean largerFirst;

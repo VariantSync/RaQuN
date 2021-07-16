@@ -3,7 +3,7 @@ package de.variantsync.matching.experiments.baseline;
 import de.variantsync.matching.experiments.common.ExperimentHelper;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.common.MatchStatistic;
-import de.variantsync.matching.experiments.common.MethodAdapter;
+import de.variantsync.matching.experiments.common.MatcherAdapter;
 import de.variantsync.matching.nwm.alg.merge.ChainingOptimizingMerger;
 import de.variantsync.matching.nwm.alg.merge.MultiModelMerger;
 import de.variantsync.matching.nwm.common.AlgoUtil;
@@ -20,7 +20,7 @@ import java.util.*;
 /**
  * Adapter for running NwM and Pairwise matchers in our experiments.
  */
-public class BaselineAlgoAdapter implements MethodAdapter {
+public class BaselineAlgoAdapter implements MatcherAdapter {
     private final ExperimentSetup setup;
     private final EBaselineImplementation algorithmToApply;
 

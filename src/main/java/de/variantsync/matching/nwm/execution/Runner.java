@@ -17,6 +17,9 @@ import de.variantsync.matching.nwm.alg.merge.Merger;
 import de.variantsync.matching.nwm.alg.merge.MultiModelMerger;
 import de.variantsync.matching.nwm.alg.merge.PairWiseMerger;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class Runner extends ResultsWriter{
 
 	private ArrayList<Model> models;

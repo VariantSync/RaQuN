@@ -5,6 +5,9 @@ import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.raqun.vectorization.IVectorization;
 
+/**
+ * An ExperimentSetup that provides the required setup data for RaQuN.
+ */
 public class RaqunSetup extends ExperimentSetup {
 
     public final ISimilarityFunction similarityFunction;

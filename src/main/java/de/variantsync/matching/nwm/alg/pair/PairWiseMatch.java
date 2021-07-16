@@ -11,6 +11,9 @@ import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Model;
 import de.variantsync.matching.nwm.domain.Tuple;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public abstract class PairWiseMatch extends AlgoBase {
 
 	private ArrayList<Model> models;

@@ -12,6 +12,9 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class Model {
     private ArrayList<Element> elements = new ArrayList<Element>();
     private String id;

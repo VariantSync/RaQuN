@@ -3,6 +3,9 @@ package de.variantsync.matching.nwm.common;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public interface N_WAY {
 
 	public static final int PAIR_WISE = 1;

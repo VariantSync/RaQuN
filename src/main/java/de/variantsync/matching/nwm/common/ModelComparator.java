@@ -4,6 +4,9 @@ import java.util.Comparator;
 
 import de.variantsync.matching.nwm.domain.Model;
 
+/**
+ * Undocumented code by Rubin and Chechik
+ */
 public class ModelComparator implements Comparator<Model> {
 
 	private boolean asc;
