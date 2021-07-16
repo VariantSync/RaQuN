@@ -91,6 +91,7 @@ ___This is a quickstart guide. For a detailed step-by-step guide and instruction
 
 **ATTENTION**
 ```
+! Before running or re-running any experiments:
 ! Make sure to delete all previously collected results by deleting the `./results` directory, as they will otherwise be 
 ! counted as results of subsequent experiment executions. We only append results data, not overwrite it, to make it 
 ! possible to run multiple instances of the same experiment in parallel.
@@ -98,10 +99,21 @@ ___This is a quickstart guide. For a detailed step-by-step guide and instruction
 
 * All of the commands in this section are assumed to be executed in a terminal with working directory at RaQuN's project
 root.
-* Repeating our experiments with the provided scripts in a Docker container should be easy and has only few requirements.
-You can find information on the requirements and how to build the Docker image in the [REQUIREMENTS.md](REQUIREMENTS.md) and
-[INSTALL.md](INSTALL.md) files.
-* You can find more detailed information on how to run and configure the experiments with and without Docker in [EXPERIMENTS.md](EXPERIMENTS.md).
+* Start the Docker Daemon on your system. For further information please refer to the [REQUIREMENTS.md](REQUIREMENTS.md).
+* Build the Docker image: Repeating our experiments with the provided scripts in a Docker container should be easy and has only few requirements.
+You can find information on how to build the Docker image in the [INSTALL.md](INSTALL.md).
+* You can stop the execution of any experiment by running the following command in another terminal:
+  ```shell
+  # Windows Command Prompt:
+  stop-all-experiments.bat
+  # Windows PowerShell:
+  .\stop-all-experiments.bat
+  # Linux
+  ./stop-all-experiments.sh
+  ```
+Stopping the execution may take a short while.
+
+[comment]: <> (* You can find more detailed information on how to run and configure the experiments with and without Docker in [EXPERIMENTS.md]&#40;EXPERIMENTS.md&#41;.)
 
 ### Running all Experiments
 You can repeat the experiments exactly as presented in our paper. The following command will execute 30 runs of the experiments
