@@ -1,4 +1,7 @@
 ![Maven](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven.yml/badge.svg)
+[![Javadoc](https://img.shields.io/badge/Javadocs-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/docs/)
+[![GitHubPages](https://img.shields.io/badge/GitHub%20Pages-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/)
+
 # RaQuN (Range Queries on N input models)
 
 RaQuN is a scalable n-way model matching algorithm, which uses multi-dimensional search trees for efficiently finding suitable 
@@ -32,7 +35,7 @@ The project contains a number of files and folders with interesting content.
 * [`docker-resources`](docker-resources) contains the script and property files used by the Docker containers.
   * `docker-resources/experiment.properties` configures the experiments as presented in our paper. 
   * `docker-resources/quick-validation.properties` configures a quick experiment for validating the Docker image's functionality.
-* [`docs`](docs) contains the Javadocs for the project. You can find the index page [here](docs/index.html). 
+* [`docs`](docs) contains the Javadocs for the project, which you can also find [here](https://alexanderschultheiss.github.io/RaQuN/docs/). 
 * [`experimental_subjects`](experimental_subjects) contains the archives with the csv-files describing the input models used in our experiments.
 * [`result_analysis_python`](result_analysis_python) contains the Python scripts which we used to evaluate the experiments' results
 and generate the plots and tables for our paper.
