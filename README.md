@@ -31,14 +31,7 @@ Authors:
 ```
 
 ## Obtaining the Artifacts
-You can download the latest release via [Zenodo](TODO) or clone the repository from [GitHub](https://github.com/AlexanderSchultheiss/RaQuN).
-
-### Zenodo
-* Download the [archive](TODO)
-* Extract the archive to a location of your choice
-
-### GitHub
-* Clone the repository to a location of your choice
+Clone the repository to a location of your choice using [git](https://git-scm.com/):
   ```
   git clone https://github.com/AlexanderSchultheiss/RaQuN.git
   ```
@@ -47,8 +40,9 @@ You can download the latest release via [Zenodo](TODO) or clone the repository f
 The project contains a number of files and folders with interesting content.
 
 * [`docker-resources`](docker-resources) contains the script and property files used by the Docker containers.
-  * `docker-resources/experiment.properties` configures the experiments as presented in our paper. 
-  * `docker-resources/quick-validation.properties` configures a quick experiment for validating the Docker image's functionality.
+  * `docker-resources/full-experiments.properties` configures the experiments as presented in our paper. 
+  * `docker-resources/single-experiment.properties` configures running a single repetition of specific experiments.
+  * `docker-resources/quick-validation.properties` configures a quick experiment for validating the functionality.
 * [`docs`](docs) contains the Javadocs for the project, which you can also find [here](https://alexanderschultheiss.github.io/RaQuN/docs/). 
 * [`experimental_subjects`](experimental_subjects) contains the archives with the csv-files describing the input models used in our experiments.
 * [`result_analysis_python`](result_analysis_python) contains the Python scripts which we used to evaluate the experiments' results
@@ -59,10 +53,10 @@ of the different matchers that we evaluated.
   * [`nwm`](src/main/java/de/variantsync/matching/nwm) contains the sources of the NwM prototype implementation written by Rubin and Chechik and slightly adjusted by us.
   * [`pairwise`](src/main/java/de/variantsync/matching/pairwise) contains a wrapper written by us for Rubin and Chechik's implementation of a pairwise matcher. 
   * [`raqun`](src/main/java/de/variantsync/matching/raqun) contains RaQuN's implementation written by us.
-* [`REQUIREMENTS.md`](REQUIREMENTS.md) contains the requirements for installing and running the artifacts on your system.
-* [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
 * [`EXPERIMENTS.md`](EXPERIMENTS.md) contains detailed instructions on how to run and configure experiments with and without Docker. You can find basic instructions in the sections below.
+* [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
 * [`LICENSE.md`](LICENSE.md) contains licensing information.
+* [`REQUIREMENTS.md`](REQUIREMENTS.md) contains the requirements for installing and running the artifacts on your system.
 * [`RaQuN.jar`](RaQuN.jar) A pre-build library of RaQuN which you can add as a dependency to your own projects.
 * [`STATUS.md`](STATUS.md) specifies the [ACM badges](https://www.acm.org/publications/policies/artifact-review-and-badging-current)
   which we apply for.
@@ -101,6 +95,8 @@ ___This is a quickstart guide. For a detailed step-by-step guide please refer to
   # Linux:
   experiment.sh validate
   ```
+  The script will generate figures and tables similar to the ones presented in our paper. They are automatically saved to
+  `./results/eval-results`.
 
 ## Running the Experiments Using Docker
 
@@ -111,15 +107,12 @@ ___This is a quickstart guide. For a detailed step-by-step guide and instruction
 ```
 ! Before running or re-running any experiments:
 ! Make sure to delete all previously collected results by deleting the `./results` directory, as they will otherwise be 
-! counted as results of subsequent experiment executions. We only append results data, not overwrite it, to make it 
+! counted as results of parallel experiment executions. We only append results data, not overwrite it, to make it 
 ! possible to run multiple instances of the same experiment in parallel.
 ```
 
 * All of the commands in this section are assumed to be executed in a terminal with working directory at RaQuN's project
 root.
-* Start the Docker Daemon on your system. For further information please refer to the [REQUIREMENTS.md](REQUIREMENTS.md).
-* Build the Docker image: Repeating our experiments with the provided scripts in a Docker container should be easy and has only few requirements.
-You can find information on how to build the Docker image in the [INSTALL.md](INSTALL.md).
 * You can stop the execution of any experiment by running the following command in another terminal:
   ```shell
   # Windows Command Prompt:
@@ -129,7 +122,7 @@ You can find information on how to build the Docker image in the [INSTALL.md](IN
   # Linux
   ./stop-all-experiments.sh
   ```
-Stopping the execution may take a short while.
+Stopping the execution may take a moment.
 
 [comment]: <> (* You can find more detailed information on how to run and configure the experiments with and without Docker in [EXPERIMENTS.md]&#40;EXPERIMENTS.md&#41;.)
 
@@ -144,13 +137,16 @@ experiment.bat run
 # Linux
 ./experiment.sh run
 ```
-`Expected Average Runtime for all experiments (@2.90GHz): 2460 hours or 102 days` 
+```
+Expected Average Runtime for all experiments (@2.90GHz): 2460 hours or 102 days.
 
 We provide instructions on how to parallelize the experiments for a shorter total runtime in the next sections.
+``` 
+
 
 ### Running Specific Experiments
-Due to the considerable runtime of running all experiments, we offer possibilities to run individual experiments and repetitions
-of specific experiments in parallel.
+Due to the considerable runtime of running all experiments in a single container, we offer possibilities to run 
+individual experiments and repetitions of specific experiments in parallel.
 You can run a single experiment repetition for any of the RQs (e.g., `experiment.bat RQ1` executes RQ1). If you want to 
 run multiple containers in parallel, you simply have to open a new terminal and start the experiment there as well. 
 ```shell
@@ -188,7 +184,7 @@ experiment.bat RQ3 SUBSET_ID
 (Repeated 1 time for each of the 30 valid `SUBSET_ID`)
 
 ```
-We ran the experiments in parallel on a compute server with 240 CPU cores and 1TB RAM. 
+We ran the experiments in parallel on a compute server with 240 CPU cores (2.90GHz) and 1TB RAM. 
 For RQ1 and RQ2, we set the number of repetitions to 2, for RQ3 to 1. Then, we executed the following sequential steps:
   - 15 parallel executions of RQ1 by calling 'experiment.(sh|bat) RQ1' in 15 different terminal sessions.
   - 15 parallel executions of RQ2 by calling 'experiment.(sh|bat) RQ2' in 15 different terminal sessions.
@@ -227,7 +223,7 @@ possibility to change the default configuration.
 
 ### Clean-Up
 The more experiments you run, the more space will be required by Docker. The easiest way to clean up all Docker images and
-containers is to run the following command in your terminal. Note that this will remove all other containers and images
+containers afterwards is to run the following command in your terminal. Note that this will remove all other containers and images
 not related to RaQuN as well:
 ```
 docker system prune -a
