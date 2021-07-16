@@ -14,7 +14,7 @@ Authors:
 [Timo Kehrer](https://www.informatik.hu-berlin.de/de/forschung/gebiete/mse/mitarb/kehrerti.html).
 
 ## Obtaining the Artifacts
-You can download the project via [Zenodo](TODO) or clone the [git](https://git-scm.com/) repository from [GitHub](https://github.com/AlexanderSchultheiss/RaQuN).
+You can download the latest release via [Zenodo](TODO) or clone the [git](https://git-scm.com/) repository from [GitHub](https://github.com/AlexanderSchultheiss/RaQuN).
 
 ### Zenodo
 * Download the [archive](TODO)
@@ -41,6 +41,7 @@ of the different matchers that we evaluated.
   * [`nwm`](src/main/java/de/variantsync/matching/nwm) contains the sources of the NwM prototype implementation written by Rubin and Chechik and slightly adjusted by us.
   * [`pairwise`](src/main/java/de/variantsync/matching/pairwise) contains a wrapper written by us for Rubin and Chechik's implementation of a pairwise matcher. 
   * [`raqun`](src/main/java/de/variantsync/matching/raqun) contains RaQuN's implementation written by us.
+* [`EXPERIMENTS.md`](EXPERIMENTS.md) contains detailed instructions on how to run and configure experiments with and without Docker. You can find basic instructions in the sections below.
 * [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
 * [`LICENSE.md`](LICENSE.md) contains licensing information.
 * [`REQUIREMENTS.md`](REQUIREMENTS.md) contains the requirements for installing and running the artifacts on your system.
