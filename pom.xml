@@ -152,5 +152,60 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.sidiff</groupId>
+            <artifactId>sidiff</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>emf.common</artifactId>
+            <version>2.18.0.v20191225-1014</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>emf.ecore.xmi</artifactId>
+            <version>2.16.0.v20190528-0725</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>emf.ecore</artifactId>
+            <version>2.21.0.v20200127-1342</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>emf.mapping.ecore2xml</artifactId>
+            <version>2.11.0.v20180706-1146</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>common</artifactId>
+            <version>2.5.0.v20200302-1312</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>uml2.types</artifactId>
+            <version>2.5.0.v20200302-1312</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>uml2.uml.profile.standard</artifactId>
+            <version>1.5.0.v20200302-1312</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>uml2.uml.resources</artifactId>
+            <version>5.5.0.v20200302-1312</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>uml2.uml</artifactId>
+            <version>5.5.0.v20200302-1312</version>
+        </dependency>
     </dependencies>
 </project>

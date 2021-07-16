@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.eclipse</groupId>
+  <artifactId>uml2.uml.profile.standard</artifactId>
+  <versioning>
+    <release>1.5.0.v20200302-1312</release>
+    <versions>
+      <version>1.5.0.v20200302-1312</version>
+    </versions>
+    <lastUpdated>20210716170817</lastUpdated>
+  </versioning>
+</metadata>
