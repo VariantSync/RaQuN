@@ -9,8 +9,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A utility class that proved methods for setting up and running the experiments.
+ */
 public class ExperimentHelper {
 
+    /**
+     * Split the set of input models of a dataset into multiple subsets. This method is used for the three randomly
+     * generated datasets.
+     * @param inputModels The input models of the dataset
+     * @param chunkSize The size of each subset
+     * @param <T> Type of the input models
+     * @return A list of model subsets
+     */
     public static <T> List<ArrayList<T>> getDatasetChunks(ArrayList<T> inputModels, int chunkSize) {
         // Shuffle the models for randomness
         Collections.shuffle(inputModels);
@@ -26,6 +37,13 @@ public class ExperimentHelper {
         return chunks;
     }
 
+    /**
+     * Runs a specific experiment for the given matcher.
+     * @param adapter of the matcher
+     * @param baseResultsDir where the results are saved to
+     * @param name the name of the matcher
+     * @param dataset the name of the dataset
+     */
     public static void runExperiment(MethodAdapter adapter, String baseResultsDir, String name, String dataset) {
         try {
             System.out.println("Running " + name + " on " + dataset + "...");

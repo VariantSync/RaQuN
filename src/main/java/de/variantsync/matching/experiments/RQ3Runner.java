@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
+/**
+ * RQ3Runner executes the experiments related to RQ1 in our paper.
+ */
 public class RQ3Runner extends AbstractRQRunner {
     private String subsetID = null;
     public final int FIRST_SUBSET = 1;

@@ -17,6 +17,9 @@ import de.variantsync.matching.raqun.data.RMatch;
 
 import java.util.*;
 
+/**
+ * Adapter for running NwM and Pairwise matchers in our experiments.
+ */
 public class BaselineAlgoAdapter implements MethodAdapter {
     private final ExperimentSetup setup;
     private final EBaselineImplementation algorithmToApply;

@@ -11,6 +11,9 @@ import java.util.List;
 
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
+/**
+ * RQ1Runner executes the experiments related to RQ1 in our paper.
+ */
 public class RQ1Runner extends AbstractRQRunner {
 
     public RQ1Runner(String... args) {

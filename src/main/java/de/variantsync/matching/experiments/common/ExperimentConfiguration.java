@@ -14,6 +14,9 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+/**
+ * Utility class for loading values from the properties files that define the experimental setups.
+ */
 public class ExperimentConfiguration {
     private final Configuration config;
     public static final File DEFAULT_PROPERTIES_FILE = new File("src/main/resources/experiment.properties");
@@ -89,11 +92,11 @@ public class ExperimentConfiguration {
     }
 
     public int repetitionsRQ2() {
-        return config.getInt(EXPERIMENTS_EXECUTION_REPEATS_RQ1);
+        return config.getInt(EXPERIMENTS_EXECUTION_REPEATS_RQ2);
     }
 
     public int repetitionsRQ3() {
-        return config.getInt(EXPERIMENTS_EXECUTION_REPEATS_RQ1);
+        return config.getInt(EXPERIMENTS_EXECUTION_REPEATS_RQ3);
     }
 
     public int startK() {

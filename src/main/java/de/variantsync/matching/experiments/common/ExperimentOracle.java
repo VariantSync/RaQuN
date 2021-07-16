@@ -5,6 +5,9 @@ import de.variantsync.matching.raqun.data.RMatch;
 
 import java.util.*;
 
+/**
+ * Utility class for calculating precision, recall and f-measure
+ */
 public class ExperimentOracle {
 
     private double tp;
@@ -14,18 +17,21 @@ public class ExperimentOracle {
     private double recall;
     private double fMeasure;
 
-    public ExperimentOracle(Set<RMatch> mergedModel) {
-        calculateVersionTwo(mergedModel);
+    /**
+     * Initialize a new oracle with the provided matches and calculate the statistics.
+     * @param matches The matches calculated by a matcher
+     */
+    public ExperimentOracle(Set<RMatch> matches) {
+        calculate(matches);
     }
 
-
-    private void calculateVersionTwo(Set<RMatch> mergedModel) {
+    private void calculate(Set<RMatch> matches) {
         tp = 0.0;
         fp = 0.0;
         fn = 0.0;
-        Map<String, Integer> numberOfClassOccurrencesTotal = countClassOccurrences(mergedModel);
+        Map<String, Integer> numberOfClassOccurrencesTotal = countClassOccurrences(matches);
 
-        for (RMatch tuple : mergedModel) {
+        for (RMatch tuple : matches) {
             Collection<RElement> nodesInTuple = tuple.getElements();
             // Count the number of times each class appears in the tuple
             Map<String, Integer> numberOfClassOccurrences = new HashMap<>();

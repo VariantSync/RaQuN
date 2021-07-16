@@ -1,9 +1,10 @@
 package de.variantsync.matching.experiments.common;
 
-import de.variantsync.matching.raqun.validity.IValidityConstraint;
-
 import java.nio.file.Paths;
 
+/**
+ * An ExperimentSetup holds the parameters that configure a specific experiment.
+ */
 public class ExperimentSetup {
     public final String name;
     public final int numberOfRepeats;

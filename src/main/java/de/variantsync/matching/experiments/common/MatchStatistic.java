@@ -11,6 +11,10 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * MatchStatistic stores the statistics of a specific experiment run. All fields that are not transient are saved to disk
+ * in JSON format.
+ */
 public class MatchStatistic {
     // Basic information
     private final int runID;
@@ -42,12 +46,14 @@ public class MatchStatistic {
     private int numberOfComparisonsActuallyDone = -1;
     // Additional information about the tuples
 
+    // These values are stored in the JSON result as well
     private double mergeSizeFactor = -1;
     private double averageMatchedElementFit = -1;
     private double[] matchedElementFitPerTuple;
-    // The merged model itself
 
-    private transient Set<RMatch> resultModel = null;
+    // The matching
+    private transient Set<RMatch> matching = null;
+
     public MatchStatistic(int runID, String dataset, String method, int numberOfModels, int sizeOfLargestModel) {
         this.runID = runID;
         this.dataset = dataset;
@@ -66,13 +72,13 @@ public class MatchStatistic {
         this.k = k;
     }
 
-    public void calculateStatistics(Set<RMatch> tuples, double runtime) {
-        this.resultModel = tuples;
-        this.numberOfElements = countElements(tuples);
-        this.numberOfTuples = tuples.size();
+    public void calculateStatistics(Set<RMatch> matching, double runtime) {
+        this.matching = matching;
+        this.numberOfElements = countElements(matching);
+        this.numberOfTuples = matching.size();
 
-        this.mergeSizeFactor = ((double) tuples.size() / (double) sizeOfLargestModel);
-        this.matchedElementFitPerTuple = calculateElementFitPerTuple(tuples);
+        this.mergeSizeFactor = ((double) matching.size() / (double) sizeOfLargestModel);
+        this.matchedElementFitPerTuple = calculateElementFitPerTuple(matching);
 
         // Calculate the average matched element fit
         double fitSum = 0.0d;
@@ -90,10 +96,10 @@ public class MatchStatistic {
 
         this.runtime = runtime;
         WeightMetric weightMetric = new WeightMetric(this.numberOfModels);
-        this.weight = weightMetric.getQualityOfMatching(tuples);
+        this.weight = weightMetric.getQualityOfMatching(matching);
 
         // Calculate the oracle results
-        ExperimentOracle oracle = new ExperimentOracle(tuples);
+        ExperimentOracle oracle = new ExperimentOracle(matching);
         this.tp = (int) oracle.getTp();
         this.fp = (int) oracle.getFp();
         this.fn = (int) oracle.getFn();
@@ -142,7 +148,7 @@ public class MatchStatistic {
 
     public void writeModel(String pathToFile) {
         try (PrintWriter writer = new PrintWriter(new FileOutputStream(new File(pathToFile), true))) {
-            for (RMatch tuple : resultModel) {
+            for (RMatch tuple : matching) {
                 writer.print(tuple.toString());
                 writer.print(";");
             }
