@@ -3,9 +3,8 @@ We apply for the _Artifacts Evaluated - Reusable_ and _Artifacts Available_ badg
 
 ## Artifacts Evaluated - Reusable
 We believe that the artifact deserves this badge because
-* we documented all code artifacts ([locally](docs) and [online]([here](https://alexanderschultheiss.github.io/RaQuN/docs/))) and 
-  [`raqun`](src/main/java/de/variantsync/matching/raqun) written by us and provide extensive README files with 
-  instructions and examples on how to
+* we documented all code artifacts ([./docs](docs), [GitHub Pages](https://alexanderschultheiss.github.io/RaQuN/docs/)) 
+  and provide extensive instructions and examples on how to
   * [prepare the system](REQUIREMENTS.md) 
   * [install the artifacts](INSTALL.md)
   * [run the experiments](README.md)
