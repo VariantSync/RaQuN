@@ -16,6 +16,20 @@ Authors:
 [Thomas Thüm](https://www.uni-ulm.de/in/sp/team/thuem/),
 [Timo Kehrer](https://www.informatik.hu-berlin.de/de/forschung/gebiete/mse/mitarb/kehrerti.html).
 
+### Cite As
+```
+@inproceedings{SBG+:MODELS21,
+	author = {Alexander Schulthei\ss{} and Paul Maximilian Bittner and Lars Grunske and Thomas Th{\"{u}}m and Timo Kehrer},
+	title = {{Scalable N-Way Model Matching Using Multi-Dimensional Search Trees}},
+	booktitle = {Proc.\ International Conference on Model Driven Engineering Languages and Systems (MODELS)},
+	location = {Fukuoka, Japan},
+	publisher = {ACM/IEEE},
+	year = 2021,
+	month = OCT,
+	keywords = {model-driven engineering, n-way model matching, clone-and-own development, software product lines, multiview integration, variability mining}
+}
+```
+
 ## Obtaining the Artifacts
 You can download the latest release via [Zenodo](TODO) or clone the [git](https://git-scm.com/) repository from [GitHub](https://github.com/AlexanderSchultheiss/RaQuN).
 
