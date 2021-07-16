@@ -54,10 +54,17 @@ of the different matchers that we evaluated.
 * [`stop-all-experiments.bat`](stop-all-experiments.bat)|[`stop-all-experiments.sh`](stop-all-experiments.sh) is a script that will stop all Docker containers currently running experiments.
 
 ## Requirements and Installation
-If you are familiar with the terminal running on your system and Docker, you can follow the instructions in this sections
-to quickly get the experiments running. If you have trouble during the execution of the steps
-described here, or if you plan on running the experiments without Docker, please refer to the detailed steps described in the [REQUIREMENTS.md](REQUIREMENTS.md) and 
-[INSTALL.md](INSTALL.md) files.
+
+___This is a quickstart guide. For a detailed step-by-step guide please refer to [REQUIREMENTS.md](REQUIREMENTS.md) and 
+[INSTALL.md](INSTALL.md).___
+
+[comment]: <> (If you are familiar with the terminal running on your system and Docker, you can follow the instructions in this sections)
+
+[comment]: <> (to quickly get the experiments running. If you have trouble during the execution of the steps)
+
+[comment]: <> (described here, or if you plan on running the experiments without Docker, please refer to the detailed steps described in the [REQUIREMENTS.md]&#40;REQUIREMENTS.md&#41; and )
+
+[comment]: <> ([INSTALL.md]&#40;INSTALL.md&#41; files.)
 
 * Install [Docker](https://docs.docker.com/get-docker/) on your system and start the [Docker Daemon](https://docs.docker.com/config/daemon/).
 * Open a terminal and navigate to the project's root directory
@@ -78,6 +85,10 @@ described here, or if you plan on running the experiments without Docker, please
   ```
 
 ## Running the Experiments Using Docker
+
+___This is a quickstart guide. For a detailed step-by-step guide and instructions for running the experiments without Docker please refer to
+[EXPERIMENTS.md](EXPERIMENTS.md).___
+
 **ATTENTION**
 ```
 ! Make sure to delete all previously collected results by deleting the `./results` directory, as they will otherwise be 
