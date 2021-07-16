@@ -221,3 +221,24 @@ For RQ1 and RQ2, we set the number of repetitions to 2, for RQ3 to 1. Then, we e
   - 30 parallel executions of RQ3 with the 30 different SUBSET_IDs in different terminal sessions
 The total runtime was about 3-4 days.
 ```
+
+## Using RaQuN as a Library in Your Own Projects
+You can also use RaQuN as a Java Library in your own project. Simply add [`RaQuN.jar`](RaQuN.jar) as a dependency to
+your project. Please refer to the documentation of your IDE or build system for instructions on how to add JARs as
+dependencies. 
+
+The [README](README.md) contains basic usage examples of how to use RaQuN in your project. In this section, we will 
+provide pointers to the most important classes.
+
+### RaQuN.java
+[RaQuN.java](src/main/java/de/variantsync/matching/RaQuN.java) contains the implementation of RaQuN's algorithm as 
+presented in the paper (Algorithm I). You can construct an instance of RaQuN by providing concrete instances for 
+RaQuN`s configuration points:
+```java
+public RaQuN(IVectorization vectorizationFunction, IValidityConstraint validityConstraint, ISimilarityFunction similarityFunction, int nNearestNeighbors) {}
+```
+You can either implement the interfaces yourself, or you can use the implementations presented in our paper:
+```
+RaQuN raQuN = new RaQuN(new PropertyBasedVectorization(), new OneToOneValidity(), new WeightMetric());
+```
+
