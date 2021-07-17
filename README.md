@@ -67,23 +67,30 @@ of the different matchers that we evaluated.
 ## Requirements and Installation
 
 ___This is a quickstart guide. For a detailed step-by-step guide please refer to [REQUIREMENTS.md](REQUIREMENTS.md) and 
-[INSTALL.md](INSTALL.md).___
+[INSTALL.md](INSTALL.md).___ 
 
-[comment]: <> (If you are familiar with the terminal running on your system and Docker, you can follow the instructions in this sections)
-
-[comment]: <> (to quickly get the experiments running. If you have trouble during the execution of the steps)
-
-[comment]: <> (described here, or if you plan on running the experiments without Docker, please refer to the detailed steps described in the [REQUIREMENTS.md]&#40;REQUIREMENTS.md&#41; and )
-
-[comment]: <> ([INSTALL.md]&#40;INSTALL.md&#41; files.)
-
+___If your OS supports neither batch nor bash scripts, you can substitute the script calls 
+in this section with the following:___
+#### build-docker-image.(bat|sh)
+```shell
+docker build -t match-experiments --build-arg USER_ID="1000" --build-arg GROUP_ID="1000" .
+```
+#### experiment.(bat|sh)
+```shell
+docker run --rm --user 1000:1000 -v PATH_TO_PARENT_DIR/results:/home/user/results match-experiments PARAMETERS
+```
+#### stop-all-experiments.(bat|sh)
+```shell
+docker container stop $(docker ps -a -q --filter ancestor=match-experiments)
+```
+### Setup Instructions
 * Install [Docker](https://docs.docker.com/get-docker/) on your system and start the [Docker Daemon](https://docs.docker.com/config/daemon/).
 * Open a terminal and navigate to the project's root directory
 * Build the docker image by calling the build script corresponding to your OS
   ```shell
   # Windows:
   build-docker-image.bat
-  # Linux:
+  # Linux | MacOS:
   build-docker-image.sh
   ```
 * You can validate the installation by calling the validation corresponding to your OS. The validation should take about
@@ -91,7 +98,7 @@ ___This is a quickstart guide. For a detailed step-by-step guide please refer to
   ```shell
   # Windows:
   experiment.bat validate
-  # Linux:
+  # Linux | MacOS:
   experiment.sh validate
   ```
   The script will generate figures and tables similar to the ones presented in our paper. They are automatically saved to
@@ -118,7 +125,7 @@ root.
   stop-all-experiments.bat
   # Windows PowerShell:
   .\stop-all-experiments.bat
-  # Linux
+  # Linux | MacOS
   ./stop-all-experiments.sh
   ```
 Stopping the execution may take a moment.
@@ -133,7 +140,7 @@ for RQ1 and RQ2, and 1 run for the experiment of RQ3.
 experiment.bat run
 # Windows PowerShell:
 .\experiment.bat run
-# Linux
+# Linux | MacOS
 ./experiment.sh run
 ```
 ```
@@ -153,7 +160,7 @@ run multiple containers in parallel, you simply have to open a new terminal and 
 experiment.bat (RQ1|RQ2|RQ3)  
 # Windows PowerShell:
 .\experiment.bat (RQ1|RQ2|RQ3)
-# Linux
+# Linux | MacOS
 ./experiment.sh (RQ1|RQ2|RQ3)
 ```
 #### Runtime
@@ -174,7 +181,7 @@ parallel.
 experiment.bat RQ3 SUBSET_ID  
 # Windows PowerShell:
 .\experiment.bat RQ3 SUBSET_ID  
-# Linux
+# Linux | MacOS
 ./experiment.sh RQ3 SUBSET_ID
 ```
 
@@ -200,7 +207,7 @@ script will consider all data found under `./results`.
 experiment.bat evaluate
 # Windows PowerShell:
 .\experiment.bat evaluate  
-# Linux
+# Linux | MacOS
 ./experiment.sh evaluate
 ```
 `Expected Average Runtime for all experiments (@2.90GHz): a few seconds`
