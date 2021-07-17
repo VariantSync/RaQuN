@@ -1,6 +1,7 @@
 ![Maven](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven.yml/badge.svg)
 [![Javadoc](https://img.shields.io/badge/Javadocs-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/docs/)
 [![GitHubPages](https://img.shields.io/badge/GitHub%20Pages-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/)
+[![DOI](https://zenodo.org/badge/385202892.svg)](https://zenodo.org/badge/latestdoi/385202892)
 
 # RaQuN (Range Queries on N input models)
 
