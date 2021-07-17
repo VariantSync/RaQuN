@@ -7,7 +7,7 @@ You can find the latest release of the package online.
 ### Zenodo
 To obtain the artifact from Zenodo, do the following:
 
-* Download the package from [Zenodo](TODO) to a location of your choice.
+* Download the package from [Zenodo](https://doi.org/10.5281/zenodo.5111517) to a location of your choice.
 * Unpack the archive
   * OS with built-in ZIP support (e.g., Windows 10, Most Unix-Based OS): 
     * `Right-click` on the zip file
