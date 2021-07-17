@@ -13,6 +13,20 @@ possible to run multiple instances of the same experiment in parallel.
 All of the commands in this section are assumed to be executed in a terminal with working directory at RaQuN's project
 root.
 ```
+___If your OS supports neither batch nor bash scripts, you can substitute the script calls
+in this section with the following:___
+#### build-docker-image.(bat|sh)
+```shell
+docker build -t match-experiments --build-arg USER_ID="1000" --build-arg GROUP_ID="1000" .
+```
+#### experiment.(bat|sh)
+```shell
+docker run --rm --user 1000:1000 -v PATH_TO_PARENT_DIR/results:/home/user/results match-experiments PARAMETERS
+```
+#### stop-all-experiments.(bat|sh)
+```shell
+docker container stop $(docker ps -a -q --filter ancestor=match-experiments)
+```
 
 Repeating our experiments with the provided scripts in a Docker container should be easy and has only few requirements.
 You can find information on the requirements and how to build the Docker image in the [REQUIREMENTS.md](REQUIREMENTS.md) and

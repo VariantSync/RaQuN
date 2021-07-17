@@ -66,23 +66,9 @@ of the different matchers that we evaluated.
 
 ## Requirements and Installation
 
-___This is a quickstart guide. For a detailed step-by-step guide please refer to [REQUIREMENTS.md](REQUIREMENTS.md) and 
-[INSTALL.md](INSTALL.md).___ 
+___This is a quickstart guide. For a detailed step-by-step guide and instructions for other OS, please refer to [REQUIREMENTS.md](REQUIREMENTS.md) and 
+[INSTALL.md](INSTALL.md).___
 
-___If your OS supports neither batch nor bash scripts, you can substitute the script calls 
-in this section with the following:___
-#### build-docker-image.(bat|sh)
-```shell
-docker build -t match-experiments --build-arg USER_ID="1000" --build-arg GROUP_ID="1000" .
-```
-#### experiment.(bat|sh)
-```shell
-docker run --rm --user 1000:1000 -v PATH_TO_PARENT_DIR/results:/home/user/results match-experiments PARAMETERS
-```
-#### stop-all-experiments.(bat|sh)
-```shell
-docker container stop $(docker ps -a -q --filter ancestor=match-experiments)
-```
 ### Setup Instructions
 * Install [Docker](https://docs.docker.com/get-docker/) on your system and start the [Docker Daemon](https://docs.docker.com/config/daemon/).
 * Open a terminal and navigate to the project's root directory
@@ -106,8 +92,8 @@ docker container stop $(docker ps -a -q --filter ancestor=match-experiments)
 
 ## Running the Experiments Using Docker
 
-___This is a quickstart guide. For a detailed step-by-step guide and instructions for running the experiments without Docker please refer to
-[EXPERIMENTS.md](EXPERIMENTS.md).___
+___This is a quickstart guide. For a detailed step-by-step guide, Docker calls for other OS, and instructions for 
+running the experiments without Docker please refer to [EXPERIMENTS.md](EXPERIMENTS.md).___
 
 **ATTENTION**
 ```
@@ -147,8 +133,7 @@ experiment.bat run
 Expected Average Runtime for all experiments (@2.90GHz): 2460 hours or 102 days.
 
 We provide instructions on how to parallelize the experiments for a shorter total runtime in the next sections.
-``` 
-
+```
 
 ### Running Specific Experiments
 Due to the considerable runtime of running all experiments in a single container, we offer possibilities to run 
@@ -227,6 +212,8 @@ possibility to change the default configuration.
 * Delete old results in the `./results` folder
 * Start the experiment as described above.
 
+__You can find instructions on how to run the experiments on your own datasets in [EXPERIMENTS.md](EXPERIMENTS.md).__
+
 ### Clean-Up
 The more experiments you run, the more space will be required by Docker. The easiest way to clean up all Docker images and
 containers afterwards is to run the following command in your terminal. Note that this will remove all other containers and images
@@ -248,7 +235,8 @@ for instructions on how to do so. Once prepared, you can build a JAR file contai
 * Please refer to the documentation of your IDE or build system for instructions on how to add JARs as 
 dependencies. 
 
-### Matching a Dataset Stored in CSV Format
+### Examples 
+#### Matching a Dataset Stored in CSV Format
 The following presents a simple example on how to compute a matching for a dataset with RaQuN:
 ```java
 import de.variantsync.matching.raqun.RaQuN;
@@ -270,7 +258,7 @@ public class Main {
 }
 ```
 
-### Matching a Dataset Created with Raw Data
+#### Matching a Dataset Created with Raw Data
 The following presents a simple example on how you can initialize the models of a dataset in code, and then match them 
 with RaQuN:
 ```java
