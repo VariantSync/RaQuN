@@ -66,8 +66,8 @@ of the different matchers that we evaluated.
 
 ## Requirements and Installation
 
-___This is a quickstart guide. For a detailed step-by-step guide and instructions for other OS, please refer to [REQUIREMENTS.md](REQUIREMENTS.md) and 
-[INSTALL.md](INSTALL.md).___
+___This is a quickstart guide. For a detailed step-by-step guide please refer to [REQUIREMENTS.md](REQUIREMENTS.md) and 
+[INSTALL.md](INSTALL.md). There you can also find the specific Docker commands that are executed by the scripts below.___
 
 ### Setup Instructions
 * Install [Docker](https://docs.docker.com/get-docker/) on your system and start the [Docker Daemon](https://docs.docker.com/config/daemon/).
@@ -92,8 +92,8 @@ ___This is a quickstart guide. For a detailed step-by-step guide and instruction
 
 ## Running the Experiments Using Docker
 
-___This is a quickstart guide. For a detailed step-by-step guide, Docker calls for other OS, and instructions for 
-running the experiments without Docker please refer to [EXPERIMENTS.md](EXPERIMENTS.md).___
+___This is a quickstart guide. For a detailed step-by-step guide and instructions for 
+running the experiments without Docker please refer to [EXPERIMENTS.md](EXPERIMENTS.md). There you can also find the specific Docker commands that are executed by the scripts below.___
 
 **ATTENTION**
 ```
