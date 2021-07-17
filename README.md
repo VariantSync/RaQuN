@@ -1,5 +1,4 @@
 ![Maven](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven.yml/badge.svg)
-![Maven-Publish](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven-publish.yml/badge.svg)
 [![Javadoc](https://img.shields.io/badge/Javadocs-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/docs/)
 [![GitHubPages](https://img.shields.io/badge/GitHub%20Pages-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/)
 
@@ -58,7 +57,6 @@ of the different matchers that we evaluated.
 * [`INSTALL.md`](INSTALL.md) contains detailed instructions on how to prepare the artifacts for running on your system.
 * [`LICENSE.md`](LICENSE.md) contains licensing information.
 * [`REQUIREMENTS.md`](REQUIREMENTS.md) contains the requirements for installing and running the artifacts on your system.
-* [`RaQuN.jar`](RaQuN.jar) A pre-build library of RaQuN which you can add as a dependency to your own projects.
 * [`STATUS.md`](STATUS.md) specifies the [ACM badges](https://www.acm.org/publications/policies/artifact-review-and-badging-current)
   which we apply for.
 * [`build-docker-image.bat`](build-docker-image.bat)|[`build-docker-image.sh`](build-docker-image.sh) is a script that builds the Docker image with which the experiments presented in our paper can be executed.
@@ -232,8 +230,15 @@ docker system prune -a
 Please refer to the official documentation on how to remove specific [images](https://docs.docker.com/engine/reference/commandline/image_rm/) and [containers](https://docs.docker.com/engine/reference/commandline/container_rm/) from your system.
 
 ## Using RaQuN as a Library in Your Own Projects
-You can also use RaQuN as a Java Library in your own project. Simply add [`RaQuN.jar`](RaQuN.jar) as a dependency to 
-your project. Please refer to the documentation of your IDE or build system for instructions on how to add JARs as 
+You can also use RaQuN as a Java Library in your own project. To do so, you will have to prepare your system the same way
+as for running the experiments without Docker. Please refer to the [REQUIREMENTS.md](REQUIREMENTS.md) and [INSTALL.md](INSTALL.md)
+for instructions on how to do so. Once prepared, you can build a JAR file containing RaQuN using Maven:
+* Execute the following a terminal with working directory in the project's root folder:
+  ````shell
+  mvn package 
+  ````
+* You can then find the JAR file containing RaQuN and all its dependencies as a library under `./target/RaQuN-jar-with-dependencies.jar`
+* Please refer to the documentation of your IDE or build system for instructions on how to add JARs as 
 dependencies. 
 
 ### Matching a Dataset Stored in CSV Format
