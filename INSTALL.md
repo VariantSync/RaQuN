@@ -35,6 +35,13 @@ build-docker-image.bat
 ./build-docker-image.sh
 ```
 
+### Other Environments
+`build-docker-image` is a convenience script that only provides an additional layer of abstraction for users that are not 
+familiar with docker. If your system supports neither `batch` nor `bash`, you can instead execute the following:
+```shell
+docker build -t match-experiments --build-arg USER_ID="1000" --build-arg GROUP_ID="1000" .
+```
+
 The generated Docker image will have the name `match-experiments`.
 
 ### Validation of Correct Installation
@@ -54,6 +61,13 @@ experiment.bat validate
 ./experiment.sh validate
 ```
 
+If your system supports neither `batch` nor `bash`, you can instead execute the following, providing an absolute path to
+the parent directory of where the results are to be stored:
+```shell
+# Validation
+docker run --rm --user 1000:1000 -v PATH_TO_PARENT_DIR/results:/home/user/results match-experiments validate
+```
+
 You can cancel the process at any time by opening the RaQuN's root directory in a new terminal window and calling:
 ```shell
 ATTENTION: This will stop the execution of ALL RaQuN docker containers currently running on your system.
@@ -68,6 +82,12 @@ stop-all-experiments.bat
 ./stop-all-experiments.sh
 ```
 Stopping the execution may take a short while.
+If your system supports neither `batch` nor `bash`, you can instead execute the following:
+```shell
+# Stopping all containers
+docker container stop $(docker ps -a -q --filter ancestor=match-experiments)
+```
+
 
 ### Expected Output
 During the execution, the container will print information about each completed experimental run. This output should look 

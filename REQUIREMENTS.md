@@ -59,17 +59,4 @@ The following requirements apply, if you want to run and evaluate the experiment
 - [matplotlib](https://matplotlib.org/stable/users/installing.html)
 - A tool for inflating archives (.zip). Examples are [7-ZIP](https://www.7-zip.org/) or [unzip](https://linux.die.net/man/1/unzip). Windows 10 and most Linux distribution already have a built-in archival tool.
 
-## Software Requirements - RaQuN as a Library
-The following software requirements apply if you plan to use RaQuN only as a Java library.
-
-### OS
-RaQuN is written in Java. Therefore, you can use it on any OS on which you can install the required software (see below).
-
-### Required Software
-This repository contains the RaQuN library as a JAR file `RaQuN.jar` which you can add as a dependency to your own project. The following
-requirements apply:
-- [JDK-11](https://www.oracle.com/java/technologies/javase-downloads.html)
-
-If you plan on changing RaQuN's code and building your own JAR file, you also require Maven:
-- [Maven](https://maven.apache.org/download.cgi), which is also integrated in most Java IDEs 
 
