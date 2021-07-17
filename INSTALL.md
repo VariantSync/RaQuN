@@ -39,7 +39,7 @@ build-docker-image.bat
 `build-docker-image` is a convenience script that only provides an additional layer of abstraction for users that are not 
 familiar with docker. If your system supports neither `batch` nor `bash`, you can instead execute the following:
 ```shell
-docker build -t match-experiments --build-arg USER_ID="1000" --build-arg GROUP_ID="1000" .
+docker build -t match-experiments --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 .
 ```
 
 The generated Docker image will have the name `match-experiments`.
