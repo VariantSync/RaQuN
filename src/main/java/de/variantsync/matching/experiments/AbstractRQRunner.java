@@ -20,7 +20,7 @@ public abstract class AbstractRQRunner {
     protected IVectorization vectorization;
 
     protected AbstractRQRunner(String... args) {
-        if (args.length == 1) {
+        if (args.length >= 1) {
             configuration = new ExperimentConfiguration(new File(args[0]));
         } else {
             configuration = new ExperimentConfiguration();

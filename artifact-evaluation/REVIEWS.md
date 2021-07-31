@@ -9,8 +9,9 @@ in the camera-ready submission. More complicated changes might be done in the fu
   `sudo usermod -a -G docker $(id -u)`
   I think it may be good to clarify this in the instructions, or test for it in the script and warn the user.
   * > We changed the docker user's id and group-id to a static value of 1000, instead of setting it dynamically
-* (TBD) In addition, the Docker image that you are building is not redistributable, as it is tied to the UID of the user building it. Rather than that, I would suggest using the "fix-perms" approach mentioned in the "Tips and Tricks of the Docker Captains" talk [1].
-* (TBD) I would make a further suggestion: run the Maven build in a different Docker stage, and then copy over the generated JAR to a minimal stage. You could further reduce the size of the Docker image that way [2].
+* (FUTURE WORK) In addition, the Docker image that you are building is not redistributable, as it is tied to the UID of the user building it. Rather than that, I would suggest using the "fix-perms" approach mentioned in the "Tips and Tricks of the Docker Captains" talk [1].
+  * > This is a really cool suggestion and we will implement this in the future. For the camera-ready version I will leave it as is 
+* (DONE) I would make a further suggestion: run the Maven build in a different Docker stage, and then copy over the generated JAR to a minimal stage. You could further reduce the size of the Docker image that way [2].
 * (DONE) The artifact includes a validation option for the scripts, which takes a shorter time and helps checking that it is functional in less time. This already took about 1.5h, so I assume that a full run can take a good while!
   * > We reduced the validation duration by limiting the execution to specific subset ids.
 * (DONE) One note - another reviewer mentioned that a few additional imports were needed in order to use RaQuN as a library. Please touch up your documentation for your final version of the artifact.
@@ -30,7 +31,7 @@ in the camera-ready submission. More complicated changes might be done in the fu
 * (DONE) amendment on script for Linux: group id had to be set as new one, since an error
   * > We changed the docker user's id and group-id to a static value of 1000, instead of setting it dynamically
 * (DONE) Also, for RQ3, the indicated time was still too long even for single instance as suggested, for usual evaluation process, so smaller size of dataset had to be used. An amendment was necessary to the parameter file and the Java source code.
-  * > The maximum subset size is set in the properties, not provided as an argument via command line. There might have been a mix-up of the subset size and subset id. We reduced the validation duration by limiting the execution to specific subset ids.
+  * > We fixed the argument parsing in AbstractRQRunner that caused a problem. We reduced the validation duration by limiting the execution to specific subset ids.
 * (DOING) As a side note, Python script evaluation.py runs outside of the Docker environment, except for validation, so the user is responsible to make sure the Python environment is set properly (it does not happen for validation task since it runs under Docker environment).
 For example, when the tkinter environment is not set properly, it does not plot the graph for experiments other than the validation package.
 A warning would be quite helpful as there was no error message with that situation.
