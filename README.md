@@ -31,6 +31,11 @@ Authors:
 }
 ```
 
+### Contact
+Please contact Alexander Schultheiß if you have any questions:
+* Mail: [AlexanderSchultheiss@pm.me](AlexanderSchultheiss@pm.me)
+* Discord: AlexS#1561
+
 ## Obtaining the Artifacts
 Clone the repository to a location of your choice using [git](https://git-scm.com/):
   ```

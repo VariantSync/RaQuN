@@ -19,7 +19,7 @@ if [ "$1" == 'evaluate' ]
 then
     echo "Running result evaluation"
     cd result_analysis_python || exit
-    python3.8 evaluation.py
+    python3 evaluation.py
     exit
 else
   echo "Copying jars"
@@ -61,7 +61,7 @@ else
       java -Xmx16G -jar RQ3Runner-jar-with-dependencies.jar quick-validation.properties 3
       echo "Running result evaluation"
       cd result_analysis_python || exit
-      python3.8 evaluation.py
+      python3 evaluation.py
   else
       echo "Either fully run a specific experiment one time (RQ1|RQ2|RQ3), run all experiments (run), evaluate the results (evaluate), or a do quick setup validation (validate)."
       echo "-- Bash Examples --"

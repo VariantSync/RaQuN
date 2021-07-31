@@ -3,15 +3,16 @@ We want to thank the reviewers for their helpful and valuable feedback. We will 
 in the camera-ready submission. More complicated changes might be done in the future. 
 
 ## Review 1
-* (FUTURE WORK) Your Dockerfile is built on top of ubuntu:20.04, but that is a pretty hefty Docker image. I wonder if you could base it on something lighter, like buster-slim, or even Alpine?
-  * > This is a good idea and should be done for this artifact and other artifacts which we create. However, it is out of scope for the camera-ready release.
+* (DONE) Your Dockerfile is built on top of ubuntu:20.04, but that is a pretty hefty Docker image. I wonder if you could base it on something lighter, like buster-slim, or even Alpine?
+  * > We based our image on Alpine:3.14.
 * (DONE) The build-docker-image.sh script doesn't test whether you have rights to access the Docker daemon, and the README does not make clear if it should run with root privileges or not. It appears this requires a user that can use `docker` without resorting to root. I had to add my user to the Docker group, log out and back in:
   `sudo usermod -a -G docker $(id -u)`
   I think it may be good to clarify this in the instructions, or test for it in the script and warn the user.
-  * > We implemented the fix-perms solution shown in [1]
+  * > We implemented the fix-perms solution ([1]) that should take care of this problem
 * (DONE) In addition, the Docker image that you are building is not redistributable, as it is tied to the UID of the user building it. Rather than that, I would suggest using the "fix-perms" approach mentioned in the "Tips and Tricks of the Docker Captains" talk [1].
   * > This is a really cool suggestion, as we experienced difficulties when trying to get the permissions right. We implemented the solution proposed in the talk.
 * (DONE) I would make a further suggestion: run the Maven build in a different Docker stage, and then copy over the generated JAR to a minimal stage. You could further reduce the size of the Docker image that way [2].
+  * > We switched to a multi-stage build. 
 * (DONE) The artifact includes a validation option for the scripts, which takes a shorter time and helps checking that it is functional in less time. This already took about 1.5h, so I assume that a full run can take a good while!
   * > We reduced the validation duration by limiting the execution to specific subset ids.
 * (DONE) One note - another reviewer mentioned that a few additional imports were needed in order to use RaQuN as a library. Please touch up your documentation for your final version of the artifact.
@@ -32,6 +33,7 @@ in the camera-ready submission. More complicated changes might be done in the fu
   * > We implemented the fix-perms solution shown in [1]
 * (DONE) Also, for RQ3, the indicated time was still too long even for single instance as suggested, for usual evaluation process, so smaller size of dataset had to be used. An amendment was necessary to the parameter file and the Java source code.
   * > We fixed the argument parsing in AbstractRQRunner that caused a problem. We reduced the validation duration by limiting the execution to specific subset ids.
-* (DOING) As a side note, Python script evaluation.py runs outside of the Docker environment, except for validation, so the user is responsible to make sure the Python environment is set properly (it does not happen for validation task since it runs under Docker environment).
+* (OPEN) As a side note, Python script evaluation.py runs outside of the Docker environment, except for validation, so the user is responsible to make sure the Python environment is set properly (it does not happen for validation task since it runs under Docker environment).
 For example, when the tkinter environment is not set properly, it does not plot the graph for experiments other than the validation package.
 A warning would be quite helpful as there was no error message with that situation.
+  * > We were not able to reproduce this problem, as the validation is also run using the docker container and is called in line 22 of docker-resources/run-experiments.sh. Please inform us if you are experiencing this issue.

@@ -1,10 +1,8 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:20.04
+FROM alpine:3.14
 
 # Prepare the environment
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends tzdata
-RUN apt-get install -y --no-install-recommends build-essential maven
+RUN apk add maven
 
 # Build the jar files
 WORKDIR /home/user
@@ -14,15 +12,19 @@ COPY pom.xml .
 RUN mvn package || exit
 
 
-FROM ubuntu:20.04
+FROM alpine:3.14
 
 # Create a user
 RUN adduser --disabled-password  --home /home/user --gecos '' user
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential openjdk-11-jdk unzip python3.8 python3-pip
+RUN apk add --no-cache --upgrade bash
+RUN apk add --update openjdk11 unzip
+RUN apk add --no-cache tesseract-ocr python3 py3-pip py3-numpy && \
+    pip3 install --upgrade pip setuptools wheel && \
+    apk add --no-cache --virtual .build-deps gcc g++ zlib-dev make python3-dev py3-numpy-dev jpeg-dev && \
+    pip3 install matplotlib && \
+    apk del .build-deps
     
-RUN python3.8 -m pip install -U matplotlib
 # Copy all relevant files
 WORKDIR /home/user
 RUN mkdir -p ./experimental_subjects/argouml
@@ -49,6 +51,8 @@ COPY docker-resources/* ./
 RUN chown user:user /home/user -R
 RUN chmod +x run-experiments.sh
 RUN chmod +x entrypoint.sh
+
+RUN ls -l
 
 ENTRYPOINT ["./entrypoint.sh", "./run-experiments.sh"]
 USER user
