@@ -157,6 +157,16 @@ All of the commands in this section are assumed to be executed in a terminal wit
 root.
 ```
 
+```
+You might be required to execute the jar with increased max heap size. You can substitute each java call with the
+following:
+
+  java -Xmx$(SIZE) -jar ...
+
+For example, the following will execute RQ1 with a maximum of 24GB heap space:
+  java -Xmx24G target/RQ1Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
+```
+
 You can find information on the requirements and how to build the required JAR files in the [REQUIREMENTS.md](REQUIREMENTS.md) and
 [INSTALL.md](INSTALL.md) files.
 
@@ -164,9 +174,9 @@ You can find information on the requirements and how to build the required JAR f
 You can repeat the experiments exactly as presented in our paper. The following commands will execute 30 runs of the experiments
 for RQ1 and RQ2, and 1 run for the experiment of RQ3.
 ```shell
-java -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
-java -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
-java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
+java -Xmx16G -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
+java -Xmx16G -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
+java -Xmx16G -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/full-experiments.properties
 ```
 `Expected Average Runtime for all experiments (@2.90GHz): 2460 hours or 102 days`
 
@@ -177,11 +187,11 @@ You can run a single experiment repetition for any of the RQs. If you want to ru
 you simply have to open a new terminal and start the experiment there as well.
 ```shell
 # RQ1:
-java -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
+java -Xmx16G -jar target/RQ1Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
 # RQ2:
-java -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
+java -Xmx16G -jar target/RQ2Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
 # RQ3:
-java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
+java -Xmx16G -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties
 ```
 `Expected Average Runtime for one Repetition of RQ1 (@2.90GHz): 4 hours` (Repeated 30 times for the paper)
 
@@ -194,7 +204,7 @@ are 30 subsets for each subset size. You can filter these subsets for the experi
 has to be a natural number in the interval `[1, 30]`.
 Hereby, you can start multiple Docker containers in parallel.
 ```shell
-java -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties SUBSET_ID
+java -Xmx16G -jar target/RQ3Runner-jar-with-dependencies.jar docker-resources/single-experiment.properties SUBSET_ID
 ```
 `Expected Average Runtime for one Repetition of RQ3 With a Specific SUBSET_ID (@2.90GHz): 70 hours`
 (Repeated 1 time for each of the 30 valid `SUBSET_ID`)

@@ -240,7 +240,9 @@ dependencies.
 #### Matching a Dataset Stored in CSV Format
 The following presents a simple example on how to compute a matching for a dataset with RaQuN:
 ```java
+import java.util.Set;
 import de.variantsync.matching.raqun.RaQuN;
+import de.variantsync.matching.raqun.data.RMatch;
 import de.variantsync.matching.raqun.data.RDataset;
 import de.variantsync.matching.raqun.similarity.WeightMetric;
 import de.variantsync.matching.raqun.validity.OneToOneValidity;
@@ -263,6 +265,7 @@ public class Main {
 The following presents a simple example on how you can initialize the models of a dataset in code, and then match them 
 with RaQuN:
 ```java
+import java.util.Set;
 import de.variantsync.matching.raqun.RaQuN;
 import de.variantsync.matching.raqun.data.RElement;
 import de.variantsync.matching.raqun.data.RMatch;
