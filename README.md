@@ -3,7 +3,7 @@
 ![Maven](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven.yml/badge.svg)
 [![Javadoc](https://img.shields.io/badge/Javadocs-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/docs/)
 [![GitHubPages](https://img.shields.io/badge/GitHub%20Pages-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5111532.svg)](https://doi.org/10.5281/zenodo.5111532)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5150388.svg)](https://doi.org/10.5281/zenodo.5150388)
 
 # RaQuN (Range Queries on N input models)
 
