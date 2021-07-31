@@ -17,11 +17,11 @@ ___If your OS supports neither batch nor bash scripts, you can substitute the sc
 in this section with the following:___
 #### build-docker-image.(bat|sh)
 ```shell
-docker build -t match-experiments --build-arg USER_ID="1000" --build-arg GROUP_ID="1000" .
+docker build -t match-experiments .
 ```
 #### experiment.(bat|sh)
 ```shell
-docker run --rm --user 1000:1000 -v PATH_TO_PARENT_DIR/results:/home/user/results match-experiments PARAMETERS
+docker run --rm -v PATH_TO_PARENT_DIR/results:/home/user/results match-experiments PARAMETERS
 ```
 #### stop-all-experiments.(bat|sh)
 ```shell
