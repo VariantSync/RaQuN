@@ -1,3 +1,5 @@
+<img align="right" src="https://www.acm.org/binaries/content/gallery/acm/publications/artifact-review-v1_1-badges/artifacts_evaluated_reusable_v1_1.png" alt="ACM Artifacts Evaluated Reusable" width="114" height="113" />
+
 ![Maven](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven.yml/badge.svg)
 [![Javadoc](https://img.shields.io/badge/Javadocs-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/docs/)
 [![GitHubPages](https://img.shields.io/badge/GitHub%20Pages-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/)
