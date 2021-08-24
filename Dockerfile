@@ -19,6 +19,8 @@ RUN adduser --disabled-password  --home /home/user --gecos '' user
 
 RUN apk add --no-cache --upgrade bash
 RUN apk add --update openjdk11 unzip
+RUN apk add --no-cache msttcorefonts-installer fontconfig
+RUN update-ms-fonts
 RUN apk add --no-cache tesseract-ocr python3 py3-pip py3-numpy && \
     pip3 install --upgrade pip setuptools wheel && \
     apk add --no-cache --virtual .build-deps gcc g++ zlib-dev make python3-dev py3-numpy-dev jpeg-dev && \

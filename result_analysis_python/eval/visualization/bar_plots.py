@@ -6,7 +6,11 @@ from pathlib import Path
 
 from eval.data.result_data import MethodStatistics
 from eval.visualization.misc import get_convergence_point, get_real_name, get_real_dataset
-
+import matplotlib as mpl
+mpl.rcParams['pdf.fonttype'] = 42
+mpl.rcParams['font.sans-serif'] = ["Verdana", "Arial", "Helvetica", "Avant Garde", "sans-serif"]
+mpl.rcParams['figure.dpi'] = 600
+mpl.rcParams['savefig.format'] = "png"
 save_dir = "./../results/eval-results/fig/"
 Path(save_dir).mkdir(parents=True, exist_ok=True)
 
@@ -88,7 +92,7 @@ def create_runtime_plots(methods: [], datasets: [], results_per_method: {}, para
             ax.tick_params(axis='y', labelsize=tick_size)
             plt.tight_layout()
             # plt.show()
-            fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".pdf")
+            fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".png")
 
 
 def create_runtime_plot_argouml(methods: [], datasets: [], results_per_method: {}, use_legend=False):
@@ -149,7 +153,7 @@ def create_runtime_plot_argouml(methods: [], datasets: [], results_per_method: {
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
     # plt.show()
-    fig.savefig(save_dir + "Runtime" + "_Argouml" + ".pdf")
+    fig.savefig(save_dir + "Runtime" + "_Argouml" + ".png")
 
 
 def create_generic_plot_argouml(methods: [], datasets: [], results_per_method: {}, parameter: str, use_legend=False):
@@ -198,4 +202,4 @@ def create_generic_plot_argouml(methods: [], datasets: [], results_per_method: {
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
     # plt.show()
-    fig.savefig(save_dir + "Argouml_" + parameter + ".pdf")
+    fig.savefig(save_dir + "Argouml_" + parameter + ".png")
