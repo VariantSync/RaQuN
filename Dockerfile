@@ -38,6 +38,7 @@ COPY result_analysis_python ./result_analysis_python
 # Unpack the experimental subjects
 WORKDIR experimental_subjects
 RUN unzip -o full_subjects.zip
+RUN unzip -o simulink.zip
 WORKDIR argouml
 RUN unzip -o argouml_p1-5.zip
 RUN unzip -o argouml_p6.zip
