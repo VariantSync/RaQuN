@@ -6,8 +6,12 @@ import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
 import de.variantsync.matching.experiments.raqun.RaqunSetup;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static de.variantsync.matching.experiments.common.ExperimentHelper.runExperiment;
 
@@ -27,6 +31,9 @@ public class RQ1Runner extends AbstractRQRunner {
     @Override
     public void run() {
         List<String> datasets = configuration.datasetsRQ1();
+        if (datasets.get(0).equals("ALL")) {
+            datasets = retrieveDatasets();
+        }
 
         for (String dataset : datasets) {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +
@@ -88,5 +95,14 @@ public class RQ1Runner extends AbstractRQRunner {
                 }
             }
         }
+    }
+
+    private List<String> retrieveDatasets() {
+        return Stream.of(Objects.requireNonNull(new File(baseDatasetDir).listFiles()))
+                .filter(file -> !file.isDirectory())
+                .map(File::getName)
+                .filter(n -> n.endsWith(".csv"))
+                .map(n -> n.substring(0, n.length()-4))
+                .collect(Collectors.toList());
     }
 }
