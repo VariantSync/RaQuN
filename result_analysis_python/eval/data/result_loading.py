@@ -19,7 +19,7 @@ def load_result_file(path_to_file: str):
 def load_results(methods, result_dir):
     results_per_method = {}
     for method in methods:
-        if method == "argouml" or method == "webamp":
+        if method == "argouml":
             continue
         stat_directory = result_dir + "/" + method
         stat_files = glob.glob(stat_directory + "/*_stats.json")

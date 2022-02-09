@@ -34,6 +34,8 @@ def get_real_dataset(dataset):
     name = name.replace("argouml", "ArgoUML")
     name = name.replace("Apogames", "Apo-Games")
     name = name.replace("bcs", "BCS")
+    name = name.replace("family_", "Family ")
+    name = name.replace("_", "")
     return name
 
 
@@ -61,6 +63,14 @@ def get_model_type(dataset):
         model_type = "UML statemachines"
     elif dataset == "bcs":
         model_type = "Component/connector"
+    elif dataset[:6] == "family":
+        model_type = "Simulink"
+    elif dataset == "DEFLT.slx":
+        model_type = "Simulink"
+    elif dataset == "Driving_ACC_CACC.slx":
+        model_type = "Simulink"
+    elif dataset == "Driving_ACC_CACC_TL.slx":
+        model_type = "Simulink"
     else:
         print("Unknown dataset: " + dataset)
     return model_type

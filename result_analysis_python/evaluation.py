@@ -36,19 +36,29 @@ def main():
         , "bcs"
         , "argouml"
     ]
-    all_datasets = [
-        "hospitals"
-        , "warehouses"
-        , "random"
-        , "randomLoose"
-        , "randomTight"
-        , "ppu"
-        , "ppu_statem"
-        , "bcms"
-        , "bcs"
-        , "argouml"
-        , "Apogames"
+
+    datasets_part_3 = [
+        "DEFLT.slx"
+        , "Driving_ACC_CACC.slx"
+        , "Driving_ACC_CACC_TL.slx"
     ]
+
+    datasets_part_4 = ["family_" + str(x) for x in range(1, 7)]
+    datasets_part_5 = ["family_" + str(x) for x in range(7, 13)]
+    datasets_part_6 = ["family_" + str(x) for x in range(13, 19)]
+    datasets_part_7 = ["family_" + str(x) for x in range(19, 25)]
+    datasets_part_8 = ["family_" + str(x) for x in range(25, 32)]
+
+    all_datasets = []
+    all_datasets.extend(datasets_part_1)
+    all_datasets.extend(datasets_part_2)
+    all_datasets.extend(datasets_part_3)
+    all_datasets.extend(datasets_part_4)
+    all_datasets.extend(datasets_part_5)
+    all_datasets.extend(datasets_part_6)
+    all_datasets.extend(datasets_part_7)
+    all_datasets.extend(datasets_part_8)
+
     normal_methods = ["RaQuN",
                       "NwM",
                       "PairwiseAsc",
@@ -64,16 +74,15 @@ def main():
     from pathlib import Path
     Path(save_dir).mkdir(parents=True, exist_ok=True)
 
-    tabular = create_tabular_overview(normal_methods, datasets_part_1, results_per_method)
-    save_table(save_dir + "table_weight1.tex", tabular)
-    print(tabular)
-    print()
-    print()
-    tabular = create_tabular_overview(normal_methods, datasets_part_2, results_per_method)
-    save_table(save_dir + "table_weight2.tex", tabular)
-    print(tabular)
-    print()
-    print()
+    create_rq1_table(datasets_part_1, normal_methods, results_per_method, "table_weight1.tex")
+    create_rq1_table(datasets_part_2, normal_methods, results_per_method, "table_weight2.tex")
+    create_rq1_table(datasets_part_3, normal_methods, results_per_method, "table_weight3.tex")
+    create_rq1_table(datasets_part_4, normal_methods, results_per_method, "table_weight4.tex")
+    create_rq1_table(datasets_part_5, normal_methods, results_per_method, "table_weight5.tex")
+    create_rq1_table(datasets_part_6, normal_methods, results_per_method, "table_weight6.tex")
+    create_rq1_table(datasets_part_7, normal_methods, results_per_method, "table_weight7.tex")
+    create_rq1_table(datasets_part_8, normal_methods, results_per_method, "table_weight8.tex")
+
     if "RaQuN" in results_per_method:
         tabular = create_num_of_comp_overview(all_datasets, results_per_method)
         save_table(save_dir + "table_comp.tex", tabular)
@@ -115,10 +124,18 @@ def main():
     print("Result evaluation done. Saved all plots and tables under ./results/eval-results")
 
 
+def create_rq1_table(datasets, methods, results_per_method, file_name):
+    tabular = create_tabular_overview(methods, datasets, results_per_method)
+    save_table(save_dir + file_name, tabular)
+    print(tabular)
+    print()
+    print()
+
+
 def save_table(path, table):
     with open(path, 'w') as file:
         file.writelines(table)
-
+        
 
 if __name__ == "__main__":
     main()
