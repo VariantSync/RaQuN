@@ -23,11 +23,11 @@ import java.util.List;
 public class ExperimentConfiguration {
     public static final File DEFAULT_PROPERTIES_FILE = new File("src/main/resources/experiment.properties");
     private static final String EXPERIMENTS_MATCHERS = "experiments.matchers";
-    private static final String EXPERIMENTS_MATCHERS_ALGORITHM = "experiment.matchers.algorithm.";
-    private static final String EXPERIMENTS_MATCHERS_NAME = "experiment.matchers.name.";
-    private static final String EXPERIMENTS_MATCHERS_VECTORIZATION = "experiment.matchers.vectorization.";
-    private static final String EXPERIMENTS_MATCHERS_VALIDITY = "experiment.matchers.validity.";
-    private static final String EXPERIMENTS_MATCHERS_SIMILARITY = "experiment.matchers.similarity.";
+    private static final String EXPERIMENTS_MATCHERS_ALGORITHM = "experiments.matchers.algorithm.";
+    private static final String EXPERIMENTS_MATCHERS_NAME = "experiments.matchers.name.";
+    private static final String EXPERIMENTS_MATCHERS_VECTORIZATION = "experiments.matchers.vectorization.";
+    private static final String EXPERIMENTS_MATCHERS_VALIDITY = "experiments.matchers.validity.";
+    private static final String EXPERIMENTS_MATCHERS_SIMILARITY = "experiments.matchers.similarity.";
     private static final String EXPERIMENTS_DATASETS_FOLDER = "experiments.dir.datasets";
     private static final String EXPERIMENTS_RESULTS_FOLDER = "experiments.dir.results";
     private static final String EXPERIMENTS_EXECUTION_VERBOSE = "experiments.execution.verbose";
