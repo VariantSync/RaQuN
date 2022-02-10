@@ -14,18 +14,22 @@ public class ExperimentSetup {
     public final String datasetFile;
     public final int chunkSize;
     public final boolean printVerbose;
+    public final int startK;
+    public final int maxK;
 
-    public ExperimentSetup(String name, int numberOfRepeats,
-                           String resultDir, String datasetDir,
-                           String datasetName, int chunkSize,
-                           boolean printVerbose) {
+    public ExperimentSetup(final String name, final int numberOfRepeats,
+                           final String resultDir, final String datasetDir,
+                           final String datasetName, final int chunkSize,
+                           final boolean printVerbose,
+                           final int startK,
+                           final int maxK) {
         this.name = name;
         this.numberOfRepeats = numberOfRepeats;
         this.datasetName = datasetName;
         // Adjust name for ArgoUML subsets
         if (datasetName.startsWith("argouml_p")) {
-            String[] parts = datasetName.split("_");
-            String tempName = parts[0] + "_" + parts[1];
+            final String[] parts = datasetName.split("_");
+            final String tempName = parts[0] + "_" + parts[1];
             this.resultFile = Paths.get(resultDir, name, name + "_" + tempName + "_stats.json").toString();
         } else {
             this.resultFile = Paths.get(resultDir, name, name + "_" + datasetName + "_stats.json").toString();
@@ -34,6 +38,15 @@ public class ExperimentSetup {
         this.datasetFile = Paths.get(datasetDir, datasetName + ".csv").toString();
         this.chunkSize = chunkSize;
         this.printVerbose = printVerbose;
+        this.startK = startK;
+        this.maxK = maxK;
+    }
+
+    public ExperimentSetup(final String name, final int numberOfRepeats,
+                           final String resultDir, final String datasetDir,
+                           final String datasetName, final int chunkSize,
+                           final boolean printVerbose) {
+        this(name, numberOfRepeats, resultDir, datasetDir, datasetName, chunkSize, printVerbose, 0, 0);
     }
 
 }

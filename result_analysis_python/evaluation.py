@@ -41,23 +41,25 @@ def main():
         "DEFLT.slx"
         , "Driving_ACC_CACC.slx"
         , "Driving_ACC_CACC_TL.slx"
+        , "family_23"
+        , "family_31"
     ]
 
-    datasets_part_4 = ["family_" + str(x) for x in range(1, 7)]
-    datasets_part_5 = ["family_" + str(x) for x in range(7, 13)]
-    datasets_part_6 = ["family_" + str(x) for x in range(13, 19)]
-    datasets_part_7 = ["family_" + str(x) for x in range(19, 25)]
-    datasets_part_8 = ["family_" + str(x) for x in range(25, 32)]
+    # datasets_part_4 = ["family_" + str(x) for x in range(1, 7)]
+    # datasets_part_5 = ["family_" + str(x) for x in range(7, 13)]
+    # datasets_part_6 = ["family_" + str(x) for x in range(13, 19)]
+    # datasets_part_7 = ["family_" + str(x) for x in range(19, 25)]
+    # datasets_part_8 = ["family_" + str(x) for x in range(25, 32)]
 
     all_datasets = []
     all_datasets.extend(datasets_part_1)
     all_datasets.extend(datasets_part_2)
     all_datasets.extend(datasets_part_3)
-    all_datasets.extend(datasets_part_4)
-    all_datasets.extend(datasets_part_5)
-    all_datasets.extend(datasets_part_6)
-    all_datasets.extend(datasets_part_7)
-    all_datasets.extend(datasets_part_8)
+    # all_datasets.extend(datasets_part_4)
+    # all_datasets.extend(datasets_part_5)
+    # all_datasets.extend(datasets_part_6)
+    # all_datasets.extend(datasets_part_7)
+    # all_datasets.extend(datasets_part_8)
 
     normal_methods = ["RaQuN",
                       "NwM",
@@ -77,11 +79,11 @@ def main():
     create_rq1_table(datasets_part_1, normal_methods, results_per_method, "table_weight1.tex")
     create_rq1_table(datasets_part_2, normal_methods, results_per_method, "table_weight2.tex")
     create_rq1_table(datasets_part_3, normal_methods, results_per_method, "table_weight3.tex")
-    create_rq1_table(datasets_part_4, normal_methods, results_per_method, "table_weight4.tex")
-    create_rq1_table(datasets_part_5, normal_methods, results_per_method, "table_weight5.tex")
-    create_rq1_table(datasets_part_6, normal_methods, results_per_method, "table_weight6.tex")
-    create_rq1_table(datasets_part_7, normal_methods, results_per_method, "table_weight7.tex")
-    create_rq1_table(datasets_part_8, normal_methods, results_per_method, "table_weight8.tex")
+    # create_rq1_table(datasets_part_4, normal_methods, results_per_method, "table_weight4.tex")
+    # create_rq1_table(datasets_part_5, normal_methods, results_per_method, "table_weight5.tex")
+    # create_rq1_table(datasets_part_6, normal_methods, results_per_method, "table_weight6.tex")
+    # create_rq1_table(datasets_part_7, normal_methods, results_per_method, "table_weight7.tex")
+    # create_rq1_table(datasets_part_8, normal_methods, results_per_method, "table_weight8.tex")
 
     if "RaQuN" in results_per_method:
         tabular = create_num_of_comp_overview(all_datasets, results_per_method)

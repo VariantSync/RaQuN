@@ -1,5 +1,6 @@
 package de.variantsync.matching.experiments.baseline;
 
+import de.variantsync.matching.experiments.EAlgorithm;
 import de.variantsync.matching.experiments.common.ExperimentHelper;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.common.MatchStatistic;
@@ -21,42 +22,41 @@ import java.util.*;
  * Adapter for running NwM and Pairwise matchers in our experiments.
  */
 public class BaselineAlgoAdapter implements MatcherAdapter {
-    private final ExperimentSetup setup;
-    private final EBaselineImplementation algorithmToApply;
+    private final EAlgorithm algorithmToApply;
 
-    public BaselineAlgoAdapter(ExperimentSetup setup, EBaselineImplementation algorithm) {
-        this.setup = setup;
+    public BaselineAlgoAdapter(final EAlgorithm algorithm) {
         this.algorithmToApply = algorithm;
     }
 
-    public void run() {
+    @Override
+    public void run(final ExperimentSetup setup) {
         for (int runID = 0; runID < setup.numberOfRepeats; runID++) {
             // Here, we use the Model class of Rubin an Chechik
-            ArrayList<Model> models = Model.readModelsFile(setup.datasetFile);
-            List<ArrayList<Model>> chunks = ExperimentHelper.getDatasetChunks(models, setup.chunkSize);
+            final ArrayList<Model> models = Model.readModelsFile(setup.datasetFile);
+            final List<ArrayList<Model>> chunks = ExperimentHelper.getDatasetChunks(models, setup.chunkSize);
 
-            for (ArrayList<Model> chunk : chunks) {
-                int sizeOfLargestModel = getSizeOfLargestModel(chunk);
-                int numberOfModels = chunk.size();
-                MatchStatistic matchStatistic = new MatchStatistic(0, setup.datasetName, setup.name,
+            for (final ArrayList<Model> chunk : chunks) {
+                final int sizeOfLargestModel = getSizeOfLargestModel(chunk);
+                final int numberOfModels = chunk.size();
+                final MatchStatistic matchStatistic = new MatchStatistic(0, setup.datasetName, setup.name,
                         numberOfModels, sizeOfLargestModel);
 
                 AlgoUtil.COMPUTE_RESULTS_CLASSICALLY = false;
 
-                List<Tuple> solution;
-                RunResult runResult;
-                ArrayList<Model> modelSubList = new ArrayList<>(chunk);
+                final List<Tuple> solution;
+                final RunResult runResult;
+                final ArrayList<Model> modelSubList = new ArrayList<>(chunk);
 
-                if(algorithmToApply == EBaselineImplementation.NwM) {
+                if(algorithmToApply == EAlgorithm.NwM) {
                     // To the best of our knowledge, this is the prototype implementation of nwm used in the work of
                     // Rubin and Chechik
                     // it achieves the matching weights that were presented in their publication
-                    MultiModelMerger mmm = new ChainingOptimizingMerger(modelSubList);
+                    final MultiModelMerger mmm = new ChainingOptimizingMerger(modelSubList);
                     mmm.run();
                     solution = mmm.getTuplesInMatch();
                     runResult = mmm.getRunResult(numberOfModels);
                 } else {
-                    HungarianPairwiseMatcher matcher = new HungarianPairwiseMatcher(modelSubList, algorithmToApply);
+                    final HungarianPairwiseMatcher matcher = new HungarianPairwiseMatcher(modelSubList, algorithmToApply);
                     matcher.run();
                     solution = matcher.getResult();
                     runResult = matcher.getRunResult();
@@ -64,12 +64,12 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                 }
 
                 // We parse the matching returned by NwM to our own data format, in order to do the evaluation
-                Set<RMatch> mergedModel = parseSolution(solution, chunk);
+                final Set<RMatch> mergedModel = parseSolution(solution, chunk);
 
                 if (setup.printVerbose) {
-                    int numberOfClasses = countClasses(mergedModel);
+                    final int numberOfClasses = countClasses(mergedModel);
                     System.out.println("Number of Classes: " + numberOfClasses);
-                    for (RMatch tuple : mergedModel) {
+                    for (final RMatch tuple : mergedModel) {
                         System.out.println(tuple.getLongString());
                     }
                 }
@@ -84,9 +84,9 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
         }
     }
 
-    private int getSizeOfLargestModel(List<Model> models) {
+    private int getSizeOfLargestModel(final List<Model> models) {
         int size = 0;
-        for(Model model : models) {
+        for(final Model model : models) {
             if (model.getElements().size() > size) {
                 size = model.getElements().size();
             }
@@ -94,23 +94,23 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
         return size;
     }
 
-    private double getTimeInSeconds(double time) {
+    private double getTimeInSeconds(final double time) {
         return time / 1000;
     }
 
-    private Set<RMatch> parseSolution(List<Tuple> solution, ArrayList<Model> chunk) {
+    private Set<RMatch> parseSolution(final List<Tuple> solution, final ArrayList<Model> chunk) {
         // Create a set of all elements to later find isolated ones
-        Set<Element> allElements = new HashSet<>();
-        for (Model model : chunk) {
+        final Set<Element> allElements = new HashSet<>();
+        for (final Model model : chunk) {
             allElements.addAll(model.getElements());
         }
 
-        Set<RMatch> parsedSet = new HashSet<>();
+        final Set<RMatch> parsedSet = new HashSet<>();
 
         // Create RMatch for all tuple in the solution
-        for (Tuple tuple : solution) {
-            List<RElement> nodes = new ArrayList<>();
-            for (Element e : tuple.getRealElements()) {
+        for (final Tuple tuple : solution) {
+            final List<RElement> nodes = new ArrayList<>();
+            for (final Element e : tuple.getRealElements()) {
                 // Remove the current element from the set of all elements
                 if(!allElements.remove(e)) {
                     throw new RuntimeException("ERROR: Element not in set of all elements...");
@@ -121,20 +121,20 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
         }
 
         // Create RMatch for all elements that were not part of the solution, they have to be counted as FN and FP
-        for (Element element : allElements) {
+        for (final Element element : allElements) {
             parsedSet.add(new RMatch(parseElement(element)));
         }
 
         return parsedSet;
     }
 
-    private RElement parseElement(Element element) {
+    private RElement parseElement(final Element element) {
         return new RElement(element.getModelId(), element.getUUID(), element.getLabel(), element.sortedProperties());
     }
 
-    private int countClasses(Set<RMatch> set) {
-        ArrayList<RElement> classes = new ArrayList<>();
-        for (RMatch tuple : set) {
+    private int countClasses(final Set<RMatch> set) {
+        final ArrayList<RElement> classes = new ArrayList<>();
+        for (final RMatch tuple : set) {
             classes.addAll(tuple.getElements());
         }
         return classes.size();

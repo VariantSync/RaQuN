@@ -1,7 +1,7 @@
 package de.variantsync.matching.pairwise;
 
+import de.variantsync.matching.experiments.EAlgorithm;
 import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
-import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.nwm.alg.AlgoBase;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Model;
@@ -17,10 +17,10 @@ import static de.variantsync.matching.nwm.alg.pair.PairWiseMatch.filterTuplesByT
  */
 public class HungarianPairwiseMatcher extends AlgoBase {
     private final ArrayList<Model> models;
-    private final EBaselineImplementation sortMode;
+    private final EAlgorithm sortMode;
     private int numberOfComparisons;
 
-    public HungarianPairwiseMatcher(ArrayList<Model> models, EBaselineImplementation sortMode){
+    public HungarianPairwiseMatcher(ArrayList<Model> models, EAlgorithm sortMode){
         super("Hungarian Pairwise Fast");
         this.models = models;
         this.sortMode = sortMode;
@@ -29,9 +29,9 @@ public class HungarianPairwiseMatcher extends AlgoBase {
     @Override
     protected ArrayList<Tuple> doRun() {
         // Sort models by size ascending or descending
-        if (sortMode == EBaselineImplementation.PairwiseAsc) {
+        if (sortMode == EAlgorithm.PairwiseAsc) {
             models.sort(Comparator.comparingInt(Model::size));
-        } else if (sortMode == EBaselineImplementation.PairwiseDesc) {
+        } else if (sortMode == EAlgorithm.PairwiseDesc) {
             models.sort((m1, m2) -> Integer.compare(m2.size(), m1.size()));
         } else {
             throw new UnsupportedOperationException("This sort mode has not been implemented yet!");

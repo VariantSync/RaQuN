@@ -1,14 +1,13 @@
 package de.variantsync.matching.experiments;
 
-import de.variantsync.matching.experiments.baseline.BaselineAlgoAdapter;
-import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
-import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
-import de.variantsync.matching.experiments.raqun.RaqunSetup;
+import de.variantsync.matching.experiments.common.MatcherAdapter;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,11 +19,11 @@ import static de.variantsync.matching.experiments.common.ExperimentHelper.runExp
  */
 public class RQ1Runner extends AbstractRQRunner {
 
-    public RQ1Runner(String... args) {
+    public RQ1Runner(final String... args) {
         super(args);
     }
 
-    public static void main(String... args) {
+    public static void main(final String... args) {
         new RQ1Runner(args).run();
     }
 
@@ -35,7 +34,12 @@ public class RQ1Runner extends AbstractRQRunner {
             datasets = retrieveDatasets();
         }
 
-        for (String dataset : datasets) {
+        final Map<String, MatcherAdapter> matchers = new HashMap<>();
+        for (final String name : configuration.matchers()) {
+            matchers.put(configuration.matcherDisplayName(name), configuration.loadMatcher(name));
+        }
+
+        for (final String dataset : datasets) {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +
                     "+++++++++++++++++++++++++++++++++++");
             String resultsDir = baseResultsDir;
@@ -50,50 +54,17 @@ public class RQ1Runner extends AbstractRQRunner {
                 chunkSize = 10;
             }
 
-            int numberOfRepeats = configuration.repetitionsRQ1();
+            final int numberOfRepeats = configuration.repetitionsRQ1();
 
-            RaqunSetup raqunSetup = new RaqunSetup("RaQuN", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, 0, 0, verbose, vectorization, similarityFunction,
-                    validityConstraint);
-
-            ExperimentSetup nwmSetup = new ExperimentSetup("NwM", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, verbose);
-
-            ExperimentSetup pairwiseAscSetup = new ExperimentSetup("PairwiseAsc", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, verbose);
-
-            ExperimentSetup pairwiseDescSetup = new ExperimentSetup("PairwiseDesc", numberOfRepeats,
-                    resultsDir, baseDatasetDir, dataset, chunkSize, verbose);
-
-            // Run Pairwise
-            if (configuration.shouldRunPairwiseAsc()) {
-                runExperiment(new BaselineAlgoAdapter(pairwiseAscSetup, EBaselineImplementation.PairwiseAsc),
+            for (final Map.Entry<String, MatcherAdapter> entry : matchers.entrySet()) {
+                final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), numberOfRepeats,
+                        resultsDir, baseDatasetDir, dataset, chunkSize, verbose, 0, 0);
+                runExperiment(entry.getValue(),
+                        experimentSetup,
                         baseResultsDir,
-                        pairwiseAscSetup.name,
-                        dataset);
-            }
-            if (configuration.shouldRunPairwiseDesc()) {
-                runExperiment(new BaselineAlgoAdapter(pairwiseDescSetup, EBaselineImplementation.PairwiseDesc),
-                        baseResultsDir,
-                        pairwiseDescSetup.name,
                         dataset);
             }
 
-            // Raqun
-            if (configuration.shouldRunRaQuN()) {
-                runExperiment(new RaQuNAdapter(raqunSetup), baseResultsDir, raqunSetup.name, dataset);
-            }
-
-            // NwM
-            // argouml is too big for NwM, therefore we exclude it
-            if (!dataset.equals("argouml")) {
-                if (configuration.shouldRunNwM()) {
-                    runExperiment(new BaselineAlgoAdapter(nwmSetup, EBaselineImplementation.NwM),
-                            baseResultsDir,
-                            nwmSetup.name,
-                            dataset);
-                }
-            }
         }
     }
 

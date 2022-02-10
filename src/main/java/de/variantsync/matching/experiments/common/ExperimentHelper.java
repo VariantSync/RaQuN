@@ -22,10 +22,10 @@ public class ExperimentHelper {
      * @param <T> Type of the input models
      * @return A list of model subsets
      */
-    public static <T> List<ArrayList<T>> getDatasetChunks(ArrayList<T> inputModels, int chunkSize) {
+    public static <T> List<ArrayList<T>> getDatasetChunks(final ArrayList<T> inputModels, final int chunkSize) {
         // Shuffle the models for randomness
         Collections.shuffle(inputModels);
-        List<ArrayList<T>> chunks = new ArrayList<>();
+        final List<ArrayList<T>> chunks = new ArrayList<>();
         ArrayList<T> subList = null;
         for (int i = 0; i < inputModels.size(); i++) {
             if (i % chunkSize == 0) {
@@ -41,26 +41,27 @@ public class ExperimentHelper {
      * Runs a specific experiment for the given matcher.
      * @param adapter of the matcher
      * @param baseResultsDir where the results are saved to
-     * @param name the name of the matcher
+     * @param setup the setup of the experiment
      * @param dataset the name of the dataset
      */
-    public static void runExperiment(MatcherAdapter adapter, String baseResultsDir, String name, String dataset) {
+    public static void runExperiment(final MatcherAdapter adapter, final ExperimentSetup setup, final String baseResultsDir, final String dataset) {
+        final String name = setup.name;
         try {
             System.out.println("Running " + name + " on " + dataset + "...");
-            adapter.run();
-        } catch (Error | Exception error) {
-            LocalDateTime localDateTime = LocalDateTime.now();
-            String errorText = "+++++++++++++++++++++++\n"
+            adapter.run(setup);
+        } catch (final Error | Exception error) {
+            final LocalDateTime localDateTime = LocalDateTime.now();
+            final String errorText = "+++++++++++++++++++++++\n"
                     + localDateTime
                     + ": ERROR for " + name + " on " + dataset + "\n"
                     + error
                     + "\n+++++++++++++++++++++++\n";
 
-            File errorLogFile = Paths.get(baseResultsDir, "ERRORLOG.txt").toFile();
-            try (FileWriter fw = new FileWriter(errorLogFile, true)) {
+            final File errorLogFile = Paths.get(baseResultsDir, "ERRORLOG.txt").toFile();
+            try (final FileWriter fw = new FileWriter(errorLogFile, true)) {
                 fw.write(errorText);
                 fw.write("\n");
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 System.err.println("WARNING: Not possible to write to ERRORLOG!\n" + e);
             }
 
