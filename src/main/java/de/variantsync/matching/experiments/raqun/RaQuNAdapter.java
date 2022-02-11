@@ -17,6 +17,8 @@ import de.variantsync.matching.raqun.similarity.ISimilarityFunction;
 import de.variantsync.matching.raqun.validity.IValidityConstraint;
 import de.variantsync.matching.raqun.vectorization.IVectorization;
 
+import static de.variantsync.matching.experiments.common.ExperimentHelper.executeWithTimeout;
+
 /**
  * Experiment Adapter that calls RaQuN during an experiment.
  */
@@ -35,7 +37,7 @@ public class RaQuNAdapter implements MatcherAdapter {
     }
 
     @Override
-    public void run(final ExperimentSetup setup) {
+    public boolean run(final ExperimentSetup setup) {
         final List<Integer> Ks = IntStream.rangeClosed(setup.startK, setup.maxK).boxed().collect(Collectors.toList());
         // Load the dataset
         final RDataset dataset = new RDataset(setup.datasetName);
@@ -60,14 +62,19 @@ public class RaQuNAdapter implements MatcherAdapter {
                 final RaQuN raqun = new RaQuN(this.vectorization, this.validityConstraint, this.similarityFunction, measurement.k);
 
                 // Match the models
-                final Set<RMatch> matchingResult = raqun.match(modelSubset);
-                final Instant finishedAt = Instant.now();
+                final Set<RMatch> matchingResult = executeWithTimeout(() -> raqun.match(modelSubset), setup);
 
+                if (matchingResult == null) {
+                    // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
+                    return false;
+                }
+
+                final Instant finishedAt = Instant.now();
                 // Convert the runtime of this run
                 measurement.resultMatchTimeElapsedSec = toSeconds(Duration.between(startedAt, finishedAt));
 
                 // Initialize the statistic for saving the results
-                int tempId = (setup.chunkSize == Integer.MAX_VALUE) ? runID : (runID/setup.chunkSize);
+                int tempId = (setup.chunkSize == Integer.MAX_VALUE) ? runID : (runID / setup.chunkSize);
                 tempId++;
                 final int sizeOfLargestModel = getSizeOfLargestModel(modelSubset);
 
@@ -92,9 +99,9 @@ public class RaQuNAdapter implements MatcherAdapter {
                 }
 
                 matchStatistic.writeAsJSON(setup.resultFile, true);
-                //executionStatistic.writeModel(setup.mergeResultFile);
             }
         }
+        return true;
     }
 
     private int getSizeOfLargestModel(final List<RModel> models) {

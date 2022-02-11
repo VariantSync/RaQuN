@@ -16,12 +16,15 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Utility class for loading values from the properties files that define the experimental setups.
  */
 public class ExperimentConfiguration {
     public static final File DEFAULT_PROPERTIES_FILE = new File("src/main/resources/experiment.properties");
+    private static final String EXPERIMENTS_TIMEOUT_DURATION = "experiments.timeout.duration";
+    private static final String EXPERIMENTS_TIMEOUT_UNIT = "experiments.timeout.unit";
     private static final String EXPERIMENTS_MATCHERS = "experiments.matchers";
     private static final String EXPERIMENTS_MATCHERS_ALGORITHM = "experiments.matchers.algorithm.";
     private static final String EXPERIMENTS_MATCHERS_NAME = "experiments.matchers.name.";
@@ -98,6 +101,24 @@ public class ExperimentConfiguration {
         }
     }
 
+    public long timeoutDuration() {
+        return config.getLong(EXPERIMENTS_TIMEOUT_DURATION);}
+
+    public TimeUnit timeoutUnit() {
+        final String unit = config.getString(EXPERIMENTS_TIMEOUT_UNIT).trim();
+        switch (unit) {
+            case "SECONDS":
+                return TimeUnit.SECONDS;
+            case "MINUTES":
+                return TimeUnit.MINUTES;
+            case "HOURS":
+                return TimeUnit.HOURS;
+            case "DAYS":
+                return TimeUnit.DAYS;
+            default:
+                throw new IllegalArgumentException(unit + " is not a valid time unit for the timeout");
+        }
+    }
     public boolean verboseResults() {
         return config.getBoolean(EXPERIMENTS_EXECUTION_VERBOSE);
     }

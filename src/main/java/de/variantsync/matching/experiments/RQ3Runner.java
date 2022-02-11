@@ -73,7 +73,6 @@ public class RQ3Runner extends AbstractRQRunner {
 
         // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
         // If set to true, NwM will no longer be executed on the ArgoUML subsets
-        boolean nwmTimeout = false;
         boolean reachedLargestSubset = false;
         final String timeoutSubset;
         if (subsetID == null) {
@@ -83,8 +82,10 @@ public class RQ3Runner extends AbstractRQRunner {
         }
 
         final Map<String, MatcherAdapter> matchers = new HashMap<>();
+        final Map<String, Boolean> successMap = new HashMap<>();
         for (final String name : configuration.matchers()) {
             matchers.put(configuration.matcherDisplayName(name), configuration.loadMatcher(name));
+            successMap.put(configuration.matcherDisplayName(name), Boolean.FALSE);
         }
 
         for (final String dataset : datasets) {
@@ -108,12 +109,18 @@ public class RQ3Runner extends AbstractRQRunner {
             final int numberOfRepeats = configuration.repetitionsRQ3();
 
             for (final Map.Entry<String, MatcherAdapter> entry : matchers.entrySet()) {
-                final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), numberOfRepeats,
-                        resultsDir, datasetDir, dataset, chunkSize, verbose, 0, 0);
-                runExperiment(entry.getValue(),
-                        experimentSetup,
-                        datasetDir,
-                        dataset);
+                if (successMap.get(entry.getKey())) {
+                    final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), numberOfRepeats,
+                            resultsDir, datasetDir, dataset, chunkSize, verbose, 0, 0,
+                            configuration.timeoutDuration(), configuration.timeoutUnit());
+                    final boolean success = runExperiment(entry.getValue(),
+                            experimentSetup,
+                            datasetDir,
+                            dataset);
+                    if (success) {
+                        successMap.put(entry.getKey(), Boolean.TRUE);
+                    }
+                }
             }
         }
     }

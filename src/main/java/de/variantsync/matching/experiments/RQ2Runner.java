@@ -48,7 +48,8 @@ public class RQ2Runner extends AbstractRQRunner {
                     baseDatasetDir,
                     dataset,
                     chunkSize, verbose,
-                    startK, maxK);
+                    startK, maxK,
+                    configuration.timeoutDuration(), configuration.timeoutUnit());
 
             runExperiment(matcher, raqunSetup, baseResultsDir, dataset);
         }

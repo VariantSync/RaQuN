@@ -7,5 +7,5 @@ public interface MatcherAdapter {
     /**
      * Run experiments with the matcher
      */
-    <T extends ExperimentSetup> void run(T setup);
+    boolean run(ExperimentSetup setup);
 }

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * Utility class that provides methods for setting up and running the experiments.
@@ -44,12 +45,14 @@ public class ExperimentHelper {
      * @param setup the setup of the experiment
      * @param dataset the name of the dataset
      */
-    public static void runExperiment(final MatcherAdapter adapter, final ExperimentSetup setup, final String baseResultsDir, final String dataset) {
+    public static boolean runExperiment(final MatcherAdapter adapter, final ExperimentSetup setup, final String baseResultsDir, final String dataset) {
         final String name = setup.name;
+        boolean success;
         try {
             System.out.println("Running " + name + " on " + dataset + "...");
-            adapter.run(setup);
+            success = adapter.run(setup);
         } catch (final Error | Exception error) {
+            success = false;
             final LocalDateTime localDateTime = LocalDateTime.now();
             final String errorText = "+++++++++++++++++++++++\n"
                     + localDateTime
@@ -70,5 +73,54 @@ public class ExperimentHelper {
         }
         System.out.println("----------------------------------------------------------------------------------------------------------------");
         System.out.println("----------------------------------------------------------------------------------------------------------------");
+        return success;
+    }
+
+
+     public static <V> V executeWithTimeout(final Callable<V> callable, final ExperimentSetup setup) {
+         final ExecutorService executor = Executors.newSingleThreadExecutor();
+         final Future<V> future = executor.submit(callable);
+         try {
+             return future.get(setup.timeout, setup.timeoutUnit);
+         } catch (final TimeoutException e) {
+             handleTimeout(setup);
+             return null;
+         } catch (final ExecutionException | InterruptedException e) {
+             throw new RuntimeException(e);
+         } finally {
+             executor.shutdownNow();
+         }
+    }
+
+    public static void executeWithTimeout(final Runnable runnable, final ExperimentSetup setup) {
+        final ExecutorService executor = Executors.newSingleThreadExecutor();
+        final Future<?> future = executor.submit(runnable);
+        try {
+            future.get(setup.timeout, setup.timeoutUnit);
+        } catch (final TimeoutException e) {
+            handleTimeout(setup);
+        } catch (final ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            executor.shutdownNow();
+        }
+    }
+
+    private static void handleTimeout(final ExperimentSetup setup) {
+        final String name = setup.name;
+        final LocalDateTime localDateTime = LocalDateTime.now();
+        final String errorText = "+++++++++++++++++++++++\n"
+                + localDateTime
+                + ": TIMEOUT for " + name + " on " + setup.datasetName + "\n"
+                + "\n+++++++++++++++++++++++\n";
+
+        final File errorLogFile = Paths.get(setup.baseResultsDir, "TIMEOUT_LOG.txt").toFile();
+        try (final FileWriter fw = new FileWriter(errorLogFile, true)) {
+            fw.write(errorText);
+            fw.write("\n");
+        } catch (final IOException ex) {
+            System.err.println("WARNING: Not possible to write to TIMEOUT_LOG!\n" + ex);
+        }
+        System.err.println("Timeout");
     }
 }

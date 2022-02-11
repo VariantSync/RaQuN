@@ -18,6 +18,8 @@ import de.variantsync.matching.raqun.data.RMatch;
 
 import java.util.*;
 
+import static de.variantsync.matching.experiments.common.ExperimentHelper.executeWithTimeout;
+
 /**
  * Adapter for running NwM and Pairwise matchers in our experiments.
  */
@@ -29,7 +31,7 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
     }
 
     @Override
-    public void run(final ExperimentSetup setup) {
+    public boolean run(final ExperimentSetup setup) {
         for (int runID = 0; runID < setup.numberOfRepeats; runID++) {
             // Here, we use the Model class of Rubin an Chechik
             final ArrayList<Model> models = Model.readModelsFile(setup.datasetFile);
@@ -52,15 +54,21 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                     // Rubin and Chechik
                     // it achieves the matching weights that were presented in their publication
                     final MultiModelMerger mmm = new ChainingOptimizingMerger(modelSubList);
-                    mmm.run();
+                    executeWithTimeout(mmm::run, setup);
                     solution = mmm.getTuplesInMatch();
                     runResult = mmm.getRunResult(numberOfModels);
                 } else {
                     final HungarianPairwiseMatcher matcher = new HungarianPairwiseMatcher(modelSubList, algorithmToApply);
-                    matcher.run();
+                    executeWithTimeout(matcher::run, setup);
                     solution = matcher.getResult();
                     runResult = matcher.getRunResult();
                     matchStatistic.setNumberOfComparisonsActuallyDone(matcher.getNumberOfComparisons());
+                }
+
+                if (solution == null || runResult == null) {
+                    return false;
+                } else {
+                    System.out.println("");
                 }
 
                 // We parse the matching returned by NwM to our own data format, in order to do the evaluation
@@ -82,6 +90,7 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                 //executionStatistic.writeModel(setup.mergeResultFile);
             }
         }
+        return true;
     }
 
     private int getSizeOfLargestModel(final List<Model> models) {

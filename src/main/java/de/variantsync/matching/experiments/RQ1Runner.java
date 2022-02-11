@@ -58,7 +58,8 @@ public class RQ1Runner extends AbstractRQRunner {
 
             for (final Map.Entry<String, MatcherAdapter> entry : matchers.entrySet()) {
                 final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), numberOfRepeats,
-                        resultsDir, baseDatasetDir, dataset, chunkSize, verbose, 0, 0);
+                        resultsDir, baseDatasetDir, dataset, chunkSize, verbose, 0, 0,
+                        configuration.timeoutDuration(), configuration.timeoutUnit());
                 runExperiment(entry.getValue(),
                         experimentSetup,
                         baseResultsDir,
