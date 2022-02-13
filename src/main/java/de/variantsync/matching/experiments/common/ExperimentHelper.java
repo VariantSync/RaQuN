@@ -92,13 +92,15 @@ public class ExperimentHelper {
          }
     }
 
-    public static void executeWithTimeout(final Runnable runnable, final ExperimentSetup setup) {
+    public static boolean executeWithTimeout(final Runnable runnable, final ExperimentSetup setup) {
         final ExecutorService executor = Executors.newSingleThreadExecutor();
         final Future<?> future = executor.submit(runnable);
         try {
             future.get(setup.timeout, setup.timeoutUnit);
+            return true;
         } catch (final TimeoutException e) {
             handleTimeout(setup);
+            return false;
         } catch (final ExecutionException | InterruptedException e) {
             throw new RuntimeException(e);
         } finally {

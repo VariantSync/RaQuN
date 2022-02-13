@@ -173,9 +173,6 @@ public abstract class AlgoBase implements Matchable{
 	}
 	
 	public RunResult getRunResult(){
-		if(!executed){
-			run();
-		}
 		return new RunResult(execTime, getResultWeight(), getAverageTupleWeight(), result);
 	}
 	

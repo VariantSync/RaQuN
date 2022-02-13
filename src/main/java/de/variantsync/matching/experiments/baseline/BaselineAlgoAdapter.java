@@ -54,12 +54,18 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                     // Rubin and Chechik
                     // it achieves the matching weights that were presented in their publication
                     final MultiModelMerger mmm = new ChainingOptimizingMerger(modelSubList);
-                    executeWithTimeout(mmm::run, setup);
+                    final boolean success = executeWithTimeout(mmm::run, setup);
+                    if (!success) {
+                        return false;
+                    }
                     solution = mmm.getTuplesInMatch();
                     runResult = mmm.getRunResult(numberOfModels);
                 } else {
                     final HungarianPairwiseMatcher matcher = new HungarianPairwiseMatcher(modelSubList, algorithmToApply);
-                    executeWithTimeout(matcher::run, setup);
+                    final Object result = executeWithTimeout(matcher::run, setup);
+                    if (result == null) {
+                        return false;
+                    }
                     solution = matcher.getResult();
                     runResult = matcher.getRunResult();
                     matchStatistic.setNumberOfComparisonsActuallyDone(matcher.getNumberOfComparisons());

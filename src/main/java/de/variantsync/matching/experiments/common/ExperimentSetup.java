@@ -44,7 +44,7 @@ public class ExperimentSetup {
         this.datasetFile = Paths.get(datasetDir, datasetName + ".csv").toString();
         this.chunkSize = chunkSize;
         this.printVerbose = printVerbose;
-        this.baseResultsDir = resultDir;
+        this.baseResultsDir = resultDir.replace("/argouml", "");
         this.startK = startK;
         this.maxK = maxK;
         this.timeout = timeout;
