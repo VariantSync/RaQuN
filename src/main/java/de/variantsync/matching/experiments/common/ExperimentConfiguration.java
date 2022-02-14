@@ -47,6 +47,8 @@ public class ExperimentConfiguration {
     private static final String EXPERIMENTS_RQ3_LARGEST_SUBSET = "experiments.rq3.largest-dataset";
     private static final String EXPERIMENTS_RQ4_DATASETS = "experiments.rq4.datasets";
     private static final String EXPERIMENTS_RQ4_MATCHERS = "experiments.rq4.matchers";
+    private static final String EXPERIMENTS_RQ5_MATCHERS = "experiments.rq5.matchers";
+    private static final String EXPERIMENTS_RQ5_LARGEST_SUBSET = "experiments.rq5.largest-dataset";
     private final Configuration config;
 
     public ExperimentConfiguration() {
@@ -176,5 +178,13 @@ public class ExperimentConfiguration {
 
     public List<String> matchersRQ4() {
         return config.getList(String.class, EXPERIMENTS_RQ4_MATCHERS);
+    }
+
+    public List<String> matchersRQ5() {
+        return config.getList(String.class, EXPERIMENTS_RQ5_MATCHERS);
+    }
+
+    public String getExperimentsRq5LargestSubset() {
+        return config.getString(EXPERIMENTS_RQ5_LARGEST_SUBSET);
     }
 }

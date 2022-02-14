@@ -1,4 +1,4 @@
-package de.variantsync.matching;
+package de.variantsync.matching.experiments;
 
 import de.variantsync.matching.experiments.AbstractRQRunner;
 import de.variantsync.matching.experiments.common.ExperimentConfiguration;

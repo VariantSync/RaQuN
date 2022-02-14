@@ -1,7 +1,5 @@
 package de.variantsync.matching.experiments;
 
-import de.variantsync.matching.BasicExperimentsRunner;
-
 import java.util.List;
 
 /**
