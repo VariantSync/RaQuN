@@ -215,9 +215,13 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 		}
 		
 		ArrayList<Element> freeElements  = extractFreeElements(merged.get(0), improved);
-		
+		if(stopped()) {
+			return null;
+		}
 		ArrayList<Tuple> mergedFreeElements = mergeFreeElements(freeElements);
-		
+		if(stopped()) {
+			return null;
+		}
 		if(AlgoUtil.areThereDuplicates(mergedFreeElements)){
 			System.out.println("PROBLEM - in mergedFreeElements !!!");
 		}

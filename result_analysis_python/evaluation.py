@@ -61,7 +61,7 @@ def main():
     # all_datasets.extend(datasets_part_7)
     # all_datasets.extend(datasets_part_8)
 
-    normal_methods = ["RaQuN",
+    normal_methods = ["RaQuN-Property-Vec",
                       "NwM",
                       "PairwiseAsc",
                       "PairwiseDesc"
@@ -85,7 +85,7 @@ def main():
     # create_rq1_table(datasets_part_7, normal_methods, results_per_method, "table_weight7.tex")
     # create_rq1_table(datasets_part_8, normal_methods, results_per_method, "table_weight8.tex")
 
-    if "RaQuN" in results_per_method:
+    if "RaQuN-Property-Vec" in results_per_method:
         tabular = create_num_of_comp_overview(all_datasets, results_per_method)
         save_table(save_dir + "table_comp.tex", tabular)
         print(tabular)

@@ -303,6 +303,9 @@ public class AlgoUtil {
 	
 	public static BigDecimal calcGroupWeight(Collection<Tuple> c, boolean scaled){
 		BigDecimal res = BigDecimal.ZERO;
+		if (c == null) {
+			return res;
+		}
 		for (Iterator<Tuple> iterator = c.iterator(); iterator.hasNext();) {
 			Tuple t = (Tuple) iterator.next();
 			if(scaled)

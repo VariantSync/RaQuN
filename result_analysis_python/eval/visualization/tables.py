@@ -178,7 +178,7 @@ def create_num_of_comp_overview(datasets: [], results_per_method: {}):
     for dataset in datasets:
         if dataset == "PPU" or dataset == "Apo-Games":
             tabular += "\\hline\n"
-        raqun_stats = results_per_method["RaQuN"]  # type: MethodStatistics
+        raqun_stats = results_per_method["RaQuN-Property-Vec"]  # type: MethodStatistics
         if dataset not in raqun_stats.result_per_dataset:
             continue
         raqun_result = raqun_stats.get_result(dataset)

@@ -71,8 +71,6 @@ public class RQ3Runner extends AbstractRQRunner {
             }
         }
 
-        // Flag through which we set that nwm had a timeout for an ArgoUML Subset size
-        // If set to true, NwM will no longer be executed on the ArgoUML subsets
         boolean reachedLargestSubset = false;
         final String timeoutSubset;
         if (subsetID == null) {
@@ -85,7 +83,7 @@ public class RQ3Runner extends AbstractRQRunner {
         final Map<String, Boolean> successMap = new HashMap<>();
         for (final String name : configuration.matchers()) {
             matchers.put(configuration.matcherDisplayName(name), configuration.loadMatcher(name));
-            successMap.put(configuration.matcherDisplayName(name), Boolean.FALSE);
+            successMap.put(configuration.matcherDisplayName(name), Boolean.TRUE);
         }
 
         for (final String dataset : datasets) {
@@ -117,8 +115,8 @@ public class RQ3Runner extends AbstractRQRunner {
                             experimentSetup,
                             datasetDir,
                             dataset);
-                    if (success) {
-                        successMap.put(entry.getKey(), Boolean.TRUE);
+                    if (!success) {
+                        successMap.put(entry.getKey(), Boolean.FALSE);
                     }
                 }
             }
