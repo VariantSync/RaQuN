@@ -77,13 +77,13 @@ public class ExperimentHelper {
     }
 
 
-     public static <V> V executeWithTimeout(final Callable<V> callable, final ExperimentSetup setup) {
+     public static <V> V executeWithTimeout(final Callable<V> callable, final ExperimentSetup setup, IKillableLongTask task) {
          final ExecutorService executor = Executors.newSingleThreadExecutor();
          final Future<V> future = executor.submit(callable);
          try {
              return future.get(setup.timeout, setup.timeoutUnit);
          } catch (final TimeoutException e) {
-             handleTimeout(setup);
+             handleTimeout(setup, task);
              return null;
          } catch (final ExecutionException | InterruptedException e) {
              throw new RuntimeException(e);
@@ -92,23 +92,9 @@ public class ExperimentHelper {
          }
     }
 
-    public static boolean executeWithTimeout(final Runnable runnable, final ExperimentSetup setup) {
-        final ExecutorService executor = Executors.newSingleThreadExecutor();
-        final Future<?> future = executor.submit(runnable);
-        try {
-            future.get(setup.timeout, setup.timeoutUnit);
-            return true;
-        } catch (final TimeoutException e) {
-            handleTimeout(setup);
-            return false;
-        } catch (final ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally {
-            executor.shutdownNow();
-        }
-    }
-
-    private static void handleTimeout(final ExperimentSetup setup) {
+    private static void handleTimeout(final ExperimentSetup setup, final IKillableLongTask task) {
+        System.err.println("Timeout after " + setup.timeout + " " + setup.timeoutUnit + "...Attempting to stop " + task);
+        task.kill();
         final String name = setup.name;
         final LocalDateTime localDateTime = LocalDateTime.now();
         final String errorText = "+++++++++++++++++++++++\n"
@@ -123,6 +109,5 @@ public class ExperimentHelper {
         } catch (final IOException ex) {
             System.err.println("WARNING: Not possible to write to TIMEOUT_LOG!\n" + ex);
         }
-        System.err.println("Timeout");
     }
 }

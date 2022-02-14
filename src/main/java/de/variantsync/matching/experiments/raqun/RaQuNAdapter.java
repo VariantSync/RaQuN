@@ -27,6 +27,7 @@ public class RaQuNAdapter implements MatcherAdapter {
     private final ISimilarityFunction similarityFunction;
     private final IVectorization vectorization;
     private final IValidityConstraint validityConstraint;
+
     /**
      * Initialize a new Adapter with the given setup
      */
@@ -62,11 +63,15 @@ public class RaQuNAdapter implements MatcherAdapter {
                 final RaQuN raqun = new RaQuN(this.vectorization, this.validityConstraint, this.similarityFunction, measurement.k);
 
                 // Match the models
-                final Set<RMatch> matchingResult = executeWithTimeout(() -> raqun.match(modelSubset), setup);
+                final Set<RMatch> matchingResult = executeWithTimeout(() -> raqun.match(modelSubset), setup, raqun);
 
                 if (matchingResult == null) {
-                    // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
-                    return false;
+                    if (raqun.killed()) {
+                        // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
+                        return false;
+                    } else {
+                        throw new NullPointerException("Matching result must not be null if RaQuN was stopped.");
+                    }
                 }
 
                 final Instant finishedAt = Instant.now();

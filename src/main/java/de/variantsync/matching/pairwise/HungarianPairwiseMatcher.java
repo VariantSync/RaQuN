@@ -1,6 +1,7 @@
 package de.variantsync.matching.pairwise;
 
 import de.variantsync.matching.experiments.EAlgorithm;
+import de.variantsync.matching.experiments.common.IKillableLongTask;
 import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
 import de.variantsync.matching.nwm.alg.AlgoBase;
 import de.variantsync.matching.nwm.common.AlgoUtil;
@@ -15,10 +16,11 @@ import static de.variantsync.matching.nwm.alg.pair.PairWiseMatch.filterTuplesByT
  * Wrapper for calling the Hungarian-pairwise implementation considered by Rubin and Chechik, ESEC/FSE 2013
  * https://dl.acm.org/doi/10.1145/2491411.2491446
  */
-public class HungarianPairwiseMatcher extends AlgoBase {
+public class HungarianPairwiseMatcher extends AlgoBase implements IKillableLongTask {
     private final ArrayList<Model> models;
     private final EAlgorithm sortMode;
     private int numberOfComparisons;
+    private boolean isStopped = false;
 
     public HungarianPairwiseMatcher(ArrayList<Model> models, EAlgorithm sortMode){
         super("Hungarian Pairwise Fast");
@@ -37,6 +39,10 @@ public class HungarianPairwiseMatcher extends AlgoBase {
             throw new UnsupportedOperationException("This sort mode has not been implemented yet!");
         }
 
+        if (logKilled()) {
+            return null;
+        }
+
         // Iterate over the sorted list of models and match them iteratively
         Model mergedModel = models.get(0);
         HungarianMerger merger = null;
@@ -46,6 +52,10 @@ public class HungarianPairwiseMatcher extends AlgoBase {
             merger = new HungarianMerger(mergedModel, models.get(i), 2);
             merger.runPairing();
             mergedModel = merger.mergeMatchedModels();
+            if (logKilled()) {
+                merger.kill();
+                return null;
+            }
         }
 
         boolean storedVal = AlgoUtil.COMPUTE_RESULTS_CLASSICALLY;
@@ -56,6 +66,9 @@ public class HungarianPairwiseMatcher extends AlgoBase {
             for(Tuple t:realMerge){
                 t.recomputeSelf(this.models);
             }
+        }
+        if (logKilled()) {
+            return null;
         }
         ArrayList<Tuple> retVal = filterTuplesByTreshold(realMerge, models);
 
@@ -74,5 +87,15 @@ public class HungarianPairwiseMatcher extends AlgoBase {
     @Override
     public ArrayList<Model> getModels() {
         return null;
+    }
+
+    @Override
+    public void kill() {
+        this.isStopped = true;
+    }
+
+    @Override
+    public boolean killed() {
+        return this.isStopped;
     }
 }

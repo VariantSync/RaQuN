@@ -474,4 +474,9 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 		tpls.add(0, t);
 		return t;
 	}
+
+	@Override
+	public String toString() {
+		return "NwM";
+	}
 }

@@ -3,6 +3,7 @@ package de.variantsync.matching.nwm.alg.merge;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import de.variantsync.matching.experiments.common.IKillableLongTask;
 import de.variantsync.matching.nwm.alg.Matchable;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Element;
@@ -13,11 +14,12 @@ import de.variantsync.matching.nwm.execution.RunResult;
 /**
  * Undocumented code by Rubin and Chechik
  */
-public abstract class Merger {
+public abstract class Merger implements IKillableLongTask {
 
 	protected ArrayList<Model> models;
 	private Model mergedModel = null;
 	private ArrayList<Tuple> mergedTuples;
+	protected boolean isStopped = false;
 
 	public Merger(ArrayList<Model> models) {
 		this.models = models;
@@ -26,7 +28,17 @@ public abstract class Merger {
 	public  Merger(){
 		this.models = new ArrayList<Model>();
 	}
-	
+
+	@Override
+	public void kill() {
+		this.isStopped = true;
+	}
+
+	@Override
+	public boolean killed() {
+		return this.isStopped;
+	}
+
 	protected abstract Matchable getMatch();
 	
 	public abstract RunResult getRunResult(int numOfModels);

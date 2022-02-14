@@ -54,17 +54,27 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                     // Rubin and Chechik
                     // it achieves the matching weights that were presented in their publication
                     final MultiModelMerger mmm = new ChainingOptimizingMerger(modelSubList);
-                    final boolean success = executeWithTimeout(mmm::run, setup);
-                    if (!success) {
-                        return false;
+                    final Object result = executeWithTimeout(mmm::run, setup, mmm);
+                    if (result==null) {
+                        if (mmm.killed()) {
+                            // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
+                            return false;
+                        } else {
+                            throw new NullPointerException("Matching result must not be null if NwM was stopped.");
+                        }
                     }
                     solution = mmm.getTuplesInMatch();
                     runResult = mmm.getRunResult(numberOfModels);
                 } else {
                     final HungarianPairwiseMatcher matcher = new HungarianPairwiseMatcher(modelSubList, algorithmToApply);
-                    final Object result = executeWithTimeout(matcher::run, setup);
+                    final Object result = executeWithTimeout(matcher::run, setup, matcher);
                     if (result == null) {
-                        return false;
+                        if (matcher.killed()) {
+                            // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
+                            return false;
+                        } else {
+                            throw new NullPointerException("Matching result must not be null if Pairwise was stopped.");
+                        }
                     }
                     solution = matcher.getResult();
                     runResult = matcher.getRunResult();

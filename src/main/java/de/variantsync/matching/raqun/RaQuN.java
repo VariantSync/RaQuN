@@ -1,5 +1,6 @@
 package de.variantsync.matching.raqun;
 
+import de.variantsync.matching.experiments.common.IKillableLongTask;
 import de.variantsync.matching.raqun.data.CandidatePair;
 import de.variantsync.matching.raqun.data.RModel;
 import de.variantsync.matching.raqun.vectorization.IVectorization;
@@ -16,13 +17,14 @@ import java.util.stream.Collectors;
 /**
  * Our RaQuN matching algorithm as presented in the paper (Algorithm 1)
  */
-public class RaQuN {
+public class RaQuN implements IKillableLongTask {
     protected final IVectorization vectorizationFunction;
     protected final IValidityConstraint validityConstraint;
     protected final ISimilarityFunction similarityFunction;
     protected final int nNearestNeighbors;
     protected Set<CandidatePair> candidatePairs;
     protected int numProcessedElements;
+    private boolean isStopped = false;
 
     /**
      * Create a new configuration of RaQuN.
@@ -61,15 +63,24 @@ public class RaQuN {
     public Set<RMatch> match(Collection<RModel> models) {
         // Initialize the vectorization function
         vectorizationFunction.initialize(models);
-
+        if (logKilled()) {
+            return null;
+        }
         Set<RElement> elements = models.stream().flatMap((m) -> m.getElements().stream()).collect(Collectors.toSet());
         // Phase 1: Candidate Initialization (Algorithm 1, lines 2-7)
         KDTree kdTree = new KDTree(vectorizationFunction);
-        elements.forEach(kdTree::add);
-
+        for(RElement element : elements) {
+            kdTree.add(element);
+            if (logKilled()) {
+                return null;
+            }
+        }
         // Phase 2: Candidate Search (Algorithm 1, lines 8-17)
         int k_prime = nNearestNeighbors == 0 ? models.size() : nNearestNeighbors;
         this.candidatePairs = findAllCandidates(kdTree, k_prime);
+        if (this.candidatePairs == null) {
+            return null;
+        }
         Set<RElement> allElements = new HashSet<>(kdTree.getElementsInTree());
         this.numProcessedElements = allElements.size();
 
@@ -94,6 +105,9 @@ public class RaQuN {
                     // We only add elements as candidates if the resulting match is considered valid
                     candidatePairs.add(new CandidatePair(element, similarElement, distance));
                 }
+                if (logKilled()) {
+                    return null;
+                }
             }
         }
         return candidatePairs;
@@ -108,6 +122,10 @@ public class RaQuN {
     protected Set<RMatch> computeMatching(Set<CandidatePair> candidatePairs, Set<RElement> allElements) {
         // Calculate the match confidence of the pairs, filter and sort (Algorithm 1, line 18
         PairSortTree sortedPairs = filterAndSort(candidatePairs);
+
+        if (sortedPairs == null) {
+            return null;
+        }
 
         // Initialize the set of tuples (Algorithm 1, line 19)
         Set<RMatch> initialMatches = new HashSet<>();
@@ -136,6 +154,11 @@ public class RaQuN {
                     resultSet.add(mergedTuple);
                 }
             }
+
+            if (logKilled()) {
+                return null;
+            }
+
         }
 
         return resultSet;
@@ -155,6 +178,9 @@ public class RaQuN {
                 candidatePair.setMatchConfidence(matchConfidence);
                 pairSortTree.add(candidatePair);
             }
+            if (logKilled()) {
+                return null;
+            }
         }
         return pairSortTree;
     }
@@ -173,6 +199,16 @@ public class RaQuN {
      */
     public int getNumProcessedElements() {
         return numProcessedElements;
+    }
+
+    @Override
+    public void kill() {
+        this.isStopped = true;
+    }
+
+    @Override
+    public boolean killed() {
+        return this.isStopped;
     }
 
     /**
