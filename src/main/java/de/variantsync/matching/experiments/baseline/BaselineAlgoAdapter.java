@@ -1,10 +1,7 @@
 package de.variantsync.matching.experiments.baseline;
 
 import de.variantsync.matching.experiments.EAlgorithm;
-import de.variantsync.matching.experiments.common.ExperimentHelper;
-import de.variantsync.matching.experiments.common.ExperimentSetup;
-import de.variantsync.matching.experiments.common.MatchStatistic;
-import de.variantsync.matching.experiments.common.MatcherAdapter;
+import de.variantsync.matching.experiments.common.*;
 import de.variantsync.matching.nwm.alg.merge.ChainingOptimizingMerger;
 import de.variantsync.matching.nwm.alg.merge.MultiModelMerger;
 import de.variantsync.matching.nwm.common.AlgoUtil;
@@ -53,10 +50,10 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                     // To the best of our knowledge, this is the prototype implementation of nwm used in the work of
                     // Rubin and Chechik
                     // it achieves the matching weights that were presented in their publication
-                    final MultiModelMerger mmm = new ChainingOptimizingMerger(modelSubList);
+                    final ChainingOptimizingMerger mmm = new ChainingOptimizingMerger(modelSubList, new Stopped());
                     final Object result = executeWithTimeout(mmm::run, setup, mmm);
                     if (result==null) {
-                        if (mmm.killed()) {
+                        if (mmm.stopped()) {
                             // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
                             return false;
                         } else {
@@ -69,7 +66,7 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                     final HungarianPairwiseMatcher matcher = new HungarianPairwiseMatcher(modelSubList, algorithmToApply);
                     final Object result = executeWithTimeout(matcher::run, setup, matcher);
                     if (result == null) {
-                        if (matcher.killed()) {
+                        if (matcher.stopped()) {
                             // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
                             return false;
                         } else {

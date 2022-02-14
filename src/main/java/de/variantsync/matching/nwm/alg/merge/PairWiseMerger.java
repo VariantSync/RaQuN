@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.Matchable;
 import de.variantsync.matching.nwm.alg.pair.ModelIdbasedPairWiseMatcher;
 import de.variantsync.matching.nwm.alg.pair.ModelSizeBasedPairWiseMatcher;
@@ -28,7 +29,8 @@ public class PairWiseMerger extends Merger{
 	long execTime = 0;
 	private boolean alreadyRun = false;
 
-	public PairWiseMerger(ArrayList<Model> models, MergeDescriptor md, boolean keepOrder) {
+	public PairWiseMerger(ArrayList<Model> models, MergeDescriptor md, boolean keepOrder, Stopped stopped) {
+		super(stopped);
 		this.models = models;
 		this.desc = md;
 		this.keepOrder = keepOrder;
@@ -94,10 +96,10 @@ public class PairWiseMerger extends Merger{
 		@SuppressWarnings("unchecked")
 		ArrayList<Model> ms = (ArrayList<Model>) models.clone();
 		HungarianMerger hm = null;
-		
+
 		while(ms.size() > 1){
 			ms =  sortBy(ms, false, asc);
-			hm = new HungarianMerger(ms.get(0), ms.get(1), models.size());
+			hm = new HungarianMerger(ms.get(0), ms.get(1), models.size(), stopped);
 			hm.runPairing();
 			Model m = hm.mergeMatchedModels();
 			//System.out.println(m);

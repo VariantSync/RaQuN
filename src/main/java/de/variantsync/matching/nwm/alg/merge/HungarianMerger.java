@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.Matchable;
 import de.variantsync.matching.nwm.alg.pair.PairWiseMatch;
 import de.variantsync.matching.nwm.common.AlgoUtil;
@@ -30,8 +31,8 @@ public class HungarianMerger extends Merger implements Matchable {
     protected ArrayList<Tuple> tuplesInMatch;
     protected int numOfModels;
 
-    public HungarianMerger(Model m1, Model m2, int mdls) {
-        super();
+    public HungarianMerger(Model m1, Model m2, int mdls, Stopped stopped) {
+        super(stopped);
         model1 = m1;
         model2 = m2;
         numOfModels = mdls;
@@ -41,15 +42,15 @@ public class HungarianMerger extends Merger implements Matchable {
 
     public void runPairing() {
         prepareCostMatrix();
-        if (killed()) {
+        if (stopped()) {
             return;
         }
         int[] match = calcMatch();
-        if (killed()) {
+        if (stopped()) {
             return;
         }
         transformMatchToTuples(match);
-        if (killed()) {
+        if (stopped()) {
             return;
         }
         sumTuplesWeight();
@@ -155,7 +156,7 @@ public class HungarianMerger extends Merger implements Matchable {
                 // in the matrix to be the distance between the maxVal and the cell value
                 // then HA will return a result that is the set of tuples that compose the minimal distance, or the maximal tuples values sum
                 costMatrix[i][j] = maxWeight - tuplesMatrix[i][j].getWeight().doubleValue();
-                if (killed()) {
+                if (stopped()) {
                     return;
                 }
             }
@@ -196,7 +197,7 @@ public class HungarianMerger extends Merger implements Matchable {
                 if (tmpWeight.compareTo(maxWeight) > 0)
                     maxWeight = tmpWeight;
                 mat.add(t);
-                if (killed()) {
+                if (stopped()) {
                     return null;
                 }
             }
@@ -321,7 +322,7 @@ public class HungarianMerger extends Merger implements Matchable {
                         labelByJob[j] = costMatrix[w][j];
                     }
                 }
-                if (killed()) {
+                if (stopped()) {
                     return;
                 }
             }
@@ -341,15 +342,15 @@ public class HungarianMerger extends Merger implements Matchable {
              * and create a greedy matching from workers to jobs of the cost matrix.
              */
             reduce();
-            if (killed()) {
+            if (stopped()) {
                 return null;
             }
             computeInitialFeasibleSolution();
-            if (killed()) {
+            if (stopped()) {
                 return null;
             }
             greedyMatch();
-            if (killed()) {
+            if (stopped()) {
                 return null;
             }
 
@@ -466,7 +467,7 @@ public class HungarianMerger extends Merger implements Matchable {
                             && costMatrix[w][j] - labelByWorker[w] - labelByJob[j] == 0) {
                         match(w, j);
                     }
-                    if (killed()) {
+                    if (stopped()) {
                         return;
                     }
                 }
@@ -516,7 +517,7 @@ public class HungarianMerger extends Merger implements Matchable {
                 for (int j = 0; j < dim; j++) {
                     costMatrix[w][j] -= min;
                 }
-                if (killed()) {
+                if (stopped()) {
                     return;
                 }
             }
@@ -530,7 +531,7 @@ public class HungarianMerger extends Merger implements Matchable {
                         min[j] = costMatrix[w][j];
                     }
                 }
-                if (killed()) {
+                if (stopped()) {
                     return;
                 }
             }
@@ -538,7 +539,7 @@ public class HungarianMerger extends Merger implements Matchable {
                 for (int j = 0; j < dim; j++) {
                     costMatrix[w][j] -= min[j];
                 }
-                if (killed()) {
+                if (stopped()) {
                     return;
                 }
             }

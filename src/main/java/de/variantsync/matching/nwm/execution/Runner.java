@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.TupleReader;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.common.ModelComparator;
@@ -142,7 +143,7 @@ public class Runner extends ResultsWriter{
 	private Merger getMergerBasedOnPolicy(N_WAY.ALG_POLICY pol, ArrayList<Model> modelsToUse){
 		N_WAY.ALG_POLICY policyToUse = pol;
 		if(pol == N_WAY.ALG_POLICY.GREEDY)
-			return new GreedyMerger(modelsToUse);
+			return new GreedyMerger(modelsToUse, new Stopped());
 		boolean doSquaring = false;
 		if(pol == N_WAY.ALG_POLICY.REPLACE_FIRST_BY_SQUARES || pol == N_WAY.ALG_POLICY.REPLACE_BEST_BY_SQUARES)
 			 doSquaring = true; 
@@ -152,7 +153,7 @@ public class Runner extends ResultsWriter{
 		
 		if(pol == N_WAY.ALG_POLICY.REPLACE_BEST_BY_SQUARES)
 			policyToUse =  N_WAY.ALG_POLICY.REPLACE_BEST;
-		return new LocalSearchMerger(modelsToUse, policyToUse, doSquaring);
+		return new LocalSearchMerger(modelsToUse, policyToUse, doSquaring, new Stopped());
 	}
 	
 	private RunResult performMerge(MergeDescriptor md, int splitSize){
@@ -179,7 +180,7 @@ public class Runner extends ResultsWriter{
 
 		
 		if(mdls.size() == 2){
-			PairWiseMerger pwm = new PairWiseMerger(mdls,md, true);
+			PairWiseMerger pwm = new PairWiseMerger(mdls,md, true, new Stopped());
 			pwm.run();
 			pwm.refreshResultTuplesWeight(pwm.mergeMatchedModels());
 			rr = pwm.getRunResult(models.size());
@@ -219,7 +220,7 @@ public class Runner extends ResultsWriter{
 
 	private RunResult runPair(MergeDescriptor md) {
 		@SuppressWarnings("unchecked")
-		PairWiseMerger pwm = new PairWiseMerger((ArrayList<Model>) models.clone(), md, false);
+		PairWiseMerger pwm = new PairWiseMerger((ArrayList<Model>) models.clone(), md, false, new Stopped());
 		pwm.run();
 		pwm.refreshResultTuplesWeight(pwm.mergeMatchedModels());
 		RunResult rr = pwm.getRunResult(models.size());
@@ -230,7 +231,7 @@ public class Runner extends ResultsWriter{
 	
 	public ArrayList<RunResult> runBigHungarian(){
 		@SuppressWarnings("unchecked")
-		MultiModelMerger mmm = new ChainingOptimizingMerger((ArrayList<Model>) models.clone());
+		MultiModelMerger mmm = new ChainingOptimizingMerger((ArrayList<Model>) models.clone(), new Stopped());
 		mmm.run();
 		RunResult rr = mmm.getRunResult(models.size());
 		rr.setTitle("New Hungarian");

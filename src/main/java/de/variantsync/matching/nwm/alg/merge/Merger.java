@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import de.variantsync.matching.experiments.common.IKillableLongTask;
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.Matchable;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Element;
@@ -19,24 +20,26 @@ public abstract class Merger implements IKillableLongTask {
 	protected ArrayList<Model> models;
 	private Model mergedModel = null;
 	private ArrayList<Tuple> mergedTuples;
-	protected boolean isStopped = false;
+	protected volatile Stopped stopped;
 
-	public Merger(ArrayList<Model> models) {
+	public Merger(ArrayList<Model> models, Stopped stopped) {
 		this.models = models;
+		this.stopped = stopped;
 	}
 	
-	public  Merger(){
+	public  Merger(Stopped stopped){
 		this.models = new ArrayList<Model>();
+		this.stopped = stopped;
 	}
 
 	@Override
-	public void kill() {
-		this.isStopped = true;
+	public void stop() {
+		this.stopped.value = true;
 	}
 
 	@Override
-	public boolean killed() {
-		return this.isStopped;
+	public boolean stopped() {
+		return this.stopped.value;
 	}
 
 	protected abstract Matchable getMatch();
@@ -44,9 +47,15 @@ public abstract class Merger implements IKillableLongTask {
 	public abstract RunResult getRunResult(int numOfModels);
 	
 	private ArrayList<Element> makeElementsFromMatchTuples(ArrayList<Tuple> match){
+		if (stopped()) {
+			return null;
+		}
 		ArrayList<Element> retVal = new ArrayList<Element>();
 		for(Tuple t:match){
 			retVal.add(new Element(t));
+			if (stopped()) {
+				return null;
+			}
 		}
 		return retVal;	
 	}
@@ -56,6 +65,9 @@ public abstract class Merger implements IKillableLongTask {
 		for(Element elem:m.getElements()){
 			boolean canBeAdded = true;
 			for(Element bue:elem.getBasedUponElements()){
+				if (stopped()) {
+					return null;
+				}
 				if(ignoreList.contains(bue)) {
 					canBeAdded = false;
 					break;
@@ -72,11 +84,18 @@ public abstract class Merger implements IKillableLongTask {
 		ArrayList<Element> retVal = new ArrayList<Element>();
 		HashSet<Element> matchedElements = new HashSet<Element>();
 		for(Tuple t:match){
-			for(Element elem:t.sortedElements())
+			for(Element elem:t.sortedElements()) {
 				matchedElements.add(elem);
+				if (stopped()) {
+					return null;
+				}
+			}
 		}
 		for(Model m: getMatch().getModels()){
 			retVal.addAll(getNotMatchedElementsFromModel(m, matchedElements));
+			if (stopped()) {
+				return null;
+			}
 		}
 		return retVal;
 	}
@@ -95,6 +114,9 @@ public abstract class Merger implements IKillableLongTask {
 				t = e.getContaingTuple();
 				t.setWeight(t.calcWeight(srcModels));
 			}
+			if (stopped()) {
+				return;
+			}
 		}
 	}
 	
@@ -106,7 +128,9 @@ public abstract class Merger implements IKillableLongTask {
 			return this.mergedModel ;
 		
 		ArrayList<Tuple> matchTuples = getMatch().getTuplesInMatch();
-		
+		if (stopped()) {
+			return null;
+		}
 		ArrayList<Element> elements = makeElementsFromMatchTuples(matchTuples);
 		elements.addAll(getNonMatchedElements());
 //		Collections.sort(elements, new Comparator<Element>() {
@@ -124,12 +148,18 @@ public abstract class Merger implements IKillableLongTask {
 			modelId = modelId+m.getId();
 			sb.append(m.getId()).append(",");
 			numOfSourceModels += m.getMergedFrom();
+			if (stopped()) {
+				return null;
+			}
 		}
 		//System.out.println(sb.toString());
 
 		Model merged = new  Model(modelId,elements);
 		for(Element e:elements){
 			e.setModelId(modelId);
+			if (stopped()) {
+				return null;
+			}
 		}
 		merged.setMergedFrom(numOfSourceModels);
 		//refreshResultTuplesWeight(numOfSourceModels, merged);
@@ -143,9 +173,15 @@ public abstract class Merger implements IKillableLongTask {
 			return this.mergedTuples;
 		ArrayList<Tuple> tpls = new ArrayList<Tuple>();
 		Model m = mergeMatchedModels();
+		if (stopped()) {
+			return null;
+		}
 		for(Element e:m.getElements()){
 			if(e.getBasedUponElements().size() > 1 || AlgoUtil.COMPUTE_RESULTS_CLASSICALLY){
 				tpls.add(e.getContaingTuple());
+			}
+			if (stopped()) {
+				return null;
 			}
 		}
 		this.mergedTuples = tpls;

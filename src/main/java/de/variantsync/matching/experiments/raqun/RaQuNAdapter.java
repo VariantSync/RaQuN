@@ -66,7 +66,7 @@ public class RaQuNAdapter implements MatcherAdapter {
                 final Set<RMatch> matchingResult = executeWithTimeout(() -> raqun.match(modelSubset), setup, raqun);
 
                 if (matchingResult == null) {
-                    if (raqun.killed()) {
+                    if (raqun.stopped()) {
                         // The result is null, if a timeout occurred. In this case we abort the experiment without starting additional runs.
                         return false;
                     } else {

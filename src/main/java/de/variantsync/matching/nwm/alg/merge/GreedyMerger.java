@@ -3,6 +3,7 @@ package de.variantsync.matching.nwm.alg.merge;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.greedy.GreedyStepper;
 import de.variantsync.matching.nwm.alg.Matchable;
 import de.variantsync.matching.nwm.common.AlgoUtil;
@@ -19,8 +20,8 @@ public class GreedyMerger extends Merger {
 	private GreedyStepper alg;
 	private boolean executed = false;
 
-	public GreedyMerger(ArrayList<Model> models) {
-		super(models);
+	public GreedyMerger(ArrayList<Model> models, Stopped stopped) {
+		super(models, stopped);
 		alg = new GreedyStepper(models);
 		//AlgoUtil.printTuples(AlgoUtil.generateAllTuples(models));
 	}

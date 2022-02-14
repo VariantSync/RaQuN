@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.common.N_WAY;
 import de.variantsync.matching.nwm.domain.Element;
@@ -18,16 +19,19 @@ import de.variantsync.matching.nwm.domain.Tuple;
 public class ChainingOptimizingMerger extends MultiModelMerger {
 	private boolean contineouesImprove = true;
 
-	public ChainingOptimizingMerger(ArrayList<Model> models) {
-		super(models);
+	public ChainingOptimizingMerger(ArrayList<Model> models, Stopped stopped) {
+		super(models, stopped);
 	}
 	
-	public ChainingOptimizingMerger(ArrayList<Model> models, boolean contineouesImprove) {
-		this(models);
+	public ChainingOptimizingMerger(ArrayList<Model> models, boolean contineouesImprove, Stopped stopped) {
+		this(models, stopped);
 		this.contineouesImprove  = contineouesImprove;
 	}
 
 	public  ArrayList<Tuple> optimizePairs(ArrayList<Tuple> allPairs, boolean continuousOptimization){
+		if (stopped()) {
+			return null;
+		}
 		//System.out.println("pre chanining:");
 		//AlgoUtil.printTuples(allPairs);
 		HashSet<Tuple> usedTuples = new HashSet<Tuple>();
@@ -37,6 +41,9 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 		
 		ArrayList<Tuple> allChains = new ArrayList<Tuple>();
 		for(Tuple t:allPairs){
+			if (stopped()) {
+				return null;
+			}
 			smallerModelIdElemToTuple.put(getElementWithSmallerId(t), t);
 			largerModelIdElemToTuple.put(getElementWithHigherId(t), t);
 		}
@@ -45,7 +52,9 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 		//ArrayList<Tuple> STAM = new ArrayList<Tuple>();
 		boolean firstChain = true;
 		for(int i=0;i< allPairs.size();i++){
-			
+			if (stopped()) {
+				return null;
+			}
 			Tuple t = allPairs.get(i);
 			
 			if(usedTuples.contains(t))
@@ -55,6 +64,9 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 			
 			HashSet<String> usedModelsInChain = new HashSet<String>();
 			for(Element e:t.getRealElements()){
+				if (stopped()) {
+					return null;
+				}
 				usedModelsInChain.add(e.getModelId());
 			}
 			ArrayList<Tuple> chain = new ArrayList<Tuple>();
@@ -65,6 +77,9 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 			Element largeSideConnectingElem = getElementWithHigherId(t);
 			//Element smallSideConnectionElem = getElementWithSmallerModelId(t);
 			while(true){// chaining by adding to the element with the larger size
+				if (stopped()) {
+					return null;
+				}
 				Tuple currentTuple = smallerModelIdElemToTuple.get(largeSideConnectingElem);
 				if(currentTuple == null)
 					break;
@@ -100,7 +115,9 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 //				largeSideConnectingElem = nextElem;
 				
 			}
-			
+			if (stopped()) {
+				return null;
+			}
 			//optimizeChain(elementsToUse, 0, new ArrayList<Tuple>(), new HashMap<Integer, ArrayList<Tuple>>());
 			allChains.addAll(optimizeChain(1, chain, 0,new ArrayList<Tuple>(),new HashMap<Integer, ArrayList<Tuple>>() ));
 			
@@ -123,6 +140,9 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 //			STAM.add(newTuple);
 			
 		}
+		if (stopped()) {
+			return null;
+		}
 		resultTuples = allChains;
 		cleanFreeElements(resultTuples);
 		cleanDuplicates(resultTuples);
@@ -131,7 +151,13 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 		if(currResult.size() == 0)
 			return currResult;
 		ArrayList<Tuple> improved = improveResults(resultTuples);
+		if (stopped()) {
+			return null;
+		}
 		while(AlgoUtil.calcGroupWeight(currResult).compareTo(AlgoUtil.calcGroupWeight(improved)) < 0){
+			if (stopped()) {
+				return null;
+			}
 			currResult = improved;
 			improved = improveResults(improved);
 			//System.out.println(AlgoUtil.calcGroupWeight(improved));
@@ -180,11 +206,13 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 			return resultTuples;
 		ArrayList<Model> merged = buildModelFromResults(resultTuples);
 		
-		ChainingOptimizingMerger com = new ChainingOptimizingMerger(merged, false);
+		ChainingOptimizingMerger com = new ChainingOptimizingMerger(merged, stopped);
 		com.run();
 		ArrayList<Tuple> improved = com.extractMerge();
-		
-	
+
+		if(stopped()) {
+			return null;
+		}
 		
 		ArrayList<Element> freeElements  = extractFreeElements(merged.get(0), improved);
 		
@@ -289,7 +317,7 @@ public class ChainingOptimizingMerger extends MultiModelMerger {
 		ArrayList<Model> mdls  = new ArrayList<Model>();
 		mdls.add(mdl);
 		
-		ChainingOptimizingMerger com = new ChainingOptimizingMerger(mdls, false);
+		ChainingOptimizingMerger com = new ChainingOptimizingMerger(mdls, stopped);
 		com.run();
 		ArrayList<Tuple> tuplesOfFee = com.extractMerge();
 		cleanDuplicates(tuplesOfFee);

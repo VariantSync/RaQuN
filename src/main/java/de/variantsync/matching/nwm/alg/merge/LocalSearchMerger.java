@@ -3,6 +3,7 @@ package de.variantsync.matching.nwm.alg.merge;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.AlgoBase;
 import de.variantsync.matching.nwm.alg.Matchable;
 import de.variantsync.matching.nwm.alg.local.BestFoundLocalSearch;
@@ -23,8 +24,8 @@ public class LocalSearchMerger extends Merger{
 	private boolean executed;
 	private boolean doSquaring;
 
-	public LocalSearchMerger(ArrayList<Model> models,  N_WAY.ALG_POLICY policy, boolean doSquaring) {
-		super(models);
+	public LocalSearchMerger(ArrayList<Model> models,  N_WAY.ALG_POLICY policy, boolean doSquaring, Stopped stopped) {
+		super(models, stopped);
 		this.policy = policy;
 		this.doSquaring = doSquaring;
 		

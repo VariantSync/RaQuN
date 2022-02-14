@@ -3,6 +3,7 @@ package de.variantsync.matching.nwm.alg.merge;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.common.N_WAY;
 import de.variantsync.matching.nwm.domain.Element;
@@ -15,8 +16,8 @@ import de.variantsync.matching.nwm.domain.Tuple;
 public class MultiModelHungarian extends HungarianMerger {
 	ArrayList<Model> oneModel = new ArrayList<Model>();
 	
-	public MultiModelHungarian(Model m, int numOfModels){
-		super(m,m, numOfModels);
+	public MultiModelHungarian(Model m, int numOfModels, Stopped stopped){
+		super(m,m, numOfModels, stopped);
 		m.setMergedFrom(numOfModels);
 		oneModel.add(m);
 	}

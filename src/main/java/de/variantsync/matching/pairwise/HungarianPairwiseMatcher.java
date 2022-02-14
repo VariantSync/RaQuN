@@ -2,6 +2,7 @@ package de.variantsync.matching.pairwise;
 
 import de.variantsync.matching.experiments.EAlgorithm;
 import de.variantsync.matching.experiments.common.IKillableLongTask;
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
 import de.variantsync.matching.nwm.alg.AlgoBase;
 import de.variantsync.matching.nwm.common.AlgoUtil;
@@ -20,7 +21,7 @@ public class HungarianPairwiseMatcher extends AlgoBase implements IKillableLongT
     private final ArrayList<Model> models;
     private final EAlgorithm sortMode;
     private int numberOfComparisons;
-    private boolean isStopped = false;
+    private final Stopped stopped = new Stopped();
 
     public HungarianPairwiseMatcher(ArrayList<Model> models, EAlgorithm sortMode){
         super("Hungarian Pairwise Fast");
@@ -39,7 +40,7 @@ public class HungarianPairwiseMatcher extends AlgoBase implements IKillableLongT
             throw new UnsupportedOperationException("This sort mode has not been implemented yet!");
         }
 
-        if (logKilled()) {
+        if (stopped()) {
             return null;
         }
 
@@ -49,11 +50,11 @@ public class HungarianPairwiseMatcher extends AlgoBase implements IKillableLongT
         numberOfComparisons = 0;
         for (int i = 1; i < models.size(); i++) {
             numberOfComparisons += (mergedModel.size() * models.get(i).size());
-            merger = new HungarianMerger(mergedModel, models.get(i), 2);
+            merger = new HungarianMerger(mergedModel, models.get(i), 2, stopped);
             merger.runPairing();
             mergedModel = merger.mergeMatchedModels();
-            if (logKilled()) {
-                merger.kill();
+            if (stopped()) {
+                merger.stop();
                 return null;
             }
         }
@@ -65,9 +66,12 @@ public class HungarianPairwiseMatcher extends AlgoBase implements IKillableLongT
         if(storedVal){
             for(Tuple t:realMerge){
                 t.recomputeSelf(this.models);
+                if (stopped()) {
+                    return null;
+                }
             }
         }
-        if (logKilled()) {
+        if (stopped()) {
             return null;
         }
         ArrayList<Tuple> retVal = filterTuplesByTreshold(realMerge, models);
@@ -90,12 +94,12 @@ public class HungarianPairwiseMatcher extends AlgoBase implements IKillableLongT
     }
 
     @Override
-    public void kill() {
-        this.isStopped = true;
+    public void stop() {
+        this.stopped.value = true;
     }
 
     @Override
-    public boolean killed() {
-        return this.isStopped;
+    public boolean stopped() {
+        return this.stopped.value;
     }
 }

@@ -24,7 +24,7 @@ public class RaQuN implements IKillableLongTask {
     protected final int nNearestNeighbors;
     protected Set<CandidatePair> candidatePairs;
     protected int numProcessedElements;
-    private boolean isStopped = false;
+    private volatile boolean isStopped = false;
 
     /**
      * Create a new configuration of RaQuN.
@@ -63,7 +63,7 @@ public class RaQuN implements IKillableLongTask {
     public Set<RMatch> match(Collection<RModel> models) {
         // Initialize the vectorization function
         vectorizationFunction.initialize(models);
-        if (logKilled()) {
+        if (stopped()) {
             return null;
         }
         Set<RElement> elements = models.stream().flatMap((m) -> m.getElements().stream()).collect(Collectors.toSet());
@@ -71,7 +71,7 @@ public class RaQuN implements IKillableLongTask {
         KDTree kdTree = new KDTree(vectorizationFunction);
         for(RElement element : elements) {
             kdTree.add(element);
-            if (logKilled()) {
+            if (stopped()) {
                 return null;
             }
         }
@@ -105,7 +105,7 @@ public class RaQuN implements IKillableLongTask {
                     // We only add elements as candidates if the resulting match is considered valid
                     candidatePairs.add(new CandidatePair(element, similarElement, distance));
                 }
-                if (logKilled()) {
+                if (stopped()) {
                     return null;
                 }
             }
@@ -155,7 +155,7 @@ public class RaQuN implements IKillableLongTask {
                 }
             }
 
-            if (logKilled()) {
+            if (stopped()) {
                 return null;
             }
 
@@ -178,7 +178,7 @@ public class RaQuN implements IKillableLongTask {
                 candidatePair.setMatchConfidence(matchConfidence);
                 pairSortTree.add(candidatePair);
             }
-            if (logKilled()) {
+            if (stopped()) {
                 return null;
             }
         }
@@ -202,12 +202,12 @@ public class RaQuN implements IKillableLongTask {
     }
 
     @Override
-    public void kill() {
+    public void stop() {
         this.isStopped = true;
     }
 
     @Override
-    public boolean killed() {
+    public boolean stopped() {
         return this.isStopped;
     }
 

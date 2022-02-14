@@ -84,7 +84,14 @@ public class ExperimentHelper {
              return future.get(setup.timeout, setup.timeoutUnit);
          } catch (final TimeoutException e) {
              handleTimeout(setup, task);
-             return null;
+             try {
+                 System.err.println("Awaiting stop confirmation...");
+                 return future.get();
+             } catch (InterruptedException | ExecutionException ex) {
+                throw new RuntimeException(ex);
+             } finally {
+                 System.err.println("Stop confirmed: " + task + " on " + setup.datasetName);
+             }
          } catch (final ExecutionException | InterruptedException e) {
              throw new RuntimeException(e);
          } finally {
@@ -94,7 +101,7 @@ public class ExperimentHelper {
 
     private static void handleTimeout(final ExperimentSetup setup, final IKillableLongTask task) {
         System.err.println(task + ": Timeout after " + setup.timeout + " " + setup.timeoutUnit + "...Attempting to stop matching of " + setup.datasetName);
-        task.kill();
+        task.stop();
         final String name = setup.name;
         final LocalDateTime localDateTime = LocalDateTime.now();
         final String errorText = "+++++++++++++++++++++++\n"
@@ -108,14 +115,6 @@ public class ExperimentHelper {
             fw.write("\n");
         } catch (final IOException ex) {
             System.err.println("WARNING: Not possible to write to TIMEOUT_LOG!\n" + ex);
-        }
-        // Wait for the task to be killed
-        while(!task.killed()) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 }

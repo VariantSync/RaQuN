@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.AlgoBase;
 import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
 import de.variantsync.matching.nwm.common.AlgoUtil;
@@ -105,7 +106,7 @@ public abstract class PairWiseMatch extends AlgoBase {
 	private ArrayList<HungarianMerger> generatePairing(Model merged, HashSet<Model> models) {
 		ArrayList<HungarianMerger> newPairs = new ArrayList<HungarianMerger>();
 		for(Model m:models){
-			HungarianMerger mp = new HungarianMerger(merged, m,models.size());
+			HungarianMerger mp = new HungarianMerger(merged, m,models.size(), new Stopped());
 			mp.runPairing();
 			newPairs.add(mp);
 		}
