@@ -93,7 +93,7 @@ public class ExperimentHelper {
     }
 
     private static void handleTimeout(final ExperimentSetup setup, final IKillableLongTask task) {
-        System.err.println("Timeout after " + setup.timeout + " " + setup.timeoutUnit + "...Attempting to stop " + task);
+        System.err.println(task + ": Timeout after " + setup.timeout + " " + setup.timeoutUnit + "...Attempting to stop matching of " + setup.datasetName);
         task.kill();
         final String name = setup.name;
         final LocalDateTime localDateTime = LocalDateTime.now();
@@ -108,6 +108,14 @@ public class ExperimentHelper {
             fw.write("\n");
         } catch (final IOException ex) {
             System.err.println("WARNING: Not possible to write to TIMEOUT_LOG!\n" + ex);
+        }
+        // Wait for the task to be killed
+        while(!task.killed()) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
