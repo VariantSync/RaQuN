@@ -81,7 +81,7 @@ public class RQ3Runner extends AbstractRQRunner {
 
         final Map<String, MatcherAdapter> matchers = new HashMap<>();
         final Map<String, Boolean> successMap = new HashMap<>();
-        for (final String name : configuration.matchers()) {
+        for (final String name : configuration.matchersRQ3()) {
             matchers.put(configuration.matcherDisplayName(name), configuration.loadMatcher(name));
             successMap.put(configuration.matcherDisplayName(name), Boolean.TRUE);
         }

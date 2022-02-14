@@ -34,8 +34,8 @@ def get_real_dataset(dataset):
     name = name.replace("argouml", "ArgoUML")
     name = name.replace("Apogames", "Apo-Games")
     name = name.replace("bcs", "BCS")
-    name = name.replace("family_", "Family ")
-    name = name.replace("_", "")
+    name = name.replace("simulink_family_", "Simulink Family ")
+    name = name.replace("_", "-")
     return name
 
 

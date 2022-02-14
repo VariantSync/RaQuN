@@ -25,7 +25,6 @@ public class ExperimentConfiguration {
     public static final File DEFAULT_PROPERTIES_FILE = new File("src/main/resources/experiment.properties");
     private static final String EXPERIMENTS_TIMEOUT_DURATION = "experiments.timeout.duration";
     private static final String EXPERIMENTS_TIMEOUT_UNIT = "experiments.timeout.unit";
-    private static final String EXPERIMENTS_MATCHERS = "experiments.matchers";
     private static final String EXPERIMENTS_MATCHERS_ALGORITHM = "experiments.matchers.algorithm.";
     private static final String EXPERIMENTS_MATCHERS_NAME = "experiments.matchers.name.";
     private static final String EXPERIMENTS_MATCHERS_VECTORIZATION = "experiments.matchers.vectorization.";
@@ -38,12 +37,16 @@ public class ExperimentConfiguration {
     private static final String EXPERIMENTS_EXECUTION_REPEATS_RQ2 = "experiments.execution.repetitions.rq2";
     private static final String EXPERIMENTS_EXECUTION_REPEATS_RQ3 = "experiments.execution.repetitions.rq3";
     private static final String EXPERIMENTS_RQ1_DATASETS = "experiments.rq1.datasets";
+    private static final String EXPERIMENTS_RQ1_MATCHERS = "experiments.rq1.matchers";
+    private static final String EXPERIMENTS_RQ2_MATCHER = "experiments.rq2.matcher";
     private static final String EXPERIMENTS_RQ2_DATASETS = "experiments.rq2.datasets";
     private static final String EXPERIMENTS_RQ2_START_k = "experiments.rq2.start-k";
     private static final String EXPERIMENTS_RQ2_MAX_K = "experiments.rq2.max-k";
     private static final String EXPERIMENTS_RQ2_MAX_K_ARGOUML = "experiments.rq2.max-k-argouml";
+    private static final String EXPERIMENTS_RQ3_MATCHERS = "experiments.rq3.matchers";
     private static final String EXPERIMENTS_RQ3_LARGEST_SUBSET = "experiments.rq3.largest-dataset";
-    private static final String EXPERIMENTS_RQ2_MATCHER = "experiments.rq2.matcher";
+    private static final String EXPERIMENTS_RQ4_DATASETS = "experiments.rq4.datasets";
+    private static final String EXPERIMENTS_RQ4_MATCHERS = "experiments.rq4.matchers";
     private final Configuration config;
 
     public ExperimentConfiguration() {
@@ -73,8 +76,8 @@ public class ExperimentConfiguration {
         return config.getString(EXPERIMENTS_RESULTS_FOLDER);
     }
 
-    public List<String> matchers() {
-        return config.getList(String.class, EXPERIMENTS_MATCHERS);
+    public List<String> matchersRQ1() {
+        return config.getList(String.class, EXPERIMENTS_RQ1_MATCHERS);
     }
 
     public String matcherDisplayName(final String matcherName) {
@@ -161,5 +164,17 @@ public class ExperimentConfiguration {
 
     public MatcherAdapter matcherRQ2() {
         return loadMatcher(config.getString(EXPERIMENTS_RQ2_MATCHER));
+    }
+
+    public List<String> matchersRQ3() {
+        return config.getList(String.class, EXPERIMENTS_RQ3_MATCHERS);
+    }
+
+    public List<String> datasetsRQ4() {
+        return config.getList(String.class, EXPERIMENTS_RQ4_DATASETS);
+    }
+
+    public List<String> matchersRQ4() {
+        return config.getList(String.class, EXPERIMENTS_RQ4_MATCHERS);
     }
 }

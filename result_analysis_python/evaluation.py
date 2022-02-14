@@ -41,8 +41,8 @@ def main():
         "DEFLT.slx"
         , "Driving_ACC_CACC.slx"
         , "Driving_ACC_CACC_TL.slx"
-        , "family_23"
-        , "family_31"
+        , "simulink_family_1"
+        , "simulink_family_2"
     ]
 
     # datasets_part_4 = ["family_" + str(x) for x in range(1, 7)]
