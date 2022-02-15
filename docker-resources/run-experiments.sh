@@ -13,7 +13,6 @@ fi
 echo "Starting $1"
 
 cd /home/user || exit
-ls -l
 
 if [ "$1" == 'evaluate' ]
 then
@@ -24,10 +23,6 @@ then
 else
   echo "Copying jars"
   cp target/*Runner*-jar-with* .
-  echo ""
-
-  echo "Files in WORKDIR"
-  ls -l
   echo ""
 
   if [ "$1" == 'run' ]

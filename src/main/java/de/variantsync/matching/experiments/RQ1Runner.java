@@ -17,9 +17,10 @@ public class RQ1Runner extends AbstractRQRunner {
 
     @Override
     public void run() {
-        List<String> datasets = configuration.datasetsRQ1();
-        List<String> matchers = configuration.matchersRQ1();
-        BasicExperimentsRunner runner = new BasicExperimentsRunner(datasets, matchers);
+        System.out.println("Running RQ1");
+        final List<String> datasets = configuration.datasetsRQ1();
+        final List<String> matchers = configuration.matchersRQ1();
+        final BasicExperimentsRunner runner = new BasicExperimentsRunner(datasets, matchers);
         runner.run(configuration, baseResultsDir, baseDatasetDir, verbose);
     }
 

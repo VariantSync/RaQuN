@@ -114,6 +114,42 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>RQ4</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>RQ4Runner</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>de.variantsync.matching.experiments.RQ4Runner</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>RQ5</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>RQ5Runner</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>de.variantsync.matching.experiments.RQ5Runner</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>UML2CSV</id>
                         <phase>package</phase>
                         <goals>

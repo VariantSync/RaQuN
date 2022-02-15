@@ -18,6 +18,7 @@ public class RQ5Runner extends ArgoUMLExperimentsRunner {
     }
 
     public static void main(final String... args) {
+        System.out.println("Running RQ5");
         new RQ5Runner(args).run();
     }
 

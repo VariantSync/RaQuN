@@ -23,6 +23,7 @@ public class RQ2Runner extends AbstractRQRunner {
 
     @Override
     public void run() {
+        System.out.println("Running RQ2");
         final List<String> datasets = configuration.datasetsRQ2();
         final MatcherAdapter matcher = configuration.matcherRQ2();
 
