@@ -9,14 +9,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class OverlapCoefficient implements ISimilarityFunction {
+/**
+ * Implementation of the Jaccard similarity index, aka. ratio of intersection to union
+ */
+public class JaccardIndex implements ISimilarityFunction {
     private double threshold = 0.5;
 
     @Override
     public boolean shouldMatch(final Set<RMatch> tuples) {
         final List<RElement> allElements = new ArrayList<>();
         tuples.forEach(t -> allElements.addAll(t.getElements()));
-        return coefficient(allElements.toArray(new RElement[0])) >= threshold;
+        return jaccard(allElements.toArray(new RElement[0])) >= threshold;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class OverlapCoefficient implements ISimilarityFunction {
 
     @Override
     public double getMatchConfidence(final RElement elementA, final RElement elementB) {
-        return coefficient(elementA, elementB);
+        return jaccard(elementA, elementB);
     }
 
     @Override
@@ -39,22 +42,24 @@ public class OverlapCoefficient implements ISimilarityFunction {
 
     }
 
-    private double coefficient(final RElement... elements) {
+    /**
+     * The Jaccard index is defined as (|A \cap B|) / (| |A \cup B|).
+     * It can thus also be calculated as (|A \cap B|) / (|A| + |B| - |A \cap B|
+     * @param elements The elements for which the Jaccard index is calculated. An Element is a set of properties.
+     * @return The Jaccard similarity index for the given elements
+     */
+    private double jaccard(final RElement... elements) {
         Set<String> intersectionProperties = null;
-        int minimumNumberOfProperties = 1;
+        int sumOfProperties = 0;
         for (final RElement element : elements) {
             if (intersectionProperties == null) {
                 intersectionProperties = new HashSet<>(element.getProperties());
-                minimumNumberOfProperties = intersectionProperties.size();
             } else {
                 intersectionProperties = element.getProperties().stream().filter(intersectionProperties::contains).collect(Collectors.toSet());
-                final int size = element.getProperties().size();
-                if (minimumNumberOfProperties > size) {
-                    minimumNumberOfProperties = size;
-                }
             }
+            sumOfProperties += element.getProperties().size();
         }
-        final double commonSum = intersectionProperties == null ? 0.0 : intersectionProperties.size();
-        return commonSum / (double) minimumNumberOfProperties;
+        final double intersectionProps = intersectionProperties == null ? 0.0 : intersectionProperties.size();
+        return intersectionProps / (sumOfProperties - intersectionProps);
     }
 }
