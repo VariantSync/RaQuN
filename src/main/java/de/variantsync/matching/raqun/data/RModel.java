@@ -13,7 +13,7 @@ public class RModel {
     /**
      * Initialize a new model with the given id.
      */
-    public RModel(String modelID) {
+    public RModel(final String modelID) {
         this.modelID = modelID;
         this.elements = new HashSet<>();
     }
@@ -22,7 +22,7 @@ public class RModel {
      *
      * @param element that is added to the model. The element's modelID has to be the ID of this model.
      */
-    public void addElement(RElement element) {
+    public void addElement(final RElement element) {
         if (!element.getModelID().equals(this.modelID)) {
             throw new IllegalArgumentException("A model can only contain elements with the same model ID!");
         }

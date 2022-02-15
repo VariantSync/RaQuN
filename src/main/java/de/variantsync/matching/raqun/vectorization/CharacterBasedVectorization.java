@@ -15,15 +15,15 @@ public class CharacterBasedVectorization extends PropertyBasedVectorization {
     private Map<Character, Integer> characterDimensions;
 
     @Override
-    protected int fillLexicalIndex(Set<RElement> elements) {
-        Set<String> propertyNames = elements.stream().flatMap(element -> element.getProperties().stream()).collect(Collectors.toSet());
+    protected int fillLexicalIndex(final Set<RElement> elements) {
+        final Set<String> propertyNames = elements.stream().flatMap(element -> element.getProperties().stream()).collect(Collectors.toSet());
 
-        AtomicInteger i = new AtomicInteger(2);
+        final AtomicInteger i = new AtomicInteger(2);
 
-        Set<Character> characters = new HashSet<>();
+        final Set<Character> characters = new HashSet<>();
 
-        for (String propertyName : propertyNames) {
-            for (char c : propertyName.toCharArray()) {
+        for (final String propertyName : propertyNames) {
+            for (final char c : propertyName.toCharArray()) {
                 characters.add(Character.toLowerCase(c));
             }
         }
@@ -33,14 +33,14 @@ public class CharacterBasedVectorization extends PropertyBasedVectorization {
     }
 
     @Override
-    public RVector vectorFor(RElement element) {
+    public RVector vectorFor(final RElement element) {
         if (element.getProperties().isEmpty()) {
             throw new IllegalArgumentException("Elements must have at least one property!");
         }
         if (elementToVectorMap.containsKey(element)) {
             return elementToVectorMap.get(element);
         } else {
-            RVector vector = new RVector(dimensions);
+            final RVector vector = new RVector(dimensions);
 
             int dim = 0;
 
@@ -49,14 +49,14 @@ public class CharacterBasedVectorization extends PropertyBasedVectorization {
 
             // Second Dimension: Average length of a property name
             double avgLength = 0;
-            for (String name : element.getProperties()) {
+            for (final String name : element.getProperties()) {
                 avgLength += name.length();
             }
             avgLength /= element.getProperties().size();
             vector.setCoord(dim, avgLength);
 
             // Other Dimensions: Occurrences of characters in property names
-            for (String name : element.getProperties()) {
+            for (final String name : element.getProperties()) {
                 for (char c : name.toCharArray()) {
                     c = Character.toLowerCase(c);
                     dim = characterDimensions.get(c);

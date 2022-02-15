@@ -15,7 +15,7 @@ public class TreeNeighbor {
 	 * @param element the neighboring element
 	 * @param distance the distance to it
 	 */
-	public TreeNeighbor(RElement element, double distance) {
+	public TreeNeighbor(final RElement element, final double distance) {
 		this.element = element;
 		this.distance = distance;
 	}

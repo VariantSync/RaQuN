@@ -27,7 +27,7 @@ public class KDTree {
      *
      * @param vectorization The vectorization function that maps a element to a point in the trees vector space.
      */
-    public KDTree(IVectorization vectorization) {
+    public KDTree(final IVectorization vectorization) {
          this.vectorization = vectorization;
          this.elementsInTree = new LinkedList<>();
     }
@@ -60,12 +60,12 @@ public class KDTree {
      * Add the given element to the tree
      * @param element that is to be added
      */
-    public void add(RElement element) {
-        RVector RVector = vectorization.vectorFor(element);
+    public void add(final RElement element) {
+        final RVector RVector = vectorization.vectorFor(element);
         if (tree.containsKey(RVector)) {
             tree.get(RVector).add(element);
         } else {
-            List<RElement> elementsAtPoint = new ArrayList<>();
+            final List<RElement> elementsAtPoint = new ArrayList<>();
             elementsAtPoint.add(element);
             tree.put(RVector, elementsAtPoint);
         }
@@ -78,15 +78,15 @@ public class KDTree {
      * @param k the number of neighbors that are to be considered
      * @return list of neighbors
      */
-    public List<TreeNeighbor> collectNearestNeighbors(RElement element, int k) {
-        RVector queryPoint = vectorization.vectorFor(element);
-        Entry<Double, RVector, List<RElement>>[] nearestNeighbors = this.nearestNeighbors.get(tree, queryPoint, k, false);
+    public List<TreeNeighbor> collectNearestNeighbors(final RElement element, final int k) {
+        final RVector queryPoint = vectorization.vectorFor(element);
+        final Entry<Double, RVector, List<RElement>>[] nearestNeighbors = this.nearestNeighbors.get(tree, queryPoint, k, false);
 
-        List<TreeNeighbor> allNeighboringElements = new ArrayList<>();
-        for (Entry<Double, RVector, List<RElement>> entry : nearestNeighbors) {
-            List<RElement> elementsAtNeighboringPoint = entry.getNeighbor().getValue();
+        final List<TreeNeighbor> allNeighboringElements = new ArrayList<>();
+        for (final Entry<Double, RVector, List<RElement>> entry : nearestNeighbors) {
+            final List<RElement> elementsAtNeighboringPoint = entry.getNeighbor().getValue();
             // List of QueryResults, one result for each element at the neighboring point
-            for(RElement neighboringElement : elementsAtNeighboringPoint) {
+            for(final RElement neighboringElement : elementsAtNeighboringPoint) {
                 if (neighboringElement != element) {
                     // Map each element to a new QueryResult object and add it to the list of neighboring elements
                     allNeighboringElements.add(new TreeNeighbor(neighboringElement, entry.getDistance()));

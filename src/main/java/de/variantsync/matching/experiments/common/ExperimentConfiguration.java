@@ -30,6 +30,7 @@ public class ExperimentConfiguration {
     private static final String EXPERIMENTS_MATCHERS_VECTORIZATION = "experiments.matchers.vectorization.";
     private static final String EXPERIMENTS_MATCHERS_VALIDITY = "experiments.matchers.validity.";
     private static final String EXPERIMENTS_MATCHERS_SIMILARITY = "experiments.matchers.similarity.";
+    private static final String EXPERIMENTS_MATCHERS_SIMILARITY_PARAMETERS = "experiments.matchers.similarity.parameters.";
     private static final String EXPERIMENTS_DATASETS_FOLDER = "experiments.dir.datasets";
     private static final String EXPERIMENTS_RESULTS_FOLDER = "experiments.dir.results";
     private static final String EXPERIMENTS_EXECUTION_VERBOSE = "experiments.execution.verbose";
@@ -95,6 +96,7 @@ public class ExperimentConfiguration {
             final IVectorization vectorization;
             try {
                 similarityFunction = (ISimilarityFunction) classLoader.loadClass(config.getString(EXPERIMENTS_MATCHERS_SIMILARITY + matcherName)).getConstructor().newInstance();
+                similarityFunction.setParameters(config.getList(String.class, EXPERIMENTS_MATCHERS_SIMILARITY_PARAMETERS + matcherName));
                 vectorization = (IVectorization) classLoader.loadClass(config.getString(EXPERIMENTS_MATCHERS_VECTORIZATION + matcherName)).getConstructor().newInstance();
                 validityConstraint = (IValidityConstraint) classLoader.loadClass(config.getString(EXPERIMENTS_MATCHERS_VALIDITY + matcherName)).getConstructor().newInstance();
             } catch (final ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {

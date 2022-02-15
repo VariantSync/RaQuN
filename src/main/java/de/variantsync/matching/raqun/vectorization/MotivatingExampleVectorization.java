@@ -14,17 +14,17 @@ public class MotivatingExampleVectorization implements IVectorization {
     private final int NUMBER_OF_DIMENSIONS = 2;
 
     @Override
-    public void initialize(Collection<RModel> inputModels) {
+    public void initialize(final Collection<RModel> inputModels) {
         // There is no additional initialization required for this vectorization
     }
 
     @Override
-    public RVector vectorFor(RElement element) {
-        RVector vector = new RVector(NUMBER_OF_DIMENSIONS);
+    public RVector vectorFor(final RElement element) {
+        final RVector vector = new RVector(NUMBER_OF_DIMENSIONS);
 
         // The first dimension is the average property length
         double averageLength = 0.0;
-        for (String property:element.getProperties()) {
+        for (final String property:element.getProperties()) {
             averageLength += property.length();
         }
         averageLength /= element.getProperties().size();

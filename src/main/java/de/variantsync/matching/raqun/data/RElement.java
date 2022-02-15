@@ -15,7 +15,7 @@ public class RElement {
     // The list of properties of this element
     private final List<String> properties;
 
-    public RElement(String modelID, String UUID, String name, List<String> properties) {
+    public RElement(final String modelID, final String UUID, final String name, final List<String> properties) {
         this.modelID = modelID;
         this.name = name;
         this.UUID = UUID;
@@ -56,8 +56,8 @@ public class RElement {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(modelID + ":" + name + ":(");
-        for (String property : properties) {
+        final StringBuilder sb = new StringBuilder(modelID + ":" + name + ":(");
+        for (final String property : properties) {
             sb.append(property);
             sb.append(",");
         }
