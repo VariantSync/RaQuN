@@ -1,7 +1,7 @@
 #! /bin/bash
 if [ "$1" == '' ]
 then
-  echo "Either fully run a specific experiment one time (RQ1|RQ2|RQ3), run all experiments (run), evaluate the results (evaluate), or a do quick setup validation (validate)."
+  echo "Either fully run a specific experiment one time (RQ1|RQ2|RQ3|RQ4|RQ5), run all experiments (run), evaluate the results (evaluate), or a do quick setup validation (validate)."
   echo "-- Bash Examples --"
   echo "Run RQ1: './experiments.sh RQ1'"
   echo "Run RQ2: './experiments.sh RQ2'"
@@ -39,6 +39,10 @@ else
       java -Xmx16G -jar RQ2Runner-jar-with-dependencies.jar full-experiments.properties
       echo "Running experiment for RQ3"
       java -Xmx16G -jar RQ3Runner-jar-with-dependencies.jar full-experiments.properties $2
+      echo "Running experiment for RQ4"
+      java -Xmx16G -jar RQ4Runner-jar-with-dependencies.jar full-experiments.properties
+      echo "Running experiment for RQ5"
+      java -Xmx16G -jar RQ5Runner-jar-with-dependencies.jar full-experiments.properties $2
   elif [ "$1" == 'RQ1' ]
   then
       echo "Running experiment for RQ1"
@@ -51,6 +55,14 @@ else
   then
       echo "Running experiment for RQ3"
       java -Xmx16G -jar RQ3Runner-jar-with-dependencies.jar single-experiment.properties $2
+  elif [ "$1" == 'RQ4' ]
+    then
+        echo "Running experiment for RQ4"
+        java -Xmx16G -jar RQ4Runner-jar-with-dependencies.jar single-experiment.properties
+  elif [ "$1" == 'RQ5' ]
+    then
+        echo "Running experiment for RQ5"
+        java -Xmx16G -jar RQ5Runner-jar-with-dependencies.jar single-experiment.properties $2
   elif [ "$1" == 'validate' ]
   then
       echo "Running a (hopefully) short validation. This might take up to one hour."
@@ -59,11 +71,15 @@ else
       java -Xmx16G -jar RQ3Runner-jar-with-dependencies.jar quick-validation.properties 1
       java -Xmx16G -jar RQ3Runner-jar-with-dependencies.jar quick-validation.properties 2
       java -Xmx16G -jar RQ3Runner-jar-with-dependencies.jar quick-validation.properties 3
+      java -Xmx16G -jar RQ4Runner-jar-with-dependencies.jar quick-validation.properties
+      java -Xmx16G -jar RQ5Runner-jar-with-dependencies.jar quick-validation.properties 1
+      java -Xmx16G -jar RQ5Runner-jar-with-dependencies.jar quick-validation.properties 2
+      java -Xmx16G -jar RQ5Runner-jar-with-dependencies.jar quick-validation.properties 3
       echo "Running result evaluation"
       cd result_analysis_python || exit
       python3 evaluation.py
   else
-      echo "Either fully run a specific experiment one time (RQ1|RQ2|RQ3), run all experiments (run), evaluate the results (evaluate), or a do quick setup validation (validate)."
+      echo "Either fully run a specific experiment one time (RQ1|RQ2|RQ3|RQ4|RQ5), run all experiments (run), evaluate the results (evaluate), or a do quick setup validation (validate)."
       echo "-- Bash Examples --"
       echo "Run RQ1: './experiments.sh RQ1'"
       echo "Run RQ2: './experiments.sh RQ2'"
