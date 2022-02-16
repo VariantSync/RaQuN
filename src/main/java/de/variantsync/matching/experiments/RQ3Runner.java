@@ -21,6 +21,11 @@ public class RQ3Runner extends ArgoUMLExperimentsRunner {
         return configuration.getExperimentsRq3LargestSubset();
     }
 
+    @Override
+    protected int repetitions() {
+        return configuration.repetitionsRQ3();
+    }
+
     public static void main(final String... args) {
         System.out.println("Running RQ3");
         new RQ3Runner(args).run();

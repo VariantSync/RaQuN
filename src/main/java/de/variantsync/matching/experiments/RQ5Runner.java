@@ -17,6 +17,11 @@ public class RQ5Runner extends ArgoUMLExperimentsRunner {
         return configuration.getExperimentsRq5LargestSubset();
     }
 
+    @Override
+    protected int repetitions() {
+        return configuration.repetitionsRQ5();
+    }
+
     public static void main(final String... args) {
         System.out.println("Running RQ5");
         new RQ5Runner(args).run();

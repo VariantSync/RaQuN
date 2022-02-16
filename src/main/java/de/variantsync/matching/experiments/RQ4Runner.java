@@ -17,7 +17,8 @@ public class RQ4Runner extends AbstractRQRunner{
         System.out.println("Running RQ4");
         final List<String> datasets = configuration.datasetsRQ4();
         final List<String> matchers = configuration.matchersRQ4();
-        final BasicExperimentsRunner runner = new BasicExperimentsRunner(datasets, matchers);
+        final int repetitions = configuration.repetitionsRQ4();
+        final BasicExperimentsRunner runner = new BasicExperimentsRunner(datasets, matchers, repetitions);
         runner.run(configuration, baseResultsDir, baseDatasetDir, verbose);
     }
 }

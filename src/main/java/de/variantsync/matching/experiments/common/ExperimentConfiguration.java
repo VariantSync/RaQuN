@@ -37,6 +37,8 @@ public class ExperimentConfiguration {
     private static final String EXPERIMENTS_EXECUTION_REPEATS_RQ1 = "experiments.execution.repetitions.rq1";
     private static final String EXPERIMENTS_EXECUTION_REPEATS_RQ2 = "experiments.execution.repetitions.rq2";
     private static final String EXPERIMENTS_EXECUTION_REPEATS_RQ3 = "experiments.execution.repetitions.rq3";
+    private static final String EXPERIMENTS_EXECUTION_REPEATS_RQ4 = "experiments.execution.repetitions.rq4";
+    private static final String EXPERIMENTS_EXECUTION_REPEATS_RQ5 = "experiments.execution.repetitions.rq5";
     private static final String EXPERIMENTS_RQ1_DATASETS = "experiments.rq1.datasets";
     private static final String EXPERIMENTS_RQ1_MATCHERS = "experiments.rq1.matchers";
     private static final String EXPERIMENTS_RQ2_MATCHER = "experiments.rq2.matcher";
@@ -140,6 +142,14 @@ public class ExperimentConfiguration {
 
     public int repetitionsRQ3() {
         return config.getInt(EXPERIMENTS_EXECUTION_REPEATS_RQ3);
+    }
+
+    public int repetitionsRQ4() {
+        return config.getInt(EXPERIMENTS_EXECUTION_REPEATS_RQ4);
+    }
+
+    public int repetitionsRQ5() {
+        return config.getInt(EXPERIMENTS_EXECUTION_REPEATS_RQ5);
     }
 
     public int startK() {

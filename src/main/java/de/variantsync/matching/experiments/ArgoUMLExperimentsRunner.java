@@ -26,6 +26,8 @@ public abstract class ArgoUMLExperimentsRunner extends AbstractRQRunner {
 
     protected abstract String largestSubset();
 
+    protected abstract int repetitions();
+
     @Override
     public void run() {
         // Add all argouml subsets
@@ -101,11 +103,10 @@ public abstract class ArgoUMLExperimentsRunner extends AbstractRQRunner {
 
             // The random subsets are matched in subsets of size 10 in accordance with Rubin and Chechik, ESEC-FSE13
             final int chunkSize = Integer.MAX_VALUE;
-            final int numberOfRepeats = configuration.repetitionsRQ3();
 
             for (final Map.Entry<String, MatcherAdapter> entry : matchers.entrySet()) {
                 if (successMap.get(entry.getKey())) {
-                    final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), numberOfRepeats,
+                    final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), repetitions(),
                             resultsDir, datasetDir, dataset, chunkSize, verbose, 0, 0,
                             configuration.timeoutDuration(), configuration.timeoutUnit());
                     final boolean success = runExperiment(entry.getValue(),

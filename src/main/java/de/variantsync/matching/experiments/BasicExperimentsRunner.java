@@ -1,6 +1,5 @@
 package de.variantsync.matching.experiments;
 
-import de.variantsync.matching.experiments.AbstractRQRunner;
 import de.variantsync.matching.experiments.common.ExperimentConfiguration;
 import de.variantsync.matching.experiments.common.ExperimentSetup;
 import de.variantsync.matching.experiments.common.MatcherAdapter;
@@ -19,14 +18,16 @@ import static de.variantsync.matching.experiments.common.ExperimentHelper.runExp
 public class BasicExperimentsRunner {
     private List<String> datasets;
     private final List<String> matcherList;
+    private final int repetitions;
 
-    public BasicExperimentsRunner(final List<String> datasets, final List<String> matcherList) {
+    public BasicExperimentsRunner(final List<String> datasets, final List<String> matcherList, final int repetitions) {
         this.datasets = datasets;
         this.matcherList = matcherList;
+        this.repetitions = repetitions;
     }
 
 
-    public void run(ExperimentConfiguration configuration, String baseResultsDir, String baseDatasetDir, boolean verbose) {
+    public void run(final ExperimentConfiguration configuration, final String baseResultsDir, final String baseDatasetDir, final boolean verbose) {
         if (datasets.get(0).equals("ALL")) {
             datasets = retrieveDatasets(baseDatasetDir);
         }
@@ -51,10 +52,8 @@ public class BasicExperimentsRunner {
                 chunkSize = 10;
             }
 
-            final int numberOfRepeats = configuration.repetitionsRQ1();
-
             for (final Map.Entry<String, MatcherAdapter> entry : matchers.entrySet()) {
-                final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), numberOfRepeats,
+                final ExperimentSetup experimentSetup = new ExperimentSetup(entry.getKey(), repetitions,
                         resultsDir, baseDatasetDir, dataset, chunkSize, verbose, 0, 0,
                         configuration.timeoutDuration(), configuration.timeoutUnit());
                 runExperiment(entry.getValue(),
@@ -66,7 +65,7 @@ public class BasicExperimentsRunner {
         }
     }
 
-    private List<String> retrieveDatasets(String baseDatasetDir) {
+    private List<String> retrieveDatasets(final String baseDatasetDir) {
         return Stream.of(Objects.requireNonNull(new File(baseDatasetDir).listFiles()))
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
