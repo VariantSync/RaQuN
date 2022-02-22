@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Implementation of the Jaccard similarity index, aka. ratio of intersection to union
  */
 public class JaccardIndex implements ISimilarityFunction {
+    // default threshold - should be set manually
     private double threshold = 0.5;
 
     @Override
@@ -55,7 +55,7 @@ public class JaccardIndex implements ISimilarityFunction {
             if (intersectionProperties == null) {
                 intersectionProperties = new HashSet<>(element.getProperties());
             } else {
-                intersectionProperties = element.getProperties().stream().filter(intersectionProperties::contains).collect(Collectors.toSet());
+                intersectionProperties.retainAll(element.getProperties());
             }
             sumOfProperties += element.getProperties().size();
         }
