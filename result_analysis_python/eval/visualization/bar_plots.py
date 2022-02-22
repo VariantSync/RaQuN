@@ -95,7 +95,7 @@ def create_runtime_plots(methods: [], datasets: [], results_per_method: {}, para
             fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".png")
 
 
-def create_runtime_plot_argouml(methods: [], datasets: [], results_per_method: {}, use_legend=False):
+def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_per_method: {}, use_legend=False):
     fig, ax = plt.subplots()
     ax.set_title("Runtime on ArgoUML Subsets", fontsize=title_size)
     labels = []
@@ -153,10 +153,10 @@ def create_runtime_plot_argouml(methods: [], datasets: [], results_per_method: {
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
     # plt.show()
-    fig.savefig(save_dir + "Runtime" + "_Argouml" + ".png")
+    fig.savefig(save_dir + fig_label + ".png")
 
 
-def create_generic_plot_argouml(methods: [], datasets: [], results_per_method: {}, parameter: str, use_legend=False):
+def create_generic_plot_argouml(fig_label, methods: [], datasets: [], results_per_method: {}, parameter: str, use_legend=False):
     fig, ax = plt.subplots()
     ax.set_title(parameter + " on ArgoUML Subsets", fontsize=title_size)
     labels = []
@@ -202,4 +202,4 @@ def create_generic_plot_argouml(methods: [], datasets: [], results_per_method: {
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
     # plt.show()
-    fig.savefig(save_dir + "Argouml_" + parameter + ".png")
+    fig.savefig(save_dir + fig_label + ".png")

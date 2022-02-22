@@ -32,10 +32,35 @@ def get_real_dataset(dataset):
     name = name.replace("ppu", "PPU Structure")
     name = name.replace("bcms", "bCMS")
     name = name.replace("argouml", "ArgoUML")
+    name = replace_argouml_subset_name(name)
     name = name.replace("Apogames", "Apo-Games")
     name = name.replace("bcs", "BCS")
     name = name.replace("simulink_family_", "Simulink Family ")
     name = name.replace("_", "-")
+    return name
+
+
+def replace_argouml_subset_name(name):
+    name = name.replace("_p001", "   1\\%")
+    name = name.replace("_p005", "   5\\%")
+    name = name.replace("_p010", "  10\\%")
+    name = name.replace("_p015", "  15\\%")
+    name = name.replace("_p020", "  20\\%")
+    name = name.replace("_p025", "  25\\%")
+    name = name.replace("_p030", "  30\\%")
+    name = name.replace("_p035", "  35\\%")
+    name = name.replace("_p040", "  40\\%")
+    name = name.replace("_p045", "  45\\%")
+    name = name.replace("_p050", "  50\\%")
+    name = name.replace("_p055", "  55\\%")
+    name = name.replace("_p060", "  60\\%")
+    name = name.replace("_p065", "  65\\%")
+    name = name.replace("_p070", "  70\\%")
+    name = name.replace("_p075", "  75\\%")
+    name = name.replace("_p080", "  80\\%")
+    name = name.replace("_p085", "  85\\%")
+    name = name.replace("_p090", "  90\\%")
+    name = name.replace("_p095", "  95\\%")
     return name
 
 
@@ -63,7 +88,7 @@ def get_model_type(dataset):
         model_type = "UML statemachines"
     elif dataset == "bcs":
         model_type = "Component/connector"
-    elif dataset[:6] == "family":
+    elif dataset[:6] == "simuli":
         model_type = "Simulink"
     elif dataset == "DEFLT.slx":
         model_type = "Simulink"
