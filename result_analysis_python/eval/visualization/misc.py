@@ -41,27 +41,38 @@ def get_real_dataset(dataset):
 
 
 def replace_argouml_subset_name(name):
-    name = name.replace("_p001", "   1\\%")
-    name = name.replace("_p005", "   5\\%")
-    name = name.replace("_p010", "  10\\%")
-    name = name.replace("_p015", "  15\\%")
-    name = name.replace("_p020", "  20\\%")
-    name = name.replace("_p025", "  25\\%")
-    name = name.replace("_p030", "  30\\%")
-    name = name.replace("_p035", "  35\\%")
-    name = name.replace("_p040", "  40\\%")
-    name = name.replace("_p045", "  45\\%")
-    name = name.replace("_p050", "  50\\%")
-    name = name.replace("_p055", "  55\\%")
-    name = name.replace("_p060", "  60\\%")
-    name = name.replace("_p065", "  65\\%")
-    name = name.replace("_p070", "  70\\%")
-    name = name.replace("_p075", "  75\\%")
-    name = name.replace("_p080", "  80\\%")
-    name = name.replace("_p085", "  85\\%")
-    name = name.replace("_p090", "  90\\%")
-    name = name.replace("_p095", "  95\\%")
+    name = name.replace("ArgoUML_p001", "Argo-Subset-1")
+    name = name.replace("ArgoUML_p005", "Argo-Subset-5")
+    name = name.replace("ArgoUML_p010", "Argo-Subset-10")
+    name = name.replace("ArgoUML_p015", "Argo-Subset-15")
+    name = name.replace("ArgoUML_p020", "Argo-Subset-20")
+    name = name.replace("ArgoUML_p025", "Argo-Subset-25")
+    name = name.replace("ArgoUML_p030", "Argo-Subset-30")
+    name = name.replace("ArgoUML_p035", "Argo-Subset-35")
+    name = name.replace("ArgoUML_p040", "Argo-Subset-40")
+    name = name.replace("ArgoUML_p045", "Argo-Subset-45")
+    name = name.replace("ArgoUML_p050", "Argo-Subset-50")
+    name = name.replace("ArgoUML_p055", "Argo-Subset-55")
+    name = name.replace("ArgoUML_p060", "Argo-Subset-60")
+    name = name.replace("ArgoUML_p065", "Argo-Subset-65")
+    name = name.replace("ArgoUML_p070", "Argo-Subset-70")
+    name = name.replace("ArgoUML_p075", "Argo-Subset-75")
+    name = name.replace("ArgoUML_p080", "Argo-Subset-80")
+    name = name.replace("ArgoUML_p085", "Argo-Subset-85")
+    name = name.replace("ArgoUML_p090", "Argo-Subset-90")
+    name = name.replace("ArgoUML_p095", "Argo-Subset-95")
     return name
+
+
+def argouml_subset_size(dataset):
+    if dataset == "argouml":
+        return "100\\%"
+    if dataset[-5:] == "_p001":
+        return "1\\%"
+    if dataset[-5:] == "_p005":
+        return "5\\%"
+    else:
+        return dataset[-2:] + "\\%"
 
 
 def get_model_type(dataset):

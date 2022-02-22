@@ -1,7 +1,7 @@
 import numpy
 
 from eval.data.result_data import MethodStatistics, CombinedResult
-from eval.visualization.misc import get_real_name, get_real_dataset, get_model_type
+from eval.visualization.misc import get_real_name, get_real_dataset, get_model_type, argouml_subset_size
 
 timeout_text = "- - - timeout - - -"
 
@@ -270,11 +270,11 @@ def create_model_stats_overview(dataset_dir, all_datasets):
 
 def create_argo_subset_stats_overview(dataset_dir, all_datasets):
     # Initialize the string that represents the tabular
-    tabular = "\\begin{tabular}{lcrrrc}\n"
+    tabular = "\\begin{tabular}{lrrrrc}\n"
     # first we add the method names as headers
     tabular += "\\hline\n"
     tabular += " & & \\multicolumn{2}{c}{Elements} & \\multicolumn{2}{c}{Properties} \\\\\n"
-    tabular += "& \\#Models & Avg. & Median & Avg. & Median \\\\\n"
+    tabular += "& Size & Avg. & Median & Avg. & Median \\\\\n"
     tabular += "\\hline\n"
     tabular += "\\hline\n"
 
@@ -289,7 +289,6 @@ def create_argo_subset_stats_overview(dataset_dir, all_datasets):
             path_to_file = dataset_dir + "/" + dataset + id + ".csv"
             if dataset == "argouml":
                 path_to_file = dataset_dir[:-8] + "/" + dataset + ".csv"
-                dataset_name = dataset_name + " 100\\%"
             with open(path_to_file, 'r') as file:
                 lines = file.readlines()
 
@@ -337,7 +336,7 @@ def create_argo_subset_stats_overview(dataset_dir, all_datasets):
                 break
 
         tabular += dataset_name + " & "
-        tabular += "{0:,.0f} ".format(7) + " & "
+        tabular += argouml_subset_size(dataset) + " & "
 
         tabular += "{0:,.2f} ".format(numpy.average(avg_elements_per_slice)) + " & "
         tabular += "{0:,.0f} ".format(numpy.median(med_elements_per_slice)) + " & "
