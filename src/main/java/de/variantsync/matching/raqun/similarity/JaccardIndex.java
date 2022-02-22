@@ -50,16 +50,16 @@ public class JaccardIndex implements ISimilarityFunction {
      */
     private double jaccard(final RElement... elements) {
         Set<String> intersectionProperties = null;
-        int sumOfProperties = 0;
+        final Set<String> unionProperties = new HashSet<>();
         for (final RElement element : elements) {
             if (intersectionProperties == null) {
                 intersectionProperties = new HashSet<>(element.getProperties());
             } else {
                 intersectionProperties.retainAll(element.getProperties());
             }
-            sumOfProperties += element.getProperties().size();
+            unionProperties.addAll(element.getProperties());
         }
         final double intersectionProps = intersectionProperties == null ? 0.0 : intersectionProperties.size();
-        return intersectionProps / (sumOfProperties - intersectionProps);
+        return intersectionProps / unionProperties.size();
     }
 }
