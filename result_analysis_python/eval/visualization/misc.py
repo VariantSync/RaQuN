@@ -37,6 +37,7 @@ def get_real_dataset(dataset):
     name = name.replace("bcs", "BCS")
     name = name.replace("simulink_family_", "Simulink Family ")
     name = name.replace("_", "-")
+    name = name.replace("Driving-", "")
     return name
 
 

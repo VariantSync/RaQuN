@@ -59,15 +59,16 @@ def main():
                    "RaQuN-Jaccard-75",
                    "RaQuN-Jaccard-100"
                    ]
-    rq4_methods = ["RaQuN-Character-Vec",
+    rq4_methods = ["RaQuN-Property-Vec",
                    "NwM",
                    "PairwiseAsc",
                    "PairwiseDesc"
                    ]
-    rq5_methods = ["RaQuN-Character-Vec",
+    rq5_methods = ["RaQuN-Property-Vec",
                    "NwM",
                    "PairwiseAsc",
-                   "PairwiseDesc"
+                   "PairwiseDesc",
+                   "RaQuN-Character-Vec"
                    ]
     incremental_k_methods = ["RaQuN_k"]
 
