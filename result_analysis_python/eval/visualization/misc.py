@@ -22,7 +22,7 @@ def get_real_name(method):
     name = name.replace("RaQuN-Character-Vec", "RaQuN Low Dim.")
     name = name.replace("RaQuN-Property-Vec", "RaQuN High Dim.")
     name = name.replace("RaQuN-Jaccard-", "RaQuN Jaccard 0.")
-    name = name.replace("RaQuN-Jaccard-0.100", "RaQuN Jaccard 1.00")
+    name = name.replace("RaQuN Jaccard 0.100", "RaQuN Jaccard 1.00")
     return name
 
 
