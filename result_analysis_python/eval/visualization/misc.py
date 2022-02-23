@@ -19,6 +19,10 @@ def get_overtake_point(data: list, limit: float):
 def get_real_name(method):
     name = method.replace("PairwiseAsc", "Pairwise Ascending")
     name = name.replace("PairwiseDesc", "Pairwise Descending")
+    name = name.replace("RaQuN-Character-Vec", "RaQuN Low Dim.")
+    name = name.replace("RaQuN-Property-Vec", "RaQuN High Dim.")
+    name = name.replace("RaQuN-Jaccard-", "RaQuN Jaccard 0.")
+    name = name.replace("RaQuN-Jaccard-0.100", "RaQuN Jaccard 1.00")
     return name
 
 
