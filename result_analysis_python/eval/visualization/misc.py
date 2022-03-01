@@ -39,9 +39,13 @@ def get_real_dataset(dataset):
     name = replace_argouml_subset_name(name)
     name = name.replace("Apogames", "Apo-Games")
     name = name.replace("bcs", "BCS")
-    name = name.replace("simulink_family_", "Simulink Family ")
     name = name.replace("_", "-")
     name = name.replace("Driving-", "")
+    name = name.replace("DEFLT", "DAS")
+    name = name.replace("ACC-CACC", "APS")
+    name = name.replace("ACC-CACC-TL", "APS-TL")
+    name = name.replace("simulink-family-1", "MRC")
+    name = name.replace("simulink-family-2", "WEC")
     return name
 
 
