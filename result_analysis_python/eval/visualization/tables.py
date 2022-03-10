@@ -176,8 +176,6 @@ def create_num_of_comp_overview(method, datasets: [], results_per_method: {}):
     tabular += "\\hline\n"
 
     for dataset in datasets:
-        if dataset == "PPU" or dataset == "Apo-Games":
-            tabular += "\\hline\n"
         raqun_stats = results_per_method[method]  # type: MethodStatistics
         if dataset not in raqun_stats.result_per_dataset:
             continue
@@ -188,7 +186,10 @@ def create_num_of_comp_overview(method, datasets: [], results_per_method: {}):
 
         raqun_rel = 100 * ((number_of_comparisons_total - raqun_abs) / number_of_comparisons_total)
 
-        result_line = get_real_dataset(dataset)
+        dataset_name = get_real_dataset(dataset)
+        if dataset_name == "PPU Structure" or dataset_name == "Apo-Games" or dataset_name == "DAS":
+            tabular += "\\hline\n"
+        result_line = dataset_name
         result_line += " & \\multicolumn{1}{r}{" + "{0:,} ".format(number_of_comparisons_total) + "}"
         result_line += " & \\multicolumn{1}{r}{" + "{0:,} ".format(raqun_abs) + "}"
         result_line += " & \\multicolumn{1}{r}{" + "{0:2.1f}\\% ".format(raqun_rel) + "}"
@@ -247,7 +248,7 @@ def create_model_stats_overview(dataset_dir, all_datasets):
                 elements_per_model[model_name] = elements
             elements.append(element)
 
-        if dataset_name == "PPU Structure" or dataset_name == "Apo-Games":
+        if dataset_name == "PPU Structure" or dataset_name == "Apo-Games" or dataset_name == "DAS":
             tabular += "\\hline\n"
         tabular += dataset_name + " & "
         tabular += get_model_type(dataset) + " & "
