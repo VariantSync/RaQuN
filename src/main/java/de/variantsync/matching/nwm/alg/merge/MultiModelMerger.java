@@ -1,11 +1,9 @@
 package de.variantsync.matching.nwm.alg.merge;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.Matchable;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.common.N_WAY;
@@ -17,25 +15,28 @@ import de.variantsync.matching.nwm.execution.RunResult;
 /**
  * Undocumented code by Rubin and Chechik
  */
-public abstract class MultiModelMerger extends Merger implements Matchable{
+public abstract class MultiModelMerger extends Merger implements Matchable {
 	
 	protected ArrayList<Tuple> solution;
 	private RunResult res ;
-	
+
 	private HashMap<Element, String> elemToLexMemo = new HashMap<Element, String>();
 
-	public MultiModelMerger(ArrayList<Model> models){
+	public MultiModelMerger(ArrayList<Model> models, Stopped stopped){
+		super(stopped);
 		this.models = models;
 	}
-	
 
-	
-	public void run(){
+	public List<Tuple> run(){
 		ArrayList<Element> curElems = joinAllModels();
-
-
+		if (stopped()) {
+			return null;
+		}
 		long startTime = System.currentTimeMillis();
 		solution = execute(curElems);
+		if (stopped()) {
+			return null;
+		}
 		long endTime = System.currentTimeMillis();
 
 		BigDecimal weight = AlgoUtil.calcGroupWeight(solution);
@@ -44,19 +45,22 @@ public abstract class MultiModelMerger extends Merger implements Matchable{
 		}
 		long execTime = endTime - startTime;
 		if(solution.size() == 0)
-			return;
+			return solution;
 		BigDecimal avgTupleWeight = weight.divide(new BigDecimal(solution.size()), N_WAY.MATH_CTX);
 		res = new RunResult(execTime, weight, avgTupleWeight, solution);
 		res.setTitle("New Hungarian");
 		//AlgoUtil.printTuples(solution);
 		//System.out.println(res.toString());
-		
+		return solution;
 	}
 
 	private ArrayList<Element> joinAllModels() {
 		ArrayList<Element> elems = new ArrayList<Element>();
 		for(Model m:models){
 			elems.addAll(m.getElements());
+			if (stopped()) {
+				return null;
+			}
 		}
 		return elems;
 	}
@@ -75,23 +79,36 @@ public abstract class MultiModelMerger extends Merger implements Matchable{
 	}
 
 	private ArrayList<Tuple> execute(ArrayList<Element> elems){
-		MultiModelHungarian mmh;
 		Model m = new Model("1000",elems);
 		int rawModelCnt = 0;
 		for(Model mm:models){
 			rawModelCnt += mm.getMergedFrom();
+			if (stopped()) {
+				return null;
+			}
 		}
 		m.setMergedFrom(rawModelCnt);
-		mmh = new MultiModelHungarian(m, rawModelCnt);
+		MultiModelHungarian mmh = new MultiModelHungarian(m, rawModelCnt, stopped);
+		if (stopped()) {
+			return null;
+		}
 		mmh.runPairing();
+		if (stopped()) {
+			return null;
+		}
 		ArrayList<Tuple> allPairs = mmh.getTuplesInMatch();
 		removeDuplicates(allPairs);
 			//System.out.println("\n Found pairs:");
-			//AlgoUtil.printTuples(allPairs);	
+			//AlgoUtil.printTuples(allPairs);
+		if (stopped()) {
+			return null;
+		}
 		Collections.sort(allPairs, new AlgoUtil.TupleComparator(false));
 		// at this point - in order
 
-		
+		if (stopped()) {
+			return null;
+		}
 		ArrayList<Tuple> chainedTuples = optimizePairs(allPairs);
 		
 

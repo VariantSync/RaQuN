@@ -8,6 +8,5 @@ bin/
 out/
 __pycache__
 reported-results/*
-results/*
 result_analysis_python/eval_results/*
 result_analysis_python/venv

@@ -37,13 +37,8 @@ COPY result_analysis_python ./result_analysis_python
 
 # Unpack the experimental subjects
 WORKDIR experimental_subjects
-RUN unzip -o full_subjects.zip
-WORKDIR argouml
-RUN unzip -o argouml_p1-5.zip
-RUN unzip -o argouml_p6.zip
-RUN unzip -o argouml_p7.zip
-RUN unzip -o argouml_p8.zip
-RUN unzip -o argouml_p9.zip
+RUN unzip -o ./\*.zip
+RUN mv argouml_p*.csv argouml/
 
 # Copy the docker resources
 WORKDIR /home/user
@@ -55,6 +50,7 @@ RUN chmod +x run-experiments.sh
 RUN chmod +x entrypoint.sh
 
 RUN ls -l
+RUN ls -l experimental_subjects
 
 ENTRYPOINT ["./entrypoint.sh", "./run-experiments.sh"]
 USER user

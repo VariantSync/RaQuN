@@ -1,7 +1,7 @@
 import numpy
 
 from eval.data.result_data import MethodStatistics, CombinedResult
-from eval.visualization.misc import get_real_name, get_real_dataset, get_model_type
+from eval.visualization.misc import get_real_name, get_real_dataset, get_model_type, argouml_subset_size
 
 timeout_text = "- - - timeout - - -"
 
@@ -158,7 +158,7 @@ def create_match_overview(methods: [], datasets: [], results_per_method: {}):
     return tabular
 
 
-def create_num_of_comp_overview(datasets: [], results_per_method: {}):
+def create_num_of_comp_overview(method, datasets: [], results_per_method: {}):
     number_of_columns = 4
 
     # Initialize the string that represents the tabular
@@ -176,9 +176,7 @@ def create_num_of_comp_overview(datasets: [], results_per_method: {}):
     tabular += "\\hline\n"
 
     for dataset in datasets:
-        if dataset == "PPU" or dataset == "Apo-Games":
-            tabular += "\\hline\n"
-        raqun_stats = results_per_method["RaQuN"]  # type: MethodStatistics
+        raqun_stats = results_per_method[method]  # type: MethodStatistics
         if dataset not in raqun_stats.result_per_dataset:
             continue
         raqun_result = raqun_stats.get_result(dataset)
@@ -188,7 +186,10 @@ def create_num_of_comp_overview(datasets: [], results_per_method: {}):
 
         raqun_rel = 100 * ((number_of_comparisons_total - raqun_abs) / number_of_comparisons_total)
 
-        result_line = get_real_dataset(dataset)
+        dataset_name = get_real_dataset(dataset)
+        if dataset_name == "PPU Structure" or dataset_name == "Apo-Games" or dataset_name == "DAS":
+            tabular += "\\hline\n"
+        result_line = dataset_name
         result_line += " & \\multicolumn{1}{r}{" + "{0:,} ".format(number_of_comparisons_total) + "}"
         result_line += " & \\multicolumn{1}{r}{" + "{0:,} ".format(raqun_abs) + "}"
         result_line += " & \\multicolumn{1}{r}{" + "{0:2.1f}\\% ".format(raqun_rel) + "}"
@@ -247,7 +248,7 @@ def create_model_stats_overview(dataset_dir, all_datasets):
                 elements_per_model[model_name] = elements
             elements.append(element)
 
-        if dataset_name == "PPU Structure" or dataset_name == "Apo-Games":
+        if dataset_name == "PPU Structure" or dataset_name == "Apo-Games" or dataset_name == "DAS":
             tabular += "\\hline\n"
         tabular += dataset_name + " & "
         tabular += get_model_type(dataset) + " & "
@@ -262,6 +263,87 @@ def create_model_stats_overview(dataset_dir, all_datasets):
         number_of_elements_total = numpy.sum(number_of_elements_per_model)
         tabular += "{0:,.2f} ".format(number_of_props / number_of_elements_total) + " & "
         tabular += "{0:,.0f} ".format(numpy.median(properties_per_element)) + " \\\\\n "
+    tabular += "\\hline\n"
+    tabular += "\\end{tabular}\n"
+
+    return tabular
+
+
+def create_argo_subset_stats_overview(dataset_dir, all_datasets):
+    # Initialize the string that represents the tabular
+    tabular = "\\begin{tabular}{lrrrrc}\n"
+    # first we add the method names as headers
+    tabular += "\\hline\n"
+    tabular += " & & \\multicolumn{2}{c}{Elements} & \\multicolumn{2}{c}{Properties} \\\\\n"
+    tabular += "& Size & Avg. & Median & Avg. & Median \\\\\n"
+    tabular += "\\hline\n"
+    tabular += "\\hline\n"
+
+    for dataset in all_datasets:
+        dataset_name = get_real_dataset(dataset)
+        avg_elements_per_slice = []
+        med_elements_per_slice = []
+        avg_properties_per_slice = []
+        med_properties_per_slice = []
+        for id in ["_s" + str(x).zfill(3) for x in range(1, 30)]:
+            # Get the subsets of the current size
+            path_to_file = dataset_dir + "/" + dataset + id + ".csv"
+            if dataset == "argouml":
+                path_to_file = dataset_dir[:-8] + "/" + dataset + ".csv"
+            with open(path_to_file, 'r') as file:
+                lines = file.readlines()
+
+            number_of_props = 0
+            elements_per_model = {}
+            properties_per_element = []
+
+            for line in lines:
+                line = line.strip()
+                parts = line.split(',')
+                model_name = parts[0].strip()
+                element_name = parts[2].strip()
+                prop_parts = parts[-1].split(';')
+                properties = []
+                for part in prop_parts:
+                    part = part.strip()
+                    if len(part) > 0:
+                        properties.append(part)
+                # Initialize an element with the properties
+                element = RElement(element_name, properties)
+
+                # Update the info about properties
+                number_of_props += len(properties)
+                properties_per_element.append(len(properties))
+
+                if model_name in elements_per_model:
+                    elements = elements_per_model[model_name]
+                else:
+                    elements = []
+                    elements_per_model[model_name] = elements
+                elements.append(element)
+
+            number_of_elements_per_model = []
+            for model in elements_per_model.keys():
+                elements = elements_per_model.get(model)
+                number_of_elements_per_model.append(len(elements))
+
+            avg_elements_per_slice.append(numpy.average(number_of_elements_per_model))
+            med_elements_per_slice.extend(number_of_elements_per_model)
+
+            number_of_elements_total = numpy.sum(number_of_elements_per_model)
+            avg_properties_per_slice.append(number_of_props / number_of_elements_total)
+            med_properties_per_slice.extend(properties_per_element)
+            if dataset == "argouml":
+                break
+
+        tabular += dataset_name + " & "
+        tabular += argouml_subset_size(dataset) + " & "
+
+        tabular += "{0:,.2f} ".format(numpy.average(avg_elements_per_slice)) + " & "
+        tabular += "{0:,.0f} ".format(numpy.median(med_elements_per_slice)) + " & "
+
+        tabular += "{0:,.2f} ".format(numpy.average(avg_properties_per_slice)) + " & "
+        tabular += "{0:,.0f} ".format(numpy.median(med_properties_per_slice)) + " \\\\\n "
     tabular += "\\hline\n"
     tabular += "\\end{tabular}\n"
 

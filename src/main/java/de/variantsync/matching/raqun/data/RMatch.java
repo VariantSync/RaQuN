@@ -13,7 +13,7 @@ public class RMatch {
      * Initialize a match of the given elements
      * @param elements that are matched
      */
-    public RMatch(RElement... elements) {
+    public RMatch(final RElement... elements) {
         this(Arrays.asList(elements));
     }
 
@@ -21,7 +21,7 @@ public class RMatch {
      * Initialize a match of the given elements
      * @param elements that are matched
      */
-    public RMatch(Collection<RElement> elements) {
+    public RMatch(final Collection<RElement> elements) {
         this.elements = new HashSet<>(elements);
     }
 
@@ -38,7 +38,7 @@ public class RMatch {
      * @param element which is checked
      * @return true if the element is part of this match, false otherwise
      */
-    public boolean contains(RElement element) {
+    public boolean contains(final RElement element) {
         return elements.contains(element);
     }
 
@@ -47,14 +47,14 @@ public class RMatch {
      * @param matches the matches that are to be merged
      * @return a match containing all elements in the given matches
      */
-    public static RMatch getMergedMatch(Set<RMatch> matches) {
+    public static RMatch getMergedMatch(final Set<RMatch> matches) {
         RMatch resultTuple = null;
 
-        for (RMatch tuple : matches) {
+        for (final RMatch tuple : matches) {
             if (resultTuple == null) {
                 resultTuple = tuple;
             } else {
-                Set<RElement> elements = new HashSet<>(resultTuple.elements);
+                final Set<RElement> elements = new HashSet<>(resultTuple.elements);
                 elements.addAll(tuple.elements);
                 resultTuple = new RMatch(elements);
             }
@@ -65,8 +65,8 @@ public class RMatch {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (RElement element : elements) {
+        final StringBuilder sb = new StringBuilder();
+        for (final RElement element : elements) {
             sb.append(element);
             sb.append(",");
         }
@@ -78,16 +78,16 @@ public class RMatch {
      * @return String for pretty printing
      */
     public String getLongString() {
-        StringBuilder sb = new StringBuilder();
-        for (RElement element : elements) {
+        final StringBuilder sb = new StringBuilder();
+        for (final RElement element : elements) {
             sb.append(element);
             sb.append(",");
         }
         sb.deleteCharAt(sb.length() - 1);
         sb.append("::{{");
-        Set<String> properties = new HashSet<>();
+        final Set<String> properties = new HashSet<>();
         elements.forEach(e -> properties.addAll(e.getProperties()));
-        for (String property : properties) {
+        for (final String property : properties) {
             sb.append(property);
             sb.append(";");
         }

@@ -137,16 +137,7 @@ public abstract class AlgoBase implements Matchable{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		StringBuilder sb = new StringBuilder();
-		ArrayList<Tuple> sortedRes = new ArrayList<Tuple>(result);
-		Collections.sort(sortedRes, new AlgoUtil.TupleComparator());
-		
-		sb.append("************\n").append(name).append(" --> total weight: "+
-	          AlgoUtil.truncateWeight(getSolutionWeight())).
-	          append(getAdditionalInfo()).append("\n************\nran in ").append(execTime).append(" ms\t").append(formatTime()).append("\n");
-		sb.append("result is:\n").append(sortedRes).append("\n");
-		return sb.toString();
+		return name;
 	}
 	
 	public long getExecTime(){
@@ -173,9 +164,6 @@ public abstract class AlgoBase implements Matchable{
 	}
 	
 	public RunResult getRunResult(){
-		if(!executed){
-			run();
-		}
 		return new RunResult(execTime, getResultWeight(), getAverageTupleWeight(), result);
 	}
 	

@@ -20,17 +20,17 @@ public class PropertyBasedVectorization implements IVectorization {
     protected Map<RElement, RVector> elementToVectorMap;
     protected int dimensions;
 
-    protected int fillLexicalIndex(Set<RElement> elements) {
-        Set<String> childrenNames = elements.stream().flatMap(element -> element.getProperties().stream()).collect(Collectors.toSet());
-        AtomicInteger i = new AtomicInteger(0);
+    protected int fillLexicalIndex(final Set<RElement> elements) {
+        final Set<String> childrenNames = elements.stream().flatMap(element -> element.getProperties().stream()).collect(Collectors.toSet());
+        final AtomicInteger i = new AtomicInteger(0);
         propertyNamesDimension = childrenNames.stream().collect(Collectors.toMap(s -> s, s -> i.getAndIncrement()));
         return i.get();
 
     }
 
     @Override
-    public void initialize(Collection<RModel> inputModels) {
-        Set<RElement> elements = new HashSet<>();
+    public void initialize(final Collection<RModel> inputModels) {
+        final Set<RElement> elements = new HashSet<>();
         inputModels.forEach((m) -> elements.addAll(m.getElements()));
         if (elements.size() == 0) {
             throw new IllegalArgumentException("There should be at least one element!");
@@ -40,14 +40,14 @@ public class PropertyBasedVectorization implements IVectorization {
     }
 
     @Override
-    public RVector vectorFor(RElement element) {
+    public RVector vectorFor(final RElement element) {
         if (element.getProperties().isEmpty()) {
             throw new IllegalArgumentException("Elements must have at least one property!");
         }
         if (elementToVectorMap.containsKey(element)) {
             return elementToVectorMap.get(element);
         } else {
-            RVector vector = new RVector(dimensions);
+            final RVector vector = new RVector(dimensions);
 
             element.getProperties().forEach(n -> vector.setCoord(propertyNamesDimension.get(n), 1));
 

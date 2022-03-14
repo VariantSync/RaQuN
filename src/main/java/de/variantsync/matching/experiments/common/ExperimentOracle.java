@@ -21,24 +21,24 @@ public class ExperimentOracle {
      * Initialize a new oracle with the provided matches and calculate the statistics.
      * @param matches The matches calculated by a matcher
      */
-    public ExperimentOracle(Set<RMatch> matches) {
+    public ExperimentOracle(final Set<RMatch> matches) {
         calculate(matches);
     }
 
-    private void calculate(Set<RMatch> matches) {
+    private void calculate(final Set<RMatch> matches) {
         tp = 0.0;
         fp = 0.0;
         fn = 0.0;
-        Map<String, Integer> numberOfClassOccurrencesTotal = countClassOccurrences(matches);
+        final Map<String, Integer> numberOfClassOccurrencesTotal = countClassOccurrences(matches);
 
-        for (RMatch tuple : matches) {
-            Collection<RElement> nodesInTuple = tuple.getElements();
+        for (final RMatch tuple : matches) {
+            final Collection<RElement> nodesInTuple = tuple.getElements();
             // Count the number of times each class appears in the tuple
-            Map<String, Integer> numberOfClassOccurrences = new HashMap<>();
-            for (RElement node : nodesInTuple) {
-                String id = node.getUUID();
+            final Map<String, Integer> numberOfClassOccurrences = new HashMap<>();
+            for (final RElement node : nodesInTuple) {
+                final String id = node.getUUID();
                 if (numberOfClassOccurrences.containsKey(id)) {
-                    int oldNumber = numberOfClassOccurrences.get(id);
+                    final int oldNumber = numberOfClassOccurrences.get(id);
                     numberOfClassOccurrences.put(id, oldNumber+1);
                 } else {
                     numberOfClassOccurrences.put(id, 1);
@@ -46,9 +46,9 @@ public class ExperimentOracle {
             }
 
             // Now we count the number of TP, FP, FN for the current tuple
-            for (String id : numberOfClassOccurrences.keySet()) {
-                int numberCurrent = numberOfClassOccurrences.get(id);
-                int numberOther = nodesInTuple.size() - numberCurrent;
+            for (final String id : numberOfClassOccurrences.keySet()) {
+                final int numberCurrent = numberOfClassOccurrences.get(id);
+                final int numberOther = nodesInTuple.size() - numberCurrent;
 
                 // Count the tp, one for each correct match between members of a class
                 for (int i = numberCurrent-1; i > 0; i--) {
@@ -59,7 +59,7 @@ public class ExperimentOracle {
                 fp += numberCurrent * numberOther;
 
                 // Count the fn, one for each missing match with a member of the current class
-                int numberMissing = numberOfClassOccurrencesTotal.get(id) - numberCurrent;
+                final int numberMissing = numberOfClassOccurrencesTotal.get(id) - numberCurrent;
                 fn += numberCurrent * numberMissing;
                 // We have to set the new value so that every missing match is only counted once
                 numberOfClassOccurrencesTotal.put(id, numberMissing);
@@ -106,22 +106,22 @@ public class ExperimentOracle {
         return fMeasure;
     }
 
-    private Map<String, Integer> countClassOccurrences(Set<RMatch> mergedModel) {
-        Map<String, Integer> numberOfClassOccurrences = new HashMap<>();
+    private Map<String, Integer> countClassOccurrences(final Set<RMatch> mergedModel) {
+        final Map<String, Integer> numberOfClassOccurrences = new HashMap<>();
 
-        for (RMatch tuple : mergedModel) {
+        for (final RMatch tuple : mergedModel) {
             countClassOccurrencesInTuple(tuple, numberOfClassOccurrences);
         }
         return numberOfClassOccurrences;
     }
 
-    private void countClassOccurrencesInTuple(RMatch tuple, Map<String, Integer> classOccurrences) {
+    private void countClassOccurrencesInTuple(final RMatch tuple, final Map<String, Integer> classOccurrences) {
         // Counts the number of times each class appears in the given tuple and updates the given map that holds previous
         // counts of class occurrences
-        for (RElement node : tuple.getElements()) {
-            String id = node.getUUID();
+        for (final RElement node : tuple.getElements()) {
+            final String id = node.getUUID();
             if (classOccurrences.containsKey(id)) {
-                Integer count = classOccurrences.get(id) ;
+                final Integer count = classOccurrences.get(id) ;
                 classOccurrences.put(id, count + 1);
             } else {
                 classOccurrences.put(id, 1);

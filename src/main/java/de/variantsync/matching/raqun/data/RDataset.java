@@ -17,7 +17,7 @@ public class RDataset {
      * Initialize a new dataset with the given name
      * @param name of the dataset
      */
-    public RDataset(String name) {
+    public RDataset(final String name) {
         this.name = name;
     }
 
@@ -49,12 +49,12 @@ public class RDataset {
      * Load and parse the content of the csv file that can be found under the given path
      * @param pathToFile The path to the file that is to be loaded
      */
-    public void loadFileContent(Path pathToFile) {
-        Set<String> contentLines = new HashSet<>();
+    public void loadFileContent(final Path pathToFile) {
+        final Set<String> contentLines = new HashSet<>();
 
-        try (Stream<String> lines = Files.lines(pathToFile)) {
+        try (final Stream<String> lines = Files.lines(pathToFile)) {
             lines.forEach(contentLines::add);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -66,11 +66,11 @@ public class RDataset {
      * @param content The lines in the file
      * @return Map of model-ids to models
      */
-    private Collection<RModel> parseFileContentToModels(Set<String> content) {
-        Map<String, RModel> modelsInFile = new HashMap<>();
-        for (String modelLine : content) {
-            String inputSeparator = ",";
-            String[] parts = modelLine.split(inputSeparator);
+    private Collection<RModel> parseFileContentToModels(final Set<String> content) {
+        final Map<String, RModel> modelsInFile = new HashMap<>();
+        for (final String modelLine : content) {
+            final String inputSeparator = ",";
+            final String[] parts = modelLine.split(inputSeparator);
 
             if (parts.length < 3) {
                 throw new RuntimeException("Each line in the file that describes the elements of a model must at least" +
@@ -79,19 +79,19 @@ public class RDataset {
 
             int partIndex = 0;
             // Always 1st
-            String modelID = parts[partIndex++].trim();
+            final String modelID = parts[partIndex++].trim();
             // Always 2nd
-            String elementID = parts[partIndex++].trim();
+            final String elementID = parts[partIndex++].trim();
             // Always 3rd
-            String elementName = parts[partIndex++].trim();
+            final String elementName = parts[partIndex++].trim();
 
-            List<String> properties = new ArrayList<>();
+            final List<String> properties = new ArrayList<>();
             if (parts.length > 3) {
-                String propertiesString = parts[partIndex];
-                String propertySeparator = ";";
+                final String propertiesString = parts[partIndex];
+                final String propertySeparator = ";";
                 if (propertiesString.contains(propertySeparator)) {
-                    String[] tempProperties = propertiesString.split(propertySeparator);
-                    for (String property : tempProperties) {
+                    final String[] tempProperties = propertiesString.split(propertySeparator);
+                    for (final String property : tempProperties) {
                         properties.add(property.trim());
                     }
                 } else {
@@ -100,7 +100,7 @@ public class RDataset {
             }
 
             // Has the model of this element already been initialized?
-            RModel currentModel;
+            final RModel currentModel;
             if (modelsInFile.containsKey(modelID)) {
                 currentModel = modelsInFile.get(modelID);
             } else {
@@ -109,7 +109,7 @@ public class RDataset {
             }
 
             // Create the instance of the element and add it to the current model
-            RElement element = new RElement(currentModel.getModelID(), elementID, elementName, properties);
+            final RElement element = new RElement(currentModel.getModelID(), elementID, elementName, properties);
             currentModel.addElement(element);
         }
 

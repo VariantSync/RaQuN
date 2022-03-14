@@ -4,13 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Random;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Undocumented code by Rubin and Chechik
@@ -84,17 +81,19 @@ public class Model {
     }
 
     public static ArrayList<Model> readModelsFile(String filePath, String seperator) {
-        File file = new File(filePath);
-        BufferedReader reader;
+        // UPDATED BY US +++
+        List<String> contentLines = new LinkedList<>();
+        try (Stream<String> lines = Files.lines(Path.of(filePath))) {
+            lines.forEach(contentLines::add);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         ArrayList<Model> models = new ArrayList<Model>();
         String currModelId = "-1";
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             Model mdl = null;
-            while (true) {
-                String modelLine = reader.readLine();
-                if (modelLine == null)
-                    break;
+            for (String modelLine : contentLines) {
                 if (modelLine.endsWith(",")) {
                     modelLine += " ";
                 }
@@ -121,9 +120,7 @@ public class Model {
                 Element e = new Element(groundTruth, lbl, props, currModelId);
                 e.setAsRaw();
                 mdl.addElement(e);
-
             }
-            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -213,10 +210,10 @@ public class Model {
     }
 
     public void addElement(Element e) {
-        if (!usedString.contains(e.toPrint())) {
+//        if (!usedString.contains(e.toPrint())) {
             elements.add(e);
             usedString.add(e.toPrint());
-        }
+//        }
     }
 
     public Element getElementByLabel(String label) {

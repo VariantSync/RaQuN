@@ -18,7 +18,7 @@ public class WeightMetric implements ISimilarityFunction
 	 * Initialize the WeightMetric with the number of models which are used for normalization
 	 * @param numberOfModels The number of input models that are considered
 	 */
-	public WeightMetric(int numberOfModels) {
+	public WeightMetric(final int numberOfModels) {
 		this.numberOfModels = numberOfModels;
 	}
 
@@ -38,22 +38,22 @@ public class WeightMetric implements ISimilarityFunction
 	 * @param numberOfModels the number of models which is used for normalization (set to 1 for no normalization)
 	 * @return the weight between 0 and 1
 	 */
-	public static double weightForElements(Collection<Element> elements, int numberOfModels) {
-		HashMap<String, List<Boolean>> allDistinctProperties = new HashMap<>();
+	public static double weightForElements(final Collection<Element> elements, final int numberOfModels) {
+		final HashMap<String, List<Boolean>> allDistinctProperties = new HashMap<>();
 		long numerator = 0;
-		for (Element element : elements) {
-			for (String name : element.getProperties()) {
+		for (final Element element : elements) {
+			for (final String name : element.getProperties()) {
 				numerator += addProperty(allDistinctProperties, name);
 			}
 		}
 
-		int numberOfDistinctProperties = allDistinctProperties.size(); // |pi(t)|
+		final int numberOfDistinctProperties = allDistinctProperties.size(); // |pi(t)|
 		return ((double)numerator) / (numberOfDistinctProperties * numberOfModels * numberOfModels);
 	}
 
 	@Override
-	public double getMatchConfidence(RElement elementA, RElement elementB) {
-		Set<RElement> elements = new HashSet<>();
+	public double getMatchConfidence(final RElement elementA, final RElement elementB) {
+		final Set<RElement> elements = new HashSet<>();
 		elements.add(elementA);
 		elements.add(elementB);
 
@@ -61,10 +61,15 @@ public class WeightMetric implements ISimilarityFunction
 	}
 
 	@Override
-	public boolean shouldMatch(Set<RMatch> tuples) {
-		Set<RElement> mergedRElements = new HashSet<>();
+	public void setParameters(final List<String> parameters) {
+		// Do nothing.
+	}
+
+	@Override
+	public boolean shouldMatch(final Set<RMatch> tuples) {
+		final Set<RElement> mergedRElements = new HashSet<>();
 		double weightSum = 0.0d;
-		for (RMatch tuple : tuples) {
+		for (final RMatch tuple : tuples) {
 			mergedRElements.addAll(tuple.getElements());
 			weightSum += weightForElements(tuple.getElements());
 		}
@@ -73,7 +78,7 @@ public class WeightMetric implements ISimilarityFunction
 	}
 
 	@Override
-	public void setNumberOfModels(int numberOfModels) {
+	public void setNumberOfModels(final int numberOfModels) {
 		this.numberOfModels = numberOfModels;
 	}
 
@@ -82,9 +87,9 @@ public class WeightMetric implements ISimilarityFunction
 	 * @param set The set of elements for which the quality is to be calculated
 	 * @return The quality of the overall matching
 	 */
-	public double getQualityOfMatching(Set<RMatch> set) {
+	public double getQualityOfMatching(final Set<RMatch> set) {
 		double weight = 0.0d;
-		for (RMatch tuple : set) {
+		for (final RMatch tuple : set) {
 			weight += weightForElements(tuple.getElements());
 		}
 		return weight;
@@ -95,24 +100,24 @@ public class WeightMetric implements ISimilarityFunction
 	 * @param match The elements that are to be matched
 	 * @return The weight of the resulting match
 	 */
-	public double weightForElements(Collection<RElement> match)
+	public double weightForElements(final Collection<RElement> match)
 	{
-		HashMap<String, List<Boolean>> allDistinctProperties = new HashMap<>();
+		final HashMap<String, List<Boolean>> allDistinctProperties = new HashMap<>();
 		long numerator = 0;
-		for (RElement node : match) {
-			for (String propertyName : node.getProperties()) {
+		for (final RElement node : match) {
+			for (final String propertyName : node.getProperties()) {
 				numerator += addProperty(allDistinctProperties, propertyName);
 			}
 		}
 
-		int numberOfDistinctProperties = allDistinctProperties.size(); // |pi(t)|
+		final int numberOfDistinctProperties = allDistinctProperties.size(); // |pi(t)|
 		return ((double)numerator) / (numberOfDistinctProperties * numberOfModels * numberOfModels);
 	}
 
-	private static long addProperty(Map<String, List<Boolean>> properties, String property) {
+	private static long addProperty(final Map<String, List<Boolean>> properties, final String property) {
 		long value = 0;
 		if (properties.containsKey(property)) {
-			List<Boolean> flags = properties.get(property);
+			final List<Boolean> flags = properties.get(property);
 			flags.add(true);
 			// Calculate the j^2 value of the NwMWeight
 			value = (long) flags.size() * flags.size();
@@ -121,7 +126,7 @@ public class WeightMetric implements ISimilarityFunction
 				value -= (long) (flags.size() - 1) * (flags.size() - 1);
 			}
 		} else {
-			List<Boolean> flags = new ArrayList<>();
+			final List<Boolean> flags = new ArrayList<>();
 			flags.add(true);
 			properties.put(property, flags);
 		}

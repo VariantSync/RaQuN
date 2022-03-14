@@ -3,6 +3,7 @@ package de.variantsync.matching.nwm.alg.merge;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Element;
 import de.variantsync.matching.nwm.domain.Model;
@@ -13,8 +14,8 @@ import de.variantsync.matching.nwm.domain.Tuple;
  */
 public class MultiModelHungarianOptimizingMerger extends MultiModelMerger {
 
-	public MultiModelHungarianOptimizingMerger(ArrayList<Model> models) {
-		super(models);
+	public MultiModelHungarianOptimizingMerger(ArrayList<Model> models, Stopped stopped) {
+		super(models, stopped);
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class MultiModelHungarianOptimizingMerger extends MultiModelMerger {
 		}
 		elems.addAll(getFreeElements(validPairs));
 		Model m = new Model("2000", elems);
-		MultiModelHungarian mmh = new MultiModelHungarian(m, models.size());
+		MultiModelHungarian mmh = new MultiModelHungarian(m, models.size(), stopped);
 		mmh.runPairing();
 		ArrayList<Tuple> nextPairs = mmh.extractMerge();
 		return getValidPairs(nextPairs);

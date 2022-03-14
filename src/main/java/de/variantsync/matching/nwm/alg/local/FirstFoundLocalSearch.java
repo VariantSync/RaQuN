@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.merge.GreedyMerger;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Model;
@@ -34,7 +35,7 @@ public class FirstFoundLocalSearch extends LocalSearch {
 	}
 	
 	protected ArrayList<Tuple> getInitialSolution(){
-		GreedyMerger gm = new GreedyMerger((ArrayList<Model>) models.clone());
+		GreedyMerger gm = new GreedyMerger((ArrayList<Model>) models.clone(), new Stopped());
 		ArrayList<Tuple> retVal =  gm.extractMerge();
 		return retVal;
 	}

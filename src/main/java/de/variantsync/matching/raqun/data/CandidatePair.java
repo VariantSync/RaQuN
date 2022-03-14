@@ -17,7 +17,7 @@ public class CandidatePair {
      * @param second element to be matched
      * @param distanceInTree of the two elements
      */
-    public CandidatePair(RElement first, RElement second, double distanceInTree) {
+    public CandidatePair(final RElement first, final RElement second, final double distanceInTree) {
         this.first = first;
         this.second = second;
         this.distanceInTree = distanceInTree;
@@ -58,15 +58,15 @@ public class CandidatePair {
     /**
      * @param matchConfidence that the two elements should be matched. Greater values mean greater confidence.
      */
-    public void setMatchConfidence(double matchConfidence) {
+    public void setMatchConfidence(final double matchConfidence) {
         this.matchConfidence = matchConfidence;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CandidatePair candidatePair = (CandidatePair) o;
+        final CandidatePair candidatePair = (CandidatePair) o;
 
         return first.equals(candidatePair.first) && Objects.equals(second, candidatePair.second) ||
                 Objects.equals(first, candidatePair.second) && Objects.equals(second, candidatePair.first);

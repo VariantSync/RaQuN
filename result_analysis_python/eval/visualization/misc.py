@@ -19,6 +19,10 @@ def get_overtake_point(data: list, limit: float):
 def get_real_name(method):
     name = method.replace("PairwiseAsc", "Pairwise Ascending")
     name = name.replace("PairwiseDesc", "Pairwise Descending")
+    name = name.replace("RaQuN-Character-Vec", "RaQuN Low Dim.")
+    name = name.replace("RaQuN-Property-Vec", "RaQuN High Dim.")
+    name = name.replace("RaQuN-Jaccard-", "RaQuN Jaccard 0.")
+    name = name.replace("RaQuN Jaccard 0.100", "RaQuN Jaccard 1.00")
     return name
 
 
@@ -32,9 +36,52 @@ def get_real_dataset(dataset):
     name = name.replace("ppu", "PPU Structure")
     name = name.replace("bcms", "bCMS")
     name = name.replace("argouml", "ArgoUML")
+    name = replace_argouml_subset_name(name)
     name = name.replace("Apogames", "Apo-Games")
     name = name.replace("bcs", "BCS")
+    name = name.replace("_", "-")
+    name = name.replace("Driving-", "")
+    name = name.replace("DEFLT.slx", "DAS")
+    name = name.replace("ACC-CACC.slx", "APS")
+    name = name.replace("ACC-CACC-TL.slx", "APS-TL")
+    name = name.replace("simulink-family-1", "MRC")
+    name = name.replace("simulink-family-2", "WEC")
     return name
+
+
+def replace_argouml_subset_name(name):
+    name = name.replace("ArgoUML_p001", "Argo-Subset-1")
+    name = name.replace("ArgoUML_p005", "Argo-Subset-5")
+    name = name.replace("ArgoUML_p010", "Argo-Subset-10")
+    name = name.replace("ArgoUML_p015", "Argo-Subset-15")
+    name = name.replace("ArgoUML_p020", "Argo-Subset-20")
+    name = name.replace("ArgoUML_p025", "Argo-Subset-25")
+    name = name.replace("ArgoUML_p030", "Argo-Subset-30")
+    name = name.replace("ArgoUML_p035", "Argo-Subset-35")
+    name = name.replace("ArgoUML_p040", "Argo-Subset-40")
+    name = name.replace("ArgoUML_p045", "Argo-Subset-45")
+    name = name.replace("ArgoUML_p050", "Argo-Subset-50")
+    name = name.replace("ArgoUML_p055", "Argo-Subset-55")
+    name = name.replace("ArgoUML_p060", "Argo-Subset-60")
+    name = name.replace("ArgoUML_p065", "Argo-Subset-65")
+    name = name.replace("ArgoUML_p070", "Argo-Subset-70")
+    name = name.replace("ArgoUML_p075", "Argo-Subset-75")
+    name = name.replace("ArgoUML_p080", "Argo-Subset-80")
+    name = name.replace("ArgoUML_p085", "Argo-Subset-85")
+    name = name.replace("ArgoUML_p090", "Argo-Subset-90")
+    name = name.replace("ArgoUML_p095", "Argo-Subset-95")
+    return name
+
+
+def argouml_subset_size(dataset):
+    if dataset == "argouml":
+        return "100\\%"
+    if dataset[-5:] == "_p001":
+        return "1\\%"
+    if dataset[-5:] == "_p005":
+        return "5\\%"
+    else:
+        return dataset[-2:] + "\\%"
 
 
 def get_model_type(dataset):
@@ -61,6 +108,14 @@ def get_model_type(dataset):
         model_type = "UML statemachines"
     elif dataset == "bcs":
         model_type = "Component/connector"
+    elif dataset[:6] == "simuli":
+        model_type = "Simulink"
+    elif dataset == "DEFLT.slx":
+        model_type = "Simulink"
+    elif dataset == "Driving_ACC_CACC.slx":
+        model_type = "Simulink"
+    elif dataset == "Driving_ACC_CACC_TL.slx":
+        model_type = "Simulink"
     else:
         print("Unknown dataset: " + dataset)
     return model_type

@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.TupleExaminer;
 import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
 import de.variantsync.matching.nwm.alg.merge.MergeDescriptor;
@@ -302,6 +303,9 @@ public class AlgoUtil {
 	
 	public static BigDecimal calcGroupWeight(Collection<Tuple> c, boolean scaled){
 		BigDecimal res = BigDecimal.ZERO;
+		if (c == null) {
+			return res;
+		}
 		for (Iterator<Tuple> iterator = c.iterator(); iterator.hasNext();) {
 			Tuple t = (Tuple) iterator.next();
 			if(scaled)
@@ -333,7 +337,7 @@ public class AlgoUtil {
 		ArrayList<HungarianMerger> pairs = new ArrayList<HungarianMerger>();
 		for(int i=0;i<models.size();i++){
 			for(int j=i+1;j<models.size();j++){
-				HungarianMerger hm = new HungarianMerger(models.get(i), models.get(j), models.size());
+				HungarianMerger hm = new HungarianMerger(models.get(i), models.get(j), models.size(), new Stopped());
 				pairs.add(hm);
 				hm.runPairing();
 			}

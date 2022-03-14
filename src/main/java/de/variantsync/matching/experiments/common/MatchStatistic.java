@@ -54,7 +54,7 @@ public class MatchStatistic {
     // The matching
     private transient Set<RMatch> matching = null;
 
-    public MatchStatistic(int runID, String dataset, String method, int numberOfModels, int sizeOfLargestModel) {
+    public MatchStatistic(final int runID, final String dataset, final String method, final int numberOfModels, final int sizeOfLargestModel) {
         this.runID = runID;
         this.dataset = dataset;
         this.method = method;
@@ -62,8 +62,8 @@ public class MatchStatistic {
         this.sizeOfLargestModel = sizeOfLargestModel;
     }
 
-    public MatchStatistic(int runID, String dataset, String method, int numberOfModels, int sizeOfLargestModel,
-                          int k) {
+    public MatchStatistic(final int runID, final String dataset, final String method, final int numberOfModels, final int sizeOfLargestModel,
+                          final int k) {
         this.runID = runID;
         this.dataset = dataset;
         this.method = method;
@@ -72,7 +72,7 @@ public class MatchStatistic {
         this.k = k;
     }
 
-    public void calculateStatistics(Set<RMatch> matching, double runtime) {
+    public void calculateStatistics(final Set<RMatch> matching, final double runtime) {
         this.matching = matching;
         this.numberOfElements = countElements(matching);
         this.numberOfTuples = matching.size();
@@ -82,7 +82,7 @@ public class MatchStatistic {
 
         // Calculate the average matched element fit
         double fitSum = 0.0d;
-        for (double v : this.matchedElementFitPerTuple) {
+        for (final double v : this.matchedElementFitPerTuple) {
             fitSum += v;
         }
         if (fitSum > 0) {
@@ -95,11 +95,11 @@ public class MatchStatistic {
         }
 
         this.runtime = runtime;
-        WeightMetric weightMetric = new WeightMetric(this.numberOfModels);
+        final WeightMetric weightMetric = new WeightMetric(this.numberOfModels);
         this.weight = weightMetric.getQualityOfMatching(matching);
 
         // Calculate the oracle results
-        ExperimentOracle oracle = new ExperimentOracle(matching);
+        final ExperimentOracle oracle = new ExperimentOracle(matching);
         this.tp = (int) oracle.getTp();
         this.fp = (int) oracle.getFp();
         this.fn = (int) oracle.getFn();
@@ -108,30 +108,30 @@ public class MatchStatistic {
         this.fMeasure = oracle.getFMeasure();
     }
 
-    private double[] calculateElementFitPerTuple(Set<RMatch> tuples) {
+    private double[] calculateElementFitPerTuple(final Set<RMatch> tuples) {
         // First, get only the tuple with at least two elements that have been matched to each other
-        Set<RMatch> matchTuple = tuples.stream().filter(t -> t.getElements().size() > 1).collect(Collectors.toSet());
-        double[] elementFitPerTuple = new double[matchTuple.size()];
+        final Set<RMatch> matchTuple = tuples.stream().filter(t -> t.getElements().size() > 1).collect(Collectors.toSet());
+        final double[] elementFitPerTuple = new double[matchTuple.size()];
 
         // Iterate over each tuple, calculate its fit and add it to the sum
         int tupleId = 0;
-        for (RMatch tuple : matchTuple) {
-            Set<String> uniquePropertiesInTuple = new HashSet<>();
+        for (final RMatch tuple : matchTuple) {
+            final Set<String> uniquePropertiesInTuple = new HashSet<>();
             int numberOfPropertiesInTuple = 0;
             // Get the unique properties in the tuple and the total number of properties across elements
-            for (RElement element : tuple.getElements()) {
+            for (final RElement element : tuple.getElements()) {
                 uniquePropertiesInTuple.addAll(element.getProperties());
                 numberOfPropertiesInTuple += element.getProperties().size();
             }
             // The numerator counts how many properties overlap across elements, properties that only occur in one
             // element should not be counted, therefore we deduct the number of unique properties
-            double numerator = numberOfPropertiesInTuple - uniquePropertiesInTuple.size();
+            final double numerator = numberOfPropertiesInTuple - uniquePropertiesInTuple.size();
             // The denominator represents the total number of possible overlaps, we deduct the number of unique
             // properties to achieve a 0-1 normalization
-            double denominator = ((double) uniquePropertiesInTuple.size() * (double) tuple.getElements().size())
+            final double denominator = ((double) uniquePropertiesInTuple.size() * (double) tuple.getElements().size())
                     - uniquePropertiesInTuple.size();
 
-            double tupleFit = numerator / denominator;
+            final double tupleFit = numerator / denominator;
             if (Double.isNaN(tupleFit)) {
                 // There is something wrong, probably with the dataset
                 System.err.println("The tuple fit is NaN for some reason!");
@@ -146,38 +146,38 @@ public class MatchStatistic {
         return elementFitPerTuple;
     }
 
-    public void writeModel(String pathToFile) {
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(new File(pathToFile), true))) {
-            for (RMatch tuple : matching) {
+    public void writeModel(final String pathToFile) {
+        try (final PrintWriter writer = new PrintWriter(new FileOutputStream(new File(pathToFile), true))) {
+            for (final RMatch tuple : matching) {
                 writer.print(tuple.toString());
                 writer.print(";");
             }
             writer.println("\n");
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
     }
 
-    public void calculateNumberOfNWayComparisonsTheoreticallyNeeded(int numberOfComparisons) {
+    public void calculateNumberOfNWayComparisonsTheoreticallyNeeded(final int numberOfComparisons) {
         this.numberOfNWayComparisonsTheoreticallyNeeded = numberOfComparisons;
     }
 
-    public void setNumberOfComparisonsActuallyDone(int numberOfComparisonsActuallyDone) {
+    public void setNumberOfComparisonsActuallyDone(final int numberOfComparisonsActuallyDone) {
         this.numberOfComparisonsActuallyDone = numberOfComparisonsActuallyDone;
     }
 
-    private int countElements(Set<RMatch> set) {
-        ArrayList<RElement> elements = new ArrayList<>();
-        for (RMatch tuple : set) {
+    private int countElements(final Set<RMatch> set) {
+        final ArrayList<RElement> elements = new ArrayList<>();
+        for (final RMatch tuple : set) {
             elements.addAll(tuple.getElements());
         }
         return elements.size();
     }
 
-    public void writeAsJSON(String pathToFile, boolean append) {
-        Path path = Paths.get(pathToFile);
+    public void writeAsJSON(final String pathToFile, final boolean append) {
+        final Path path = Paths.get(pathToFile);
         for (int i = 1; i < path.getNameCount(); i++) {
-            File f;
+            final File f;
             if (path.getRoot() != null) {
                 f = Paths.get(path.getRoot().toString(), path.subpath(0, i).toString()).toFile();
             } else {
@@ -188,11 +188,11 @@ public class MatchStatistic {
             }
         }
 
-        Gson gson = new Gson();
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(new File(pathToFile), append))) {
-            String json = gson.toJson(this);
+        final Gson gson = new Gson();
+        try (final PrintWriter writer = new PrintWriter(new FileOutputStream(new File(pathToFile), append))) {
+            final String json = gson.toJson(this);
             writer.println(json);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.err.println(this.toString());
             throw new RuntimeException(e);
         }

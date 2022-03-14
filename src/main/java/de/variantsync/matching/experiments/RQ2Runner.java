@@ -1,7 +1,7 @@
 package de.variantsync.matching.experiments;
 
-import de.variantsync.matching.experiments.raqun.RaQuNAdapter;
-import de.variantsync.matching.experiments.raqun.RaqunSetup;
+import de.variantsync.matching.experiments.common.ExperimentSetup;
+import de.variantsync.matching.experiments.common.MatcherAdapter;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -13,23 +13,25 @@ import static de.variantsync.matching.experiments.common.ExperimentHelper.runExp
  */
 public class RQ2Runner extends AbstractRQRunner {
 
-    public RQ2Runner(String... args) {
+    public RQ2Runner(final String... args) {
         super(args);
     }
 
-    public static void main(String... args) {
+    public static void main(final String... args) {
         new RQ2Runner(args).run();
     }
 
     @Override
     public void run() {
-        List<String> datasets = configuration.datasetsRQ2();
+        System.out.println("Running RQ2");
+        final List<String> datasets = configuration.datasetsRQ2();
+        final MatcherAdapter matcher = configuration.matcherRQ2();
 
-        for (String dataset : datasets) {
+        for (final String dataset : datasets) {
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" +
                     "+++++++++++++++++++++++++++++++++++");
             String resultsDir = baseResultsDir;
-            int startK = configuration.startK();
+            final int startK = configuration.startK();
             int maxK = configuration.maxK();
             if (dataset.startsWith("argouml")) {
                 maxK = configuration.maxKArgoUML();
@@ -37,20 +39,20 @@ public class RQ2Runner extends AbstractRQRunner {
             }
 
             // The random subsets are matched in subsets of size 10 in accordance with Rubin and Chechik, ESEC-FSE13
-            int chunkSize = Integer.MAX_VALUE;
-            int numberOfRepeats = configuration.repetitionsRQ2();
+            final int chunkSize = Integer.MAX_VALUE;
+            final int numberOfRepeats = configuration.repetitionsRQ2();
 
-            RaqunSetup raqunSetup = new RaqunSetup(
+            final ExperimentSetup raqunSetup = new ExperimentSetup(
                     "RaQuN_k",
                     numberOfRepeats,
                     resultsDir,
                     baseDatasetDir,
                     dataset,
-                    chunkSize,
-                    startK, maxK, verbose, vectorization, similarityFunction,
-                    validityConstraint);
+                    chunkSize, verbose,
+                    startK, maxK,
+                    configuration.timeoutDuration(), configuration.timeoutUnit());
 
-            runExperiment(new RaQuNAdapter(raqunSetup), baseResultsDir, raqunSetup.name, dataset);
+            runExperiment(matcher, raqunSetup, baseResultsDir, dataset);
         }
     }
 }

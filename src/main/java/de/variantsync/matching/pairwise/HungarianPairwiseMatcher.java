@@ -1,7 +1,9 @@
 package de.variantsync.matching.pairwise;
 
+import de.variantsync.matching.experiments.EAlgorithm;
+import de.variantsync.matching.experiments.common.IKillableLongTask;
+import de.variantsync.matching.experiments.common.Stopped;
 import de.variantsync.matching.nwm.alg.merge.HungarianMerger;
-import de.variantsync.matching.experiments.baseline.EBaselineImplementation;
 import de.variantsync.matching.nwm.alg.AlgoBase;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Model;
@@ -15,12 +17,13 @@ import static de.variantsync.matching.nwm.alg.pair.PairWiseMatch.filterTuplesByT
  * Wrapper for calling the Hungarian-pairwise implementation considered by Rubin and Chechik, ESEC/FSE 2013
  * https://dl.acm.org/doi/10.1145/2491411.2491446
  */
-public class HungarianPairwiseMatcher extends AlgoBase {
+public class HungarianPairwiseMatcher extends AlgoBase implements IKillableLongTask {
     private final ArrayList<Model> models;
-    private final EBaselineImplementation sortMode;
+    private final EAlgorithm sortMode;
     private int numberOfComparisons;
+    private final Stopped stopped = new Stopped();
 
-    public HungarianPairwiseMatcher(ArrayList<Model> models, EBaselineImplementation sortMode){
+    public HungarianPairwiseMatcher(ArrayList<Model> models, EAlgorithm sortMode){
         super("Hungarian Pairwise Fast");
         this.models = models;
         this.sortMode = sortMode;
@@ -29,12 +32,16 @@ public class HungarianPairwiseMatcher extends AlgoBase {
     @Override
     protected ArrayList<Tuple> doRun() {
         // Sort models by size ascending or descending
-        if (sortMode == EBaselineImplementation.PairwiseAsc) {
+        if (sortMode == EAlgorithm.PairwiseAsc) {
             models.sort(Comparator.comparingInt(Model::size));
-        } else if (sortMode == EBaselineImplementation.PairwiseDesc) {
+        } else if (sortMode == EAlgorithm.PairwiseDesc) {
             models.sort((m1, m2) -> Integer.compare(m2.size(), m1.size()));
         } else {
             throw new UnsupportedOperationException("This sort mode has not been implemented yet!");
+        }
+
+        if (stopped()) {
+            return null;
         }
 
         // Iterate over the sorted list of models and match them iteratively
@@ -43,9 +50,13 @@ public class HungarianPairwiseMatcher extends AlgoBase {
         numberOfComparisons = 0;
         for (int i = 1; i < models.size(); i++) {
             numberOfComparisons += (mergedModel.size() * models.get(i).size());
-            merger = new HungarianMerger(mergedModel, models.get(i), 2);
+            merger = new HungarianMerger(mergedModel, models.get(i), 2, stopped);
             merger.runPairing();
             mergedModel = merger.mergeMatchedModels();
+            if (stopped()) {
+                merger.stop();
+                return null;
+            }
         }
 
         boolean storedVal = AlgoUtil.COMPUTE_RESULTS_CLASSICALLY;
@@ -55,7 +66,13 @@ public class HungarianPairwiseMatcher extends AlgoBase {
         if(storedVal){
             for(Tuple t:realMerge){
                 t.recomputeSelf(this.models);
+                if (stopped()) {
+                    return null;
+                }
             }
+        }
+        if (stopped()) {
+            return null;
         }
         ArrayList<Tuple> retVal = filterTuplesByTreshold(realMerge, models);
 
@@ -74,5 +91,15 @@ public class HungarianPairwiseMatcher extends AlgoBase {
     @Override
     public ArrayList<Model> getModels() {
         return null;
+    }
+
+    @Override
+    public void stop() {
+        this.stopped.value = true;
+    }
+
+    @Override
+    public boolean stopped() {
+        return this.stopped.value;
     }
 }
