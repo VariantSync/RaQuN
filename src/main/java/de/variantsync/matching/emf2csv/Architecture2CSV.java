@@ -25,7 +25,7 @@ import com.opencsv.CSVWriter;
  */
 public class Architecture2CSV {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		System.out.println("Running Architecture2CSV...");
 
 		if (args.length != 1) {
@@ -33,37 +33,37 @@ public class Architecture2CSV {
 			System.exit(0);
 		}
 
-		File inFolder = new File(args[0]);
+		final File inFolder = new File(args[0]);
 		if (!inFolder.exists() || !inFolder.isDirectory()) {
 			System.err.println("Directory does not exist: " + inFolder.getAbsolutePath());
 			System.exit(0);
 		}
 		System.out.println("Model Directory: " + inFolder.getAbsolutePath());
 
-		File outFile = new File("csv-models/" + inFolder.getName() + ".csv");
+		final File outFile = new File("csv-models/" + inFolder.getName() + ".csv");
 		outFile.getParentFile().mkdirs();
 
-		List<EClass> elementTypes = new ArrayList<EClass>();
+		final List<EClass> elementTypes = new ArrayList<EClass>();
 		elementTypes.add(ArchitecturePackage.eINSTANCE.getComponent());
 		elementTypes.add(ArchitecturePackage.eINSTANCE.getConnector());
 
 		convert(inFolder, outFile, elementTypes);
 	}
 
-	private static void convert(File inFolder, File outFile, List<EClass> elementTypes) throws Exception {
-		List<String[]> allElementRecords = new ArrayList<String[]>();
+	private static void convert(final File inFolder, final File outFile, final List<EClass> elementTypes) throws Exception {
+		final List<String[]> allElementRecords = new ArrayList<>();
 
-		File modelFiles[] = inFolder.listFiles();
-		for (File file : modelFiles) {
+		final File[] modelFiles = inFolder.listFiles();
+		for (final File file : modelFiles) {
 			System.out.println("Processing " + file.getAbsolutePath());
-			Architecture model = ModelUtil.loadArchitectureModel(file.getAbsolutePath());
+			final Architecture model = ModelUtil.loadArchitectureModel(file.getAbsolutePath());
 			String modelId = file.getName();
 			modelId = modelId.substring(0, modelId.length() - 5);
 
 			// Elements
-			for (EClass elementType : elementTypes) {
-				for (Element element : ModelUtil.getAllElements(model, elementType)) {
-					String[] elementRecord = new String[4];
+			for (final EClass elementType : elementTypes) {
+				for (final Element element : ModelUtil.getAllElements(model, elementType)) {
+					final String[] elementRecord = new String[4];
 					elementRecord[0] = modelId;
 					elementRecord[1] = ModelUtil.getXmiId(element);
 					elementRecord[2] = element.getName();
@@ -84,16 +84,16 @@ public class Architecture2CSV {
 		writeCSV(allElementRecords, outFile.getAbsolutePath());
 	}
 
-	private static String getComponentPropertyString(Component component) {
+	private static String getComponentPropertyString(final Component component) {
 		String propertyString = "Component";
 
-		for (Port port : component.getPorts()) {
+		for (final Port port : component.getPorts()) {
 			propertyString += ";" + port.getName();
 
-			for (Connector c : port.getOutgoings()) {
+			for (final Connector c : port.getOutgoings()) {
 				propertyString += ";out_" + c.getName();
 			}
-			for (Connector c : port.getIncomings()) {
+			for (final Connector c : port.getIncomings()) {
 				propertyString += ";in_" + c.getName();
 			}
 		}
@@ -101,7 +101,7 @@ public class Architecture2CSV {
 		return propertyString;
 	}
 
-	private static String getConnectorPropertyString(Connector connector) {
+	private static String getConnectorPropertyString(final Connector connector) {
 		String propertyString = "Connector";
 
 		propertyString += ";" + connector.getType().toString();
@@ -112,9 +112,9 @@ public class Architecture2CSV {
 		return propertyString;
 	}
 
-	private static void writeCSV(List<String[]> stringArray, String path) throws Exception {
+	private static void writeCSV(final List<String[]> stringArray, final String path) throws Exception {
 		System.out.println("Writing Output CSV: " + path);
-		CSVWriter writer = new CSVWriter(new FileWriter(path.toString()), ',', Character.MIN_VALUE);
+		final CSVWriter writer = new CSVWriter(new FileWriter(path.toString()), ',', Character.MIN_VALUE);
 		writer.writeAll(stringArray);
 		writer.close();
 	}

@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM alpine:3.14
+FROM alpine:3.15
 
 # Prepare the environment
 RUN apk add maven
@@ -12,13 +12,13 @@ COPY pom.xml .
 RUN mvn package || exit
 
 
-FROM alpine:3.14
+FROM alpine:3.15
 
 # Create a user
 RUN adduser --disabled-password  --home /home/user --gecos '' user
 
 RUN apk add --no-cache --upgrade bash
-RUN apk add --update openjdk11 unzip
+RUN apk add --update openjdk17 unzip
 RUN apk add --no-cache msttcorefonts-installer fontconfig
 RUN update-ms-fonts
 RUN apk add --no-cache tesseract-ocr python3 py3-pip py3-numpy && \

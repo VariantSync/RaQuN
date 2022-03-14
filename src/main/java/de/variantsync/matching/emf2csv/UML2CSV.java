@@ -30,7 +30,7 @@ import com.opencsv.CSVWriter;
  */
 public class UML2CSV {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 		System.out.println("Running UML2CSV...");
 
 		// Get arguments and prepare the conversion settings
@@ -43,7 +43,7 @@ public class UML2CSV {
 			System.err.println("Required arguments: ['classdiagram'|'statemachine'] <model-directory>");
 			System.exit(0);
 		}
-		List<EClass> elementTypes = new ArrayList<EClass>();
+		final List<EClass> elementTypes = new ArrayList<>();
 		if (args[0].equals("classdiagram")) {
 			elementTypes.add(UMLPackage.eINSTANCE.getClass_());
 		}
@@ -52,13 +52,13 @@ public class UML2CSV {
 			elementTypes.add(UMLPackage.eINSTANCE.getTransition());
 		}
 
-		File inFolder = new File(args[1]);
+		final File inFolder = new File(args[1]);
 		if (!inFolder.exists() || !inFolder.isDirectory()) {
 			System.err.println("Directory does not exist: " + inFolder.getAbsolutePath());
 			System.exit(0);
 		}
 
-		File outFile = new File("csv-models/" + inFolder.getName() + ".csv");
+		final File outFile = new File("csv-models/" + inFolder.getName() + ".csv");
 		outFile.getParentFile().mkdirs();
 
 		System.out.println("Model Type: " + args[0]);
@@ -68,20 +68,20 @@ public class UML2CSV {
 		convert(inFolder, outFile, elementTypes);
 	}
 
-	private static void convert(File inFolder, File outFile, List<EClass> elementTypes) throws Exception {
-		List<String[]> allElementRecords = new ArrayList<String[]>();
+	private static void convert(final File inFolder, final File outFile, final List<EClass> elementTypes) throws Exception {
+		final List<String[]> allElementRecords = new ArrayList<>();
 
-		File modelFiles[] = inFolder.listFiles();
-		for (File file : modelFiles) {
+		final File[] modelFiles = inFolder.listFiles();
+		for (final File file : modelFiles) {
 			System.out.println("Processing " + file.getAbsolutePath());
-			Model model = ModelUtil.loadModel(file.getAbsolutePath());
+			final Model model = ModelUtil.loadModel(file.getAbsolutePath());
 			String modelId = file.getName();
 			modelId = modelId.substring(0, modelId.length() - 4);
 
 			// Elements
-			for (EClass elementType : elementTypes) {
-				for (NamedElement element : ModelUtil.getAllElements(model, elementType)) {
-					String[] elementRecord = new String[4];
+			for (final EClass elementType : elementTypes) {
+				for (final NamedElement element : ModelUtil.getAllElements(model, elementType)) {
+					final String[] elementRecord = new String[4];
 					elementRecord[0] = modelId;
 					elementRecord[1] = ModelUtil.getXmiId(element);
 					elementRecord[2] = element.getName();
@@ -105,10 +105,10 @@ public class UML2CSV {
 		writeCSV(allElementRecords, outFile.getAbsolutePath());
 	}
 
-	private static String getClassPropertyString(Class clazz) {
+	private static String getClassPropertyString(final Class clazz) {
 		String propertyString = "";
-		List<Feature> properties = ModelUtil.getAllFeatures(clazz);
-		for (Feature feature : properties) {
+		final List<Feature> properties = ModelUtil.getAllFeatures(clazz);
+		for (final Feature feature : properties) {
 			// Semicolon to separate features needed?
 			if (!propertyString.isEmpty()) {
 				propertyString += ";";
@@ -116,12 +116,12 @@ public class UML2CSV {
 			// String representation of property
 			if (feature instanceof Operation) {
 				// Special handling of Operations
-				Operation operation = (Operation) feature;
+				final Operation operation = (Operation) feature;
 				propertyString += operation.getName();
 				if (operation.getOwnedParameters().isEmpty()) {
 					propertyString += "_";
 				} else {
-					for (Parameter param : operation.getOwnedParameters()) {
+					for (final Parameter param : operation.getOwnedParameters()) {
 						propertyString += "_" + param.getName();
 					}
 				}
@@ -134,13 +134,13 @@ public class UML2CSV {
 		return propertyString;
 	}
 
-	private static String getStatePropertyString(State state) {
+	private static String getStatePropertyString(final State state) {
 		String propertyString = "State";
 
-		for (Transition t : state.getOutgoings()) {
+		for (final Transition t : state.getOutgoings()) {
 			propertyString += ";out_" + t.getName();
 		}
-		for (Transition t : state.getIncomings()) {
+		for (final Transition t : state.getIncomings()) {
 			propertyString += ";in_" + t.getName();
 		}
 
@@ -159,7 +159,7 @@ public class UML2CSV {
 		return propertyString;
 	}
 
-	private static String getTransitionPropertyString(Transition transition) {
+	private static String getTransitionPropertyString(final Transition transition) {
 		String propertyString = "Transition";
 
 		propertyString += ";src_" + transition.getSource().getName();
@@ -175,9 +175,9 @@ public class UML2CSV {
 		return propertyString;
 	}
 
-	protected static void writeCSV(List<String[]> stringArray, String path) throws Exception {
+	protected static void writeCSV(final List<String[]> stringArray, final String path) throws Exception {
 		System.out.println("Writing Output CSV: " + path);
-		CSVWriter writer = new CSVWriter(new FileWriter(path.toString()), ',', Character.MIN_VALUE);
+		final CSVWriter writer = new CSVWriter(new FileWriter(path.toString()), ',', Character.MIN_VALUE);
 		writer.writeAll(stringArray);
 		writer.close();
 	}

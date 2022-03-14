@@ -6,22 +6,17 @@ import de.variantsync.matching.raqun.data.RElement;
  * Representation of a neighboring element in a k-d-tree. A TreeNeighbor comprises the neighboring element and the distance
  * to it.
  */
-public class TreeNeighbor {
-	private final RElement element;
-	private final double distance;
-
+public record TreeNeighbor(RElement element, double distance) {
 	/**
 	 * Initialize a new neighboring element
-	 * @param element the neighboring element
+	 *
+	 * @param element  the neighboring element
 	 * @param distance the distance to it
 	 */
-	public TreeNeighbor(final RElement element, final double distance) {
-		this.element = element;
-		this.distance = distance;
+	public TreeNeighbor {
 	}
 
 	/**
-	 *
 	 * @return The distance to the neighbor
 	 */
 	public double getDistance() {
@@ -29,7 +24,6 @@ public class TreeNeighbor {
 	}
 
 	/**
-	 *
 	 * @return The neighboring element
 	 */
 	public RElement getElement() {

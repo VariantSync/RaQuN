@@ -77,7 +77,7 @@ public class ExperimentHelper {
     }
 
 
-     public static <V> V executeWithTimeout(final Callable<V> callable, final ExperimentSetup setup, IKillableLongTask task) {
+     public static <V> V executeWithTimeout(final Callable<V> callable, final ExperimentSetup setup, final IKillableLongTask task) {
          final ExecutorService executor = Executors.newSingleThreadExecutor();
          final Future<V> future = executor.submit(callable);
          try {
@@ -87,7 +87,7 @@ public class ExperimentHelper {
              try {
                  System.err.println("Awaiting stop confirmation...");
                  return future.get();
-             } catch (InterruptedException | ExecutionException ex) {
+             } catch (final InterruptedException | ExecutionException ex) {
                 throw new RuntimeException(ex);
              } finally {
                  System.err.println("Stop confirmed: " + task + " on " + setup.datasetName);
