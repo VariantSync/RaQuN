@@ -3,7 +3,6 @@ package de.variantsync.matching.experiments.baseline;
 import de.variantsync.matching.experiments.EAlgorithm;
 import de.variantsync.matching.experiments.common.*;
 import de.variantsync.matching.nwm.alg.merge.ChainingOptimizingMerger;
-import de.variantsync.matching.nwm.alg.merge.MultiModelMerger;
 import de.variantsync.matching.nwm.common.AlgoUtil;
 import de.variantsync.matching.nwm.domain.Element;
 import de.variantsync.matching.nwm.domain.Model;
@@ -30,7 +29,7 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
     @Override
     public boolean run(final ExperimentSetup setup) {
         for (int runID = 0; runID < setup.numberOfRepeats; runID++) {
-            // Here, we use the Model class of Rubin an Chechik
+            // Here, we use the Model class of Rubin and Chechik
             final ArrayList<Model> models = Model.readModelsFile(setup.datasetFile);
             final List<ArrayList<Model>> chunks = ExperimentHelper.getDatasetChunks(models, setup.chunkSize);
 
@@ -80,8 +79,6 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
 
                 if (solution == null || runResult == null) {
                     return false;
-                } else {
-                    System.out.println("");
                 }
 
                 // We parse the matching returned by NwM to our own data format, in order to do the evaluation
@@ -100,7 +97,6 @@ public class BaselineAlgoAdapter implements MatcherAdapter {
                 System.out.println();
 
                 matchStatistic.writeAsJSON(setup.resultFile, true);
-                //executionStatistic.writeModel(setup.mergeResultFile);
             }
         }
         return true;

@@ -115,18 +115,13 @@ public class ExperimentConfiguration {
 
     public TimeUnit timeoutUnit() {
         final String unit = config.getString(EXPERIMENTS_TIMEOUT_UNIT).trim();
-        switch (unit) {
-            case "SECONDS":
-                return TimeUnit.SECONDS;
-            case "MINUTES":
-                return TimeUnit.MINUTES;
-            case "HOURS":
-                return TimeUnit.HOURS;
-            case "DAYS":
-                return TimeUnit.DAYS;
-            default:
-                throw new IllegalArgumentException(unit + " is not a valid time unit for the timeout");
-        }
+        return switch (unit) {
+            case "SECONDS" -> TimeUnit.SECONDS;
+            case "MINUTES" -> TimeUnit.MINUTES;
+            case "HOURS" -> TimeUnit.HOURS;
+            case "DAYS" -> TimeUnit.DAYS;
+            default -> throw new IllegalArgumentException(unit + " is not a valid time unit for the timeout");
+        };
     }
     public boolean verboseResults() {
         return config.getBoolean(EXPERIMENTS_EXECUTION_VERBOSE);
