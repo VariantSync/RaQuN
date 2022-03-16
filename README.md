@@ -8,7 +8,9 @@
 # RaQuN (Range Queries on N input models)
 
 RaQuN is a scalable n-way model matching algorithm, which uses multi-dimensional search trees for efficiently finding suitable 
-matching candidates through range queries. This repository comprises the artifacts for our paper
+matching candidates through range queries. 
+
+This repository comprises the [artifacts](https://github.com/AlexanderSchultheiss/RaQuN/releases/tag/Camera-Ready) for our paper
 _Scalable N-Way Model Matching Using Multi-Dimensional Search Trees_ which we presented at the 
 International Conference on Model Driven Engineering Languages 2021 
 ([MODELS 2021](https://conf.researchr.org/home/models-2021)).
@@ -18,6 +20,8 @@ Authors:
 [Lars Grunske](https://www.informatik.hu-berlin.de/de/Members/lars-grunske),
 [Thomas Thüm](https://www.uni-ulm.de/in/sp/team/thuem/),
 [Timo Kehrer](https://www.informatik.hu-berlin.de/de/forschung/gebiete/mse/mitarb/kehrerti.html).
+
+Additionally, this repository comprises the [artifacts](https://github.com/AlexanderSchultheiss/RaQuN/releases/tag/SoSyM-Submission) for our MODELS'21 SoSyM Special Issue submission.
 
 ### Cite As
 ```bibtex
