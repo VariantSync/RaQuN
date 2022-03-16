@@ -1,0 +1,7 @@
+# Simulink Model Preparation
+There are four directories for the Simulink exportation to their element property representation:
+
+- [Simulink_models](Simulink_models) contains the Simulink models, we used in the paper.
+- [element_property_algorithm](element_property_algorithm) contains the Matlab scripts to process Simulink models to their element property representation. For models used by Schlie et al., the scripts also create the different variants from each model. If you want to rerun any of the scripts, you have to adjust the hardcoded directory names to your file system.
+- [input_of_algorithm](input_of_algorithm) contains Simulink models which can be processed by the scripts in "element_property_algorithm". Adapt the hardcoded name in the script to the path of this directory. The models of "Simulink_models" are a subset of the models contained here, but the naming scheme of "input_of_algorithm" works with the scripts of "element_property_algorithm".
+- [output_of_algorithm](output_of_algorithm) contains the element property representations of the Simulink models, we used in the paper. We discarded identical, completely different and trivial sized variants. We renamed the outputs to fit to the ones from "Simulink_models" and our paper's naming scheme. 

@@ -278,20 +278,22 @@ Examples of how type and structure information can be transferred to an element-
 
 ### Model Conversion
 Turning a model into an element-property representation requires a pre-processing step which is domain and technology-specific. 
+
+#### EMF Models
 While some of the models used in our experiments were already provided in an element-property representation, the majority 
 of models has been converted from EMF. More specifically, we implemented converters for parts of the UML meta-model 
 implementation shipped with the Eclipse Modeling project, and for customly defined meta-model of architectural models 
 following the component-connector principle.
 
-In order to run the converters on the EMF models provided in the directory [emf-models](emf-models) do the following:
+In order to run the converters on the EMF models provided in the directory [emf-models](models-original/emf-models) do the following:
 * Build the required jar files with Maven: `mvn package`
 * Execute the converters
 ```shell
-java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram emf-models/argouml
-java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram emf-models/bcms
-java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram emf-models/ppu
-java -jar target/UML2CSV-jar-with-dependencies.jar statemachine emf-models/ppu_statem
-java -jar target/Architecture2CSV-jar-with-dependencies.jar emf-models/bcs
+java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram models-original/emf-models/argouml
+java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram models-original/emf-models/bcms
+java -jar target/UML2CSV-jar-with-dependencies.jar classdiagram models-original/emf-models/ppu
+java -jar target/UML2CSV-jar-with-dependencies.jar statemachine models-original/emf-models/ppu_statem
+java -jar target/Architecture2CSV-jar-with-dependencies.jar models-original/emf-models/bcs
 ```
 * The converted models are saved under [`./csv-models`](csv-models)
 
@@ -299,6 +301,9 @@ The converters may serve as an inspiration of how to implement dedicated convert
 In a nutshell, we use the generic EMF model traversal and reflective API to access an element's local properties 
 and referenced elements. We exploit domain knowledge (on meta-models) to filter (and condense) some information 
 considered irrelevant (too verbose) for similarity-based matching.
+
+#### Simulink Models
+Information on how to convert the Simulink models can be found in the dedicated [README](models-original/Simulink/README.md).
 
 ### Running the Experiments On Your Dataset
 * Save the dataset's `csv` file to the [`experiment_subjects`](experimental_subjects) directory, next to the other dataset files. (Do not zip your files or locate them in subdirectories. They should be directly at the top-level, e.g., at `experiment_subjects/customdataset.csv`.)
