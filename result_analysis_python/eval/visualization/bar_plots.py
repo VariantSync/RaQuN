@@ -95,7 +95,7 @@ def create_runtime_plots(methods: [], datasets: [], results_per_method: {}, para
             fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".png")
 
 
-def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_per_method: {}, use_legend=False):
+def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_per_method: {}, use_legend=False, use_log=True):
     fig, ax = plt.subplots()
     ax.set_title("Runtime on ArgoUML Subsets", fontsize=title_size)
     labels = []
@@ -127,9 +127,12 @@ def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_pe
 
         # Plot the results of the current method
         ax.plot(runtime_vector, color=colors[index])
-        #plt.ylim(0, 60)
 
-        plt.yscale('log')
+        if use_log:
+            plt.yscale('log')
+        else:
+            plt.ylim(0, 3600)
+
         def major_formatter(x, pos):
             if x < 1:
                 return "%.2f" % x
@@ -143,7 +146,10 @@ def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_pe
         plt.xticks(range(0, len(datasets)), x_labels)
         #plt.yticks(range(0, 2), y_labels)
         plt.xlabel("Size of ArgoUML Subsets in Percent (%)", fontsize=axis_label_size)
-        plt.ylabel("Runtime in Seconds (log)", fontsize=axis_label_size)
+        if use_log:
+            plt.ylabel("Runtime in Seconds (log)", fontsize=axis_label_size)
+        else:
+            plt.ylabel("Runtime in Seconds", fontsize=axis_label_size)
         labels.append(mpatches.Patch(color=colors[index], label=name))
         if use_legend:
             plt.legend(handles=labels, loc=4, prop={'size': legend_size})

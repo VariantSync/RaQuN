@@ -136,6 +136,9 @@ def main():
 
             bar_plots.create_runtime_plot_argouml("fig_rq5_runtime", rq5_methods,
                                                   argo_datasets, results_per_method_argo, use_legend=True)
+
+            bar_plots.create_runtime_plot_argouml("fig_rq5_runtime2", rq5_methods,
+                                                              argo_datasets, results_per_method_argo, use_legend=True, use_log=False)
         except FileNotFoundError:
             "No ArgoUML results found"
 
