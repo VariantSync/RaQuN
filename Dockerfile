@@ -33,7 +33,6 @@ RUN mkdir -p ./experimental_subjects/argouml
 COPY --from=0 /home/user/target ./target
 COPY experimental_subjects/* ./experimental_subjects/
 COPY experimental_subjects/argouml/* ./experimental_subjects/argouml/
-COPY result_analysis_python ./result_analysis_python
 
 # Unpack the experimental subjects
 WORKDIR experimental_subjects
@@ -43,6 +42,8 @@ RUN mv argouml_p*.csv argouml/
 # Copy the docker resources
 WORKDIR /home/user
 COPY docker-resources/* ./
+
+COPY result_analysis_python ./result_analysis_python
 
 # Adjust permissions
 RUN chown user:user /home/user -R

@@ -152,7 +152,10 @@ def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_pe
             plt.ylabel("Runtime in Seconds", fontsize=axis_label_size)
         labels.append(mpatches.Patch(color=colors[index], label=name))
         if use_legend:
-            plt.legend(handles=labels, loc=4, prop={'size': legend_size})
+            if use_log:
+                plt.legend(handles=labels, loc=4, prop={'size': legend_size})
+            else:
+                plt.legend(handles=labels, loc=2, prop={'size': legend_size})
 
     # Show the plot
     ax.tick_params(axis='x', labelsize=tick_size)
