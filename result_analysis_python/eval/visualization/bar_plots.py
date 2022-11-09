@@ -9,8 +9,8 @@ from eval.visualization.misc import get_convergence_point, get_real_name, get_re
 import matplotlib as mpl
 mpl.rcParams['pdf.fonttype'] = 42
 mpl.rcParams['font.sans-serif'] = ["Verdana", "Arial", "Helvetica", "Avant Garde", "sans-serif"]
-mpl.rcParams['figure.dpi'] = 600
-mpl.rcParams['savefig.format'] = "png"
+mpl.rcParams['figure.dpi'] = 900
+# mpl.rcParams['savefig.format'] = "pdf"
 save_dir = "./../results/eval-results/fig/"
 Path(save_dir).mkdir(parents=True, exist_ok=True)
 
@@ -92,7 +92,8 @@ def create_runtime_plots(methods: [], datasets: [], results_per_method: {}, para
             ax.tick_params(axis='y', labelsize=tick_size)
             plt.tight_layout()
             # plt.show()
-            fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".png")
+            fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".pdf")
+            fig.savefig(save_dir + "Runtime" + "_" + method + "_" + dataset + ".jpeg")
 
 
 def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_per_method: {}, use_legend=False, use_log=True):
@@ -162,7 +163,8 @@ def create_runtime_plot_argouml(fig_label, methods: [], datasets: [], results_pe
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
     # plt.show()
-    fig.savefig(save_dir + fig_label + ".png")
+    fig.savefig(save_dir + fig_label + ".pdf")
+    fig.savefig(save_dir + fig_label + ".jpeg")
 
 
 def create_generic_plot_argouml(fig_label, methods: [], datasets: [], results_per_method: {}, parameter: str, use_legend=False):
@@ -211,4 +213,5 @@ def create_generic_plot_argouml(fig_label, methods: [], datasets: [], results_pe
     ax.tick_params(axis='y', labelsize=tick_size)
     plt.tight_layout()
     # plt.show()
-    fig.savefig(save_dir + fig_label + ".png")
+    fig.savefig(save_dir + fig_label + ".pdf")
+    fig.savefig(save_dir + fig_label + ".jpeg")
