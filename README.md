@@ -3,7 +3,7 @@
 ![Maven](https://github.com/AlexanderSchultheiss/RaQuN/actions/workflows/maven.yml/badge.svg)
 [![Javadoc](https://img.shields.io/badge/Javadocs-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/docs/)
 [![GitHubPages](https://img.shields.io/badge/GitHub%20Pages-online-blue.svg?style=flat)](https://alexanderschultheiss.github.io/RaQuN/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5150388.svg)](https://doi.org/10.5281/zenodo.5150388)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5111516.svg)](https://doi.org/10.5281/zenodo.5111516)
 
 # RaQuN (Range Queries on N input models)
 
@@ -86,6 +86,10 @@ ___This is a quickstart guide. For a detailed step-by-step guide please refer to
 * Open a terminal and navigate to the project's root directory
 * Build the docker image by calling the build script corresponding to your OS
   ```shell
+  # Note: As an alternative to building the Docker image yourself, 
+  # we also provide a prebuilt image via [Zenodo](https://doi.org/10.5281/zenodo.5111516). 
+  # You can load it in Docker with `docker load < match-experiments-image.tar`
+  
   # Windows:
   build-docker-image.bat
   # Linux | MacOS:
