@@ -121,6 +121,7 @@ def create_runtime_plot_argouml(
     results_per_method: {},
     use_legend=False,
     use_log=True,
+    plot_error_band=False,
 ):
     fig, ax = plt.subplots()
     ax.set_title("Runtime on ArgoUML Subsets", fontsize=title_size)
@@ -158,13 +159,14 @@ def create_runtime_plot_argouml(
         ax.plot(mean_runtimes, color=colors[index], label=name)
 
         # Plot the error band (standard deviation)
-        ax.fill_between(
-            range(len(mean_runtimes)),
-            mean_runtimes - std_runtimes,
-            mean_runtimes + std_runtimes,
-            color=colors[index],
-            alpha=0.2,
-        )
+        if plot_error_band:
+            ax.fill_between(
+                range(len(mean_runtimes)),
+                mean_runtimes - std_runtimes,
+                mean_runtimes + std_runtimes,
+                color=colors[index],
+                alpha=0.2,
+            )
 
         if use_log:
             plt.yscale("log")
@@ -208,6 +210,7 @@ def create_generic_plot_argouml(
     results_per_method: {},
     parameter: str,
     use_legend=False,
+    plot_error_band=False,
 ):
     fig, ax = plt.subplots()
     ax.set_title(parameter + " on ArgoUML Subsets", fontsize=title_size)
@@ -252,13 +255,14 @@ def create_generic_plot_argouml(
         ax.plot(mean_values, color=colors[index], label=name)
 
         # Plot error band
-        ax.fill_between(
-            range(len(mean_values)),
-            mean_values - std_values,
-            mean_values + std_values,
-            color=colors[index],
-            alpha=0.2,
-        )
+        if plot_error_band:
+            ax.fill_between(
+                range(len(mean_values)),
+                mean_values - std_values,
+                mean_values + std_values,
+                color=colors[index],
+                alpha=0.2,
+            )
 
         # Axis and label setup
         plt.xticks(range(0, len(datasets)), x_labels)
