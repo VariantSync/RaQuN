@@ -23,11 +23,15 @@ class SingleResult:
         self.average_matched_element_fit = json_content["averageMatchedElementFit"]
         self.matched_element_fit_per_tuple = json_content["matchedElementFitPerTuple"]
         if "numberOfNWayComparisonsTheoreticallyNeeded" in json_content:
-            self.dataset_number_of_comparisons_needed = json_content["numberOfNWayComparisonsTheoreticallyNeeded"]
+            self.dataset_number_of_comparisons_needed = json_content[
+                "numberOfNWayComparisonsTheoreticallyNeeded"
+            ]
         else:
             self.dataset_number_of_comparisons_needed = -1
         if "numberOfComparisonsActuallyDone" in json_content:
-            self.number_of_comparisons_done = json_content["numberOfComparisonsActuallyDone"]
+            self.number_of_comparisons_done = json_content[
+                "numberOfComparisonsActuallyDone"
+            ]
         else:
             self.number_of_comparisons_done = -1
 
@@ -54,18 +58,27 @@ class CombinedResult:
         self.number_of_elements = first_result.number_of_elements
         self.size_of_largest_model = first_result.size_of_largest_model
         self.k = first_result.k
-        self.dataset_number_of_comparisons_needed = first_result.dataset_number_of_comparisons_needed
+        self.dataset_number_of_comparisons_needed = (
+            first_result.dataset_number_of_comparisons_needed
+        )
 
         # Make sure that the shared data above is actually the same
         for single_result in l_single_results:  # type: SingleResult
-            if not (self.run_id == single_result.run_id
-                    and self.method == single_result.method
-                    and self.dataset == single_result.dataset
-                    and self.number_of_models == single_result.number_of_models
-                    and self.k == single_result.k):
+            if not (
+                self.run_id == single_result.run_id
+                and self.method == single_result.method
+                and self.dataset == single_result.dataset
+                and self.number_of_models == single_result.number_of_models
+                and self.k == single_result.k
+            ):
                 if not self.dataset.startswith("argouml_p"):
-                    raise ValueError("The given results for " + self.method + " and " + single_result.method +
-                                     " are not from the same setup and should not be averaged!")
+                    raise ValueError(
+                        "The given results for "
+                        + self.method
+                        + " and "
+                        + single_result.method
+                        + " are not from the same setup and should not be averaged!"
+                    )
 
         # Lists to collect the data of individual runs
         self.lst_runtime = []
@@ -92,8 +105,24 @@ class CombinedResult:
             self.lst_f_measure.append(single_result.f_measure)
             self.lst_weight.append(single_result.weight)
             self.lst_merge_size_factor.append(single_result.merge_size_factor)
-            self.lst_matched_element_fit.extend(single_result.matched_element_fit_per_tuple)
-            self.lst_number_of_comparisons.append(single_result.number_of_comparisons_done)
+            self.lst_matched_element_fit.extend(
+                single_result.matched_element_fit_per_tuple
+            )
+            self.lst_number_of_comparisons.append(
+                single_result.number_of_comparisons_done
+            )
+
+    def get_results_for_metric(self, metric: str):
+        if metric == "Weight":
+            return self.lst_weight
+        elif metric == "Precision":
+            return self.lst_precision
+        elif metric == "Recall":
+            return self.lst_recall
+        elif metric == "F-Measure":
+            return self.lst_f_measure
+        elif metric == "Comparisons":
+            return self.lst_number_of_comparisons
 
     def get_average(self, variable_name: str):
         if variable_name == "Weight":
@@ -133,15 +162,27 @@ class MethodStatistics:
             result_per_run_id = dict()
             self.result_per_dataset[result.dataset] = result_per_run_id
         if result.run_id in result_per_run_id:
-            raise ValueError("There already is a run with id " + result.run_id + " for " + result.dataset +
-                             " saved for " + self.method_name + "!")
+            raise ValueError(
+                "There already is a run with id "
+                + result.run_id
+                + " for "
+                + result.dataset
+                + " saved for "
+                + self.method_name
+                + "!"
+            )
         result_per_run_id[result.run_id] = result
 
     def get_result(self, dataset: str) -> CombinedResult:
         result_per_run_id = self.result_per_dataset[dataset]  # type: dict
         keys = result_per_run_id.keys()
         if len(keys) != 1:
-            raise AssertionError(self.method_name + " has more than one run id on dataset " + dataset + "!")
+            raise AssertionError(
+                self.method_name
+                + " has more than one run id on dataset "
+                + dataset
+                + "!"
+            )
         else:
             key = list(keys)[0]
             return result_per_run_id[key]
